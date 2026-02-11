@@ -24,11 +24,20 @@ Jekyll is a static site generator used by GitHub Pages that converts Markdown fi
     .
     |-- _config.yml
     |-- Gemfile
-    |-- index.md
-    |-- _projects/
-    |-- _lab/
     |-- assets/
-        |-- main.scss
+    |   |-- main.scss
+    |-- index.md
+    |-- docs/
+        |-- projects/
+        |   |-- prj_A.md
+        |   |-- prj_B.md...
+        |-- labs/
+        |   |-- lab_A.md...
+        |-- images/
+        |   |-- prj_A/...
+        |-- projects.md
+        |-- lab.md
+        |-- about.md
     ```
 
 1. Recommended content organization
@@ -55,9 +64,9 @@ Jekyll is a static site generator used by GitHub Pages that converts Markdown fi
 
 1. Editing workflow
     - Create a new `.md` file in `_projects/` or `_lab/`
-    - Create a matching folder in `assets/projects/` or `assets/lab/`
+    - Create a matching folder in `images/projects/` or `images/lab/`
     - Add images to that folder
-    - Use absolute paths in Markdown: `![cover](/assets/projects/project-a/cover.jpg)`
+    - Use absolute paths in Markdown: `![cover](/images/projects/project-a/cover.jpg)`
 1. Local preview: `jekyll serve`
     - Open [http://localhost:4000](http://localhost:4000/)
     - Changes reload automatically
@@ -96,7 +105,7 @@ This is an body. This site is open to the public as a repository for scalable, s
 
 [https://hayashnaoki.github.io/](https://hayashnaoki.github.io/)
 
-![](./docs/assets/rhgh.jpg)
+![](./docs/images/rhgh.jpg)
 
 <iframe 
   src="https://player.vimeo.com/video/904894755?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 

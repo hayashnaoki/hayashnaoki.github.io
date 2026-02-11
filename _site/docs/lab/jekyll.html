@@ -62,11 +62,20 @@
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> .
  |-- _config.yml
  |-- Gemfile
- |-- index.md
- |-- _projects/
- |-- _lab/
  |-- assets/
-     |-- main.scss
+ |   |-- main.scss
+ |-- index.md
+ |-- docs/
+     |-- projects/
+     |   |-- prj_A.md
+     |   |-- prj_B.md...
+     |-- labs/
+     |   |-- lab_A.md...
+     |-- images/
+     |   |-- prj_A/...
+     |-- projects.md
+     |-- lab.md
+     |-- about.md
 </code></pre></div>    </div>
   </li>
   <li>
@@ -99,9 +108,9 @@
   <li>Editing workflow
     <ul>
       <li>Create a new <code class="language-plaintext highlighter-rouge">.md</code> file in <code class="language-plaintext highlighter-rouge">_projects/</code> or <code class="language-plaintext highlighter-rouge">_lab/</code></li>
-      <li>Create a matching folder in <code class="language-plaintext highlighter-rouge">assets/projects/</code> or <code class="language-plaintext highlighter-rouge">assets/lab/</code></li>
+      <li>Create a matching folder in <code class="language-plaintext highlighter-rouge">images/projects/</code> or <code class="language-plaintext highlighter-rouge">images/lab/</code></li>
       <li>Add images to that folder</li>
-      <li>Use absolute paths in Markdown: <code class="language-plaintext highlighter-rouge">![cover](/assets/projects/project-a/cover.jpg)</code></li>
+      <li>Use absolute paths in Markdown: <code class="language-plaintext highlighter-rouge">![cover](/images/projects/project-a/cover.jpg)</code></li>
     </ul>
   </li>
   <li>Local preview: <code class="language-plaintext highlighter-rouge">jekyll serve</code>
@@ -152,7 +161,7 @@
 
 <p><a href="https://hayashnaoki.github.io/">https://hayashnaoki.github.io/</a></p>
 
-<p><img src="./docs/assets/rhgh.jpg" alt="" /></p>
+<p><img src="./docs/images/rhgh.jpg" alt="" /></p>
 
 <iframe src="https://player.vimeo.com/video/904894755?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" width="100%" height="auto" style="aspect-ratio:1/1;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="GH Lab | 2022_2023">
 </iframe>
