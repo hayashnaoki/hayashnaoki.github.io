@@ -657,27 +657,71 @@ body {
 }
 
 /* =========================================================
-   Navigation Button
+   Navigation (Minima Override)
    ========================================================= */
-/* Remove nav button border */
+/* Remove default border around navigation area */
 .site-nav {
   border: none !important;
 }
 
-/* Hide nav button on all screen sizes */
+/* Hide hamburger button on all screen sizes */
 .site-nav label[for=nav-trigger] {
   display: none !important;
-  border: none !important;
 }
 
-/* Ensure text menu is visible on small screens */
+/* =========================================================
+   Desktop Navigation
+   ========================================================= */
+/* Header layout: use flexbox for alignment */
+.site-header .wrapper {
+  display: flex;
+  justify-content: space-between; /* space between title and nav */
+  align-items: center; /* vertical centering */
+}
+
+/* Remove default float behavior from Minima */
+.site-title,
+.site-nav {
+  float: none;
+}
+
+/* Push navigation to the far right */
+.site-nav {
+  margin-left: auto;
+}
+
+/* Control spacing between menu items */
+.site-nav .trigger {
+  display: flex;
+  gap: 3px;
+}
+
+/* Adjust menu typography */
+.site-nav .page-link {
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+/* Site title styling */
+.site-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   Mobile Navigation
+   ========================================================= */
 @media screen and (max-width: 600px) {
+  /* Ensure text menu remains visible on small screens */
   .site-nav .trigger {
     display: flex !important;
+    gap: 1px; /* tighter spacing on mobile */
     position: static !important;
     clear: none !important;
-    border: none !important;
-    box-shadow: none !important;
+  }
+  /* Slightly reduce title size for small screens */
+  .site-title {
+    font-size: 20px;
   }
 }
 /* =========================================================
