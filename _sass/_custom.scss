@@ -1,0 +1,289 @@
+/* =========================================================
+   Typography
+   ========================================================= */
+
+/* Load Google Fonts (JP + Mono) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+Mono:wght@100..900&display=swap');
+
+/* Base body font */
+body {
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+}
+
+
+/* =========================================================
+   Colors / Background
+   ========================================================= */
+
+/* Page background */
+body {
+  background: #ffffff;
+}
+
+/* =========================================================
+   Headings
+   ========================================================= */
+
+/* Main heading */
+h1 {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1.1;
+
+  /* Allow word breaking on small screens */
+  // overflow-wrap: break-word;
+  // word-break: break-all;
+}
+
+/* Section heading */
+h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Subsection heading */
+h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+
+/* =========================================================
+   Header / Footer
+   ========================================================= */
+
+/* Remove default dividers */
+.site-header {
+  border-bottom: none;
+}
+
+.site-footer {
+  border-top: none;
+
+  /* Layout */
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem 2rem 0; /* top right bottom left */
+
+  /* Typography */
+  font-size: 1rem;
+  color: #000;
+}
+
+/* =========================================================
+   Footer Links
+   ========================================================= */
+
+.footer-links {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  margin-right: 1.5rem;
+  color: #000;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   Footer License
+   ========================================================= */
+
+.footer-license {
+  color: #000;
+}
+
+
+/* =========================================================
+   Horizontal Rule
+   ========================================================= */
+.page-content hr {
+  border: none;
+  border-top: 2px solid #000;
+  margin: 1rem 0 1rem;
+}
+
+
+/* =========================================================
+   Blockquote
+   ========================================================= */
+
+/* Minimal quote styling */
+blockquote {
+  border-left: 2px solid #000;
+  padding-left: 1em;
+
+  /* Reset theme defaults */
+  font-style: normal;
+  font-size: 1em;
+  color: #000;
+  background: transparent;
+
+  /* Normalize text spacing */
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/* Remove extra paragraph spacing */
+blockquote p {
+  margin: 0;
+
+  /* Inherit normal spacing */
+  letter-spacing: inherit;
+  word-spacing: inherit;
+}
+
+
+/* =========================================================
+   Inline Code
+   ========================================================= */
+
+/* Inline code appearance */
+code {
+  font-family: "Noto Sans Mono", system-ui, sans-serif;
+  font-size: 0.9em;
+
+  /* Subtle background */
+  background-color: #f2f2f2 !important;
+  color: #000;
+
+  /* Remove borders/shadows */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   Code Blocks
+   ========================================================= */
+
+/* Code block container */
+pre,
+.highlight {
+  font-family: "Noto Sans Mono", system-ui, sans-serif;
+  background-color: #f2f2f2 !important;
+  border: none;
+}
+
+/* Inner code reset */
+pre code {
+  background: transparent !important;
+}
+
+
+/* =========================================================
+   Syntax Highlighting (GitHub-like)
+   ========================================================= */
+
+/* Base code color */
+.highlight,
+pre code {
+  color: #24292e;
+}
+
+/* Comments */
+.highlight .c,
+.highlight .c1,
+.highlight .cm {
+  color: #6a737d;
+}
+
+/* Keywords */
+.highlight .k,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp {
+  color: #d73a49;
+}
+
+/* Strings */
+.highlight .s,
+.highlight .s1,
+.highlight .s2 {
+  color: #032f62;
+}
+
+/* Numbers */
+.highlight .mi,
+.highlight .mf,
+.highlight .mh {
+  color: #005cc5;
+}
+
+/* Functions / classes */
+.highlight .nf,
+.highlight .nc {
+  color: #6f42c1;
+}
+
+/* Variables */
+.highlight .nv,
+.highlight .vc {
+  color: #e36209;
+}
+
+/* Operators */
+.highlight .o {
+  color: #24292e;
+}
+
+
+/* =========================================================
+   Notes / Warnings
+   ========================================================= */
+
+/* Note text */
+.note {
+  color: #0040ff;
+}
+
+/* Warning text */
+.warning {
+  color: #ff2a00;
+}
+
+
+/* =========================================================
+   Tables
+   ========================================================= */
+
+/* Hard reset all table styles */
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Clean table layout */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Horizontal lines only */
+th,
+td {
+  border-bottom: 2px solid #000000 !important;
+  padding: 0.5em 0.6em;
+}
+
+/* Emphasize header row */
+th {
+  font-weight: 600;
+}
+
+/* Remove last row border */
+tbody tr:last-child td {
+  border-bottom: none;
+}

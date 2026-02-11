@@ -1,0 +1,22 @@
+# Site title (shown in header and browser tab)
+title: NAOKI HAYASHI 
+
+# Pages to show in the top navigation
+header_pages:
+  - docs/projects.md
+  - docs/lab.md
+  - docs/about.md
+
+# Make local preview match GitHub Pages exactly
+# baseurl: "/portfolio"
+
+# Jekyll theme
+theme: minima
+
+# Markdown engine
+markdown: kramdown
+
+# Markdown + syntax highlighting settings
+kramdown:
+  input: GFM            # GitHub Flavored Markdown
+  syntax_highlighter: rouge  # Code highlighting engine
