@@ -95,14 +95,15 @@ body {
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
 }
 
 .grid-item img {
   width: 100%;
   display: block;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 .caption {
@@ -118,7 +119,7 @@ body {
 }
 
 .grid-item:hover {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 /* =========================================================
