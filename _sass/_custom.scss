@@ -10,6 +10,30 @@ body {
   font-family: "Noto Sans JP", system-ui, sans-serif;
 }
 
+/* =========================================================
+   Navigation Button
+   ========================================================= */
+/* Remove nav button border */
+   .site-nav {
+  border: none !important;
+}
+
+/* Hide nav button on all screen sizes */
+.site-nav label[for="nav-trigger"] {
+  display: none !important;
+  border: none !important;
+}
+
+/* Ensure text menu is visible on small screens */
+@media screen and (max-width: 600px) {
+  .site-nav .trigger {
+    display: flex !important;
+    position: static !important;
+    clear: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
 
 /* =========================================================
    Colors / Background
@@ -26,13 +50,13 @@ body {
 
 /* Main heading */
 h1 {
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: 800;
   line-height: 1.1;
 
   /* Allow word breaking on small screens */
-  // overflow-wrap: break-word;
-  // word-break: break-all;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 /* Section heading */
@@ -274,7 +298,7 @@ table {
 /* Horizontal lines only */
 th,
 td {
-  border-bottom: 2px solid #000000 !important;
+  border-bottom: 1px solid #000000 !important;
   padding: 0.5em 0.6em;
 }
 
