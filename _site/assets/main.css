@@ -1,7 +1,7 @@
 /**
  * Reset some basic elements
  */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+Mono:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+JP:wght@100..900&display=swap");
 body, h1, h2, h3, h4, h5, h6,
 p, blockquote, pre, hr,
 dl, dd, ol, ul, figure {
@@ -650,7 +650,7 @@ table td {
 /* =========================================================
    Typography
    ========================================================= */
-/* Load Google Fonts (JP + Mono) */
+/* Load Google Fonts */
 /* Base body font */
 body {
   font-family: "Noto Sans JP", system-ui, sans-serif;
@@ -672,6 +672,11 @@ body {
 /* =========================================================
    Desktop Navigation
    ========================================================= */
+/* Remove default desktop spacing from Minima */
+.site-nav .page-link {
+  margin: 0; /* reset margin */
+}
+
 /* Header layout: use flexbox for alignment */
 .site-header .wrapper {
   display: flex;
@@ -693,7 +698,7 @@ body {
 /* Control spacing between menu items */
 .site-nav .trigger {
   display: flex;
-  gap: 3px;
+  gap: 1px;
 }
 
 /* Adjust menu typography */
@@ -705,7 +710,7 @@ body {
 /* Site title styling */
 .site-title {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* =========================================================
@@ -724,6 +729,37 @@ body {
     font-size: 20px;
   }
 }
+/* ========================================
+   Image Grid
+======================================== */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.grid-item img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4/3;
+}
+
+.caption {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.grid-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.grid-item:hover {
+  opacity: 0.8;
+}
+
 /* =========================================================
    Colors / Background
    ========================================================= */
@@ -841,7 +877,7 @@ blockquote p {
    ========================================================= */
 /* Inline code appearance */
 code {
-  font-family: "Noto Sans Mono", system-ui, sans-serif;
+  font-family: "IBM Plex Mono", system-ui, sans-serif;
   font-size: 0.9em;
   /* Subtle background */
   background-color: #f2f2f2 !important;
@@ -857,7 +893,7 @@ code {
 /* Code block container */
 pre,
 .highlight {
-  font-family: "Noto Sans Mono", system-ui, sans-serif;
+  font-family: "IBM Plex Mono", system-ui, sans-serif;
   background-color: #f2f2f2 !important;
   border: none;
 }
@@ -972,6 +1008,13 @@ th {
 /* Remove last row border */
 tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* =========================================================
+   Lists
+   ========================================================= */
+ul li::marker {
+  font-size: 0.7em;
 }
 
 /*# sourceMappingURL=main.css.map */

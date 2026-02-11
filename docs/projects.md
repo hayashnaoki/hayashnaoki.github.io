@@ -1,9 +1,11 @@
 ---
 layout: default
-title: PROJECTS
+title: Projects
 ---
 
 # PROJECTS
 
 ---
+
+## [PLOTBOT V0.2](/docs/projects/plotbot)
 

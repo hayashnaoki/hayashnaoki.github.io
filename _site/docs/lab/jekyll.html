@@ -7,14 +7,14 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="Jekyll" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://localhost:4000/docs/lab/01_jekyll.html" />
-<meta property="og:url" content="http://localhost:4000/docs/lab/01_jekyll.html" />
+<link rel="canonical" href="http://localhost:4000/docs/lab/jekyll.html" />
+<meta property="og:url" content="http://localhost:4000/docs/lab/jekyll.html" />
 <meta property="og:site_name" content="Naoki Hayashi" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Jekyll" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","headline":"Jekyll","url":"http://localhost:4000/docs/lab/01_jekyll.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"Jekyll","url":"http://localhost:4000/docs/lab/jekyll.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Naoki Hayashi" /></head>
 <body><header class="site-header" role="banner">
@@ -29,96 +29,106 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/docs/projects.html">PROJECTS</a><a class="page-link" href="/docs/lab.html">LAB</a><a class="page-link" href="/docs/about.html">ABOUT</a></div>
+        <div class="trigger"><a class="page-link" href="/docs/projects.html">Projects</a><a class="page-link" href="/docs/lab.html">Lab</a><a class="page-link" href="/docs/about.html">About</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
         <h1 id="jekyll">Jekyll</h1>
 
-<h2 id="overview">Overview</h2>
+<p>Jekyll is a static site generator used by GitHub Pages that converts Markdown files into static HTML and CSS at build time. It requires no server or database, produces fully static output, and operates entirely at build time without any runtime processing.</p>
 
-<p><strong>Jekyll</strong> is a static site generator used by GitHub Pages.</p>
-
-<p>Markdown is converted into static HTML/CSS at build time.</p>
-
-<h2 id="core-concepts">Core Concepts</h2>
-
-<h3 id="jekyll-1">Jekyll</h3>
-
-<ul>
-  <li>Build-time only</li>
-  <li>Fixed structure</li>
-  <li>No server or backend</li>
-</ul>
-
-<h3 id="theme">Theme</h3>
-
-<ul>
-  <li>Provides layouts + default CSS</li>
-  <li>Repo files override theme files</li>
-  <li>GitHub Pages supports limited themes/versions</li>
-</ul>
-
-<h3 id="css--scss">CSS / SCSS</h3>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">assets/main.scss</code> is the entry point</li>
-  <li>Compiled to <code class="language-plaintext highlighter-rouge">assets/main.css</code></li>
-  <li>Build fails if SCSS has errors</li>
-</ul>
-
-<h2 id="minimal-structure">Minimal Structure</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
-├── _config.yml
-├── Gemfile
-├── index.md
-├── docs/
-├── assets/
-│   └── main.scss
-
-</code></pre></div></div>
-
-<h2 id="essential-steps">Essential Steps</h2>
+<h3 id="configurations">Configurations</h3>
 
 <ol>
-  <li>Create repo</li>
-  <li>Set theme</li>
-  <li>Write Markdown</li>
-  <li>Customize CSS</li>
-  <li>Preview locally</li>
-  <li>Push to GitHub</li>
+  <li>Theme
+    <ul>
+      <li>Provides layouts and default CSS</li>
+      <li>This site uses the <code class="language-plaintext highlighter-rouge">minima</code> theme</li>
+      <li>Some parts are customized using <code class="language-plaintext highlighter-rouge">custom.scss</code></li>
+      <li>Files in the repository override theme files</li>
+    </ul>
+  </li>
+  <li>CSS / SCSS
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">assets/main.scss</code> is the entry point</li>
+      <li>Compiled into <code class="language-plaintext highlighter-rouge">assets/main.css</code></li>
+      <li>Build fails if SCSS contains errors</li>
+    </ul>
+  </li>
+  <li>
+    <p>Minimal structure</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> .
+ |-- _config.yml
+ |-- Gemfile
+ |-- index.md
+ |-- _projects/
+ |-- _lab/
+ |-- assets/
+     |-- main.scss
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Recommended content organization</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> _projects/
+ project-a.md
+
+ _lab/
+ experiment-01.md
+
+ assets/
+ projects/project-a/
+ lab/experiment-01/
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Keep Markdown and images separate</li>
+      <li>Create one folder per project or lab</li>
+      <li>Match the slug (file name) with the asset folder name</li>
+    </ul>
+
+    <p>Example: <code class="language-plaintext highlighter-rouge">assets/projects/project-a/cover.jpg</code></p>
+  </li>
 </ol>
 
-<h2 id="things-to-watch-out-for">Things to Watch Out For</h2>
+<h3 id="workflow-and-rules">Workflow and rules</h3>
 
-<ul>
-  <li>Local vs GitHub Pages build differences</li>
-  <li>Theme CSS overriding custom styles</li>
-  <li>SCSS compile errors</li>
-  <li>Git history rewrites breaking push</li>
-</ul>
+<ol>
+  <li>Editing workflow
+    <ul>
+      <li>Create a new <code class="language-plaintext highlighter-rouge">.md</code> file in <code class="language-plaintext highlighter-rouge">_projects/</code> or <code class="language-plaintext highlighter-rouge">_lab/</code></li>
+      <li>Create a matching folder in <code class="language-plaintext highlighter-rouge">assets/projects/</code> or <code class="language-plaintext highlighter-rouge">assets/lab/</code></li>
+      <li>Add images to that folder</li>
+      <li>Use absolute paths in Markdown: <code class="language-plaintext highlighter-rouge">![cover](/assets/projects/project-a/cover.jpg)</code></li>
+    </ul>
+  </li>
+  <li>Local preview: <code class="language-plaintext highlighter-rouge">jekyll serve</code>
+    <ul>
+      <li>Open <a href="http://localhost:4000/">http://localhost:4000</a></li>
+      <li>Changes reload automatically</li>
+    </ul>
+  </li>
+  <li>Link rules (important)
+ Recommended: <code class="language-plaintext highlighter-rouge">[Project](/projects/project-a)</code>
+    <ul>
+      <li>Use absolute paths</li>
+      <li>Do not include <code class="language-plaintext highlighter-rouge">.md</code></li>
+    </ul>
+  </li>
+  <li>Common issues
+    <ul>
+      <li>CSS not applied → theme overrides your styles</li>
+      <li>Build fails → SCSS error</li>
+      <li>Broken links → relative paths used</li>
+      <li>Push rejected → Git history rewritten</li>
+    </ul>
+  </li>
+</ol>
 
 <hr />
-<p>Notes:</p>
-
-<h2 id="this-link-to-the-jekyll-project-will-work"><a href="/docs/projects/01_jekyll">This link to the Jekyll project</a> will work.</h2>
-
-<p>Description goes here. Of course sushi is still scalable.</p>
-
-<p><a href="/docs/projects/01_jekyll"><img src="/docs/images/404.jpg" alt="" /></a></p>
-
-<h2 id="this-text-is-underlined-and-works-as-a-link-to-the-sushi-rolls-project"><a href="/docs/projects/01_jekyll"><u>This text is underlined</u> and works as a link to the Sushi Rolls project.</a></h2>
-
-<p class="note">Note: Sometimes css changes take time. Be patient…<br />
-Links like <code class="language-plaintext highlighter-rouge">[name](projects/page.md)</code> work after pushing, but <u>won't work during local preview.</u></p>
-
-<p class="warning">Links like <code class="language-plaintext highlighter-rouge">[name](/test/docs/projects/page)</code> work.<br />
-Always write <strong><u>absolute link</u></strong> and <strong><u>avoid suffix</u></strong> like <code class="language-plaintext highlighter-rouge">.md</code>.</p>
-
-<hr />
-<p>Example:</p>
+<h3 id="example">Example:</h3>
 
 <h1 id="this-is-an-h1-and-appears-very-large-maybe-too-large">This is an H1 and appears very large. Maybe too large.</h1>
 
@@ -142,10 +152,24 @@ Always write <strong><u>absolute link</u></strong> and <strong><u>avoid suffix</
 
 <p><a href="https://hayashnaoki.github.io/">https://hayashnaoki.github.io/</a></p>
 
-<p><img src="./docs/images/rhgh.jpg" alt="" /></p>
+<p><img src="./docs/assets/rhgh.jpg" alt="" /></p>
 
 <iframe src="https://player.vimeo.com/video/904894755?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" width="100%" height="auto" style="aspect-ratio:1/1;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="GH Lab | 2022_2023">
 </iframe>
+
+<p>Embedded video without control</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;iframe</span> 
+  <span class="na">src=</span><span class="s">"https://player.vimeo.com/video/904894755?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1"</span> 
+  <span class="na">width=</span><span class="s">"100%"</span> 
+  <span class="na">height=</span><span class="s">"auto"</span> 
+  <span class="na">style=</span><span class="s">"aspect-ratio:1/1;"</span> 
+  <span class="na">frameborder=</span><span class="s">"0"</span> 
+  <span class="na">allow=</span><span class="s">"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"</span> 
+  <span class="na">referrerpolicy=</span><span class="s">"strict-origin-when-cross-origin"</span> 
+  <span class="na">title=</span><span class="s">"GH Lab | 2022_2023"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/iframe&gt;</span>
+</code></pre></div></div>
 
 <table>
   <thead>

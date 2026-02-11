@@ -1,16 +1,18 @@
 ---
 layout: default
-title: ABOUT
+title: About
 ---
 
-# Industrial / Computational Sushi Designer
+# ABOUT
 
-## Naoki HAYASHI
-## 林 直樹
+## Naoki HAYASHI / 林 直樹
+
+{: .note }
+Industrial / Computational Sushi Designer
 
 Naoki Hayashi is an industrial and computational sushi designer who treats sushi as a parametric system defined by proportion, sequence, and repetition. His work bridges computational rules and industrial processes, exploring sushi as a scalable, reproducible design system.
 
-![](./images/404.jpg)
+![](./assets/404.jpg)
 
 ### Contact
 

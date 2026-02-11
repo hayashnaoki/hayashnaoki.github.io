@@ -5,82 +5,74 @@ title: Jekyll
 
 # Jekyll
 
-## Overview
+Jekyll is a static site generator used by GitHub Pages that converts Markdown files into static HTML and CSS at build time. It requires no server or database, produces fully static output, and operates entirely at build time without any runtime processing.
 
-**Jekyll** is a static site generator used by GitHub Pages.
+### Configurations
 
-Markdown is converted into static HTML/CSS at build time.
+1. Theme
+    - Provides layouts and default CSS
+    - This site uses the `minima` theme 
+    - Some parts are customized using `custom.scss`
+    - Files in the repository override theme files
+1. CSS / SCSS
+    - `assets/main.scss` is the entry point
+    - Compiled into `assets/main.css`
+    - Build fails if SCSS contains errors
+1. Minimal structure
 
-## Core Concepts
+    ```
+    .
+    |-- _config.yml
+    |-- Gemfile
+    |-- index.md
+    |-- _projects/
+    |-- _lab/
+    |-- assets/
+        |-- main.scss
+    ```
 
-### Jekyll
+1. Recommended content organization
 
-- Build-time only
-- Fixed structure
-- No server or backend
+    ```
+    _projects/
+    project-a.md
 
-### Theme
+    _lab/
+    experiment-01.md
 
-- Provides layouts + default CSS
-- Repo files override theme files
-- GitHub Pages supports limited themes/versions
+    assets/
+    projects/project-a/
+    lab/experiment-01/
+    ```
 
-### CSS / SCSS
+    - Keep Markdown and images separate
+    - Create one folder per project or lab
+    - Match the slug (file name) with the asset folder name
 
-- `assets/main.scss` is the entry point
-- Compiled to `assets/main.css`
-- Build fails if SCSS has errors
+    Example: `assets/projects/project-a/cover.jpg`
 
-## Minimal Structure
+### Workflow and rules
 
-```
-.
-├── _config.yml
-├── Gemfile
-├── index.md
-├── docs/
-├── assets/
-│   └── main.scss
-
-```
-
-## Essential Steps
-
-1. Create repo
-2. Set theme
-3. Write Markdown
-4. Customize CSS
-5. Preview locally
-6. Push to GitHub
-
-## Things to Watch Out For
-
-- Local vs GitHub Pages build differences
-- Theme CSS overriding custom styles
-- SCSS compile errors
-- Git history rewrites breaking push
-
----
-Notes: 
-
-## [This link to the Jekyll project](/docs/projects/01_jekyll) will work.
-
-Description goes here. Of course sushi is still scalable.
-
-[![](/docs/images/404.jpg)](/docs/projects/01_jekyll)
-
-## [<u>This text is underlined</u> and works as a link to the Sushi Rolls project.](/docs/projects/01_jekyll)
-
-{: .note}
-Note: Sometimes css changes take time. Be patient...  
-Links like `[name](projects/page.md)` work after pushing, but <u>won't work during local preview.</u>
-
-{: .warning}
-Links like `[name](/test/docs/projects/page)` work.  
-Always write **<u>absolute link</u>** and **<u>avoid suffix</u>** like `.md`.
+1. Editing workflow
+    - Create a new `.md` file in `_projects/` or `_lab/`
+    - Create a matching folder in `assets/projects/` or `assets/lab/`
+    - Add images to that folder
+    - Use absolute paths in Markdown: `![cover](/assets/projects/project-a/cover.jpg)`
+1. Local preview: `jekyll serve`
+    - Open [http://localhost:4000](http://localhost:4000/)
+    - Changes reload automatically
+1. Link rules (important)
+    Recommended: `[Project](/projects/project-a)`
+    - Use absolute paths
+    - Do not include `.md`
+1. Common issues
+    - CSS not applied → theme overrides your styles
+    - Build fails → SCSS error
+    - Broken links → relative paths used
+    - Push rejected → Git history rewritten
 
 ---
-Example: 
+### Example: 
 
 # This is an H1 and appears very large. Maybe too large.
 
@@ -104,7 +96,7 @@ This is an body. This site is open to the public as a repository for scalable, s
 
 [https://hayashnaoki.github.io/](https://hayashnaoki.github.io/)
 
-![](./docs/images/rhgh.jpg)
+![](./docs/assets/rhgh.jpg)
 
 <iframe 
   src="https://player.vimeo.com/video/904894755?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 
@@ -116,6 +108,21 @@ This is an body. This site is open to the public as a repository for scalable, s
   referrerpolicy="strict-origin-when-cross-origin" 
   title="GH Lab | 2022_2023">
 </iframe>
+
+Embedded video without control
+
+```html
+<iframe 
+  src="https://player.vimeo.com/video/904894755?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 
+  width="100%" 
+  height="auto" 
+  style="aspect-ratio:1/1;" 
+  frameborder="0" 
+  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+  referrerpolicy="strict-origin-when-cross-origin" 
+  title="GH Lab | 2022_2023">
+</iframe>
+```
 
 | Name | Descriptions | Quantity |
 | --- | --- | --- |
