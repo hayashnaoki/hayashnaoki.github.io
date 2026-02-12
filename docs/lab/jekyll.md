@@ -7,6 +7,8 @@ title: Jekyll
 
 2026, Web development
 
+I wanted to build a portfolio/repository to share my work and some files as open source, so here are my notes on how I built this website using Github Jekyll with the help of ChatGPT.
+
 Jekyll is a static site generator used by GitHub Pages that converts Markdown files into static HTML and CSS at build time. It requires no server or database, produces fully static output, and operates entirely at build time without any runtime processing.
 
 ### Configurations
@@ -107,7 +109,7 @@ This is an body. This site is open to the public as a repository for scalable, s
 
 [https://hayashnaoki.github.io/](https://hayashnaoki.github.io/)
 
-![](./docs/images/rhgh.jpg)
+![](/docs/images/rhgh.jpg)
 
 <iframe 
   src="https://player.vimeo.com/video/904894755?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 
