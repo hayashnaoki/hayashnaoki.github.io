@@ -24,7 +24,7 @@ The Grasshopper algorithm converts 2D curves into toolpaths and G-code for brush
 Grasshopper algorithm:
 
 <video 
-  src="docs/images/lab/yokai_pen_plotting/yokai_path.mp4" 
+  src="https://github.com/hayashnaoki/hayashnaoki.github.io/docs/images/lab/yokai_pen_plotting/yokai_path.mp4" 
   autoplay 
   muted 
   loop 
@@ -32,5 +32,7 @@ Grasshopper algorithm:
   controls 
   style="width:100%; aspect-ratio:1/1;">
 </video>
+
+![](/docs/images/lab/yokai_pen_plotting/plotting.jpg)
 
 [IG post](https://www.instagram.com/p/Cknwis-PDm6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
