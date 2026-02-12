@@ -5,6 +5,8 @@ title: Jekyll
 
 # Jekyll
 
+2026, Web development
+
 Jekyll is a static site generator used by GitHub Pages that converts Markdown files into static HTML and CSS at build time. It requires no server or database, produces fully static output, and operates entirely at build time without any runtime processing.
 
 ### Configurations

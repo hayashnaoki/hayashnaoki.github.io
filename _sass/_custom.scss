@@ -11,6 +11,27 @@ body {
 }
 
 /* =========================================================
+   Page Content Spacing
+   ========================================================= */
+/* Paragraph and image spacing */
+.page-content img {
+  display: block;
+  margin: 0.5rem 0;
+}
+.page-content p {
+  margin: 0.5rem 0;
+}
+
+.page-content video {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.page-content .media-wrapper {
+  margin: 0.5rem 0;
+}
+
+/* =========================================================
    Navigation (Minima Override)
    ========================================================= */
 

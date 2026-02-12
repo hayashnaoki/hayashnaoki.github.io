@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Lab
+title: LAB
 ---
 
 # LAB
@@ -58,9 +58,18 @@ title: Lab
     <div class="caption">2024 | CD</div>
   </a>
 
-  <a href="https://www.instagram.com/p/Cknwis-PDm6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
-    <div class="image-wrapper">
-      <img src="/docs/images/lab/plotting.jpg" alt="">
+  <a href="/docs/lab/yokai_pen_plotting" class="grid-item">
+    <div class="media-wrapper">
+      <iframe 
+        src="https://player.vimeo.com/video/1164292989?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 
+        width="100%" 
+        height="auto" 
+        style="aspect-ratio:1/1;" 
+        frameborder="0" 
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        title="keima_pen_plotting">
+      </iframe>
     </div>
     <div class="caption"><b>Yokai pen plotting</b></div>
     <div class="caption">2022 | CD</div>
