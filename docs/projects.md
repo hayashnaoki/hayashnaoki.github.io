@@ -10,7 +10,7 @@ title: PROJECTS
     <div class="image-wrapper">
         <img src="/docs/images/projects/plotbot/plotbot.jpg" alt="">
     </div>
-    <div class="caption"><b>PLOTBOT</b></div>
+    <div class="caption"><b>PLOT BOT</b></div>
     <div class="caption">2025-ongoing | DFAB | Prototype</div>
   </a>
 
@@ -40,7 +40,7 @@ title: PROJECTS
 
   <a href="/docs/projects/window">
     <div class="image-wrapper">
-      <img src="/docs/images/projects/window/window_3.jpg" alt="">
+      <img src="/docs/images/projects/window/window_1.jpg" alt="">
     </div>
     <div class="caption"><b>WINDOW</b></div>
     <div class="caption">2015-2016 | ID | Concept</div>

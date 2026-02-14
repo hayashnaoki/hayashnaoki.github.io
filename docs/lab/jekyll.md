@@ -18,53 +18,45 @@ Jekyll is a static site generator used by GitHub Pages that converts Markdown fi
 1. Theme
     - Provides layouts and default CSS
     - This site uses the `minima` theme 
-    - Some parts are customized using `custom.scss`
-    - Files in the repository override theme files
 1. CSS / SCSS
     - `assets/main.scss` is the entry point
-    - Compiled into `assets/main.css`
-    - Build fails if SCSS contains errors
-1. Minimal structure
+    - `_custom.scss` override theme files
+        - Typography
+        - Page layout
+        - Navigation
+        - Image grid
+        - Headings
+        - Header/footer
+        - Code/Note/Table etc.
+1. Site configurations
+    - `_config.yml` handles page title, top pages etc.
+    - `footer.html` for adding footer links
+1. Structure
 
     ```
     .
-    |-- _config.yml
-    |-- Gemfile
+    |-- _includes
+    |   |-- footer.html
+    |-- sass/
+    |   |-- _custom.scss
     |-- assets/
     |   |-- main.scss
-    |-- index.md
     |-- docs/
-        |-- projects/
-        |   |-- prj_A.md
-        |   |-- prj_B.md...
-        |-- labs/
-        |   |-- lab_A.md...
-        |-- images/
-        |   |-- prj_A/...
-        |-- projects.md
-        |-- lab.md
-        |-- about.md
+    |   |-- images/
+    |   |   |-- lab/
+    |   |   |-- projects/
+    |   |-- projects/
+    |   |   |-- prj_A.md
+    |   |   |-- prj_B.md...
+    |   |-- labs/
+    |   |   |-- lab_A.md...
+    |   |   |-- lab_B.md...
+    |   |-- about.md
+    |   |-- lab.md
+    |   |-- projects.md
+    |-- index.md
+    |-- _config.yml
     ```
-
-1. Recommended content organization
-
-    ```
-    _projects/
-    project-a.md
-
-    _lab/
-    experiment-01.md
-
-    assets/
-    projects/project-a/
-    lab/experiment-01/
-    ```
-
-    - Keep Markdown and images separate
-    - Create one folder per project or lab
-    - Match the slug (file name) with the asset folder name
-
-    Example: `assets/projects/project-a/cover.jpg`
 
 ### Workflow and rules
 
@@ -76,15 +68,18 @@ Jekyll is a static site generator used by GitHub Pages that converts Markdown fi
 1. Local preview: `jekyll serve`
     - Open [http://localhost:4000](http://localhost:4000/)
     - Changes reload automatically
-1. Link rules (important)
+1. Link rules
     Recommended: `[Project](/projects/project-a)`
     - Use absolute paths
     - Do not include `.md`
-1. Common issues
-    - CSS not applied → theme overrides your styles
-    - Build fails → SCSS error
-    - Broken links → relative paths used
-    - Push rejected → Git history rewritten
+1. Page rules
+    - Start with:
+        ```
+        ---
+        layout: default
+        title: Jekyll (only for header navigation)
+        ---
+        ```
 
 ---
 ### Example: 
@@ -111,7 +106,7 @@ This is an body. This site is open to the public as a repository for scalable, s
 
 [https://hayashnaoki.github.io/](https://hayashnaoki.github.io/)
 
-![](/docs/images/rhgh.jpg)
+![](/docs/images/404.jpg)
 
 <iframe 
   src="https://player.vimeo.com/video/904894755?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 

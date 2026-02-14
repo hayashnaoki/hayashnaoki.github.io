@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# PLOTBOT
+# PLOT BOT
 
 2025-ongoing \| Digital fabrication \| Prototype
 

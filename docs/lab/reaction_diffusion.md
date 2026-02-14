@@ -4,7 +4,7 @@ layout: default
 
 # Reaction diffusion
 
-2025 \| Computational design \| Gh
+2024 \| Computational design \| Gh
 
 Reaction-diffusion is a rule-based simulation in which values ​​repeatedly react and diffuse between adjacent points, producing emerging patterns similar to those found in coral reefs and other natural systems. These examples apply that logic to curve generation, curve expand while avoiding mutual interference, driving deformation across both a flat surface and a sphere.
 

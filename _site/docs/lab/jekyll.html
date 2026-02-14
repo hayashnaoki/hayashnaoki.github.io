@@ -52,60 +52,56 @@
     <ul>
       <li>Provides layouts and default CSS</li>
       <li>This site uses the <code class="language-plaintext highlighter-rouge">minima</code> theme</li>
-      <li>Some parts are customized using <code class="language-plaintext highlighter-rouge">custom.scss</code></li>
-      <li>Files in the repository override theme files</li>
     </ul>
   </li>
   <li>CSS / SCSS
     <ul>
       <li><code class="language-plaintext highlighter-rouge">assets/main.scss</code> is the entry point</li>
-      <li>Compiled into <code class="language-plaintext highlighter-rouge">assets/main.css</code></li>
-      <li>Build fails if SCSS contains errors</li>
+      <li><code class="language-plaintext highlighter-rouge">_custom.scss</code> override theme files
+        <ul>
+          <li>Typography</li>
+          <li>Page layout</li>
+          <li>Navigation</li>
+          <li>Image grid</li>
+          <li>Headings</li>
+          <li>Header/footer</li>
+          <li>Code/Note/Table etc.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Site configurations
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">_config.yml</code> handles page title, top pages etc.</li>
+      <li><code class="language-plaintext highlighter-rouge">footer.html</code> for adding footer links</li>
     </ul>
   </li>
   <li>
-    <p>Minimal structure</p>
+    <p>Structure</p>
 
     <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> .
- |-- _config.yml
- |-- Gemfile
+ |-- _includes
+ |   |-- footer.html
+ |-- sass/
+ |   |-- _custom.scss
  |-- assets/
  |   |-- main.scss
- |-- index.md
  |-- docs/
-     |-- projects/
-     |   |-- prj_A.md
-     |   |-- prj_B.md...
-     |-- labs/
-     |   |-- lab_A.md...
-     |-- images/
-     |   |-- prj_A/...
-     |-- projects.md
-     |-- lab.md
-     |-- about.md
+ |   |-- images/
+ |   |   |-- lab/
+ |   |   |-- projects/
+ |   |-- projects/
+ |   |   |-- prj_A.md
+ |   |   |-- prj_B.md...
+ |   |-- labs/
+ |   |   |-- lab_A.md...
+ |   |   |-- lab_B.md...
+ |   |-- about.md
+ |   |-- lab.md
+ |   |-- projects.md
+ |-- index.md
+ |-- _config.yml
 </code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Recommended content organization</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> _projects/
- project-a.md
-
- _lab/
- experiment-01.md
-
- assets/
- projects/project-a/
- lab/experiment-01/
-</code></pre></div>    </div>
-
-    <ul>
-      <li>Keep Markdown and images separate</li>
-      <li>Create one folder per project or lab</li>
-      <li>Match the slug (file name) with the asset folder name</li>
-    </ul>
-
-    <p>Example: <code class="language-plaintext highlighter-rouge">assets/projects/project-a/cover.jpg</code></p>
   </li>
 </ol>
 
@@ -126,19 +122,22 @@
       <li>Changes reload automatically</li>
     </ul>
   </li>
-  <li>Link rules (important)
+  <li>Link rules
  Recommended: <code class="language-plaintext highlighter-rouge">[Project](/projects/project-a)</code>
     <ul>
       <li>Use absolute paths</li>
       <li>Do not include <code class="language-plaintext highlighter-rouge">.md</code></li>
     </ul>
   </li>
-  <li>Common issues
+  <li>Page rules
     <ul>
-      <li>CSS not applied → theme overrides your styles</li>
-      <li>Build fails → SCSS error</li>
-      <li>Broken links → relative paths used</li>
-      <li>Push rejected → Git history rewritten</li>
+      <li>Start with:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ---
+  layout: default
+  title: Jekyll (only for header navigation)
+  ---
+</code></pre></div>        </div>
+      </li>
     </ul>
   </li>
 </ol>
@@ -168,7 +167,7 @@
 
 <p><a href="https://hayashnaoki.github.io/">https://hayashnaoki.github.io/</a></p>
 
-<p><img src="/docs/images/rhgh.jpg" alt="" /></p>
+<p><img src="/docs/images/404.jpg" alt="" /></p>
 
 <iframe src="https://player.vimeo.com/video/904894755?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" width="100%" height="auto" style="aspect-ratio:1/1;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="GH Lab | 2022_2023">
 </iframe>

@@ -7,7 +7,7 @@ title: ABOUT
 
 ### Naoki HAYASHI / 林 直樹
 
-*Industrial Designer / Computational Designer / Maker*
+1996-ongoing \| Industrial Designer \| Computational Designer \| Maker
 
 I'm an industrial designer based in Tokyo, with a passion for computational design and digital fabrication.
 

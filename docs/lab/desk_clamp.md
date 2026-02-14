@@ -6,7 +6,7 @@ layout: default
 
 2024 \| 3D printing \| Rhino / Gh
 
-This is an experiment in utilizing topology optimization using Grasshopper tOpos. Based on a result of optimization, I designed a desk clamp with hook which can be 3D print without any support, considering durability in FDM 3D printing characteristic.
+This is an experiment using topology optimization with Grasshopper tOpos. Based on the optimization results, I designed a desk clamp with a hook, 3D printable without support, taking into account durability for FDM 3D printing.
 
 ![](/docs/images/lab/desk_clamp/clamp.jpg)
 

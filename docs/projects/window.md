@@ -6,7 +6,7 @@ layout: default
 
 2015-2016 \| Industrial design \| Concept \| w/ Tomoki Asakusa
 
-## Incorporate ecp-cycle into urban living
+## Incorporate eco-cycle into urban living
 
 Household waste is often overlooked, ending up in landfills or incineration and contributing to emissions. WINDOW introduces a small urban eco-cycle, converting raw garbage into fertilizer and supporting home gardening,  fostering sustainability and a stronger connection to daily ecological practices. 
 
