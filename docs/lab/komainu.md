@@ -25,3 +25,5 @@ In 2022, I used a photogrammetry app on my iPhone to 3D scan the *komainu* statu
 </div>
 
 [IG post](https://www.instagram.com/p/C8967sHSloF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
+
+[Printables](https://www.printables.com/model/1600678-komainu-statue-3d-scanned)
