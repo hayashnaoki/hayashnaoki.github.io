@@ -143,30 +143,19 @@ body {
 .grid-item:hover {
   opacity: 0.9;
 }
-
-.image-wrapper {
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-}
-
-.image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+.image-wrapper,
 .media-wrapper {
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
+.image-wrapper img,
 .media-wrapper video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
 
 /* =========================================================
    Colors / Background

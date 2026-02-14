@@ -1,11 +1,10 @@
 ---
 layout: default
-title: Yokai pen plotting
 ---
 
 # Yokai pen plotting
 
-2022, Computational design
+2022 \| Computational design \| Gh/G-code
 
 An experiment in pen plotting a *Karasu Tengu* drawing by [Yuki Okuno](https://www.instagram.com/yuki.okuno_design/) using a 3D printer.
 A Grasshopper algorithm converts 2D curves into toolpaths and G-code for brush pen drawing on a 3D printer (Kingroon KP3S). A slight up and down movement was added to replicate the movement of a brush.

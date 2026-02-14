@@ -1,11 +1,10 @@
 ---
 layout: default
-title: Jekyll
 ---
 
 # Jekyll
 
-2026, Web development
+2026 \| Web development \| Gihub/HTML
 
 I wanted to build a portfolio/repository to share my work and some files as open source, so here are my notes on how I built this website using Github Jekyll with the help of ChatGPT.
 
