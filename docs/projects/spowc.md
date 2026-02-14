@@ -30,6 +30,4 @@ test how it looks in kitchen space.
 
 ![](/docs/images/projects/spowc/spowc_5.jpg)
 
-![](/docs/images/projects/spowc/spowc.jpg)
-
 [Behance](https://www.behance.net/gallery/115334449/SPOWC)

@@ -8,6 +8,9 @@ layout: default
 
 I wanted to build a portfolio/repository to share my work and some files as open source, so here are my notes on how I built this website using Github Jekyll with the help of ChatGPT.
 
+---
+### Jekyll
+
 Jekyll is a static site generator used by GitHub Pages that converts Markdown files into static HTML and CSS at build time. It requires no server or database, produces fully static output, and operates entirely at build time without any runtime processing.
 
 ### Configurations

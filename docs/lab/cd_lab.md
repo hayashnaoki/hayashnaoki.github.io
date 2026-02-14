@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# CD lab (2020-2023)
+# Computational design lab
 
 2020-2023 \| Computational design \| Gh
 
