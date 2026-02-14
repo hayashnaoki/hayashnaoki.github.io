@@ -23,14 +23,14 @@ title: LAB
       <img src="/docs/images/404.jpg" alt="">
     </div>
     <div class="caption"><b>Jekyll</b></div>
-    <div class="caption">2026 | Web | HTML</div>
+    <div class="caption">2026 | Web | Github</div>
   </a>
 
   <a href="/docs/lab/phone_tripod" class="grid-item">
     <div class="image-wrapper">
       <img src="/docs/images/lab/phone_tripod/tripod.jpg" alt="">
     </div>
-    <div class="caption"><b>Phone tripod</b></div>
+    <div class="caption"><b>3D printable phone tripod</b></div>
     <div class="caption">2025 | 3DP | F3D</div>
   </a>
 
@@ -38,7 +38,7 @@ title: LAB
     <div class="image-wrapper">
       <img src="/docs/images/lab/desk_clamp/clamp.jpg" alt="">
     </div>
-    <div class="caption"><b>Desk clamp</b></div>
+    <div class="caption"><b>Topology optimized desk clamp</b></div>
     <div class="caption">2024 | 3DP | Rh/Gh</div>
   </a>
 

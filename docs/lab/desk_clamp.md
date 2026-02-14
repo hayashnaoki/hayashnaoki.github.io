@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Phone tripod
+# Topology optimized desk clamp
 
 2024 \| 3D printing \| Rhino / Gh
 
