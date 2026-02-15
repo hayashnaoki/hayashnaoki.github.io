@@ -5,8 +5,10 @@ title: PROJECTS
 
 # PROJECTS
 
+<!-- Don't include .md in the links! -->
+
 <div class="image-grid">
-  <a href="/docs/projects/plotbot" class="grid-item">
+  <a href="/docs/projects/plotbot/index" class="grid-item">
     <div class="image-wrapper">
         <img src="/docs/images/projects/plotbot/plotbot.jpg" alt="">
     </div>

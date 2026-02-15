@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Naoki Hayashi</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Naoki Hayashi" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/docs/projects/plotbot/hardware.html" />
+<meta property="og:url" content="http://localhost:4000/docs/projects/plotbot/hardware.html" />
+<meta property="og:site_name" content="Naoki Hayashi" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Naoki Hayashi" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"Naoki Hayashi","url":"http://localhost:4000/docs/projects/plotbot/hardware.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Naoki Hayashi" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Naoki Hayashi</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/docs/projects.html">PROJECTS</a><a class="page-link" href="/docs/lab.html">LAB</a><a class="page-link" href="/docs/about.html">ABOUT</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 id="v02-hardware">V0.2 Hardware</h1>
+
+<blockquote>
+
+  <p>Back to <a href="index">PLOT BOT</a><br />
+Go to <a href="software">V0.2 Software</a></p>
+</blockquote>
+
+<h2 id="goals">Goals</h2>
+
+<ol>
+  <li>Making the machine wireless/battery powered
+    <ul>
+      <li>Add a safety circuit and battery monitoring</li>
+    </ul>
+  </li>
+  <li>Improving expandability</li>
+  <li>Making the machine compact</li>
+</ol>
+
+<h2 id="electronics-design">Electronics design</h2>
+
+<ul>
+  <li>A 12 V 6000 mAh Li-ion battery directly powers the A4988 motor drivers</li>
+  <li>Battery voltage is monitored by the Pico’s ADC via voltage divider</li>
+  <li>A LM2596 buck converter module converts 12 V to 5 V for the Pico</li>
+  <li>UART, I2C, SPI, and extra GPIOs are available for easy expansion such as additional micro controller (e.g., ESP32-S3), an OLED display, sensors, limit switches, a fan, or a servo</li>
+  <li>In this setup, the Pico works as the “spine”, and a wirelessly connected PC or additional micro controller works as the “brain”</li>
+</ul>
+
+<p><img src="/docs/images/projects/plotbot/system_diagram.jpg" alt="" /></p>
+
+<h3 id="schematics">Schematics</h3>
+
+<p><img src="/docs/images/projects/plotbot/V0.2_schematics_pico.png" alt="" /></p>
+
+<p><img src="/docs/images/projects/plotbot/V0.2_schematics_driver.png" alt="" /></p>
+
+<h3 id="pcb">PCB</h3>
+
+<ul>
+  <li>Double-sided (LM2596 mounted at the bottom)</li>
+</ul>
+
+<p><img src="/docs/images/projects/plotbot/PCB_top.jpg" alt="" /></p>
+
+<h3 id="pinout">Pinout</h3>
+
+<p><img src="/docs/images/projects/plotbot/pinout.jpg" alt="" /></p>
+
+<h3 id="bom">BOM</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Package</th>
+      <th>Fusion Library</th>
+      <th>Qty</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MCU</td>
+      <td>Raspberry Pi Pico</td>
+      <td>-</td>
+      <td>PICO-PKG-TH</td>
+      <td><a href="https://github.com/Lobo-T/RPI-Pico-Eagle-lib">RPI-Pico-Eagle-lib</a>, RASPBERRY_PICOTH</td>
+      <td>1</td>
+      <td><a href="https://akizukidenshi.com/catalog/g/g116132/">Akizuki</a></td>
+    </tr>
+    <tr>
+      <td>Motor Driver</td>
+      <td>A4988 stepper motor driver carrier</td>
+      <td>-</td>
+      <td>-</td>
+      <td><a href="https://github.com/suzakulab/Eagle-Library-Pololu/tree/master">Eagle-Library-Pololu (unofficial)</a>, 1182-A4988</td>
+      <td>4</td>
+      <td><a href="https://www.switch-science.com/products/582">Switch-Science</a></td>
+    </tr>
+    <tr>
+      <td>Protection</td>
+      <td>Mini blade fuse &amp; holder</td>
+      <td>32V, 15A</td>
+      <td>-</td>
+      <td>Custom made</td>
+      <td>1</td>
+      <td><a href="https://ja.aliexpress.com/item/1005006954864680.html">AliExpress</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>SBR diode (Schottky)</td>
+      <td>Peak Withstand Voltage: 30V, Average Forward Current: 15A</td>
+      <td>SBR15U30SP5</td>
+      <td>Custom made</td>
+      <td>1</td>
+      <td><a href="https://akizukidenshi.com/catalog/g/g107391/">Akizuki</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>TVS Diode</td>
+      <td>Bidirectional, VRWM: 45 V, VBR: 50–55.3 V, Peak Pulse Power: 400 W</td>
+      <td>TVS_SMBJ45CA</td>
+      <td>Custom made</td>
+      <td>1</td>
+      <td><a href="https://akizukidenshi.com/catalog/g/g107410/">Akizuki</a></td>
+    </tr>
+    <tr>
+      <td>Regulator</td>
+      <td>LM2596 buck converter module</td>
+      <td>In: 3.0 ~ 40V, out: 1.5〜35V</td>
+      <td>-</td>
+      <td>Custom made</td>
+      <td>1</td>
+      <td><a href="https://ja.aliexpress.com/item/1005003629985077.html?spm=a2g0o.detail.pcDetailTopMoreOtherSeller.3.21ac2Cjd2CjdYc&amp;gps-id=pcDetailTopMoreOtherSeller&amp;scm=1007.40050.354490.0&amp;scm_id=1007.40050.354490.0&amp;scm-url=1007.40050.354490.0&amp;pvid=882146ee-068b-4095-9065-ea0445588905&amp;_t=gps-id:pcDetailTopMoreOtherSeller,scm-url:1007.40050.354490.0,pvid:882146ee-068b-4095-9065-ea0445588905,tpp_buckets:668%232846%238111%231996&amp;pdp_ext_f=%7B%22order%22%3A%2238%22%2C%22eval%22%3A%221%22%2C%22sceneId%22%3A%2230050%22%2C%22fromPage%22%3A%22recommend%22%7D&amp;pdp_npi=6%40dis%21JPY%21108%2146%21%21%210.68%210.29%21%402101246417644793887896009ee347%2112000026569221043%21rec%21JP%212916345207%21XZ%211%210%21n_tag%3A-29919%3Bd%3A8b25bf9%3Bm03_new_user%3A-29895&amp;utparam-url=scene%3ApcDetailTopMoreOtherSeller%7Cquery_from%3A%7Cx_object_id%3A1005003629985077%7C_p_origin_prod%3A">AliExpress</a></td>
+    </tr>
+    <tr>
+      <td>Capacitors</td>
+      <td>Electrolytic capacitor (bulk)</td>
+      <td>35V, 220µF</td>
+      <td>CAPAE830X1050N</td>
+      <td>C-POL-US_ECAP-8.5MM</td>
+      <td>6</td>
+      <td><a href="https://ja.aliexpress.com/item/1005008827159096.html">AliExpress</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Ceramic Capacitor</td>
+      <td>0.1µF</td>
+      <td>CAPC3216X135</td>
+      <td>C-US_CHIP-1206(3216-METRIC)</td>
+      <td>3</td>
+      <td>↑</td>
+    </tr>
+    <tr>
+      <td>Resistors</td>
+      <td>Voltage divider</td>
+      <td>33kΩ</td>
+      <td>R1206</td>
+      <td>R-US_R1206</td>
+      <td>1</td>
+      <td><a href="https://ja.aliexpress.com/item/1005008789698065.html">AliExpress</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Pull-down / divider</td>
+      <td>10kΩ</td>
+      <td>R1206</td>
+      <td>R-US_R1206</td>
+      <td>4</td>
+      <td>↑</td>
+    </tr>
+    <tr>
+      <td>Pin Headers</td>
+      <td>Raspberry Pi Pico connection</td>
+      <td>-</td>
+      <td>1×20SMD, 2.54mm pitch, square</td>
+      <td>pinhead-2, PINHD-1X20_2.54-SMD</td>
+      <td>2</td>
+      <td>↑</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Microstepping selection</td>
+      <td>-</td>
+      <td>1×09SMD</td>
+      <td>↑</td>
+      <td>1</td>
+      <td>↑</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Stepper connections</td>
+      <td>-</td>
+      <td>1×08SMD</td>
+      <td>↑</td>
+      <td>8</td>
+      <td>↑</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Motor driver logic pins</td>
+      <td>-</td>
+      <td>1×04SMD</td>
+      <td>↑</td>
+      <td>4</td>
+      <td>↑</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>I²C / UART / SPI / GPIO expansion</td>
+      <td>-</td>
+      <td>2×13SMD</td>
+      <td>↑</td>
+      <td>1</td>
+      <td>↑</td>
+    </tr>
+    <tr>
+      <td>Terminal block</td>
+      <td>Power switch / Battery connector</td>
+      <td>-</td>
+      <td>1×2, 3.5mm pitch, straight, 300V, 10A</td>
+      <td>Adafruit, 1X2-3.5MM</td>
+      <td>2</td>
+      <td><a href="https://ja.aliexpress.com/item/10000004364694.html?spm=a2g0o.order_list.order_list_main.17.24f8585aMSQVdT&amp;gatewayAdapt=glo2jpn">AliExpress</a></td>
+    </tr>
+    <tr>
+      <td>Li-ion Battery Pack</td>
+      <td>12V ~6000mAh Li-ion battery with BMS</td>
+      <td>12V, 6000mAh</td>
+      <td>3S2P</td>
+      <td>-</td>
+      <td>1</td>
+      <td><a href="https://www.amazon.co.jp/gp/product/B0FBGFS16S">Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Stepper motor</td>
+      <td>Nema17 (W/H 42 mm)</td>
+      <td>Standard (L 37 mm)</td>
+      <td>-</td>
+      <td>-</td>
+      <td>4</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="mechanical-design">Mechanical design</h2>
+
+<ol>
+  <li>Modeling strategy (F3D)
+    <ul>
+      <li>Use external/internal components</li>
+      <li><a href="https://youtu.be/kj3_doWX2Kg?si=Wuf_BjsMH80fZwv-">Fusion 360 Components and Assemblies Explained</a></li>
+    </ul>
+  </li>
+  <li>Component layout
+    <ul>
+      <li>The 6000 mAh battery at the center bottom between the motors</li>
+      <li>The minimum dimensions defined by the four motors and the battery</li>
+    </ul>
+  </li>
+  <li>Topology optimization (Grasshopper tOpos)
+    <ul>
+      <li>Boundary: box excluding space for components</li>
+      <li>Loads: battery, PCB etc.</li>
+      <li>Support: Mounting points for the motors</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="files">Files</h2>
+
+<blockquote>
+
+  <p><a href="">Schematics (PDF)</a><br />
+<a href="">PCB (PNG)</a><br />
+<a href="">CAD (F3D)</a><br />
+<a href="">3D print (Printables)</a></p>
+</blockquote>
+
+      </div>
+    </main><footer class="site-footer">
+  <div class="wrapper">
+    <div class="footer-links">
+        <a href="https://github.com/hayashnaoki">GitHub</a>
+        <a href="https://www.instagram.com/hayashnaoki/">Instagram</a>
+        <a href="https://www.behance.net/hayashnaoki">Behance</a>
+        <a href="https://www.printables.com/@hayashnaoki">Printables</a>
+    </div>
+
+    <div class="footer-license">
+      © Naoki Hayashi · CC BY-NC 4.0
+    </div>
+  </div>
+</footer></body>
+
+</html>

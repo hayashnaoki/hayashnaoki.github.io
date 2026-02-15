@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Naoki Hayashi</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Naoki Hayashi" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/docs/projects/plotbot/software.html" />
+<meta property="og:url" content="http://localhost:4000/docs/projects/plotbot/software.html" />
+<meta property="og:site_name" content="Naoki Hayashi" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Naoki Hayashi" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"Naoki Hayashi","url":"http://localhost:4000/docs/projects/plotbot/software.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Naoki Hayashi" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Naoki Hayashi</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/docs/projects.html">PROJECTS</a><a class="page-link" href="/docs/lab.html">LAB</a><a class="page-link" href="/docs/about.html">ABOUT</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 id="v02-software">V0.2 Software</h1>
+
+<blockquote>
+
+  <p>Back to <a href="index">PLOT BOT</a><br />
+Go to <a href="hardware">V0.2 Hardware</a></p>
+</blockquote>
+
+<h2 id="goals">Goals</h2>
+
+<ol>
+  <li>Organize the code into abstract layers</li>
+  <li>Implement linear interpolation</li>
+</ol>
+
+<h2 id="embedded-programming">Embedded programming</h2>
+
+<h3 id="layers">Layers</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Role (abstract)</th>
+      <th>Input → Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1. G-code &amp; Intent</td>
+      <td>Describes what motion is desired, independent of hardware</td>
+      <td><code class="language-plaintext highlighter-rouge">G1 X100 Y200</code> → Target pose + path type</td>
+    </tr>
+    <tr>
+      <td>2. Interpolation</td>
+      <td>Converts geometric intent into a time-parameterized reference</td>
+      <td>Target pose → Trajectory <code class="language-plaintext highlighter-rouge">x(t), y(t), θ(t)</code></td>
+    </tr>
+    <tr>
+      <td>3. Correction</td>
+      <td>Aligns reference motion with estimated actual state</td>
+      <td>Trajectory + pose estimate → Body velocity <code class="language-plaintext highlighter-rouge">(Vx, Vy, ω)</code></td>
+    </tr>
+    <tr>
+      <td>4. Mecanum kinematics</td>
+      <td>Maps body motion into actuator commands → <code class="language-plaintext highlighter-rouge">(Vx, Vy, ω)</code></td>
+      <td>Motor commands <code class="language-plaintext highlighter-rouge">(ω1..ω4)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>The Arduino code was split according to the layers and others functions</li>
+  <li>By adding header (<code class="language-plaintext highlighter-rouge">.h</code>) and source (<code class="language-plaintext highlighter-rouge">.cpp</code>) files, the <code class="language-plaintext highlighter-rouge">.ino</code> file focus on orchestration</li>
+  <li><code class="language-plaintext highlighter-rouge">pins.h</code> and <code class="language-plaintext highlighter-rouge">config.h</code> for hardware abstraction</li>
+</ul>
+
+<p><img src="/docs/images/projects/plotbot/dependencies.jpg" alt="" /></p>
+
+<h3 id="interpolation">Interpolation</h3>
+
+<ul>
+  <li>Without interpolation (V0.1), a move like <code class="language-plaintext highlighter-rouge">[X100 Y200]</code> is executed as <code class="language-plaintext highlighter-rouge">[X100 Y100]</code> &gt; <code class="language-plaintext highlighter-rouge">[Y200]</code></li>
+  <li>With linear interpolation (<code class="language-plaintext highlighter-rouge">G1</code>), the X and Y motor speeds are continuously adjusted for linear path from <code class="language-plaintext highlighter-rouge">[0, 0]</code> to <code class="language-plaintext highlighter-rouge">[X100 Y200]</code></li>
+  <li>Arc interpolation (<code class="language-plaintext highlighter-rouge">G2/G3</code>), <code class="language-plaintext highlighter-rouge">I</code> and <code class="language-plaintext highlighter-rouge">J</code> represent center offset from the start point.</li>
+</ul>
+
+<p><img src="/docs/images/projects/plotbot/interpolation.jpg" alt="" /></p>
+
+<p>Formula: <code class="language-plaintext highlighter-rouge">Position(Time) = Start + (Total change) * Time</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>P0 = (x0, y0)
+P1 = (x1, y1)
+
+P(s) = (1 − s)·P0 + s·P1
+P(s) = P0 + s·(P0 - Y0)
+
+x(s) = x0 + s·(x1 − x0)
+y(s) = y0 + s·(y1 − y0)
+</code></pre></div></div>
+
+<p>Ref:</p>
+
+<ul>
+  <li><a href="https://reprap.org/wiki/G-code#G0_.26_G1:_Move">RepRap G-code</a></li>
+  <li><a href="https://www.cnccookbook.com/g00-g01-cnc-g-code/">CNC Cookbook G00 and G01 G-Code Mastery</a></li>
+</ul>
+
+<h3 id="mecanum-kinematics">Mecanum kinematics</h3>
+
+<h2 id="files">Files</h2>
+
+<blockquote>
+
+  <p><a href="">Arduino</a><br />
+<a href="">Processing</a></p>
+</blockquote>
+
+      </div>
+    </main><footer class="site-footer">
+  <div class="wrapper">
+    <div class="footer-links">
+        <a href="https://github.com/hayashnaoki">GitHub</a>
+        <a href="https://www.instagram.com/hayashnaoki/">Instagram</a>
+        <a href="https://www.behance.net/hayashnaoki">Behance</a>
+        <a href="https://www.printables.com/@hayashnaoki">Printables</a>
+    </div>
+
+    <div class="footer-license">
+      © Naoki Hayashi · CC BY-NC 4.0
+    </div>
+  </div>
+</footer></body>
+
+</html>

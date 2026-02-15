@@ -312,6 +312,7 @@ code {
 pre,
 .highlight {
   font-family: "IBM Plex Mono", system-ui, sans-serif;
+  font-size: 0.9rem;
   background-color: #f2f2f2 !important;
   border: none;
 }
@@ -411,6 +412,13 @@ td {
   box-shadow: none !important;
 }
 
+/* Table font */
+tbody {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #000;
+}
+
 /* Clean table layout */
 table {
   border-collapse: collapse;
@@ -427,11 +435,18 @@ td {
 /* Emphasize header row */
 th {
   font-weight: 600;
+  color: #000;
 }
 
 /* Remove last row border */
 tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* Scroll */
+.page-content table {
+  display: block;
+  overflow-x: auto;
 }
 
 /* =========================================================
