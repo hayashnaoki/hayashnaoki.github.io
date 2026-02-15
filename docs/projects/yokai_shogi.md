@@ -8,7 +8,7 @@ layout: default
 
 ## Cultural bricolage
 
-A collaboration with graphic designer [Yuki Okuno](https://www.instagram.com/yuki.okuno_design/), this project reimagines shogi (Japanese chess) through yokai, Japanese supernatural figures shaped by centuries of cultural exchange across Asia. Matching each piece’s role with a yokai’s character, 15 circular illustrations were translated into bold, minimal 3D forms based on a 6° tapered geometry, designed for stability and consistency as a cohesive set.
+A collaboration with graphic designer [Yuki Okuno](https://www.instagram.com/yuki.okuno_design/), this project reimagines shogi (Japanese chess) through yokai, Japanese supernatural figures shaped by centuries of cultural exchange across Asia. Matching each piece’s role with a yokai’s character, 15 circular illustrations were translated into bold, minimal 3D forms based on a 6° tapered geometry, designed for stability and consistency as a cohesive set. The pieces are also designed to evoke the directions in which they can move.
 
 ![](/docs/images/projects/yokai_shogi/yokai_01.jpg)
 

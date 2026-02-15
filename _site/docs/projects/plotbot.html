@@ -40,10 +40,9 @@
 
 <h2 id="mecanum-wheeled-pen-plotter-with-infinite-plotting-area">Mecanum wheeled pen plotter with infinite plotting area</h2>
 
-<p>The project started as a final project of <a href="https://fabacademy.org/">Fab Academy</a> 2025. This is a mobile pen plotter with mecanum wheels, capable of drawing over an area much larger than its body. It uses a Raspberry Pi Pico to parse G-code via serial communication, controlling four wheels, stepper motors, and a Z-axis servo, with end stops for homing. I handled everything from concept and mechanical design to electronics, PCB fabrication, and
-assembly.</p>
+<p>The project started as a final project of <a href="https://fabacademy.org/">Fab Academy</a> 2025. This is a mobile pen plotter with mecanum wheels, capable of drawing over an area much larger than its body. It uses a Raspberry Pi Pico to parse G-code via serial communication, controlling four wheels, stepper motors, and a Z-axis servo, with end stops for homing. I have learned everything from project management and mechanical and electronics design to PCB fabrication, and assembly.</p>
 
-<h3 id="v01">V0.1</h3>
+<h3 id="v01-proof-of-concept">V0.1: Proof of concept</h3>
 
 <p><a href="https://fabacademy.org/2025/labs/kannai/students/naoki-hayashi/projects/01_Final_project/final-project_00/">Fab Academy repository</a></p>
 
@@ -52,9 +51,56 @@ assembly.</p>
 <iframe src="https://player.vimeo.com/video/1164902224?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="100%" height="auto" style="aspect-ratio:16/9;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="PLOTBOT V0.1">
 </iframe>
 
+<h3 id="implications">Implications</h3>
+
+<p>The idea started from a simple curiosity: could a machine print or draw things bigger than itself? Traditional 3D printers are limited by their fixed frames. This machine moves freely in X and Y directions using omni-wheels, and could later add a Z-axis arm for height. In the future, it might even be able to climb onto its own printed objects and keep building—making truly large-scale 3D printing possible.</p>
+
+<h3 id="next-spirals">Next spirals</h3>
+
+<ol>
+  <li>Improvements as a pen plotter
+    <ul>
+      <li>Add absolute tracking for position correction</li>
+      <li>Enable wireless control and battery power</li>
+    </ul>
+  </li>
+  <li>Learn and incorporate 3D printing technologies
+    <ul>
+      <li>Improve Z-axis design for 3D printing</li>
+      <li>Learn 3D printing through building filament recycling machine</li>
+      <li>Learn 3D printing firmware</li>
+    </ul>
+  </li>
+  <li>System integration: PRINT BOT V1.0
+    <ul>
+      <li>Integrate filament feeding system and extruder</li>
+    </ul>
+  </li>
+</ol>
+
 <hr />
 
-<h3 id="v02">V0.2</h3>
+<h2 id="v02">V0.2</h2>
+
+<p>V0.2 focuses on 2 goals:</p>
+
+<ol>
+  <li>Making the machine wireless
+    <ul>
+      <li>A 12 V 6000 mAh Li-ion battery directly powers the A4988 motor drivers</li>
+      <li>Battery voltage is monitored by the Pico’s ADC via voltage divider</li>
+      <li>A LM2596 buck converter module converts 12 V to 5 V for the Pico</li>
+    </ul>
+  </li>
+  <li>Improving expandability
+    <ul>
+      <li>UART, I2C, SPI, and extra GPIOs are available for easy expansion such as additional micro controller (e.g., ESP32-S3), an OLED display, sensors, limit switches, a fan, or a servo</li>
+      <li>In this setup, the Pico works as the “spine”, and a wirelessly connected PC or additional micro controller works as the “brain”</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="/docs/images/projects/plotbot/system_diagram.jpg" alt="" /></p>
 
       </div>
     </main><footer class="site-footer">

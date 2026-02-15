@@ -11,7 +11,9 @@ layout: default
 BYB combines a mobile app and road-embedded guide lights to help residents experience past disasters and improve evacuation routes. By simulating hazards and providing intuitive light and voice guidance, the system
 counters “normalcy bias,” supporting faster, safer evacuation while raising ongoing regional disaster awareness. 
 
-The design focused on research-driven ideation around disaster drills and normalcy bias. We developed and tested guidance strategies through prototyping and user feedback, ensuring effective, clear, and tangible connections between digital simulations and real-world evacuation paths. The project won the [Asia Design Prize 2019](http://asiadesignprize.com/index.php?mid=exhibition&page=6&document_srl=49203).
+The design focused on ideation based on research into disaster drills and normalcy bias, validating guidance through prototyping, with the goal of providing effective and clear guidance that concretely connects the digital disaster map to real-world evacuation routes.
+
+The project won the [Asia Design Prize 2019](http://asiadesignprize.com/index.php?mid=exhibition&page=6&document_srl=49203).
 
 ![](/docs/images/projects/byb/BYB.jpg)
 

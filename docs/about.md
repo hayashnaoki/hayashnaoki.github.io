@@ -3,13 +3,11 @@ layout: default
 title: ABOUT
 ---
 
-# ABOUT
-
-### Naoki HAYASHI / 林 直樹
+# Naoki Hayashi
 
 1996-ongoing \| Industrial Designer \| Computational Designer \| Maker
 
-I'm an industrial designer based in Tokyo, with a passion for computational design and digital fabrication.
+I'm Naoki Hayashi (林 直樹), an industrial designer based in Japan, with a passion for computational design and digital fabrication.
 
 ![](./images/404.jpg)
 
