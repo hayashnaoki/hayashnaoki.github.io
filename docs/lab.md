@@ -55,7 +55,7 @@ title: LAB
       <img src="/docs/images/lab/nenkin/nenkin.jpg" alt="">
     </div>
     <div class="caption"><b>Nenkin</b></div>
-    <div class="caption">2024 | CD | GH</div>
+    <div class="caption">2024 | CD | Gh</div>
   </a>
 
   <a href="/docs/lab/komainu" class="grid-item">
@@ -67,7 +67,7 @@ title: LAB
         playsinline></video>
     </div>
     <div class="caption"><b>Komainu</b></div>
-    <div class="caption">2022 | CD | 3D scan/GH</div>
+    <div class="caption">2022 | CD | 3D scan/Gh</div>
   </a>
 
   <a href="/docs/lab/cd_lab" class="grid-item">
@@ -79,7 +79,7 @@ title: LAB
       playsinline></video>
     </div>
     <div class="caption"><b>Computational design lab (2020-2023)</b></div>
-    <div class="caption">2020-2023 | CD | GH</div>
+    <div class="caption">2020-2023 | CD | Gh</div>
   </a>
 
   <a href="/docs/lab/yokai_pen_plotting" class="grid-item">
