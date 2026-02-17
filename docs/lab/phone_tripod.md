@@ -6,7 +6,7 @@ layout: default
 
 2025 \| Industrial design/3D printing \| F3D
 
-This is a easily 3D printable tripod for smartphone using four M5 bolts and nuts, designed for [the study session](https://fabacademy.org/2025/labs/kannai/students/naoki-hayashi/post_academy/study_session/01_kangineering/) at FabLab Kannai.
+This is an easily 3D-printable tripod for smartphones, using four M5 bolts and nuts. It was designed for [a study session](https://fabacademy.org/2025/labs/kannai/students/naoki-hayashi/post_academy/study_session/01_kangineering/) at FabLab Kannai.
 
 ![](/docs/images/lab/phone_tripod/tripod.jpg)
 

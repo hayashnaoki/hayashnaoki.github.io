@@ -6,7 +6,7 @@ layout: default
 
 2024 \| Computational design \| Gh
 
-This is an experiment using Grasshopper to create raindrop like shapes. I used an algorithm called shortest path, which recursively finds the closest point in a point cloud. This reminds me of slime mold (*nenkin* in Japanese) and lightning, which I believe are caused by similar phenomena.
+This is an experiment using Grasshopper to create raindrop like shapes. I used an algorithm called shortest path, which recursively finds the closest point in a point cloud. This reminds me of slime mold (*nenkin* in Japanese), which I believe are caused by similar phenomena.
 
 ![](/docs/images/lab/nenkin/nenkin.jpg)
 

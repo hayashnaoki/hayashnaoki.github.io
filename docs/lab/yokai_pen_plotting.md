@@ -6,8 +6,7 @@ layout: default
 
 2022 \| Computational design \| Gh/G-code \| w/ Yuki Okuno
 
-An experiment in pen plotting a *Karasu Tengu* drawing by [Yuki Okuno](https://www.instagram.com/yuki.okuno_design/) using a 3D printer.
-A Grasshopper algorithm converts 2D curves into toolpaths and G-code for brush pen drawing on a 3D printer (Kingroon KP3S). A slight up and down movement was added to replicate the movement of a brush.
+An experiment in pen-plotting [Yuki Okuno](https://www.instagram.com/yuki.okuno_design/)’s Karasu Tengu drawing with a 3D printer. A Grasshopper algorithm converts 2D curves into toolpaths and G-code for brush-pen drawing. A slight up-and-down movement was added to replicate the motion of a brush.
 
 <iframe 
     src="https://player.vimeo.com/video/1164292989?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 

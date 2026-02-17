@@ -63,7 +63,8 @@ Go to [V0.2 Software](software)
 |  | I²C / UART / SPI / GPIO expansion | - | 2×13SMD | ↑ | 1 | ↑ |
 | Terminal block | Power switch / Battery connector | - | 1×2, 3.5mm pitch, straight, 300V, 10A | Adafruit, 1X2-3.5MM | 2 | [AliExpress](https://ja.aliexpress.com/item/10000004364694.html?spm=a2g0o.order_list.order_list_main.17.24f8585aMSQVdT&gatewayAdapt=glo2jpn) |
 | Li-ion Battery Pack | 12V ~6000mAh Li-ion battery with BMS | 12V, 6000mAh | 3S2P | - | 1 | [Amazon](https://www.amazon.co.jp/gp/product/B0FBGFS16S) |
-| Stepper motor | Nema17 (W/H 42 mm) | Standard (L 37 mm) | - | - | 4 | - |
+| Stepper motor | Nema17 (W/H 42 mm) | Standard (L 37 mm) | - | - | 4 | [AliExpress](https://ja.aliexpress.com/i/32376023464.html?gatewayAdapt=glo2jpn) |
+| Servo motor | SF180M | 180° | - | - | 4 | [Akiduki](https://akizukidenshi.com/catalog/g/g108761/) |
 
 ## Mechanical design
 

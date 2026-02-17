@@ -26,6 +26,14 @@ title: LAB
     <div class="caption">2026 | Web | Github</div>
   </a>
 
+  <a href="/docs/lab/plywood_connector" class="grid-item">
+    <div class="image-wrapper">
+      <img src="/docs/images/lab/plywood_connector/plywood_con_02.jpg" alt="">
+    </div>
+    <div class="caption"><b>Plywood connector</b></div>
+    <div class="caption">2025 | 3DP | F3D</div>
+  </a>
+
   <a href="/docs/lab/phone_tripod" class="grid-item">
     <div class="image-wrapper">
       <img src="/docs/images/lab/phone_tripod/tripod.jpg" alt="">
@@ -101,7 +109,7 @@ title: LAB
       <img src="/docs/images/lab/IMAGE_GOES_HERE" alt="">
     </div>
     <div class="caption"><b>TITLE_GOES_HERE</b></div>
-    <div class="caption">9999 | ZZ</div>
+    <div class="caption">9999 | ZZ | SW</div>
   </a>
 
   <a href="/docs/lab/LINK_GOES_HERE" class="grid-item">
@@ -113,6 +121,6 @@ title: LAB
         playsinline></video>
     </div>
     <div class="caption"><b>TITLE_GOES_HERE</b></div>
-    <div class="caption">9999 | ZZ</div>
+    <div class="caption">9999 | ZZ | SW</div>
   </a>
 --->
