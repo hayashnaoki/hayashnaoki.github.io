@@ -57,10 +57,9 @@ Go to [V0.2 Software](software)
 | Resistors | Voltage divider | 33kΩ | R1206 | R-US_R1206 | 1 | [AliExpress](https://ja.aliexpress.com/item/1005008789698065.html) |
 |  | Pull-down / divider | 10kΩ | R1206 | R-US_R1206 | 4 | ↑ |
 | Pin Headers | Raspberry Pi Pico connection | - | 1×20SMD, 2.54mm pitch, square | pinhead-2, PINHD-1X20_2.54-SMD | 2 | ↑ |
-|  | Microstepping selection | - | 1×09SMD | ↑ | 1 | ↑ |
 |  | Stepper connections | - | 1×08SMD | ↑ | 8 | ↑ |
 |  | Motor driver logic pins | - | 1×04SMD | ↑ | 4 | ↑ |
-|  | I²C / UART / SPI / GPIO expansion | - | 2×13SMD | ↑ | 1 | ↑ |
+|  | I²C / UART / SPI / GPIO expansion | - | 2×20SMD | ↑ | 1 | ↑ |
 | Terminal block | Power switch / Battery connector | - | 1×2, 3.5mm pitch, straight, 300V, 10A | Adafruit, 1X2-3.5MM | 2 | [AliExpress](https://ja.aliexpress.com/item/10000004364694.html?spm=a2g0o.order_list.order_list_main.17.24f8585aMSQVdT&gatewayAdapt=glo2jpn) |
 | Li-ion Battery Pack | 12V ~6000mAh Li-ion battery with BMS | 12V, 6000mAh | 3S2P | - | 1 | [Amazon](https://www.amazon.co.jp/gp/product/B0FBGFS16S) |
 | Stepper motor | Nema17 (W/H 42 mm) | Standard (L 37 mm) | - | - | 4 | [AliExpress](https://ja.aliexpress.com/i/32376023464.html?gatewayAdapt=glo2jpn) |
@@ -70,7 +69,7 @@ Go to [V0.2 Software](software)
 
 1. Modeling strategy (F3D)
     - Use external/internal components
-    - [Fusion 360 Components and Assemblies Explained](https://youtu.be/kj3_doWX2Kg?si=Wuf_BjsMH80fZwv-)
+    - Ref: [Fusion 360 Components and Assemblies Explained](https://youtu.be/kj3_doWX2Kg?si=Wuf_BjsMH80fZwv-)
 1. Component layout
     - The 6000 mAh battery at the center bottom between the motors
     - The minimum dimensions defined by the four motors and the battery  
@@ -78,6 +77,7 @@ Go to [V0.2 Software](software)
     - Boundary: box excluding space for components
     - Loads: battery, PCB etc.
     - Support: Mounting points for the motors
+    - Ref: [Topology Optimization 101](https://formlabs.com/blog/topology-optimization/?srsltid=AfmBOop-21FSWjzrRfT_V_dcDMQh743sqI0DHfcjQxuELNHLn6EK_Idw)
 
 
 ## Files
