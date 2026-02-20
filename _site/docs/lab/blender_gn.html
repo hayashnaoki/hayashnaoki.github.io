@@ -7,14 +7,14 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="Naoki Hayashi" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://localhost:4000/docs/lab/cellular_automata.html" />
-<meta property="og:url" content="http://localhost:4000/docs/lab/cellular_automata.html" />
+<link rel="canonical" href="http://localhost:4000/docs/lab/blender_gn.html" />
+<meta property="og:url" content="http://localhost:4000/docs/lab/blender_gn.html" />
 <meta property="og:site_name" content="Naoki Hayashi" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Naoki Hayashi" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","headline":"Naoki Hayashi","url":"http://localhost:4000/docs/lab/cellular_automata.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"Naoki Hayashi","url":"http://localhost:4000/docs/lab/blender_gn.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Naoki Hayashi" /></head>
 <body><header class="site-header" role="banner">
@@ -34,17 +34,43 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <h1 id="cellular-automata">Cellular automata</h1>
+        <h1 id="blender-geometry-nodes">Blender Geometry Nodes</h1>
 
-<p>2026-ongoing | Computational design | Gh</p>
+<p>2026 | Computational design | Blender</p>
 
-<div class="media-wrapper">
-    <video src="/docs/images/lab/cellular_automata/ca.mp4" autoplay="" muted="" loop="" playsinline=""></video>
-</div>
+<p>I have been interested in Blender Geometry Nodes, especially because of its strong rendering capabilities, but its steep learning curve has discouraged me from learning. However, I heard that LLMs like Gemini can become a good coach, that finally encouraged me to learn…</p>
 
-<h3 id="grasshopper">Grasshopper</h3>
+<h3 id="basics">Basics</h3>
+<ul>
+  <li>Blender version: <a href="https://www.blender.org/download/lts/4-5/">Blender 4.5 LTS</a> (the last Intel Mac compatible)</li>
+  <li>Geometry nodes are “modifier”, run on an object.</li>
+  <li><code class="language-plaintext highlighter-rouge">Shift + A</code>: Add modifier</li>
+  <li><code class="language-plaintext highlighter-rouge">X</code>: delete</li>
+  <li>Group Input &gt; <code class="language-plaintext highlighter-rouge">Processes</code> &gt; Group output</li>
+</ul>
 
-<p>Ref: <a href="https://youtu.be/tiUU2v-GSgo?si=RycJE7NaoLJ_DHlJ">Grasshopper Cellular Automata 2D</a> by The Different Design</p>
+<ol>
+  <li>2D grid
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Grid</code>, <code class="language-plaintext highlighter-rouge">Mesh to Points</code>: generate a plane mesh and turn it into points</li>
+      <li><code class="language-plaintext highlighter-rouge">Instance on Points</code>: generate instance (lightweight references) on points &gt; 2D grid
+ <img src="/docs/images/lab/blender_gn/gn_lattice.jpg" alt="" /></li>
+    </ul>
+  </li>
+  <li>3D lattice
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Mesh Line</code>, another <code class="language-plaintext highlighter-rouge">Instance on Points</code>: to copy Z axis &gt; 3D lattice</li>
+      <li><code class="language-plaintext highlighter-rouge">Set Material</code></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="ref">Ref.</h3>
+
+<ul>
+  <li><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html#">Blender 5.0 Manual | Geometry Nodes</a></li>
+  <li><a href="https://youtu.be/aO0eUnu0hO0?si=01_L2nU1kbolwsOf">Blender Tutorial: Geometry Nodes for Beginners - Part 1</a></li>
+</ul>
 
       </div>
     </main><footer class="site-footer">

@@ -5,7 +5,39 @@ title: LAB
 
 # LAB
 
+<!-- Don't include .md in the links! -->
+
+<!---
+  <a href="/docs/lab/LINK_GOES_HERE" class="grid-item">
+    <div class="image-wrapper">
+      <img src="/docs/images/lab/IMAGE_GOES_HERE" alt="">
+    </div>
+    <div class="caption"><b>TITLE_GOES_HERE</b></div>
+    <div class="caption">2099 | ZZ | SW</div>
+  </a>
+
+  <a href="/docs/lab/LINK_GOES_HERE" class="grid-item">
+    <div class="media-wrapper">
+      <video src="/docs/images/lab/VIDEO_GOES_HERE"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
+    <div class="caption"><b>TITLE_GOES_HERE</b></div>
+    <div class="caption">2099 | ZZ | SW</div>
+  </a>
+--->
+
 <div class="image-grid">
+  <a href="/docs/lab/blender_gn" class="grid-item">
+    <div class="image-wrapper">
+      <img src="/docs/images/lab/blender_gn/gn_lattice.jpg" alt="">
+    </div>
+    <div class="caption"><b>Blender Geometry Nodes</b></div>
+    <div class="caption">2026 | CN | B3D</div>
+  </a>
+
   <a href="/docs/lab/cellular_automata" class="grid-item">
     <div class="media-wrapper">
       <video src="/docs/images/lab/cellular_automata/ca.mp4"
@@ -28,7 +60,7 @@ title: LAB
 
   <a href="/docs/lab/plywood_connector" class="grid-item">
     <div class="image-wrapper">
-      <img src="/docs/images/lab/plywood_connector/plywood_con_02.jpg" alt="">
+      <img src="/docs/images/lab/plywood_connector/plywood_con_01.jpg" alt="">
     </div>
     <div class="caption"><b>Plywood connector</b></div>
     <div class="caption">2025 | 3DP | F3D</div>
@@ -102,25 +134,3 @@ title: LAB
     <div class="caption">2022 | CD | Gh/G-code</div>
   </a>
 </div>
-
-<!---
-  <a href="LINK_GOES_HERE" class="grid-item">
-    <div class="image-wrapper">
-      <img src="/docs/images/lab/IMAGE_GOES_HERE" alt="">
-    </div>
-    <div class="caption"><b>TITLE_GOES_HERE</b></div>
-    <div class="caption">9999 | ZZ | SW</div>
-  </a>
-
-  <a href="/docs/lab/LINK_GOES_HERE" class="grid-item">
-    <div class="media-wrapper">
-      <video src="/docs/images/lab/VIDEO_GOES_HERE"
-        autoplay
-        muted
-        loop
-        playsinline></video>
-    </div>
-    <div class="caption"><b>TITLE_GOES_HERE</b></div>
-    <div class="caption">9999 | ZZ | SW</div>
-  </a>
---->
