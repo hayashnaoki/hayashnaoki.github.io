@@ -36,31 +36,33 @@
       <div class="wrapper">
         <h1 id="blender-geometry-nodes">Blender Geometry Nodes</h1>
 
-<p>2026 | Computational design | Blender</p>
+<p>2026-ongoing | Computational design | Blender</p>
 
-<p>I have been interested in Blender Geometry Nodes, especially because of its strong rendering capabilities, but its steep learning curve has discouraged me from learning. However, I heard that LLMs like Gemini can become a good coach, that finally encouraged me to learn…</p>
+<p>I finally started learning Blender Geometry Nodes, encouraged by the idea of using LLMs as a coach.</p>
 
 <h3 id="basics">Basics</h3>
 <ul>
   <li>Blender version: <a href="https://www.blender.org/download/lts/4-5/">Blender 4.5 LTS</a> (the last Intel Mac compatible)</li>
-  <li>Geometry nodes are “modifier”, run on an object.</li>
+  <li>Geometry nodes are “modifier”, run on an object</li>
+  <li>Go to <code class="language-plaintext highlighter-rouge">Modifier</code> at the right, <code class="language-plaintext highlighter-rouge">Add Modifier</code> &gt; <code class="language-plaintext highlighter-rouge">Geometry Nodes</code></li>
+  <li>Group Input &gt; <code class="language-plaintext highlighter-rouge">Processes</code> &gt; Group output</li>
   <li><code class="language-plaintext highlighter-rouge">Shift + A</code>: Add modifier</li>
   <li><code class="language-plaintext highlighter-rouge">X</code>: delete</li>
-  <li>Group Input &gt; <code class="language-plaintext highlighter-rouge">Processes</code> &gt; Group output</li>
+  <li>To disconnect, grab a connector and release</li>
 </ul>
 
 <ol>
   <li>2D grid
     <ul>
       <li><code class="language-plaintext highlighter-rouge">Grid</code>, <code class="language-plaintext highlighter-rouge">Mesh to Points</code>: generate a plane mesh and turn it into points</li>
-      <li><code class="language-plaintext highlighter-rouge">Instance on Points</code>: generate instance (lightweight references) on points &gt; 2D grid
- <img src="/docs/images/lab/blender_gn/gn_lattice.jpg" alt="" /></li>
     </ul>
   </li>
   <li>3D lattice
     <ul>
       <li><code class="language-plaintext highlighter-rouge">Mesh Line</code>, another <code class="language-plaintext highlighter-rouge">Instance on Points</code>: to copy Z axis &gt; 3D lattice</li>
-      <li><code class="language-plaintext highlighter-rouge">Set Material</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Instance on Points</code>: generate instance (lightweight references) on points &gt; 2D grid</li>
+      <li><code class="language-plaintext highlighter-rouge">Set Material</code>
+ <img src="/docs/images/lab/blender_gn/gn_lattice.jpg" alt="" /></li>
     </ul>
   </li>
 </ol>
