@@ -32,7 +32,7 @@ title: LAB
 <div class="image-grid">
   <a href="/docs/lab/blender_gn" class="grid-item">
     <div class="image-wrapper">
-      <img src="/docs/images/lab/blender_gn/gn_lattice.jpg" alt="">
+      <img src="/docs/images/lab/blender_gn/gn_3D_math.jpg" alt="">
     </div>
     <div class="caption"><b>Blender Geometry Nodes</b></div>
     <div class="caption">2026-ongoing | CN | B3D</div>
