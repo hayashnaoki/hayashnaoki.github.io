@@ -10,13 +10,27 @@ I finally started learning Blender Geometry Nodes, encouraged by the idea of usi
 
 ### Basics 
 - Blender version: [Blender 4.5 LTS](https://www.blender.org/download/lts/4-5/) (the last Intel Mac compatible)
-- Geometry nodes are "modifier", run on an object
-- Go to `Modifier` at the right, `Add Modifier` > `Geometry Nodes`
-- Group Input > `Processes` > Group output
-- `Shift + A`: Add modifier
-- `X`: delete
-- To disconnect, grab a connector and release
-- Drag a component on a connector to insert it
+
+- Basic commands:
+  - `G`: Move
+  - `R`: Rotate
+  - `S`: Scale
+  - `G/R/S + x,y,z`: axis-controlled transformations
+  - `N`: Sidebar for numerical input
+  - `Shift + D`: Duplicate
+  - `Tab`: Edit mode
+  - `Corner drag`: split the viewport panel, position the mouse over the top-right corner of the panel until `+` sign appears
+  - `Right-click` the boarder between panels: `Join Right/Left`
+- Geometry nodes:
+  - Geometry nodes are "modifier", run on an object
+  - Go to `Modifier` at the right, `Add Modifier` > `Geometry Nodes`
+  - Or got to Geometry Nodes panel, click `New` at the top
+  - Group Input > `Processes` > Group output
+  - `Shift + A`: Add modifier
+  - `X`: delete
+  - To disconnect, grab a connector and release
+  - Drag a component on a connector to insert it
+  - `M` on a node: temporarily mute
 
 ### Examples
 1. 2D grid
@@ -52,7 +66,14 @@ I finally started learning Blender Geometry Nodes, encouraged by the idea of usi
         ```
     - It doesn't have data tree, everything is flatten, unlike Grasshopper
 
-### Ref.
+1. Perforated ball (based on [Geometry Nodes Ep02 – Working with Geometry](https://entagma.com/courses/geometry-nodes/geometry-nodes-ep02-working-with-geometry/)) 
+  - `Ico Sphere` > `Dual Mesh`: create "dual" (turning faces into vertices, vertices into faces) [docs](https://docs.blender.org/manual/en/dev/modeling/geometry_nodes/mesh/operations/dual_mesh.html)
+  - `Extrude Mesh` (Offset: 0.0) > `Scale Elements` (Scale: 0.9)
+  - `Delete Geometry` (Selection: connect `Top` from `Extrude Mesh`)
+  - `Extrude Mesh` + `Flip Faces` > `Join Geometry`: create extruded and closed faces > `Merge by Distance`: merge edges
+  - `Subdivide Surface` > `Set Shade Smooth`
+    ![](/docs/images/lab/blender_gn/gn_sphere.jpg)
 
-- [Blender 5.0 Manual \| Geometry Nodes](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html#)
-- [Blender Tutorial: Geometry Nodes for Beginners - Part 1](https://youtu.be/aO0eUnu0hO0?si=01_L2nU1kbolwsOf)
+Ref: 
+- [Blender 5.0 Manual - Geometry Nodes](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html#)
+- [ENTAGMA - Geometry Nodes](https://entagma.com/courses/geometry-nodes/)

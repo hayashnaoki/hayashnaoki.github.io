@@ -8,7 +8,7 @@ layout: default
 
 ## Mecanum wheeled pen plotter with infinite plotting area
 
-The project started as a final project of [Fab Academy](https://fabacademy.org/) 2025 at FabLab Kannai. This is a mobile pen plotter with mecanum wheels, capable of drawing over an area much larger than its body. It uses a Raspberry Pi Pico to parse G-code via serial communication, controlling four wheels, stepper motors, and a Z-axis servo, with end stops for homing. I have learned everything from project management and mechanical and electronics design to PCB fabrication, and assembly.
+The project started as a final project of [Fab Academy](https://fabacademy.org/) 2025 at FabLab Kannai. This is a mobile pen plotter with mecanum wheels, capable of drawing over an area much larger than its body. It uses a Raspberry Pi Pico to parse G-code via serial communication, controlling four wheels, stepper motors, and a Z-axis servo, with end stops for homing. I have learned everything from project management, mechanical and electronics design to PCB fabrication, and assembly.
 
 ### V0.2: Work in progress...
 

@@ -42,14 +42,35 @@
 
 <h3 id="basics">Basics</h3>
 <ul>
-  <li>Blender version: <a href="https://www.blender.org/download/lts/4-5/">Blender 4.5 LTS</a> (the last Intel Mac compatible)</li>
-  <li>Geometry nodes are “modifier”, run on an object</li>
-  <li>Go to <code class="language-plaintext highlighter-rouge">Modifier</code> at the right, <code class="language-plaintext highlighter-rouge">Add Modifier</code> &gt; <code class="language-plaintext highlighter-rouge">Geometry Nodes</code></li>
-  <li>Group Input &gt; <code class="language-plaintext highlighter-rouge">Processes</code> &gt; Group output</li>
-  <li><code class="language-plaintext highlighter-rouge">Shift + A</code>: Add modifier</li>
-  <li><code class="language-plaintext highlighter-rouge">X</code>: delete</li>
-  <li>To disconnect, grab a connector and release</li>
-  <li>Drag a component on a connector to insert it</li>
+  <li>
+    <p>Blender version: <a href="https://www.blender.org/download/lts/4-5/">Blender 4.5 LTS</a> (the last Intel Mac compatible)</p>
+  </li>
+  <li>Basic commands:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">G</code>: Move</li>
+      <li><code class="language-plaintext highlighter-rouge">R</code>: Rotate</li>
+      <li><code class="language-plaintext highlighter-rouge">S</code>: Scale</li>
+      <li><code class="language-plaintext highlighter-rouge">G/R/S + x,y,z</code>: axis-controlled transformations</li>
+      <li><code class="language-plaintext highlighter-rouge">N</code>: Sidebar for numerical input</li>
+      <li><code class="language-plaintext highlighter-rouge">Shift + D</code>: Duplicate</li>
+      <li><code class="language-plaintext highlighter-rouge">Tab</code>: Edit mode</li>
+      <li><code class="language-plaintext highlighter-rouge">Corner drag</code>: split the viewport panel, position the mouse over the top-right corner of the panel until <code class="language-plaintext highlighter-rouge">+</code> sign appears</li>
+      <li><code class="language-plaintext highlighter-rouge">Right-click</code> the boarder between panels: <code class="language-plaintext highlighter-rouge">Join Right/Left</code></li>
+    </ul>
+  </li>
+  <li>Geometry nodes:
+    <ul>
+      <li>Geometry nodes are “modifier”, run on an object</li>
+      <li>Go to <code class="language-plaintext highlighter-rouge">Modifier</code> at the right, <code class="language-plaintext highlighter-rouge">Add Modifier</code> &gt; <code class="language-plaintext highlighter-rouge">Geometry Nodes</code></li>
+      <li>Or got to Geometry Nodes panel, click <code class="language-plaintext highlighter-rouge">New</code> at the top</li>
+      <li>Group Input &gt; <code class="language-plaintext highlighter-rouge">Processes</code> &gt; Group output</li>
+      <li><code class="language-plaintext highlighter-rouge">Shift + A</code>: Add modifier</li>
+      <li><code class="language-plaintext highlighter-rouge">X</code>: delete</li>
+      <li>To disconnect, grab a connector and release</li>
+      <li>Drag a component on a connector to insert it</li>
+      <li><code class="language-plaintext highlighter-rouge">M</code> on a node: temporarily mute</li>
+    </ul>
+  </li>
 </ul>
 
 <h3 id="examples">Examples</h3>
@@ -98,13 +119,22 @@
       </ul>
     </blockquote>
   </li>
+  <li>Perforated ball (based on <a href="https://entagma.com/courses/geometry-nodes/geometry-nodes-ep02-working-with-geometry/">Geometry Nodes Ep02 – Working with Geometry</a>)
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Ico Sphere</code> &gt; <code class="language-plaintext highlighter-rouge">Dual Mesh</code>: create “dual” (turning faces into vertices, vertices into faces) <a href="https://docs.blender.org/manual/en/dev/modeling/geometry_nodes/mesh/operations/dual_mesh.html">docs</a></li>
+      <li><code class="language-plaintext highlighter-rouge">Extrude Mesh</code> (Offset: 0.0) &gt; <code class="language-plaintext highlighter-rouge">Scale Elements</code> (Scale: 0.9)</li>
+      <li><code class="language-plaintext highlighter-rouge">Delete Geometry</code> (Selection: connect <code class="language-plaintext highlighter-rouge">Top</code> from <code class="language-plaintext highlighter-rouge">Extrude Mesh</code>)</li>
+      <li><code class="language-plaintext highlighter-rouge">Extrude Mesh</code> + <code class="language-plaintext highlighter-rouge">Flip Faces</code> &gt; <code class="language-plaintext highlighter-rouge">Join Geometry</code>: create extruded and closed faces &gt; <code class="language-plaintext highlighter-rouge">Merge by Distance</code>: merge edges</li>
+      <li><code class="language-plaintext highlighter-rouge">Subdivide Surface</code> &gt; <code class="language-plaintext highlighter-rouge">Set Shade Smooth</code>
+ <img src="/docs/images/lab/blender_gn/gn_sphere.jpg" alt="" /></li>
+    </ul>
+  </li>
 </ol>
 
-<h3 id="ref">Ref.</h3>
-
+<p>Ref:</p>
 <ul>
-  <li><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html#">Blender 5.0 Manual | Geometry Nodes</a></li>
-  <li><a href="https://youtu.be/aO0eUnu0hO0?si=01_L2nU1kbolwsOf">Blender Tutorial: Geometry Nodes for Beginners - Part 1</a></li>
+  <li><a href="https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html#">Blender 5.0 Manual - Geometry Nodes</a></li>
+  <li><a href="https://entagma.com/courses/geometry-nodes/">ENTAGMA - Geometry Nodes</a></li>
 </ul>
 
       </div>
