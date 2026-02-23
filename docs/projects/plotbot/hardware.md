@@ -43,6 +43,7 @@ Go to [V0.2 Software](software)
 
 ### BOM
 
+**Electronics components:**
 
 | Category | Name | Value | Package | Fusion Library | Qty | Link |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -73,12 +74,21 @@ Go to [V0.2 Software](software)
 1. Component layout
     - The 6000 mAh battery at the center bottom between the motors
     - The minimum dimensions defined by the four motors and the battery  
-1. Topology optimization (Grasshopper tOpos)
+1. Frame: Topology optimization (Grasshopper tOpos)
     - Boundary: box excluding space for components
     - Loads: battery, PCB etc.
     - Support: Mounting points for the motors
     - Ref: [Topology Optimization 101](https://formlabs.com/blog/topology-optimization/?srsltid=AfmBOop-21FSWjzrRfT_V_dcDMQh743sqI0DHfcjQxuELNHLn6EK_Idw)
+1. Mecanum wheel
+    - 8 rollers using M3 x 35 mm bolts and M3 x 2.5 mm bearings
 
+<div class="media-wrapper">
+    <video src="/docs/images/projects/plotbot/v0.2_frame.mp4"
+    autoplay
+    muted
+    loop
+    playsinline></video>
+</div>
 
 ## Files
 

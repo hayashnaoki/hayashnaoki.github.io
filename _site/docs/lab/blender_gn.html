@@ -42,35 +42,33 @@
 
 <h3 id="basics">Basics</h3>
 <ul>
-  <li>
-    <p>Blender version: <a href="https://www.blender.org/download/lts/4-5/">Blender 4.5 LTS</a> (the last Intel Mac compatible)</p>
-  </li>
-  <li>Basic commands:
-    <ul>
-      <li><code class="language-plaintext highlighter-rouge">G</code>: Move</li>
-      <li><code class="language-plaintext highlighter-rouge">R</code>: Rotate</li>
-      <li><code class="language-plaintext highlighter-rouge">S</code>: Scale</li>
-      <li><code class="language-plaintext highlighter-rouge">G/R/S + x,y,z</code>: axis-controlled transformations</li>
-      <li><code class="language-plaintext highlighter-rouge">N</code>: Sidebar for numerical input</li>
-      <li><code class="language-plaintext highlighter-rouge">Shift + D</code>: Duplicate</li>
-      <li><code class="language-plaintext highlighter-rouge">Tab</code>: Edit mode</li>
-      <li><code class="language-plaintext highlighter-rouge">Corner drag</code>: split the viewport panel, position the mouse over the top-right corner of the panel until <code class="language-plaintext highlighter-rouge">+</code> sign appears</li>
-      <li><code class="language-plaintext highlighter-rouge">Right-click</code> the boarder between panels: <code class="language-plaintext highlighter-rouge">Join Right/Left</code></li>
-    </ul>
-  </li>
-  <li>Geometry nodes:
-    <ul>
-      <li>Geometry nodes are “modifier”, run on an object</li>
-      <li>Go to <code class="language-plaintext highlighter-rouge">Modifier</code> at the right, <code class="language-plaintext highlighter-rouge">Add Modifier</code> &gt; <code class="language-plaintext highlighter-rouge">Geometry Nodes</code></li>
-      <li>Or got to Geometry Nodes panel, click <code class="language-plaintext highlighter-rouge">New</code> at the top</li>
-      <li>Group Input &gt; <code class="language-plaintext highlighter-rouge">Processes</code> &gt; Group output</li>
-      <li><code class="language-plaintext highlighter-rouge">Shift + A</code>: Add modifier</li>
-      <li><code class="language-plaintext highlighter-rouge">X</code>: delete</li>
-      <li>To disconnect, grab a connector and release</li>
-      <li>Drag a component on a connector to insert it</li>
-      <li><code class="language-plaintext highlighter-rouge">M</code> on a node: temporarily mute</li>
-    </ul>
-  </li>
+  <li>Blender version: <a href="https://www.blender.org/download/lts/4-5/">Blender 4.5 LTS</a> (the last Intel Mac compatible)</li>
+</ul>
+
+<p><strong>Basic commands:</strong></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">G</code>: Move</li>
+  <li><code class="language-plaintext highlighter-rouge">R</code>: Rotate</li>
+  <li><code class="language-plaintext highlighter-rouge">S</code>: Scale</li>
+  <li><code class="language-plaintext highlighter-rouge">G/R/S + x,y,z</code>: axis-controlled transformations</li>
+  <li><code class="language-plaintext highlighter-rouge">N</code>: Sidebar for numerical input</li>
+  <li><code class="language-plaintext highlighter-rouge">Shift + D</code>: Duplicate</li>
+  <li><code class="language-plaintext highlighter-rouge">Tab</code>: Edit mode</li>
+  <li><code class="language-plaintext highlighter-rouge">Corner drag</code>: split the viewport panel, position the mouse over the top-right corner of the panel until <code class="language-plaintext highlighter-rouge">+</code> sign appears</li>
+  <li><code class="language-plaintext highlighter-rouge">Right-click</code> the boarder between panels: <code class="language-plaintext highlighter-rouge">Join Right/Left</code></li>
+</ul>
+
+<p><strong>Geometry nodes:</strong></p>
+<ul>
+  <li>Geometry nodes are “modifier”, run on an object</li>
+  <li>Go to <code class="language-plaintext highlighter-rouge">Modifier</code> at the right, <code class="language-plaintext highlighter-rouge">Add Modifier</code> &gt; <code class="language-plaintext highlighter-rouge">Geometry Nodes</code></li>
+  <li>Or got to Geometry Nodes panel, click <code class="language-plaintext highlighter-rouge">New</code> at the top</li>
+  <li>Group Input &gt; <code class="language-plaintext highlighter-rouge">Processes</code> &gt; Group output</li>
+  <li><code class="language-plaintext highlighter-rouge">Shift + A</code>: Add modifier</li>
+  <li><code class="language-plaintext highlighter-rouge">X</code>: delete</li>
+  <li>To disconnect, grab a connector and release</li>
+  <li>Drag a component on a connector to insert it</li>
+  <li><code class="language-plaintext highlighter-rouge">M</code> on a node: temporarily mute</li>
 </ul>
 
 <h3 id="examples">Examples</h3>
@@ -107,7 +105,7 @@
     <blockquote>
       <p>Blender’s field system hides the loop and hides the list unlike Python or Grasshopper</p>
       <ul>
-        <li>It doesn’t run 3 loops unlike Python
+        <li>Unlike Python, it does not perform 3 loops
           <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
       <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -115,7 +113,7 @@
               <span class="n">points</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
 </code></pre></div>          </div>
         </li>
-        <li>It doesn’t have data tree, everything is flatten, unlike Grasshopper</li>
+        <li>Unlike Grasshopper, there is no data tree, everything is flattened.</li>
       </ul>
     </blockquote>
   </li>

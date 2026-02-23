@@ -11,26 +11,27 @@ I finally started learning Blender Geometry Nodes, encouraged by the idea of usi
 ### Basics 
 - Blender version: [Blender 4.5 LTS](https://www.blender.org/download/lts/4-5/) (the last Intel Mac compatible)
 
-- Basic commands:
-  - `G`: Move
-  - `R`: Rotate
-  - `S`: Scale
-  - `G/R/S + x,y,z`: axis-controlled transformations
-  - `N`: Sidebar for numerical input
-  - `Shift + D`: Duplicate
-  - `Tab`: Edit mode
-  - `Corner drag`: split the viewport panel, position the mouse over the top-right corner of the panel until `+` sign appears
-  - `Right-click` the boarder between panels: `Join Right/Left`
-- Geometry nodes:
-  - Geometry nodes are "modifier", run on an object
-  - Go to `Modifier` at the right, `Add Modifier` > `Geometry Nodes`
-  - Or got to Geometry Nodes panel, click `New` at the top
-  - Group Input > `Processes` > Group output
-  - `Shift + A`: Add modifier
-  - `X`: delete
-  - To disconnect, grab a connector and release
-  - Drag a component on a connector to insert it
-  - `M` on a node: temporarily mute
+**Basic commands:**
+- `G`: Move
+- `R`: Rotate
+- `S`: Scale
+- `G/R/S + x,y,z`: axis-controlled transformations
+- `N`: Sidebar for numerical input
+- `Shift + D`: Duplicate
+- `Tab`: Edit mode
+- `Corner drag`: split the viewport panel, position the mouse over the top-right corner of the panel until `+` sign appears
+- `Right-click` the boarder between panels: `Join Right/Left`
+
+**Geometry nodes:**
+- Geometry nodes are "modifier", run on an object
+- Go to `Modifier` at the right, `Add Modifier` > `Geometry Nodes`
+- Or got to Geometry Nodes panel, click `New` at the top
+- Group Input > `Processes` > Group output
+- `Shift + A`: Add modifier
+- `X`: delete
+- To disconnect, grab a connector and release
+- Drag a component on a connector to insert it
+- `M` on a node: temporarily mute
 
 ### Examples
 1. 2D grid
@@ -56,7 +57,7 @@ I finally started learning Blender Geometry Nodes, encouraged by the idea of usi
     ![](/docs/images/lab/blender_gn/gn_3D_math.jpg)
 
     > Blender’s field system hides the loop and hides the list unlike Python or Grasshopper
-    - It doesn't run 3 loops unlike Python
+    - Unlike Python, it does not perform 3 loops
         ```py
         points = []
         for z in range(10):
@@ -64,7 +65,7 @@ I finally started learning Blender Geometry Nodes, encouraged by the idea of usi
                 for x in range(10):
                     points.append((x, y, z))
         ```
-    - It doesn't have data tree, everything is flatten, unlike Grasshopper
+    - Unlike Grasshopper, there is no data tree, everything is flattened.
 
 1. Perforated ball (based on [Geometry Nodes Ep02 – Working with Geometry](https://entagma.com/courses/geometry-nodes/geometry-nodes-ep02-working-with-geometry/)) 
   - `Ico Sphere` > `Dual Mesh`: create "dual" (turning faces into vertices, vertices into faces) [docs](https://docs.blender.org/manual/en/dev/modeling/geometry_nodes/mesh/operations/dual_mesh.html)
