@@ -13,6 +13,14 @@ header_pages:
 # Jekyll theme
 theme: minima
 
+# Theme settings
+minima:
+  skin: auto
+
+# Custom head content (for favicon)
+head:
+  - <link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+
 # Markdown engine
 markdown: kramdown
 
