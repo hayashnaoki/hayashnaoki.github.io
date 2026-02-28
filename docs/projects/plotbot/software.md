@@ -38,14 +38,19 @@ Go to [V0.2 Hardware](hardware)
 
 ![](/docs/images/projects/plotbot/interpolation.jpg)
 
-Formula: `Position(Time) = Start + (Total change) * Time`
+1. Geometric interpolation (Position-based)
+    - e.g., Move 0.01 mm each update
+1. Time-based interpolation
+    - e.g., Compute next position very 1 ms
+
+Formula: `Position(Time) = Start + Time * (Total change)`
 
 ```
 P0 = (x0, y0)
 P1 = (x1, y1)
 
 P(s) = (1 − s)·P0 + s·P1
-P(s) = P0 + s·(P0 - Y0)
+P(s) = P0 + s·(P0 - P1)
 
 x(s) = x0 + s·(x1 − x0)
 y(s) = y0 + s·(y1 − y0)

@@ -281,17 +281,21 @@ Go to <a href="software">V0.2 Software</a></p>
       <li>The minimum dimensions defined by the four motors and the battery</li>
     </ul>
   </li>
-  <li>Frame: Topology optimization (Grasshopper tOpos)
+  <li>Frame: Topology optimization (<a href="https://www.food4rhino.com/en/app/topos">Grasshopper tOpos</a>)
     <ul>
       <li>Boundary: box excluding space for components</li>
       <li>Loads: battery, PCB etc.</li>
       <li>Support: Mounting points for the motors</li>
       <li>Ref: <a href="https://formlabs.com/blog/topology-optimization/?srsltid=AfmBOop-21FSWjzrRfT_V_dcDMQh743sqI0DHfcjQxuELNHLn6EK_Idw">Topology Optimization 101</a></li>
+      <li><code class="language-plaintext highlighter-rouge">IsoMesh</code> &gt; <code class="language-plaintext highlighter-rouge">Quad Remesh</code> &gt; <code class="language-plaintext highlighter-rouge">SubD from Mesh</code> &gt; Export as STEP &gt; Import into F3D</li>
     </ul>
+
+    <p><img src="/docs/images/projects/plotbot/tOpos.jpg" alt="" /></p>
   </li>
   <li>Mecanum wheel
     <ul>
       <li>8 rollers using M3 x 35 mm bolts and M3 x 2.5 mm bearings</li>
+      <li>Insert nut</li>
     </ul>
   </li>
 </ol>

@@ -74,13 +74,18 @@ Go to [V0.2 Software](software)
 1. Component layout
     - The 6000 mAh battery at the center bottom between the motors
     - The minimum dimensions defined by the four motors and the battery  
-1. Frame: Topology optimization (Grasshopper tOpos)
+1. Frame: Topology optimization ([Grasshopper tOpos](https://www.food4rhino.com/en/app/topos))
     - Boundary: box excluding space for components
     - Loads: battery, PCB etc.
     - Support: Mounting points for the motors
     - Ref: [Topology Optimization 101](https://formlabs.com/blog/topology-optimization/?srsltid=AfmBOop-21FSWjzrRfT_V_dcDMQh743sqI0DHfcjQxuELNHLn6EK_Idw)
+    - `IsoMesh` > `Quad Remesh` > `SubD from Mesh` > Export as STEP > Import into F3D
+
+    ![](/docs/images/projects/plotbot/tOpos.jpg)
+
 1. Mecanum wheel
     - 8 rollers using M3 x 35 mm bolts and M3 x 2.5 mm bearings
+    - Insert nut 
 
 <div class="media-wrapper">
     <video src="/docs/images/projects/plotbot/v0.2_frame.mp4"
