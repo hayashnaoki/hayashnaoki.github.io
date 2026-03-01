@@ -11,13 +11,13 @@ I wanted to build a minimal portfolio/repository to share my work and some files
 ---
 ### Jekyll
 
-Jekyll is a static site generator used by GitHub Pages that converts Markdown files into static HTML and CSS at build time. It requires no server or database, produces fully static output, and operates entirely at build time without any runtime processing.
+[Jekyll](https://jekyllrb.com/) is a static site generator used by GitHub Pages that converts Markdown files into static HTML and CSS at build time. It requires no server or database, produces fully static output, and operates entirely at build time without any runtime processing.
 
 ### Configurations
 
 1. Theme
     - Provides layouts and default CSS
-    - This site uses the `minima` theme 
+    - This site uses the [minima](https://github.com/jekyll/minima) theme 
 1. CSS / SCSS
     - `assets/main.scss` is the entry point
     - `_custom.scss` override theme files

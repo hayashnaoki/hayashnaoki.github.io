@@ -113,10 +113,10 @@ title: LAB
   <a href="/docs/lab/cd_lab" class="grid-item">
     <div class="media-wrapper">
       <video src="/docs/images/lab/cd_lab/fractal.mp4"
-      autoplay
-      muted
-      loop
-      playsinline></video>
+        autoplay
+        muted
+        loop
+        playsinline></video>
     </div>
     <div class="caption"><b>Computational design lab (2020-2023)</b></div>
     <div class="caption">2020-2023 | CD | Gh</div>
