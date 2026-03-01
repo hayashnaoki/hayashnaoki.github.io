@@ -14,8 +14,10 @@ The project started as a final project of [Fab Academy](https://fabacademy.org/)
 
 Documentations:
 >
-[V0.2 Hardware](/docs/projects/plotbot/hardware)  
-[V0.2 Software](/docs/projects/plotbot/software)  
+[1. Hardware](hardware)  
+[2. Software](software)  
+[3. Production](production)  
+[4. BOM and files](bom_files)  
 
 ---
 

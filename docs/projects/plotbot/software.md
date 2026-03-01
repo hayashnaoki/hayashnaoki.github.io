@@ -2,11 +2,13 @@
 layout: default
 ---
 
-# V0.2 Software
+# 2. Software
 
 >
 Back to [PLOT BOT](index)  
-Go to [V0.2 Hardware](hardware)  
+[1. Hardware](hardware)  
+[3. Production](production)  
+[4. BOM and files](bom_files)  
 
 ## Goals
 
@@ -63,8 +65,3 @@ Ref:
 
 ### Mecanum kinematics
 
-## Files
-
->
-[Arduino]()  
-[Processing]()  

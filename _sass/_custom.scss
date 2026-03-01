@@ -110,6 +110,14 @@ body {
   }
 }
 
+/* =========================================================
+   Image Effects
+   ========================================================= */
+   
+.bw {
+  filter: grayscale(100%);
+}
+
 /* ========================================
    Image Grid
 ======================================== */
@@ -134,6 +142,7 @@ body {
 }
 
 .grid-item {
+  aspect-ratio: 1 / 1;
   display: block;
   text-decoration: none;
   color: inherit;
@@ -145,7 +154,7 @@ body {
 }
 .image-wrapper,
 .media-wrapper {
-  aspect-ratio: 1 / 1;
+  //aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
@@ -454,4 +463,14 @@ tbody tr:last-child td {
    ========================================================= */
 ul li::marker {
   font-size: 0.7em;
+}
+
+/* =========================================================
+   Media Embeds
+   ========================================================= */
+/* Remove iframe border */
+.media-embed iframe {
+  border: none;        /* Remove border */
+  outline: none;       /* Remove focus outline */
+  display: block;      /* Remove inline gap */
 }

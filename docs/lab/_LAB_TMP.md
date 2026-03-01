@@ -28,3 +28,5 @@ Caption_goes_here.
   referrerpolicy="strict-origin-when-cross-origin" 
   title="TITLE_GOES_HERE">
 </iframe>
+
+<img src="/docs/images/BW_IMAGE_GOES_HERE" class="bw" alt="">
