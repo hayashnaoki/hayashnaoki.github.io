@@ -35,8 +35,7 @@ Bottom side
     <video src="/docs/images/projects/plotbot/milling.mp4"
     autoplay
     loop
-    muted
-    controls>
+    muted>
     playsinline></video>
 </div>
 
@@ -52,8 +51,7 @@ Board test
     <video src="/docs/images/projects/plotbot/board_test.mp4"
     autoplay
     loop
-    muted
-    controls>
+    muted>
     playsinline></video>
 </div>
 

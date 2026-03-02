@@ -126,7 +126,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   column-gap: 4px;
-  row-gap: 8px;
+  row-gap: 4px;
 }
 
 /* Each grid item maintains a 1:1 aspect ratio */
@@ -157,7 +157,7 @@ body {
 .media-wrapper video {
   width: 100%;
   height: auto;
-  object-fit: contain; /* 必要に応じて */
+  object-fit: contain; /* Ensure the entire media is visible */
   display: block;
 }
 

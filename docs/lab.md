@@ -59,8 +59,13 @@ title: LAB
   </a>
 
   <a href="/docs/lab/casting" class="grid-item">
-    <div class="image-wrapper">
-      <img src="/docs/images/lab/casting/uma_1.jpg" alt="">
+    <div class="media-wrapper">
+      <video src="/docs/images/lab/casting/melting.mp4"
+        autoplay
+        muted
+        loop
+        class="bw"
+        playsinline></video>
     </div>
     <div class="caption"><b>Casting</b></div>
     <div class="caption">2025 | Craft | Molding</div>
