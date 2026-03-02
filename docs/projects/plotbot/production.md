@@ -13,7 +13,8 @@ Back to [PLOT BOT](index)
 ## Goals
 
 1. Fab-able
-    - 3D printable iIncluding wheels
+    - CNC milling double-sided PCB
+    - 3D printable frame wheels
 
 ## Electronics production
 
@@ -27,6 +28,23 @@ Ref: [Gerber2Png](https://gerber2png.fablabkerala.in/) / [Documentation](https:/
 Alignment cut
 
 ![](/docs/images/projects/plotbot/milling_top.jpg)
+
+Bottom side
+
+<div class="media-wrapper">
+    <video src="/docs/images/projects/plotbot/milling.mp4"
+    autoplay
+    loop
+    muted
+    controls>
+    playsinline></video>
+</div>
+
+Soldered
+
+![](/docs/images/projects/plotbot/board_top.jpg)
+
+![](/docs/images/projects/plotbot/board_bottom.jpg)
 
 Board test
 

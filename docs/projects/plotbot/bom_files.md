@@ -38,9 +38,9 @@ Back to [PLOT BOT](index)
 ## Files
 
 >
-[Schematics (PDF)]()  
+[Schematics (PDF)]()
+[PCB mill files (PNG)]()    
 [CAD (F3D)]()  
-[PCB (PNG)]()  
 [3D print (Printables)]()  
 [Arduino]()  
 [Processing]()  
