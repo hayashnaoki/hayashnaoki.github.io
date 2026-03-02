@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Reset some basic elements
  */
@@ -768,19 +769,8 @@ body {
   row-gap: 8px;
 }
 
-.grid-item img {
-  width: 100%;
-  display: block;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
-
-.caption {
-  margin-top: 6px;
-  font-size: 14px;
-}
-
-.grid-item {
+/* Each grid item maintains a 1:1 aspect ratio */
+.image-grid .grid-item {
   aspect-ratio: 1/1;
   display: block;
   text-decoration: none;
@@ -788,21 +778,41 @@ body {
   transition: opacity 0.2s ease;
 }
 
-.grid-item:hover {
-  opacity: 0.9;
-}
-
-.image-wrapper,
-.media-wrapper {
+.image-grid .image-wrapper,
+.image-grid .media-wrapper {
+  aspect-ratio: 1/1;
   overflow: hidden;
 }
 
-.image-wrapper img,
-.media-wrapper video {
+.image-grid .image-wrapper img,
+.image-grid .media-wrapper video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Non-grid images/videos maintain its original aspect ratio */
+.image-wrapper img,
+.media-wrapper video {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* 必要に応じて */
+  display: block;
+}
+
+/* Hover effect */
+.grid-item:hover {
+  opacity: 0.9;
+}
+
+.image-grid .grid-item:hover .caption {
+  text-decoration: underline;
+}
+
+.caption {
+  margin-top: 6px;
+  font-size: 14px;
 }
 
 /* =========================================================
