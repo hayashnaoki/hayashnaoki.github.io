@@ -2,21 +2,26 @@
 layout: default
 ---
 
-# Casting
+# Uma Casting
 
-2025 \| Craft \| Molding / Casting
+2025 \| Craft \| Molding/Casting
 
-This is a tin casting experiment using a 3D printed prototype and a heat-resistant silicone mold.
+This is a tin casting experiment using a 3D printed prototype and a heat-resistant silicone mold. This was the result of some trial and error. The placement of the spout wasn't ideal, so there wasn't enough metal flowing around it.
 
 ![](/docs/images/lab/casting/uma_1.jpg)
 
 ![](/docs/images/lab/casting/uma_2.jpg)
 
----
 ### Process
 
+1. Materials:
+
+    | Prototype | UV resin for SLA 3D printer / Baby powder |
+    | Mold | [Molding block](https://www.amazon.co.jp/dp/B0C5BS91NM?th=1) / [Clay](https://www.amazon.co.jp/dp/B0CDWG8X68?th=1) / [Heat-resistant silicon (1 kg) with hardener](https://www.amazon.co.jp/dp/B00BH1GI02) / [Release agent](https://www.amazon.co.jp/dp/B001B4P7FM) |
+    | Casting | [Talc](https://www.amazon.co.jp/dp/B004HIMCHK) / [Tin tip (1 kg)](https://www.amazon.co.jp/dp/B00JOV6FVY) |
+
 1. Prototype:
-  - FDM 3D printing
+  - FDM 3D printed
   - Finished with UV resin and baby powder
 
     Ref: [Skaylabworkshop](https://academany.fabcloud.io/fabacademy/2024/labs/skylab/site/group_assignment/week12/) / [YouTube](https://youtu.be/KVf0mbBCygQ)
@@ -25,11 +30,11 @@ This is a tin casting experiment using a 3D printed prototype and a heat-resista
 
 1. Mold:
     1. Build a mold block around the prototype and attach clay to the bottom (for the lower mold)
-    1. Mix heat-resistant silicone and hardener (100g silicone: 3-4g hardener)
+    1. Mix heat-resistant silicone and hardener (silicone 100g : hardener 3-4g)
     1. Pour the silicone and wait until it hardens
     1. Remove the clay and apply a release agent
     1. Repeat the same process for the lower mold
-    1. Cut a spout and air holes
+    1. Cut out for a spout and air holes
 
     <div class="image-grid">
       <a class="grid-item">
@@ -76,6 +81,6 @@ This is a tin casting experiment using a 3D printed prototype and a heat-resista
 Notes:
 
   {: .warning}
-  - Mold needs to be kept hot so that metal doesn't cool too quickly.  
-  - Placement of spout needs to be considered the flow of metal.
-  - Don't use plastic tools, use steel or wooden tools!
+  - The mold must be kept hot to prevent the metal from cooling rapidly.
+  - Place the spout with consideration for the flow of metal.
+  - Don't use plastic tools, use steel or wooden tools.

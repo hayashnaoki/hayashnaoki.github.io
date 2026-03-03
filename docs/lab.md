@@ -7,7 +7,8 @@ title: LAB
 
 <!-- Don't include .md in the links! -->
 
-<!---
+<div class="image-grid">
+  <!--- COPY_BELOW
   <a href="/docs/lab/LINK_GOES_HERE" class="grid-item">
     <div class="image-wrapper">
       <img src="/docs/images/lab/IMAGE_GOES_HERE" alt="">
@@ -15,7 +16,9 @@ title: LAB
     <div class="caption"><b>TITLE_GOES_HERE</b></div>
     <div class="caption">2099 | ZZ | SW</div>
   </a>
-
+  --->
+  
+  <!--- COPY_BELOW
   <a href="/docs/lab/LINK_GOES_HERE" class="grid-item">
     <div class="media-wrapper">
       <video src="/docs/images/lab/VIDEO_GOES_HERE"
@@ -27,12 +30,11 @@ title: LAB
     <div class="caption"><b>TITLE_GOES_HERE</b></div>
     <div class="caption">2099 | ZZ | SW</div>
   </a>
---->
+  --->
 
-<div class="image-grid">
   <a href="/docs/lab/blender_gn" class="grid-item">
     <div class="image-wrapper">
-      <img src="/docs/images/lab/blender_gn/gn_sphere.jpg" alt="">
+      <img src="/docs/images/lab/blender_gn/gn_sphere.jpg" class="bw" alt="">
     </div>
     <div class="caption"><b>Blender Geometry Nodes</b></div>
     <div class="caption">2026-ongoing | CN | B3D</div>
@@ -59,16 +61,11 @@ title: LAB
   </a>
 
   <a href="/docs/lab/casting" class="grid-item">
-    <div class="media-wrapper">
-      <video src="/docs/images/lab/casting/melting.mp4"
-        autoplay
-        muted
-        loop
-        class="bw"
-        playsinline></video>
+    <div class="image-wrapper">
+      <img src="/docs/images/lab/casting/uma_1.jpg" class="bw" alt="">
     </div>
-    <div class="caption"><b>Casting</b></div>
-    <div class="caption">2025 | Craft | Molding</div>
+    <div class="caption"><b>Uma Casting</b></div>
+    <div class="caption">2025 | Craft | Molding/Casting</div>
   </a>
 
   <a href="/docs/lab/plywood_connector" class="grid-item">

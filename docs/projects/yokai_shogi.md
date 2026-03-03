@@ -4,7 +4,7 @@ layout: default
 
 # Yokai Shogi
 
-2022-ongoing \| ART \| Craft \| w/ Yuki Okuno
+2022-ongoing \| ART \| Prototype \| w/ Yuki Okuno
 
 ## Cultural bricolage
 
