@@ -6,7 +6,7 @@ layout: default
 
 2025 \| Craft \| Molding/Casting
 
-This is a tin casting experiment using a 3D printed prototype and a heat-resistant silicone mold. This was the result of some trial and error. The placement of the spout wasn't ideal, so there wasn't enough metal flowing around it.
+This is the result of trial and error, using a 3D printed prototype and a heat-resistant silicone mold to cast the tin. The spout placement was not ideal, so not enough metal flowed around it, leaving a cavity down the back leg.
 
 ![](/docs/images/lab/casting/uma_1.jpg)
 
@@ -78,9 +78,11 @@ This is a tin casting experiment using a 3D printed prototype and a heat-resista
         playsinline></video>
     </div>
 
+    🫠
+
 Notes:
 
   {: .warning}
-  - The mold must be kept hot to prevent the metal from cooling rapidly.
+  - The mold must be kept hot to prevent the metal from cooling too rapidly.
   - Place the spout with consideration for the flow of metal.
   - Don't use plastic tools, use steel or wooden tools.

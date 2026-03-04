@@ -17,7 +17,7 @@ title: LAB
     <div class="caption">2099 | ZZ | SW</div>
   </a>
   --->
-  
+
   <!--- COPY_BELOW
   <a href="/docs/lab/LINK_GOES_HERE" class="grid-item">
     <div class="media-wrapper">
@@ -34,7 +34,7 @@ title: LAB
 
   <a href="/docs/lab/blender_gn" class="grid-item">
     <div class="image-wrapper">
-      <img src="/docs/images/lab/blender_gn/gn_sphere.jpg" class="bw" alt="">
+      <img src="/docs/images/lab/blender_gn/gn_sphere.jpg" alt="">
     </div>
     <div class="caption"><b>Blender Geometry Nodes</b></div>
     <div class="caption">2026-ongoing | CN | B3D</div>
@@ -62,7 +62,7 @@ title: LAB
 
   <a href="/docs/lab/casting" class="grid-item">
     <div class="image-wrapper">
-      <img src="/docs/images/lab/casting/uma_1.jpg" class="bw" alt="">
+      <img src="/docs/images/lab/casting/uma_1.jpg" alt="">
     </div>
     <div class="caption"><b>Uma Casting</b></div>
     <div class="caption">2025 | Craft | Molding/Casting</div>
