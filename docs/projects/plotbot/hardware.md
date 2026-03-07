@@ -2,11 +2,11 @@
 layout: default
 ---
 
-# 1. Hardware
+# 1. Hardware design
 
 >
 Back to [PLOT BOT](index)  
-[2. Software](/docs/projects/plotbot/software)  
+[2. Software design](/docs/projects/plotbot/software)  
 [3. Production](production)  
 [4. BOM and files](bom_files)  
 

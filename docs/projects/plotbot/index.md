@@ -14,8 +14,8 @@ The project started as a final project of [Fab Academy](https://fabacademy.org/)
 
 Documentations:
 >
-[1. Hardware](hardware)  
-[2. Software](software)  
+[1. Hardware design](hardware)  
+[2. Software design](software)  
 [3. Production](production)  
 [4. BOM and files](bom_files)  
 

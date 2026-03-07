@@ -34,7 +34,7 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <h1 id="komainu-3d-scan">Komainu 3D scan</h1>
+        <h1 id="komainu">Komainu</h1>
 
 <p>2022-2024 | Computational design | 3D scan/Gh</p>
 
@@ -47,6 +47,65 @@
 <div class="media-wrapper">
     <video src="/docs/images/lab/komainu/komainu_2.mp4" autoplay="" muted="" loop="" playsinline=""></video>
 </div>
+
+<p>Grasshopper:</p>
+
+<p><img src="/docs/images/lab/komainu/ghpy.jpg" alt="" /></p>
+
+<p>Grasshopper Python:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">Rhino.Geometry</span> <span class="k">as</span> <span class="n">rg</span>
+<span class="kn">import</span> <span class="n">math</span>
+
+<span class="k">def</span> <span class="nf">generate_sine_wave</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">mesh</span><span class="p">.</span><span class="n">IsValid</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="c1"># Calculate direction vector and orthogonal vector for sine wave calculation
+</span>    <span class="n">dir_vector</span> <span class="o">=</span> <span class="n">rg</span><span class="p">.</span><span class="nc">Vector3d</span><span class="p">(</span><span class="n">direction</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">direction</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">direction</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">dir_vector</span><span class="p">.</span><span class="nc">Unitize</span><span class="p">()</span>
+
+    <span class="n">orthogonal_vector</span> <span class="o">=</span> <span class="n">rg</span><span class="p">.</span><span class="nc">Vector3d</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Assume a default orthogonal vector along the Z-axis
+</span>
+    <span class="k">if</span> <span class="nf">abs</span><span class="p">(</span><span class="n">dir_vector</span><span class="p">.</span><span class="n">Z</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">orthogonal_vector</span> <span class="o">=</span> <span class="n">rg</span><span class="p">.</span><span class="nc">Vector3d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Use X-axis if direction is along Z-axis
+</span>
+    <span class="n">orthogonal_vector</span> <span class="o">=</span> <span class="n">rg</span><span class="p">.</span><span class="n">Vector3d</span><span class="p">.</span><span class="nc">CrossProduct</span><span class="p">(</span><span class="n">dir_vector</span><span class="p">,</span> <span class="n">orthogonal_vector</span><span class="p">)</span>
+    <span class="n">orthogonal_vector</span><span class="p">.</span><span class="nc">Unitize</span><span class="p">()</span>
+
+    <span class="c1"># Apply sine wave transformation to mesh vertices
+</span>    <span class="n">vertices</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">.</span><span class="n">Vertices</span><span class="p">.</span><span class="nc">ToPoint3dArray</span><span class="p">()</span>
+    <span class="n">new_vertices</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vertices</span><span class="p">:</span>
+        <span class="c1"># Calculate the distance along the wave direction
+</span>        <span class="n">distance</span> <span class="o">=</span> <span class="n">rg</span><span class="p">.</span><span class="n">Vector3d</span><span class="p">.</span><span class="nc">Multiply</span><span class="p">(</span><span class="n">orthogonal_vector</span><span class="p">,</span> <span class="n">rg</span><span class="p">.</span><span class="nc">Vector3d</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+
+        <span class="c1"># Calculate sine wave value
+</span>        <span class="n">sine_value</span> <span class="o">=</span> <span class="n">height</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">distance</span> <span class="o">/</span> <span class="n">width</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span>
+
+        <span class="c1"># Apply the sine wave to the vertex position
+</span>        <span class="n">new_vertex</span> <span class="o">=</span> <span class="n">rg</span><span class="p">.</span><span class="nc">Point3d</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">Y</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">Z</span> <span class="o">+</span> <span class="n">sine_value</span><span class="p">)</span>
+
+        <span class="n">new_vertices</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">new_vertex</span><span class="p">)</span>
+
+    <span class="c1"># Create a new mesh with the modified vertices
+</span>    <span class="n">new_mesh</span> <span class="o">=</span> <span class="n">rg</span><span class="p">.</span><span class="nc">Mesh</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">new_vertices</span><span class="p">:</span>
+        <span class="n">new_mesh</span><span class="p">.</span><span class="n">Vertices</span><span class="p">.</span><span class="nc">Add</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">mesh</span><span class="p">.</span><span class="n">Faces</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">face</span><span class="p">.</span><span class="n">IsQuad</span><span class="p">:</span>
+            <span class="n">new_mesh</span><span class="p">.</span><span class="n">Faces</span><span class="p">.</span><span class="nc">AddFace</span><span class="p">(</span><span class="n">face</span><span class="p">.</span><span class="n">A</span><span class="p">,</span> <span class="n">face</span><span class="p">.</span><span class="n">B</span><span class="p">,</span> <span class="n">face</span><span class="p">.</span><span class="n">C</span><span class="p">,</span> <span class="n">face</span><span class="p">.</span><span class="n">D</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_mesh</span><span class="p">.</span><span class="n">Faces</span><span class="p">.</span><span class="nc">AddFace</span><span class="p">(</span><span class="n">face</span><span class="p">.</span><span class="n">A</span><span class="p">,</span> <span class="n">face</span><span class="p">.</span><span class="n">B</span><span class="p">,</span> <span class="n">face</span><span class="p">.</span><span class="n">C</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">new_mesh</span>
+
+
+<span class="c1"># Generate sine wave on mesh
+</span><span class="n">new_mesh</span> <span class="o">=</span> <span class="nf">generate_sine_wave</span><span class="p">(</span><span class="n">input_mesh</span><span class="p">,</span> <span class="n">sine_wave_width</span><span class="p">,</span> <span class="n">sine_wave_height</span><span class="p">,</span> <span class="n">wave_direction</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p><a href="https://www.instagram.com/p/C8967sHSloF/?utm_source=ig_web_copy_link&amp;igsh=MzRlODBiNWFlZA==">IG post</a></p>
 

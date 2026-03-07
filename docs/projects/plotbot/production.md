@@ -6,8 +6,8 @@ layout: default
 
 >
 Back to [PLOT BOT](index)  
-[1. Hardware](hardware)  
-[2. Software](software)  
+[1. Hardware design](hardware)  
+[2. Software design](software)  
 [4. BOM and files](bom_files)  
 
 ## Goals
@@ -44,6 +44,8 @@ Soldered
 ![](/docs/images/projects/plotbot/board_top.jpg)
 
 ![](/docs/images/projects/plotbot/board_bottom.jpg)
+
+![](/docs/images/projects/plotbot/board_top_asm.jpg)
 
 Board test
 
