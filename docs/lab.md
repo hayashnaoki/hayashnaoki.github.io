@@ -32,15 +32,7 @@ title: LAB
   </a>
   --->
 
-  <a href="/docs/lab/blender_gn" class="grid-item">
-    <div class="image-wrapper">
-      <img src="/docs/images/lab/blender_gn/gn_sphere.jpg" alt="">
-    </div>
-    <div class="caption"><b>Blender Geometry Nodes</b></div>
-    <div class="caption">2026-ongoing | CN | B3D</div>
-  </a>
-
-  <a href="/docs/lab/cellular_automata" class="grid-item">
+  <a href="/docs/lab/cellurar_automata/index" class="grid-item">
     <div class="media-wrapper">
       <video src="/docs/images/lab/cellular_automata/ca.mp4"
         autoplay

@@ -4,7 +4,7 @@ layout: default
 
 # Blender Geometry Nodes
 
-2026-ongoing \| Computational design \| Blender
+> Back to [Cellular automata](/docs/lab/cellurar_automata/index)
 
 I finally started learning Blender Geometry Nodes, encouraged by the idea of using LLMs as coach.
 

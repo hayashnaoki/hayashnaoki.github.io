@@ -6,6 +6,9 @@ layout: default
 
 2026-ongoing \| Computational design \| Gh
 
+>
+[Blender Geometry Nodes](/docs/lab/cellurar_automata/blender_gn)
+
 <div class="media-wrapper">
     <video src="/docs/images/lab/cellular_automata/ca.mp4"
     autoplay
