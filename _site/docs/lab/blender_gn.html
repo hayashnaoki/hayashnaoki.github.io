@@ -7,14 +7,14 @@
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="NAOKI HAYASHI" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://localhost:4000/docs/lab/cellurar_automata/blender_gn.html" />
-<meta property="og:url" content="http://localhost:4000/docs/lab/cellurar_automata/blender_gn.html" />
+<link rel="canonical" href="http://localhost:4000/docs/lab/blender_gn.html" />
+<meta property="og:url" content="http://localhost:4000/docs/lab/blender_gn.html" />
 <meta property="og:site_name" content="NAOKI HAYASHI" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="NAOKI HAYASHI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","headline":"NAOKI HAYASHI","url":"http://localhost:4000/docs/lab/cellurar_automata/blender_gn.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"NAOKI HAYASHI","url":"http://localhost:4000/docs/lab/blender_gn.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="NAOKI HAYASHI" /></head>
 <body><header class="site-header" role="banner">
@@ -36,11 +36,7 @@
       <div class="wrapper">
         <h1 id="blender-geometry-nodes">Blender Geometry Nodes</h1>
 
-<blockquote>
-  <p>Back to <a href="/docs/lab/cellurar_automata/index">Cellular automata</a></p>
-</blockquote>
-
-<p>I finally started learning Blender Geometry Nodes, encouraged by the idea of using LLMs as coach.</p>
+<p>2026-ongoing | Computational design | B3D</p>
 
 <h3 id="basics">Basics</h3>
 <ul>
@@ -147,8 +143,7 @@
     <ul>
       <li><code class="language-plaintext highlighter-rouge">Mesh Line</code>, another <code class="language-plaintext highlighter-rouge">Instance on Points</code>: multiply the grid a long Z axis &gt; 3D lattice</li>
       <li><code class="language-plaintext highlighter-rouge">Instance on Points</code>: generate instance (lightweight references) on points &gt; 2D grid</li>
-      <li><code class="language-plaintext highlighter-rouge">Set Material</code>
- <img src="/docs/images/lab/cellular_automata/blender_gn/gn_3D_math.jpg" alt="" /></li>
+      <li><code class="language-plaintext highlighter-rouge">Set Material</code></li>
     </ul>
   </li>
   <li>3D lattice using mathematical process
@@ -164,7 +159,7 @@
       </li>
       <li><code class="language-plaintext highlighter-rouge">Combine XYZ</code> &gt; <code class="language-plaintext highlighter-rouge">Set Position</code></li>
       <li><code class="language-plaintext highlighter-rouge">Instance on Points</code> to generate cube instances
- ![](/docs/images/lab/cellular_automata/blender_gn/gn_3D_math.jpg</li>
+ <img src="/docs/images/lab/blender_gn/gn_3D_math.jpg" alt="" /></li>
     </ul>
 
     <blockquote>
@@ -189,7 +184,7 @@
       <li><code class="language-plaintext highlighter-rouge">Delete Geometry</code> (Selection: connect <code class="language-plaintext highlighter-rouge">Top</code> from <code class="language-plaintext highlighter-rouge">Extrude Mesh</code>)</li>
       <li><code class="language-plaintext highlighter-rouge">Extrude Mesh</code> + <code class="language-plaintext highlighter-rouge">Flip Faces</code> &gt; <code class="language-plaintext highlighter-rouge">Join Geometry</code>: create extruded and closed faces &gt; <code class="language-plaintext highlighter-rouge">Merge by Distance</code>: merge edges</li>
       <li><code class="language-plaintext highlighter-rouge">Subdivide Surface</code> &gt; <code class="language-plaintext highlighter-rouge">Set Shade Smooth</code>
- <img src="/docs/images/lab/cellular_automata/blender_gn/gn_sphere.jpg" alt="" /></li>
+ <img src="/docs/images/lab/blender_gn/gn_sphere.jpg" alt="" /></li>
     </ul>
   </li>
 </ol>
@@ -198,10 +193,10 @@
 
 <p>This is a test randomly removing cubes as the initial state of the CA.</p>
 
-<p><img src="/docs/images/lab/cellular_automata/blender_gn/gn_cubes.jpg" alt="" /></p>
+<p><img src="/docs/images/lab/blender_gn/gn_cubes.jpg" alt="" /></p>
 
 <div class="media-wrapper">
-    <video src="/docs/images/lab/cellular_automata/blender_gn/cubes.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+    <video src="/docs/images/lab/blender_gn/cubes.mp4" autoplay="" muted="" loop="" playsinline=""></video>
 </div>
 
 <p>Ref:</p>

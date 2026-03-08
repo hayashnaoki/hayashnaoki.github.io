@@ -4,9 +4,7 @@ layout: default
 
 # Blender Geometry Nodes
 
-> Back to [Cellular automata](/docs/lab/cellurar_automata/index)
-
-I finally started learning Blender Geometry Nodes, encouraged by the idea of using LLMs as coach.
+2026-ongoing \| Computational design \| B3D
 
 ### Basics 
 - Blender version: [Blender 4.5 LTS](https://www.blender.org/download/lts/4-5/) (the last Intel Mac compatible)
@@ -71,8 +69,6 @@ I finally started learning Blender Geometry Nodes, encouraged by the idea of usi
   - `Mesh Line`, another `Instance on Points`: multiply the grid a long Z axis > 3D lattice
   - `Instance on Points`: generate instance (lightweight references) on points > 2D grid
   - `Set Material`
-    ![](/docs/images/lab/cellular_automata/blender_gn/gn_3D_math.jpg)
-
 1. 3D lattice using mathematical process
   - `Mesh Line`: Generate vertices (count: 1000, offset: 100 mm) > output as a mesh > `Mesh to Points`: convert the mesh into points
   - `Index`: get the index number of <u>the element currently being processed</u> like `i` in `for i in range(N):` (this case, Mesh Line: 0, 1, 2, 3, ... 999)
@@ -85,7 +81,7 @@ I finally started learning Blender Geometry Nodes, encouraged by the idea of usi
       ```
   - `Combine XYZ` > `Set Position`
   - `Instance on Points` to generate cube instances
-    ![](/docs/images/lab/cellular_automata/blender_gn/gn_3D_math.jpg
+    ![](/docs/images/lab/blender_gn/gn_3D_math.jpg)
 
     > Blender’s field system hides the loop and hides the list unlike Python or Grasshopper
     - Unlike Python, it does not perform 3 loops
@@ -97,23 +93,22 @@ I finally started learning Blender Geometry Nodes, encouraged by the idea of usi
                     points.append((x, y, z))
         ```
     - Unlike Grasshopper, there is no data tree, everything is flattened.
-
 1. Perforated ball (based on [Geometry Nodes Ep02 – Working with Geometry](https://entagma.com/courses/geometry-nodes/geometry-nodes-ep02-working-with-geometry/)) 
   - `Ico Sphere` > `Dual Mesh`: create "dual" (turning faces into vertices, vertices into faces) [docs](https://docs.blender.org/manual/en/dev/modeling/geometry_nodes/mesh/operations/dual_mesh.html)
   - `Extrude Mesh` (Offset: 0.0) > `Scale Elements` (Scale: 0.9)
   - `Delete Geometry` (Selection: connect `Top` from `Extrude Mesh`)
   - `Extrude Mesh` + `Flip Faces` > `Join Geometry`: create extruded and closed faces > `Merge by Distance`: merge edges
   - `Subdivide Surface` > `Set Shade Smooth`
-    ![](/docs/images/lab/cellular_automata/blender_gn/gn_sphere.jpg)
+    ![](/docs/images/lab/blender_gn/gn_sphere.jpg)
 
 ### 3D cubes
 
 This is a test randomly removing cubes as the initial state of the CA.
 
-![](/docs/images/lab/cellular_automata/blender_gn/gn_cubes.jpg)
+![](/docs/images/lab/blender_gn/gn_cubes.jpg)
 
 <div class="media-wrapper">
-    <video src="/docs/images/lab/cellular_automata/blender_gn/cubes.mp4"
+    <video src="/docs/images/lab/blender_gn/cubes.mp4"
     autoplay
     muted
     loop
