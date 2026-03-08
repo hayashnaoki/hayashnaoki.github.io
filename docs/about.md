@@ -3,13 +3,13 @@ layout: default
 title: ABOUT
 ---
 
-# Naoki Hayashi
+# ABOUT
 
 1996-ongoing \| Industrial / Computational Designer \| Prototype
 
 ## Naoki Hayashi is a multi-disciplinary designer based in Japan, with a passion for industrial design, computational design and digital fabrication.
 
-![](./images/404.jpg)
+<!--- ![](./images/404.jpg) --->
 
 **Expertise**
 >
@@ -36,5 +36,5 @@ Behance [/hayashnaoki](https://www.behance.net/hayashnaoki)
 Printables [@hayashnaoki](https://www.printables.com/@hayashnaoki)  
 Pinterest [@hayashnaoki](https://jp.pinterest.com/hayashnaoki/)  
 Github [/hayashnaoki](https://github.com/hayashnaoki)  
-Fab Academy [Naoki Hayashi](https://fabacademy.org/2025/labs/kannai/students/naoki-hayashi/)  
+Fab Academy [/naoki-hayashi](https://fabacademy.org/2025/labs/kannai/students/naoki-hayashi/)  
 email <a href="mailto:hayashnaoki@gmail.com">hayashnaoki@gmail.com</a>

@@ -20,8 +20,8 @@ title: PROJECTS
     <div class="image-wrapper">
       <img src="/docs/images/projects/yokai_shogi/yokai.jpg" alt="">
     </div>
-    <div class="caption"><b>Yokai Shogi</b></div>
-    <div class="caption">2022-ongoing | ART | Prototype</div>
+    <div class="caption"><b>YOKAI SHOGI</b></div>
+    <div class="caption">2022-ongoing | DC | Prototype</div>
   </a>
 
   <a href="/docs/projects/byb" class="grid-item">

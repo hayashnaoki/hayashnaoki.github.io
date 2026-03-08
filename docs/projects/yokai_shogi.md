@@ -2,9 +2,9 @@
 layout: default
 ---
 
-# Yokai Shogi
+# YOKAI SHOGI
 
-2022-ongoing \| ART \| Prototype \| w/ Yuki Okuno
+2022-ongoing \| Digital craft \| Prototype \| w/ Yuki Okuno
 
 ## Cultural bricolage
 
@@ -12,7 +12,7 @@ A collaboration with graphic designer [Yuki Okuno](https://www.instagram.com/yuk
 
 ![](/docs/images/projects/yokai_shogi/yokai_01.jpg)
 
-### Work in progress...
+**Work in progress...**
 
 <div class="image-grid">
   <a class="grid-item">

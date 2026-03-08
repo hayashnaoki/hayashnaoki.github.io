@@ -6,9 +6,6 @@ layout: default
 
 2026-ongoing \| Computational design \| Gh
 
->
-[Blender Geometry Nodes](/docs/lab/cellurar_automata/blender_gn)
-
 <div class="media-wrapper">
     <video src="/docs/images/lab/cellular_automata/ca.mp4"
     autoplay
@@ -20,3 +17,8 @@ layout: default
 ### Grasshopper 
 
 Ref: [Grasshopper Cellular Automata 2D](https://youtu.be/tiUU2v-GSgo?si=RycJE7NaoLJ_DHlJ) by The Different Design
+
+### Blender Geometry Nodes
+
+>
+[Blender Geometry Nodes](/docs/lab/cellurar_automata/blender_gn)

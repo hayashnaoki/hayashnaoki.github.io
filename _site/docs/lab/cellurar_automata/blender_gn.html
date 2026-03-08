@@ -3,23 +3,23 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Naoki Hayashi</title>
+<title>NAOKI HAYASHI</title>
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="Naoki Hayashi" />
+<meta property="og:title" content="NAOKI HAYASHI" />
 <meta property="og:locale" content="en_US" />
 <link rel="canonical" href="http://localhost:4000/docs/lab/cellurar_automata/blender_gn.html" />
 <meta property="og:url" content="http://localhost:4000/docs/lab/cellurar_automata/blender_gn.html" />
-<meta property="og:site_name" content="Naoki Hayashi" />
+<meta property="og:site_name" content="NAOKI HAYASHI" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Naoki Hayashi" />
+<meta property="twitter:title" content="NAOKI HAYASHI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","headline":"Naoki Hayashi","url":"http://localhost:4000/docs/lab/cellurar_automata/blender_gn.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","headline":"NAOKI HAYASHI","url":"http://localhost:4000/docs/lab/cellurar_automata/blender_gn.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Naoki Hayashi" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="NAOKI HAYASHI" /></head>
 <body><header class="site-header" role="banner">
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Naoki Hayashi</a><nav class="site-nav">
+  <div class="wrapper"><a class="site-title" rel="author" href="/">NAOKI HAYASHI</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -60,6 +60,69 @@
   <li><code class="language-plaintext highlighter-rouge">Right-click</code> the boarder between panels: <code class="language-plaintext highlighter-rouge">Join Right/Left</code></li>
 </ul>
 
+<p><strong>Rendering</strong></p>
+<ul>
+  <li>Set a camera
+    <ul>
+      <li>Look through the camera: <code class="language-plaintext highlighter-rouge">Numpad 0</code> or Camera icon at the right</li>
+      <li><code class="language-plaintext highlighter-rouge">N</code> to open the side menu panel &gt; <code class="language-plaintext highlighter-rouge">View</code> tab</li>
+      <li>Check the <code class="language-plaintext highlighter-rouge">Camera to View</code></li>
+      <li>Frame the view as standard viewport (camera follows)</li>
+      <li>Uncheck the <code class="language-plaintext highlighter-rouge">Camera to View</code></li>
+    </ul>
+  </li>
+  <li>Adjust camera settings
+    <ul>
+      <li class="note">Select the camera first</li>
+      <li>Properties tab (at bottom right) &gt; <code class="language-plaintext highlighter-rouge">Data</code> tab (only appears when a camera selected)
+        <ul>
+          <li>Focal length etc.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Add lights
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Shift + A</code> add area light</li>
+      <li>Move and rotate lights</li>
+      <li>Select the light and go to Properties tab (green light bulb icon)</li>
+      <li>Settings
+        <ul>
+          <li>Power, color, size etc.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Set background
+    <ul>
+      <li>Go to World tab (red globe icon)</li>
+      <li>Surface &gt; Background</li>
+    </ul>
+  </li>
+  <li>Set render settings
+    <ul>
+      <li>Go to Output tab (printer icon)
+        <ul>
+          <li>Set resolution, frame rate, frame range (Frame start - End)</li>
+          <li>Output &gt; File format &gt; <code class="language-plaintext highlighter-rouge">PNG</code> sequence or <code class="language-plaintext highlighter-rouge">FFmpeg video</code> for animation (FFmpeg for short test)</li>
+          <li class="note">Encoding &gt; Container: <code class="language-plaintext highlighter-rouge">MPEG-4</code> (Default: <code class="language-plaintext highlighter-rouge">Matroska</code>)</li>
+        </ul>
+      </li>
+      <li>Go to Scene tab (camera icon)
+        <ul>
+          <li>Render engines &gt; Eevee or Cycles</li>
+          <li class="note">Render &gt; <code class="language-plaintext highlighter-rouge">Max Samples</code>, <code class="language-plaintext highlighter-rouge">Time Limit</code> for setting quality</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Render
+    <ul>
+      <li>Go to Render menu at the top (File / Edit / Render …) &gt; Render Animation</li>
+    </ul>
+  </li>
+</ul>
+
 <p><strong>Geometry nodes:</strong></p>
 <ul>
   <li>Geometry nodes are “modifier”, run on an object</li>
@@ -85,7 +148,7 @@
       <li><code class="language-plaintext highlighter-rouge">Mesh Line</code>, another <code class="language-plaintext highlighter-rouge">Instance on Points</code>: multiply the grid a long Z axis &gt; 3D lattice</li>
       <li><code class="language-plaintext highlighter-rouge">Instance on Points</code>: generate instance (lightweight references) on points &gt; 2D grid</li>
       <li><code class="language-plaintext highlighter-rouge">Set Material</code>
- <img src="/docs/images/lab/blender_gn/gn_lattice.jpg" alt="" /></li>
+ <img src="/docs/images/lab/cellular_automata/blender_gn/gn_3D_math.jpg" alt="" /></li>
     </ul>
   </li>
   <li>3D lattice using mathematical process
@@ -101,7 +164,7 @@
       </li>
       <li><code class="language-plaintext highlighter-rouge">Combine XYZ</code> &gt; <code class="language-plaintext highlighter-rouge">Set Position</code></li>
       <li><code class="language-plaintext highlighter-rouge">Instance on Points</code> to generate cube instances
- <img src="/docs/images/lab/blender_gn/gn_3D_math.jpg" alt="" /></li>
+ ![](/docs/images/lab/cellular_automata/blender_gn/gn_3D_math.jpg</li>
     </ul>
 
     <blockquote>
@@ -126,10 +189,20 @@
       <li><code class="language-plaintext highlighter-rouge">Delete Geometry</code> (Selection: connect <code class="language-plaintext highlighter-rouge">Top</code> from <code class="language-plaintext highlighter-rouge">Extrude Mesh</code>)</li>
       <li><code class="language-plaintext highlighter-rouge">Extrude Mesh</code> + <code class="language-plaintext highlighter-rouge">Flip Faces</code> &gt; <code class="language-plaintext highlighter-rouge">Join Geometry</code>: create extruded and closed faces &gt; <code class="language-plaintext highlighter-rouge">Merge by Distance</code>: merge edges</li>
       <li><code class="language-plaintext highlighter-rouge">Subdivide Surface</code> &gt; <code class="language-plaintext highlighter-rouge">Set Shade Smooth</code>
- <img src="/docs/images/lab/blender_gn/gn_sphere.jpg" alt="" /></li>
+ <img src="/docs/images/lab/cellular_automata/blender_gn/gn_sphere.jpg" alt="" /></li>
     </ul>
   </li>
 </ol>
+
+<h3 id="3d-cubes">3D cubes</h3>
+
+<p>This is a test randomly removing cubes as the initial state of the CA.</p>
+
+<p><img src="/docs/images/lab/cellular_automata/blender_gn/gn_cubes.jpg" alt="" /></p>
+
+<div class="media-wrapper">
+    <video src="/docs/images/lab/cellular_automata/blender_gn/cubes.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+</div>
 
 <p>Ref:</p>
 <ul>
