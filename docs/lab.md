@@ -5,6 +5,15 @@ title: LAB
 
 # LAB
 
+This is a place for my ongoing tests and daily explorations.
+
+<iframe
+  src="https://hayashnaoki.notion.site/ebd//3219ed97aaad8078b1aff80c78a5ab7b"
+  width="100%"
+  height="400"
+  frameborder="0">
+</iframe>
+
 <!-- Don't include .md in the links! -->
 
 <div class="image-grid">
