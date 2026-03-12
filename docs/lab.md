@@ -5,15 +5,6 @@ title: LAB
 
 # LAB
 
-This is a place for my ongoing tests and daily explorations.
-
-<iframe
-  src="https://hayashnaoki.notion.site/ebd//3219ed97aaad8078b1aff80c78a5ab7b"
-  width="100%"
-  height="400"
-  frameborder="0">
-</iframe>
-
 <!-- Don't include .md in the links! -->
 
 <div class="image-grid">
@@ -67,7 +58,7 @@ This is a place for my ongoing tests and daily explorations.
 
   <a href="/docs/lab/jekyll" class="grid-item">
     <div class="image-wrapper">
-      <img src="/docs/images/404.jpg" alt="">
+      <img src="/docs/images/404.jpg" class="bw" alt="">
     </div>
     <div class="caption"><b>Jekyll</b></div>
     <div class="caption">2026 | Web | Github</div>
@@ -78,7 +69,7 @@ This is a place for my ongoing tests and daily explorations.
       <img src="/docs/images/lab/casting/uma_1.jpg" alt="">
     </div>
     <div class="caption"><b>Uma Casting</b></div>
-    <div class="caption">2025 | Craft | Molding/Casting</div>
+    <div class="caption">2025 | DC | Molding/Casting</div>
   </a>
 
   <a href="/docs/lab/plywood_connector" class="grid-item">

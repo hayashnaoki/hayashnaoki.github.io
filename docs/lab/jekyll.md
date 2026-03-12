@@ -100,26 +100,39 @@ This is an body. This site is open to the public as a repository for scalable, s
 
 # 这是中文。
 
-##  Noto Sans JP 对中国的支持尚不完善。
+## 这不是寿司店，而是寿司外卖站。
 
 寿司看似简单，但由比例、顺序和重复构成。正因为这些清晰的规则，寿司可以在保持结构不变的情况下不断扩展和复制。
 
 [https://hayashnaoki.github.io/](https://hayashnaoki.github.io/)
 
+---
+
+Image: `![](/docs/images/404.jpg)`
+
 ![](/docs/images/404.jpg)
 
-<iframe 
-  src="https://player.vimeo.com/video/904894755?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 
-  width="100%" 
-  height="auto" 
-  style="aspect-ratio:1/1;" 
-  frameborder="0" 
-  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-  referrerpolicy="strict-origin-when-cross-origin" 
-  title="GH Lab | 2022_2023">
-</iframe>
+Image with black and white class: `<img src="/docs/images/404.jpg" class="bw" alt="">`
 
-Embedded video without control
+<img src="/docs/images/404.jpg" class="bw" alt="">
+
+Embedded video:
+
+```html
+<div class="media-wrapper">
+    <video src="/docs/images/lab/casting/melting.mp4"
+    autoplay
+    muted
+    loop
+    class="bw"
+    playsinline></video>
+</div>
+```
+
+> 
+This is for layout control via CSS. Direct link like `<video src="/docs/images/lab/cellular_automata/ca.mp4" width="100%"  autoplay muted loop playsinline></video>` also works, but not recommended.  
+
+iframe video without control:
 
 ```html
 <iframe 
@@ -133,6 +146,17 @@ Embedded video without control
   title="GH Lab | 2022_2023">
 </iframe>
 ```
+
+<iframe 
+  src="https://player.vimeo.com/video/904894755?badge=0&autopause=0&player_id=0&app_id=58479&controls=0&autoplay=1&muted=1&loop=1" 
+  width="100%" 
+  height="auto" 
+  style="aspect-ratio:1/1;" 
+  frameborder="0" 
+  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+  referrerpolicy="strict-origin-when-cross-origin" 
+  title="GH Lab | 2022_2023">
+</iframe>
 
 | Name | Descriptions | Quantity |
 | --- | --- | --- |

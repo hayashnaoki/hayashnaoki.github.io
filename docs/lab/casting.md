@@ -4,7 +4,7 @@ layout: default
 
 # Uma Casting
 
-2025 \| Craft \| Molding/Casting
+2025 \| Digital craft \| Molding/Casting
 
 This is the result of trial and error, using a 3D printed prototype and a heat-resistant silicone mold to cast the tin. The spout placement was not ideal, so not enough metal flowed around it, leaving a cavity down the back leg.
 

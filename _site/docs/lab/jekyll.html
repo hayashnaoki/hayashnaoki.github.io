@@ -161,18 +161,40 @@
 
 <h1 id="这是中文">这是中文。</h1>
 
-<h2 id="noto-sans-jp-对中国的支持尚不完善">Noto Sans JP 对中国的支持尚不完善。</h2>
+<h2 id="这不是寿司店而是寿司外卖站">这不是寿司店，而是寿司外卖站。</h2>
 
 <p>寿司看似简单，但由比例、顺序和重复构成。正因为这些清晰的规则，寿司可以在保持结构不变的情况下不断扩展和复制。</p>
 
 <p><a href="https://hayashnaoki.github.io/">https://hayashnaoki.github.io/</a></p>
 
+<hr />
+
+<p>Image: <code class="language-plaintext highlighter-rouge">![](/docs/images/404.jpg)</code></p>
+
 <p><img src="/docs/images/404.jpg" alt="" /></p>
 
-<iframe src="https://player.vimeo.com/video/904894755?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" width="100%" height="auto" style="aspect-ratio:1/1;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="GH Lab | 2022_2023">
-</iframe>
+<p>Image with black and white class: <code class="language-plaintext highlighter-rouge">&lt;img src="/docs/images/404.jpg" class="bw" alt=""&gt;</code></p>
 
-<p>Embedded video without control</p>
+<p><img src="/docs/images/404.jpg" class="bw" alt="" /></p>
+
+<p>Embedded video:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media-wrapper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;video</span> <span class="na">src=</span><span class="s">"/docs/images/lab/casting/melting.mp4"</span>
+    <span class="na">autoplay</span>
+    <span class="na">muted</span>
+    <span class="na">loop</span>
+    <span class="na">class=</span><span class="s">"bw"</span>
+    <span class="na">playsinline</span><span class="nt">&gt;&lt;/video&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+
+  <p>This is for layout control via CSS. Direct link like <code class="language-plaintext highlighter-rouge">&lt;video src="/docs/images/lab/cellular_automata/ca.mp4" width="100%"  autoplay muted loop playsinline&gt;&lt;/video&gt;</code> also works, but not recommended.</p>
+</blockquote>
+
+<p>iframe video without control:</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;iframe</span> 
   <span class="na">src=</span><span class="s">"https://player.vimeo.com/video/904894755?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1"</span> 
@@ -185,6 +207,9 @@
   <span class="na">title=</span><span class="s">"GH Lab | 2022_2023"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/iframe&gt;</span>
 </code></pre></div></div>
+
+<iframe src="https://player.vimeo.com/video/904894755?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;controls=0&amp;autoplay=1&amp;muted=1&amp;loop=1" width="100%" height="auto" style="aspect-ratio:1/1;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="GH Lab | 2022_2023">
+</iframe>
 
 <table>
   <thead>
