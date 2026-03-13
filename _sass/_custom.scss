@@ -504,17 +504,17 @@ ul li::marker {
 /* =========================================================
    Copy Button for Code Blocks
    ========================================================= */
-pre {
+.code-wrapper {
   position: relative;
 }
 
 .copy-button {
   position: absolute;
-  top: 4px;
-  right: 6px;
+  top: 2px;
+  right: 2px;
   border: none;
   background: none;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
   opacity: 0.6;
 }

@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
     wrapper.appendChild(pre);
 
     const button = document.createElement("button");
-    button.innerText = "▢";
+    button.innerText = "☐";
     button.className = "copy-button";
 
     button.onclick = function () {
       const code = pre.querySelector("code").innerText;
       navigator.clipboard.writeText(code);
-      button.innerText = "✔";
-      setTimeout(() => button.innerText = "▢", 1200);
+      button.innerText = "☒";
+      setTimeout(() => button.innerText = "☐", 1200);
     };
 
     wrapper.appendChild(button);
