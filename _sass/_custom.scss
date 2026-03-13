@@ -495,19 +495,26 @@ ul li::marker {
 
 .code-wrapper pre {
   overflow-x: auto;
+  margin: 0;
 }
 
 .copy-button {
   position: absolute;
   top: 6px;
   right: 6px;
+
   border: none;
   background: none;
+  padding: 0;
+
   cursor: pointer;
-  font-size: 14px;
-  opacity: 0.6;
+  color: #888;
 }
 
 .copy-button:hover {
-  opacity: 1;
+  color: #444;
+}
+
+.material-symbols-outlined {
+  font-size: 18px;
 }
