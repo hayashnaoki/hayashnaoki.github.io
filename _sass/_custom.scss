@@ -12,6 +12,21 @@ body {
 }
 
 /* =========================================================
+   Layout
+   ========================================================= */
+.wrapper {
+  max-width: 800px;
+}
+.media-wrapper {
+  max-width: 100%;
+}
+/* Full-bleed image */
+.full-width {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* =========================================================
    Page Content Spacing
    ========================================================= */
 /* Paragraph and image spacing */
@@ -489,32 +504,21 @@ ul li::marker {
 /* =========================================================
    Copy Button for Code Blocks
    ========================================================= */
-.code-wrapper {
+pre {
   position: relative;
-}
-
-.code-wrapper pre {
-  overflow-x: auto;
-  margin: 0;
 }
 
 .copy-button {
   position: absolute;
-  top: 6px;
+  top: 4px;
   right: 6px;
-
   border: none;
   background: none;
-  padding: 0;
-
+  font-size: 20px;
   cursor: pointer;
-  color: #888;
+  opacity: 0.6;
 }
 
 .copy-button:hover {
-  color: #444;
-}
-
-.material-symbols-outlined {
-  font-size: 18px;
+  opacity: 1;
 }
