@@ -734,6 +734,7 @@ body {
 .site-title {
   font-size: 20px;
   font-weight: 600;
+  color: #000 !important;
 }
 
 /* =========================================================
@@ -1094,6 +1095,32 @@ ul li::marker {
   border: none; /* Remove border */
   outline: none; /* Remove focus outline */
   display: block; /* Remove inline gap */
+}
+
+/* =========================================================
+   Copy Button for Code Blocks
+   ========================================================= */
+.code-wrapper {
+  position: relative;
+}
+
+.code-wrapper pre {
+  overflow-x: auto;
+}
+
+.copy-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.copy-button:hover {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=main.css.map */
