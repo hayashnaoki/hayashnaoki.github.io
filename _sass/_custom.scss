@@ -97,6 +97,7 @@ body {
 /* Adjust menu typography */
 .site-nav .page-link {
   font-size: 16px;
+  font-weight: 600;
   letter-spacing: 0;
 }
 
@@ -142,7 +143,7 @@ body {
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  column-gap: 4px;
+  column-gap: 9px;
   row-gap: 4px;
 }
 
@@ -190,6 +191,7 @@ body {
 .caption {
   margin-top: 6px;
   font-size: 14px;
+  line-height: 1;
 }
 
 /* =========================================================
@@ -533,4 +535,12 @@ ul li::marker {
 
 .copy-button:hover {
   opacity: 1;
+}
+
+/* =========================================================
+   Text Selection
+   ========================================================= */
+::selection {
+  background: #3300ff;
+  color: #fff;
 }
