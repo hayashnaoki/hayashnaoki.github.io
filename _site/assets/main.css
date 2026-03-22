@@ -873,7 +873,7 @@ h3 {
    Links
    ========================================================= */
 .page-content a {
-  color: #999999;
+  color: #3300ff;
 }
 
 .page-content a:hover {
@@ -886,6 +886,7 @@ h3 {
    ========================================================= */
 /* Remove default dividers */
 .site-header {
+  border-top: none;
   border-bottom: none;
 }
 
@@ -908,7 +909,7 @@ h3 {
 }
 
 .footer-links a {
-  margin-right: 1.5rem;
+  margin-right: 1rem;
   color: #000;
   text-decoration: none;
 }
