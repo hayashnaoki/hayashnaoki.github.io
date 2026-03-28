@@ -20,7 +20,7 @@ Digital fabrication / Prototyping
 
 **Educations**
 >
-2025: [Fab Academy](https://fabacademy.org/2025/labs/kannai/students/naoki-hayashi/) Graduate  
+2025: [Fab Academy](https://fabacademy.org/students/alumni-list.html#_2025) Graduate  
 2018: B.Des, [Nagoya City University School of Design and Architecture](https://www.nagoya-cu.ac.jp/sda/english/)  
 
 **Awards**

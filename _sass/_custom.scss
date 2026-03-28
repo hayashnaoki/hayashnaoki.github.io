@@ -15,7 +15,7 @@ body {
    Layout
    ========================================================= */
 .wrapper {
-  max-width: 800px;
+  max-width: 900px;
 }
 .media-wrapper {
   max-width: 100%;
@@ -27,12 +27,22 @@ body {
 }
 
 /* =========================================================
+   Text Width Classes
+   ========================================================= */
+
+/* Narrow text container */
+.narrow {
+  max-width: 600px;
+}
+
+/* =========================================================
    Page Content Spacing
    ========================================================= */
 /* Paragraph and image spacing */
 .page-content img {
   display: block;
   margin: 0.5rem 0;
+  width: 100%;
 }
 .page-content p {
   margin: 0.5rem 0;
@@ -431,7 +441,7 @@ pre code {
 
 
 /* =========================================================
-   Notes / Warnings
+   Notes / Warnings / Highlights
    ========================================================= */
 
 /* Note text */
@@ -444,6 +454,19 @@ pre code {
   color: #ff2a00;
 }
 
+/* Blue highlight text */
+.highlight-blue {
+  background-color: #0040ff;
+  color: #ffffff;
+  padding: 0.1em 0.2em;
+}
+
+/* Blue highlight text */
+.highlight-black {
+  background-color: #000;
+  color: #ffffff;
+  padding: 0.1em 0.2em;
+}
 
 /* =========================================================
    Tables

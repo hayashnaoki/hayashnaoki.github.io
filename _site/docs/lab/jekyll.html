@@ -295,9 +295,25 @@
   </li>
 </ol>
 
-<p class="note">This is a <strong>note</strong> (<code class="language-plaintext highlighter-rouge">{: .note}</code>). Sushi is fundamentally scalable.</p>
+<p class="note">This is a <strong>note</strong>. Sushi is fundamentally scalable.</p>
 
-<p class="warning">This is a <strong>warning</strong> (<code class="language-plaintext highlighter-rouge">{: .warning}</code>). Sushi is exponentially scalable.</p>
+<p class="warning">This is a <strong>warning</strong>. Sushi is exponentially scalable.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{: .note}
+{: .warning}
+</code></pre></div></div>
+
+<p>This is normal text, <span class="warning">this part is colored in <strong>red</strong>,</span> and <span class="note">this part is colored in <strong>blue</strong></span> inline.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"note"</span><span class="nt">&gt;</span>TEXT_GOES_HERE<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"warning"</span><span class="nt">&gt;</span>TEXT_GOES_HERE<span class="nt">&lt;/span&gt;</span>
+</code></pre></div></div>
+
+<p>This is normal text, <span class="highlight-blue">this part is highlighted in <strong>blue</strong>,</span> and <span class="highlight-black">this part is highlighted in <strong>black</strong></span> inline.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"highlight-blue"</span><span class="nt">&gt;</span>TEXT_GOES_HERE<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"highlight-black"</span><span class="nt">&gt;</span>TEXT_GOES_HERE<span class="nt">&lt;/span&gt;</span>
+</code></pre></div></div>
 
       </div>
     </main><footer class="site-footer">

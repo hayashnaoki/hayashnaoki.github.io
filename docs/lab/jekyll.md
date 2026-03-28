@@ -218,7 +218,26 @@ Menu
     1. GhPython sushi
 
 {: .note}
-This is a **note** (`{: .note}`). Sushi is fundamentally scalable.
+This is a **note**. Sushi is fundamentally scalable.
 
 {: .warning}
-This is a **warning** (`{: .warning}`). Sushi is exponentially scalable.
+This is a **warning**. Sushi is exponentially scalable.
+
+```html
+{: .note}
+{: .warning}
+```
+
+This is normal text, <span class="warning">this part is colored in **red**,</span> and <span class="note">this part is colored in **blue**</span> inline.
+
+```html
+<span class="note">TEXT_GOES_HERE</span>
+<span class="warning">TEXT_GOES_HERE</span>
+```
+
+This is normal text, <span class="highlight-blue">this part is highlighted in **blue**,</span> and <span class="highlight-black">this part is highlighted in **black**</span> inline.
+
+```html
+<span class="highlight-blue">TEXT_GOES_HERE</span>
+<span class="highlight-black">TEXT_GOES_HERE</span>
+```

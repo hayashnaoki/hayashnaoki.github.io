@@ -84,3 +84,11 @@ Back to [PLOT BOT](index)
     allowfullscreen
   ></iframe>
 </div>
+
+---
+
+## Industrial design
+
+- Simplify the TO results
+- Layer structure
+- Base surface: slightly rounded
