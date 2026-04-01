@@ -62,20 +62,6 @@ Back to [PLOT BOT](index)
 
     ![](/docs/images/projects/plotbot/tOpos.jpg)
 
-1. Mecanum wheel
-    - 9 rollers using M2 x 35 mm bolts
-    - M3 bolt and insert nut as set screw for motor shaft D-cut
-
-<!---
-<div class="media-wrapper">
-    <video src="/docs/images/projects/plotbot/v0.2_frame.mp4"
-    autoplay
-    muted
-    loop
-    playsinline></video>
-</div>
---->
-
 <div class="media-embed">
   <iframe 
     src="https://gmail4741456.autodesk360.com/shares/public/SH28cd1QT2badd0ea72be0ccbab005fc1d79?mode=embed"
@@ -90,5 +76,4 @@ Back to [PLOT BOT](index)
 ## Industrial design
 
 - Simplify the TO results
-- Layer structure
-- Base surface: slightly rounded
+- Slightly rounded base surface for appearance quality

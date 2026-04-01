@@ -31,10 +31,11 @@ Digital fabrication / Prototyping
 
 **Elsewhere**
 >
-Instagram [@hayashnaoki](https://www.instagram.com/hayashnaoki/)  
-Behance [/hayashnaoki](https://www.behance.net/hayashnaoki)  
-Printables [@hayashnaoki](https://www.printables.com/@hayashnaoki)  
-Pinterest [@hayashnaoki](https://jp.pinterest.com/hayashnaoki/)  
-Github [/hayashnaoki](https://github.com/hayashnaoki)  
-Fab Academy [/naoki-hayashi](https://fabacademy.org/2025/labs/kannai/students/naoki-hayashi/)  
-email <a href="mailto:hayashnaoki@gmail.com">hayashnaoki@gmail.com</a>
+| Scrapbox | [/hayashnaoki](https://scrapbox.io/hayashnaoki/)  
+| Instagram | [@hayashnaoki](https://www.instagram.com/hayashnaoki/)  
+| Behance | [/hayashnaoki](https://www.behance.net/hayashnaoki)  
+| Printables | [@hayashnaoki](https://www.printables.com/@hayashnaoki)  
+| Pinterest | [@hayashnaoki](https://jp.pinterest.com/hayashnaoki/)  
+| GitHub | [/hayashnaoki](https://github.com/hayashnaoki)  
+| Fab Academy | [/naoki-hayashi](https://fabacademy.org/2025/labs/kannai/students/naoki-hayashi/)  
+| email | <a href="mailto:hayashnaoki@gmail.com">hayashnaoki@gmail.com</a>
