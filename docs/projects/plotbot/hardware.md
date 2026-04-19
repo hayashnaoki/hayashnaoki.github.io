@@ -53,7 +53,8 @@ Back to [PLOT BOT](index)
 1. Component layout
     - The 6000 mAh battery at the center bottom between the motors
     - The minimum dimensions defined by the four motors and the battery  
-1. Frame: Topology optimization ([Grasshopper tOpos](https://www.food4rhino.com/en/app/topos))
+1. Frame: Topology optimization  
+    Instead of using Fusion 360's generative design features, I decided to optimize the frame using [Grasshopper tOpos](https://www.food4rhino.com/en/app/topos).
     - Boundary: box excluding space for components
     - Loads: battery, PCB etc.
     - Support: Mounting points for the motors
@@ -62,18 +63,29 @@ Back to [PLOT BOT](index)
 
     ![](/docs/images/projects/plotbot/tOpos.jpg)
 
+    <div class="media-wrapper">
+        <video src="/docs/images/projects/plotbot/tOpos.mp4"
+        autoplay
+        loop
+        muted>
+        playsinline></video>
+    </div>
+1. Industrial design
+    - Simplify the TO results
+    - Slightly rounded base surface for appearance quality
+
+    ![](/docs/images/projects/plotbot/frame_sketch.jpg)
+
+    Imported model:
+    - [NEMA17 Stepper Motor](https://www.mcmaster.com/6627T66/)
+    - [58mm Double Row Omni-Wheel](https://grabcad.com/library/omniwheel-15)
+    - [SG90 Micro Servo](https://grabcad.com/library/sg90-micro-servo-9g-tower-pro-1)
+
 <div class="media-embed">
   <iframe 
     src="https://gmail4741456.autodesk360.com/shares/public/SH28cd1QT2badd0ea72be0ccbab005fc1d79?mode=embed"
     width="100%"
-    height="600"
+    height="800"
     allowfullscreen
   ></iframe>
 </div>
-
----
-
-## Industrial design
-
-- Simplify the TO results
-- Slightly rounded base surface for appearance quality
