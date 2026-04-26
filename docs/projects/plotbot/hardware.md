@@ -63,13 +63,8 @@ Back to [PLOT BOT](index)
 
     ![](/docs/images/projects/plotbot/tOpos.jpg)
 
-    <div class="media-wrapper">
-        <video src="/docs/images/projects/plotbot/tOpos.mp4"
-        autoplay
-        loop
-        muted>
-        playsinline></video>
-    </div>
+    <video src="/docs/images/projects/plotbot/tOpos.mp4" width="100%"  autoplay muted loop playsinline></video>
+
 1. Industrial design
     - Simplify the TO results
     - Slightly rounded base surface for appearance quality
@@ -80,6 +75,9 @@ Back to [PLOT BOT](index)
     - [NEMA17 Stepper Motor](https://www.mcmaster.com/6627T66/)
     - [58mm Double Row Omni-Wheel](https://grabcad.com/library/omniwheel-15)
     - [SG90 Micro Servo](https://grabcad.com/library/sg90-micro-servo-9g-tower-pro-1)
+    - [Pi Pico](https://grabcad.com/library/raspberry-pi-pico-3)
+    - [LM2596](https://www.autodesk.com/community/gallery/project/165596/lm2596-dc-dc)
+    - [A4988](https://grabcad.com/library/a4988-stepper-driver-with-pins-socketed-1)
 
 <div class="media-embed">
   <iframe 

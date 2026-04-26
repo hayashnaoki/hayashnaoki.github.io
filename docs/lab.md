@@ -33,15 +33,15 @@ title: LAB
   </a>
   --->
 
-  <a href="/docs/lab/lingua-gen" class="grid-item">
+  <a href="/docs/lab/llc" class="grid-item">
     <div class="media-wrapper">
-      <video src="/docs/images/lab/lingua-gen/mvp.mp4"
+      <video src="/docs/images/lab/llc/mvp.mp4"
         autoplay
         muted
         loop
         playsinline></video>
     </div>
-    <div class="caption"><b>Lingua-gen</b></div>
+    <div class="caption"><b>Language learning app</b></div>
     <div class="caption">2026 | Web | LLM</div>
   </a>
 

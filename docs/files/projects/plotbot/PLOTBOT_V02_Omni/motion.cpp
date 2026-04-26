@@ -1,99 +1,99 @@
-#include <Arduino.h>
 #include <AccelStepper.h>
+#include <Arduino.h>
 #include <Servo.h>
 
-#include "pins.h"
 #include "config.h"
 #include "motion.h"
+#include "pins.h"
 
 float currentX = 0;
 float currentY = 0;
 float currentR = 0;
-int   currentZ = SERVO_DEFAULT_ANGLE;
+int currentZ = SERVO_DEFAULT_ANGLE;
 
-AccelStepper stepperRF(AccelStepper::DRIVER, PIN_STEP_RF, PIN_DIR_RF);
-AccelStepper stepperLF(AccelStepper::DRIVER, PIN_STEP_LF, PIN_DIR_LF);
-AccelStepper stepperRB(AccelStepper::DRIVER, PIN_STEP_RB, PIN_DIR_RB);
-AccelStepper stepperLB(AccelStepper::DRIVER, PIN_STEP_LB, PIN_DIR_LB);
+AccelStepper stepperM1(AccelStepper::DRIVER, PIN_STEP_M1, PIN_DIR_M1);
+AccelStepper stepperM2(AccelStepper::DRIVER, PIN_STEP_M2, PIN_DIR_M2);
+AccelStepper stepperM3(AccelStepper::DRIVER, PIN_STEP_M3, PIN_DIR_M3);
 
 Servo servoZ;
 
 void motionInit() {
-    pinMode(PIN_LIMIT_X, INPUT_PULLUP);
-    pinMode(PIN_LIMIT_Y, INPUT_PULLUP);
+  pinMode(PIN_LIMIT_X, INPUT_PULLUP);
+  pinMode(PIN_LIMIT_Y, INPUT_PULLUP);
 
-    stepperRF.setMaxSpeed(MAX_SPEED);
-    stepperLF.setMaxSpeed(MAX_SPEED);
-    stepperRB.setMaxSpeed(MAX_SPEED);
-    stepperLB.setMaxSpeed(MAX_SPEED);
+  stepperM1.setMaxSpeed(MAX_SPEED);
+  stepperM2.setMaxSpeed(MAX_SPEED);
+  stepperM3.setMaxSpeed(MAX_SPEED);
 
-    stepperRF.setAcceleration(ACCELERATION);
-    stepperLF.setAcceleration(ACCELERATION);
-    stepperRB.setAcceleration(ACCELERATION);
-    stepperLB.setAcceleration(ACCELERATION);
+  stepperM1.setAcceleration(ACCELERATION);
+  stepperM2.setAcceleration(ACCELERATION);
+  stepperM3.setAcceleration(ACCELERATION);
 
-    servoZ.attach(PIN_SERVO_Z, SERVO_MIN_US, SERVO_MAX_US);
-    servoZ.write(currentZ);
+  servoZ.attach(PIN_SERVO_Z, SERVO_MIN_US, SERVO_MAX_US);
+  servoZ.write(currentZ);
 }
 
 void homeAxes() {
-    stepperRF.setSpeed( 100);
-    stepperLF.setSpeed(-100);
-    stepperRB.setSpeed(-100);
-    stepperLB.setSpeed( 100);
+  stepperM1.setSpeed(50);
+  stepperM2.setSpeed(50);
+  stepperM3.setSpeed(-100);
 
-    while (digitalRead(PIN_LIMIT_X)) {
-        stepperRF.runSpeed();
-        stepperLF.runSpeed();
-        stepperRB.runSpeed();
-        stepperLB.runSpeed();
-    }
+  while (digitalRead(PIN_LIMIT_X)) {
+    stepperM1.runSpeed();
+    stepperM2.runSpeed();
+    stepperM3.runSpeed();
+  }
 
-    stepperRF.setSpeed(-100);
-    stepperLF.setSpeed(-100);
-    stepperRB.setSpeed(-100);
-    stepperLB.setSpeed(-100);
+  stepperM1.setSpeed(-86.6025);
+  stepperM2.setSpeed(86.6025);
+  stepperM3.setSpeed(0);
 
-    while (digitalRead(PIN_LIMIT_Y)) {
-        stepperRF.runSpeed();
-        stepperLF.runSpeed();
-        stepperRB.runSpeed();
-        stepperLB.runSpeed();
-    }
+  while (digitalRead(PIN_LIMIT_Y)) {
+    stepperM1.runSpeed();
+    stepperM2.runSpeed();
+    stepperM3.runSpeed();
+  }
 
-    stepperRF.setCurrentPosition(0);
-    stepperLF.setCurrentPosition(0);
-    stepperRB.setCurrentPosition(0);
-    stepperLB.setCurrentPosition(0);
+  stepperM1.setCurrentPosition(0);
+  stepperM2.setCurrentPosition(0);
+  stepperM3.setCurrentPosition(0);
 
-    currentX = currentY = currentR = 0;
+  currentX = currentY = currentR = 0;
 }
 
 void moveTo(float x, float y, float r) {
-    float dx = x - currentX;
-    float dy = y - currentY;
-    float dr = r - currentR;
+  float dx = x - currentX;
+  float dy = y - currentY;
+  float dr = r - currentR;
 
-    stepperRF.move(-dx * STEPS_PER_MM_X + dy * STEPS_PER_MM_Y - dr * STEPS_PER_DEG_R);
-    stepperLF.move( dx * STEPS_PER_MM_X + dy * STEPS_PER_MM_Y + dr * STEPS_PER_DEG_R);
-    stepperRB.move( dx * STEPS_PER_MM_X + dy * STEPS_PER_MM_Y - dr * STEPS_PER_DEG_R);
-    stepperLB.move(-dx * STEPS_PER_MM_X + dy * STEPS_PER_MM_Y + dr * STEPS_PER_DEG_R);
+  const float SIN_30 = 0.5f;
+  const float COS_30 = 0.8660254f;
 
-    while (stepperRF.isRunning() || stepperLF.isRunning() ||
-           stepperRB.isRunning() || stepperLB.isRunning()) {
-        stepperRF.run();
-        stepperLF.run();
-        stepperRB.run();
-        stepperLB.run();
-    }
+  float m1_steps = -SIN_30 * dx * STEPS_PER_MM_X +
+                   COS_30 * dy * STEPS_PER_MM_Y + dr * STEPS_PER_DEG_R;
+  float m2_steps = -SIN_30 * dx * STEPS_PER_MM_X -
+                   COS_30 * dy * STEPS_PER_MM_Y + dr * STEPS_PER_DEG_R;
+  float m3_steps = 1.0f * dx * STEPS_PER_MM_X + 0.0f * dy * STEPS_PER_MM_Y +
+                   dr * STEPS_PER_DEG_R;
 
-    currentX = x;
-    currentY = y;
-    currentR = r;
+  stepperM1.move(m1_steps);
+  stepperM2.move(m2_steps);
+  stepperM3.move(m3_steps);
+
+  while (stepperM1.isRunning() || stepperM2.isRunning() ||
+         stepperM3.isRunning()) {
+    stepperM1.run();
+    stepperM2.run();
+    stepperM3.run();
+  }
+
+  currentX = x;
+  currentY = y;
+  currentR = r;
 }
 
 void setServoZ(int angle) {
-    angle = constrain(angle, 0, 180);
-    servoZ.write(angle);
-    currentZ = angle;
+  angle = constrain(angle, 0, 180);
+  servoZ.write(angle);
+  currentZ = angle;
 }
