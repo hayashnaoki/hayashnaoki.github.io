@@ -112,9 +112,12 @@ Image: `![](/docs/images/404.jpg)`
 
 ![](/docs/images/404.jpg)
 
-Image with black and white class: `<img src="/docs/images/404.jpg" class="bw" alt="">`
+Image with black & white class / width: 400px:  
+`<img src="/docs/images/404.jpg" class="bw" style="width: 400px;" alt="">`  
+<span class="note">(`style="width: 400px;"` is more stable than `"width=400px"` during local preview.)</span>
 
-<img src="/docs/images/404.jpg" class="bw" alt="">
+<img src="/docs/images/404.jpg" class="bw" style="width: 400px;" alt="">
+
 
 Embedded video:
 

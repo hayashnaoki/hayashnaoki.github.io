@@ -71,7 +71,7 @@
   <li>In this setup, the Pico works as the “spine”, and a wirelessly connected PC or additional micro controller works as the “brain”</li>
 </ul>
 
-<p><img src="/docs/images/projects/plotbot/system_diagram.jpg" alt="" /></p>
+<p><img src="/docs/images/projects/plotbot/system_diagram.jpg" style="width: 800px;" alt="" /></p>
 
 <h3 id="schematics">Schematics</h3>
 
@@ -92,6 +92,8 @@
 <p><img src="/docs/images/projects/plotbot/pinout.jpg" alt="" /></p>
 
 <h2 id="mechanical-design">Mechanical design</h2>
+
+<p>The original mecanum wheels lacked the necessary precision, and more accurate alternatives were either too expensive or too bulky. I also wanted to compare both mecanum and omni types, so I decided to switch to a 120-degree triple omni-wheel configuration for this build.</p>
 
 <ol>
   <li>Modeling strategy (F3D)
@@ -116,33 +118,65 @@
       <li><code class="language-plaintext highlighter-rouge">IsoMesh</code> &gt; <code class="language-plaintext highlighter-rouge">Quad Remesh</code> &gt; <code class="language-plaintext highlighter-rouge">SubD from Mesh</code> &gt; Export as STEP &gt; Import into F3D</li>
     </ul>
 
-    <p><img src="/docs/images/projects/plotbot/tOpos.jpg" alt="" /></p>
+    <div class="image-grid">
+ <a class="grid-item">
+     <div class="image-wrapper">
+     <img src="/docs/images/projects/plotbot/tOpos.jpg" alt="" />
+     </div>
+ </a>
 
-    <video src="/docs/images/projects/plotbot/tOpos.mp4" width="100%" autoplay="" muted="" loop="" playsinline=""></video>
-  </li>
-  <li>Industrial design
-    <ul>
-      <li>Simplify the TO results</li>
-      <li>Slightly rounded base surface for appearance quality</li>
-    </ul>
-
-    <p><img src="/docs/images/projects/plotbot/frame_sketch.jpg" alt="" /></p>
-
-    <p>Imported model:</p>
-    <ul>
-      <li><a href="https://www.mcmaster.com/6627T66/">NEMA17 Stepper Motor</a></li>
-      <li><a href="https://grabcad.com/library/omniwheel-15">58mm Double Row Omni-Wheel</a></li>
-      <li><a href="https://grabcad.com/library/sg90-micro-servo-9g-tower-pro-1">SG90 Micro Servo</a></li>
-      <li><a href="https://grabcad.com/library/raspberry-pi-pico-3">Pi Pico</a></li>
-      <li><a href="https://www.autodesk.com/community/gallery/project/165596/lm2596-dc-dc">LM2596</a></li>
-      <li><a href="https://grabcad.com/library/a4988-stepper-driver-with-pins-socketed-1">A4988</a></li>
-    </ul>
+ <a class="grid-item">
+     <div class="media-wrapper">
+     <video src="/docs/images/projects/plotbot/tOpos.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+     </div>
+ </a>
+ </div>
   </li>
 </ol>
+
+<h2 id="industrial-design">Industrial design</h2>
+<p>Using the topology optimization results as a reference, I designed the machine to convey a sense of refined complexity and an intelligent aesthetic.</p>
+
+<p><img src="/docs/images/projects/plotbot/frame_sketch.jpg" alt="" /></p>
 
 <div class="media-embed">
   <iframe src="https://gmail4741456.autodesk360.com/shares/public/SH28cd1QT2badd0ea72be0ccbab005fc1d79?mode=embed" width="100%" height="800" allowfullscreen=""></iframe>
 </div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Imported models</th>
+      <th>Sources</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://www.mcmaster.com/6627T66/">NEMA17 Stepper Motor</a></td>
+      <td>McMaster</td>
+    </tr>
+    <tr>
+      <td><a href="https://grabcad.com/library/omniwheel-15">58mm Double Row Omni-Wheel</a> (modified)</td>
+      <td>GrabCAD</td>
+    </tr>
+    <tr>
+      <td><a href="https://grabcad.com/library/sg90-micro-servo-9g-tower-pro-1">SG90 Micro Servo</a></td>
+      <td>GrabCAD</td>
+    </tr>
+    <tr>
+      <td><a href="https://grabcad.com/library/raspberry-pi-pico-3">Pi Pico</a></td>
+      <td>GrabCAD</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.autodesk.com/community/gallery/project/165596/lm2596-dc-dc">LM2596</a></td>
+      <td>Autodesk Community</td>
+    </tr>
+    <tr>
+      <td><a href="https://grabcad.com/library/a4988-stepper-driver-with-pins-socketed-1">A4988</a></td>
+      <td>GrabCAD</td>
+    </tr>
+  </tbody>
+</table>
 
       </div>
     </main><footer class="site-footer">

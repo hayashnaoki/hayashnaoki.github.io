@@ -61,13 +61,4 @@ Board test
 
 ### Frame
 
-### Mecanum wheel
-
-TPU printing for the rollers
-
-[TINMORRY TPU](https://tinmorry.net/en-jp/products/filament-tpu-1-75-mm-tinmorry-3d-printing-materials-tpu-filament-for-fdm-3d-printer-1-kg-1-spool-black?srsltid=AfmBOoqwXkjCUYJ0XjtRtM4RGYZ3RPq6oBJl7ol4-Ket09vFCg_WA8Nv): Shore hardness: 95A
-
-Ref.
-- [Bambu Lab Wiki - TPU printing](https://wiki.bambulab.com/en/knowledge-sharing/tpu-printing-guide)
-- [TINMORRY filament profile for Bambu](https://github.com/TINMORRY/TINMORRY-filament-profile-for-Bambu-printers/blob/main/TPU(A1mini-Bambu-TINMORRY).json)
-- [Bambu Lab Wiki - Cold pull](https://wiki.bambulab.com/en/x1/maintenance/what-is-cold-pull-and-how-to-perform-it)
+![](/docs/images/projects/plotbot/frame_printed.jpg)

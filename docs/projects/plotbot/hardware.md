@@ -27,7 +27,7 @@ Back to [PLOT BOT](index)
 - UART, I2C, SPI, and extra GPIOs are available for easy expansion such as additional micro controller (e.g., ESP32-S3), an OLED display, sensors, limit switches, a fan, or a servo
 - In this setup, the Pico works as the "spine", and a wirelessly connected PC or additional micro controller works as the "brain"
 
-![](/docs/images/projects/plotbot/system_diagram.jpg)
+<img src="/docs/images/projects/plotbot/system_diagram.jpg" style="width: 800px;" alt="">
 
 ### Schematics
 
@@ -47,6 +47,8 @@ Back to [PLOT BOT](index)
 
 ## Mechanical design
 
+The original mecanum wheels lacked the necessary precision, and more accurate alternatives were either too expensive or too bulky. I also wanted to compare both mecanum and omni types, so I decided to switch to a 120-degree triple omni-wheel configuration for this build.
+
 1. Modeling strategy (F3D)
     - Use external/internal components
     - Ref: [Fusion 360 Components and Assemblies Explained](https://youtu.be/kj3_doWX2Kg?si=Wuf_BjsMH80fZwv-)
@@ -61,23 +63,28 @@ Back to [PLOT BOT](index)
     - Ref: [Topology Optimization 101](https://formlabs.com/blog/topology-optimization/?srsltid=AfmBOop-21FSWjzrRfT_V_dcDMQh743sqI0DHfcjQxuELNHLn6EK_Idw)
     - `IsoMesh` > `Quad Remesh` > `SubD from Mesh` > Export as STEP > Import into F3D
 
-    ![](/docs/images/projects/plotbot/tOpos.jpg)
+    <div class="image-grid">
+    <a class="grid-item">
+        <div class="image-wrapper">
+        <img src="/docs/images/projects/plotbot/tOpos.jpg" alt="">
+        </div>
+    </a>
 
-    <video src="/docs/images/projects/plotbot/tOpos.mp4" width="100%"  autoplay muted loop playsinline></video>
+    <a class="grid-item">
+        <div class="media-wrapper">
+        <video src="/docs/images/projects/plotbot/tOpos.mp4"
+            autoplay
+            muted
+            loop
+            playsinline></video>
+        </div>
+    </a>
+    </div>
 
-1. Industrial design
-    - Simplify the TO results
-    - Slightly rounded base surface for appearance quality
+## Industrial design
+Using the topology optimization results as a reference, I designed the machine to convey a sense of refined complexity and an intelligent aesthetic.
 
-    ![](/docs/images/projects/plotbot/frame_sketch.jpg)
-
-    Imported model:
-    - [NEMA17 Stepper Motor](https://www.mcmaster.com/6627T66/)
-    - [58mm Double Row Omni-Wheel](https://grabcad.com/library/omniwheel-15)
-    - [SG90 Micro Servo](https://grabcad.com/library/sg90-micro-servo-9g-tower-pro-1)
-    - [Pi Pico](https://grabcad.com/library/raspberry-pi-pico-3)
-    - [LM2596](https://www.autodesk.com/community/gallery/project/165596/lm2596-dc-dc)
-    - [A4988](https://grabcad.com/library/a4988-stepper-driver-with-pins-socketed-1)
+![](/docs/images/projects/plotbot/frame_sketch.jpg)
 
 <div class="media-embed">
   <iframe 
@@ -87,3 +94,12 @@ Back to [PLOT BOT](index)
     allowfullscreen
   ></iframe>
 </div>
+
+| Imported models | Sources |
+| --- | --- |
+| [NEMA17 Stepper Motor](https://www.mcmaster.com/6627T66/) | McMaster |
+| [58mm Double Row Omni-Wheel](https://grabcad.com/library/omniwheel-15) (modified) | GrabCAD |
+| [SG90 Micro Servo](https://grabcad.com/library/sg90-micro-servo-9g-tower-pro-1) | GrabCAD |
+| [Pi Pico](https://grabcad.com/library/raspberry-pi-pico-3) | GrabCAD |
+| [LM2596](https://www.autodesk.com/community/gallery/project/165596/lm2596-dc-dc) | Autodesk Community |
+| [A4988](https://grabcad.com/library/a4988-stepper-driver-with-pins-socketed-1) | GrabCAD |

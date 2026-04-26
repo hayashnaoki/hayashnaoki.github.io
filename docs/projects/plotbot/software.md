@@ -30,7 +30,7 @@ Back to [PLOT BOT](index)
 - By adding header (`.h`) and source (`.cpp`) files, the `.ino` file focus on orchestration
 - `pins.h` and `config.h` for hardware abstraction
 
-![](/docs/images/projects/plotbot/dependencies.jpg)
+<img src="/docs/images/projects/plotbot/dependencies.jpg" style="width: 800px;" alt="">
 
 ### Interpolation
 
@@ -38,7 +38,7 @@ Back to [PLOT BOT](index)
 - With linear interpolation (`G1`), the X and Y motor speeds are continuously adjusted for linear path from `[0, 0]` to `[X100 Y200]`
 - Arc interpolation (`G2/G3`), `I` and `J` represent center offset from the start point.
 
-![](/docs/images/projects/plotbot/interpolation.jpg)
+<img src="/docs/images/projects/plotbot/interpolation.jpg" style="width: 800px;" alt="">
 
 1. Geometric interpolation (Position-based)
     - e.g., Move 0.01 mm each update
