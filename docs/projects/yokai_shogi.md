@@ -12,8 +12,6 @@ A collaboration with graphic designer [Yuki Okuno](https://www.instagram.com/yuk
 
 ![](/docs/images/projects/yokai_shogi/yokai_01.jpg)
 
-**Work in progress...**
-
 <div class="image-grid">
   <a class="grid-item">
     <div class="image-wrapper">
@@ -63,3 +61,5 @@ A collaboration with graphic designer [Yuki Okuno](https://www.instagram.com/yuk
     </div>
   </a>
 </div>
+
+**Work in progress...**

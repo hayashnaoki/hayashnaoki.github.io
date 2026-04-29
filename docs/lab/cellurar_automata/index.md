@@ -4,7 +4,7 @@ layout: default
 
 # Cellular automata
 
-2026-ongoing \| Computational design \| Gh
+2026-ongoing \| Computational design \| Gh / B3D
 
 ### Grasshopper simulation
 

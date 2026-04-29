@@ -86,3 +86,16 @@ Notes:
   - The mold must be kept hot to prevent the metal from cooling too rapidly.
   - Place the spout with consideration for the flow of metal.
   - Don't use plastic tools, use steel or wooden tools.
+
+### Afterwards...
+
+Afterward, a simple flow simulation using Grasshopper Kangaroo revealed that it was unavoidable that the metal would not flow around the hind legs.
+
+<div class="media-wrapper">
+    <video src="/docs/images/lab/casting/flow_sim.mp4"
+    autoplay
+    muted
+    loop
+    class="bw"
+    playsinline></video>
+</div>

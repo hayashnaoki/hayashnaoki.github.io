@@ -54,7 +54,7 @@ title: LAB
         playsinline></video>
     </div>
     <div class="caption"><b>Cellular automata</b></div>
-    <div class="caption">2026-ongoing | CD | Gh</div>
+    <div class="caption">2026-ongoing | CD | Gh/B3D</div>
   </a>
 
   <a href="/docs/lab/jekyll" class="grid-item">

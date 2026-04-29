@@ -4,8 +4,6 @@ layout: default
 
 # Blender Geometry Nodes
 
-2026-ongoing \| Computational design \| B3D
-
 ### Basics 
 - Blender version: [Blender 4.5 LTS](https://www.blender.org/download/lts/4-5/) (the last Intel Mac compatible)
 
@@ -105,14 +103,6 @@ layout: default
 This is a test randomly removing cubes as the initial state of the CA.
 
 ![](/docs/images/lab/cellular_automata/gn_cubes.jpg)
-
-<div class="media-wrapper">
-    <video src="/docs/images/lab/blender_gn/cubes.mp4"
-    autoplay
-    muted
-    loop
-    playsinline></video>
-</div>
 
 Ref: 
 - [Blender 5.0 Manual - Geometry Nodes](https://docs.blender.org/manual/en/latest/modeling/geometry_nodes/index.html#)
