@@ -81,7 +81,6 @@ layout: default
       ```
   - `Combine XYZ` > `Set Position`
   - `Instance on Points` to generate cube instances
-    ![](/docs/images/lab/blender_gn/gn_3D_math.jpg)
 
     > Blender’s field system hides the loop and hides the list unlike Python or Grasshopper
     - Unlike Python, it does not perform 3 loops
@@ -99,13 +98,13 @@ layout: default
   - `Delete Geometry` (Selection: connect `Top` from `Extrude Mesh`)
   - `Extrude Mesh` + `Flip Faces` > `Join Geometry`: create extruded and closed faces > `Merge by Distance`: merge edges
   - `Subdivide Surface` > `Set Shade Smooth`
-    ![](/docs/images/lab/blender_gn/gn_sphere.jpg)
+    ![](/docs/images/lab/cellular_automata/gn_sphere.jpg)
 
 ### 3D cubes
 
 This is a test randomly removing cubes as the initial state of the CA.
 
-![](/docs/images/lab/blender_gn/gn_cubes.jpg)
+![](/docs/images/lab/cellular_automata/gn_cubes.jpg)
 
 <div class="media-wrapper">
     <video src="/docs/images/lab/blender_gn/cubes.mp4"

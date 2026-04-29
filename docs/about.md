@@ -9,8 +9,6 @@ title: ABOUT
 
 ## Naoki Hayashi is a multi-disciplinary designer based in Japan, with a passion for industrial design, computational design and digital fabrication.
 
-<!--- ![](./images/404.jpg) --->
-
 **Expertise**
 >
 Industrial design  
