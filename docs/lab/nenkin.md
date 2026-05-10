@@ -10,6 +10,12 @@ This is an experiment using Grasshopper to create raindrop like shapes. I used a
 
 ![](/docs/images/lab/nenkin/nenkin.jpg)
 
+### Grasshopper definition
+
+![](/docs/images/lab/nenkin/gh.jpg)
+
+Grasshopper: [Nenkin.gh](/docs/files/lab/nenkin/Nenkin.gh)
+
 <div class="media-wrapper">
     <video src="/docs/images/lab/nenkin/nenkin.mp4"
     autoplay

@@ -27,7 +27,7 @@ This project is a [Kingroon KP3S](https://kingroon.com/products/official-kingroo
         </a>
       </div>
 1. Enlarging the nozzle to a dia. 1.75 mm
-    - Using a drilling machine with dia. 1.5 mm drill, the nozzle was enlarged until a 1.75 mm filament can pass through the nozzle
+    - Using a drilling machine with dia. 1.5 mm drill, the nozzle was enlarged until a 1.75 mm filament ld pass through it
       <div class="image-grid">
         <a class="grid-item">
           <div class="image-wrapper">
@@ -44,7 +44,7 @@ This project is a [Kingroon KP3S](https://kingroon.com/products/official-kingroo
 1. 3D printing and assembling
 
 
-Work in progress...
+**Work in progress...**
 
 <!--
 <div class="media-wrapper">

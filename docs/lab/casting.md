@@ -88,8 +88,7 @@ Notes:
   - Don't use plastic tools, use steel or wooden tools.
 
 ### Afterwards...
-
-Afterward, a simple flow simulation using Grasshopper Kangaroo revealed that it was unavoidable that the metal would not flow around the hind legs.
+A simple flow simulation using Grasshopper Kangaroo revealed that it was unavoidable that the metal would not flow around the hind legs.
 
 <div class="media-wrapper">
     <video src="/docs/images/lab/casting/flow_sim.mp4"
