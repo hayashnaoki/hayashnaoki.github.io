@@ -91,6 +91,16 @@
 
 <p><img src="/docs/images/projects/plotbot/pinout.jpg" alt="" /></p>
 
+<h3 id="points-to-improve">Points to improve</h3>
+
+<ul>
+  <li>The pinout was difficult to use, particularly for servo connections</li>
+  <li>The battery voltage line should include a pull-down resistor to ensure stability when powered off</li>
+  <li>Stepper motor connections would benefit from XH connectors for improved reliability</li>
+  <li>The DC-DC converter placement could be optimized for a more compact layout</li>
+  <li>Through-hole components could be mounted from the bottom side to improve assembly and layout efficiency</li>
+</ul>
+
 <h2 id="mechanical-design">Mechanical design</h2>
 
 <p>The original mecanum wheels lacked the necessary precision, and more accurate alternatives were either too expensive or too bulky. I also wanted to compare both mecanum and omni types, so I decided to switch to a 120-degree triple omni-wheel configuration for this build.</p>
@@ -117,22 +127,12 @@
       <li>Ref: <a href="https://formlabs.com/blog/topology-optimization/?srsltid=AfmBOop-21FSWjzrRfT_V_dcDMQh743sqI0DHfcjQxuELNHLn6EK_Idw">Topology Optimization 101</a></li>
       <li><code class="language-plaintext highlighter-rouge">IsoMesh</code> &gt; <code class="language-plaintext highlighter-rouge">Quad Remesh</code> &gt; <code class="language-plaintext highlighter-rouge">SubD from Mesh</code> &gt; Export as STEP &gt; Import into F3D</li>
     </ul>
-
-    <div class="image-grid">
- <a class="grid-item">
-     <div class="image-wrapper">
-     <img src="/docs/images/projects/plotbot/tOpos.jpg" alt="" />
-     </div>
- </a>
-
- <a class="grid-item">
-     <div class="media-wrapper">
-     <video src="/docs/images/projects/plotbot/tOpos.mp4" autoplay="" muted="" loop="" playsinline=""></video>
-     </div>
- </a>
- </div>
   </li>
 </ol>
+
+<p><img src="/docs/images/projects/plotbot/tOpos.jpg" alt="" /></p>
+
+<video src="/docs/images/projects/plotbot/tOpos.mp4" width="600" autoplay="" muted="" loop="" playsinline=""></video>
 
 <h2 id="industrial-design">Industrial design</h2>
 <p>Using the topology optimization results as a reference, I designed the machine to convey a sense of refined complexity and an intelligent aesthetic.</p>

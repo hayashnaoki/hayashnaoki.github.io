@@ -45,6 +45,14 @@ Back to [PLOT BOT](index)
 
 ![](/docs/images/projects/plotbot/pinout.jpg)
 
+### Points to improve
+
+-  The pinout was difficult to use, particularly for servo connections
+- The battery voltage line should include a pull-down resistor to ensure stability when powered off
+- Stepper motor connections would benefit from XH connectors for improved reliability
+- The DC-DC converter placement could be optimized for a more compact layout
+- Through-hole components could be mounted from the bottom side to improve assembly and layout efficiency
+
 ## Mechanical design
 
 The original mecanum wheels lacked the necessary precision, and more accurate alternatives were either too expensive or too bulky. I also wanted to compare both mecanum and omni types, so I decided to switch to a 120-degree triple omni-wheel configuration for this build.
@@ -63,23 +71,9 @@ The original mecanum wheels lacked the necessary precision, and more accurate al
     - Ref: [Topology Optimization 101](https://formlabs.com/blog/topology-optimization/?srsltid=AfmBOop-21FSWjzrRfT_V_dcDMQh743sqI0DHfcjQxuELNHLn6EK_Idw)
     - `IsoMesh` > `Quad Remesh` > `SubD from Mesh` > Export as STEP > Import into F3D
 
-    <div class="image-grid">
-    <a class="grid-item">
-        <div class="image-wrapper">
-        <img src="/docs/images/projects/plotbot/tOpos.jpg" alt="">
-        </div>
-    </a>
+<img src="/docs/images/projects/plotbot/tOpos.jpg" alt="">
 
-    <a class="grid-item">
-        <div class="media-wrapper">
-        <video src="/docs/images/projects/plotbot/tOpos.mp4"
-            autoplay
-            muted
-            loop
-            playsinline></video>
-        </div>
-    </a>
-    </div>
+<video src="/docs/images/projects/plotbot/tOpos.mp4" width="600" autoplay muted loop playsinline></video>
 
 ## Industrial design
 Using the topology optimization results as a reference, I designed the machine to convey a sense of refined complexity and an intelligent aesthetic.
