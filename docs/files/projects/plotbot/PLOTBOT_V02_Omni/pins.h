@@ -29,13 +29,13 @@
 #define PIN_LIMIT_Y 15
 
 // A4988 drivers - 3 Omni wheels (120 degree)
-#define PIN_DIR_M1 16 // Front Right
+#define PIN_DIR_M1 16 // Front Right (Mecanum:RF)
 #define PIN_STEP_M1 17
-#define PIN_STEP_M3 18 // Back
+#define PIN_STEP_M3 18 // Back (Mecanum:RB)
 #define PIN_DIR_M3 19
-#define PIN_STEP_SPARE 20 // Spare driver
+#define PIN_STEP_SPARE 20 // Spare driver (Mecanum:LB)
 #define PIN_DIR_SPARE 21
-#define PIN_DIR_M2 22 // Front Left
+#define PIN_DIR_M2 22 // Front Left (Mecanum:LF)
 #define PIN_STEP_M2 27
 #define EN_PIN 28
 

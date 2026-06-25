@@ -33,6 +33,16 @@ title: LAB
   </a>
   --->
 
+  <!---
+  <a href="/docs/lab/laptop_stand" class="grid-item">
+    <div class="image-wrapper">
+      <img src="/docs/images/lab/IMAGE_GOES_HERE" alt="">
+    </div>
+    <div class="caption"><b>Laptop Stand</b></div>
+    <div class="caption">2026 | 3DP | F3D</div>
+  </a>
+  --->
+
   <a href="/docs/lab/llc" class="grid-item">
     <div class="media-wrapper">
       <video src="/docs/images/lab/llc/mvp.mp4"

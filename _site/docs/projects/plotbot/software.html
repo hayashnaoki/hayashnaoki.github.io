@@ -45,90 +45,157 @@
 </blockquote>
 
 <h2 id="goals">Goals</h2>
-
 <ol>
-  <li>Organize the code into abstract layers</li>
-  <li>Implement linear interpolation</li>
+  <li>Modular Architecture: Organize firmware into abstract, decoupled layers.</li>
+  <li>Coordinated Motion: Implement linear interpolation to ensure smooth, straight-line multi-axis movements.</li>
 </ol>
 
-<h2 id="embedded-programming">Embedded programming</h2>
+<h2 id="architecture-overview">Architecture Overview</h2>
 
-<h3 id="layers">Layers</h3>
+<h3 id="firmware-layers">Firmware Layers</h3>
+
+<p>To keep the main orchestration file (<code class="language-plaintext highlighter-rouge">.ino</code>) clean and focused, the codebase is split into dedicated hardware abstraction layers using header (<code class="language-plaintext highlighter-rouge">.h</code>) and source (<code class="language-plaintext highlighter-rouge">.cpp</code>) files.</p>
 
 <table>
   <thead>
     <tr>
       <th>Layer</th>
-      <th>Role (abstract)</th>
-      <th>Input → Output</th>
+      <th>Component / File</th>
+      <th>Role</th>
+      <th>Input to Output</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>1. G-code &amp; Intent</td>
-      <td>Describes what motion is desired, independent of hardware</td>
-      <td><code class="language-plaintext highlighter-rouge">G1 X100 Y200</code> → Target pose + path type</td>
+      <td>Orchestration</td>
+      <td><code class="language-plaintext highlighter-rouge">PLOTBOT_V02.ino</code></td>
+      <td>Manages top-level application state, sleep modes, inactivity timeouts, and loops peripheral checking.</td>
+      <td>Raw data / serial characters to Triggers for execution and states</td>
     </tr>
     <tr>
-      <td>2. Interpolation</td>
-      <td>Converts geometric intent into a time-parameterized reference</td>
-      <td>Target pose → Trajectory <code class="language-plaintext highlighter-rouge">x(t), y(t), θ(t)</code></td>
+      <td>Application</td>
+      <td>G-code Parser (<code class="language-plaintext highlighter-rouge">gcode.cpp</code>)</td>
+      <td>Directs programmatic intent. Discovers commands, tokenizes strings, and extracts target coordinates.</td>
+      <td>Command string (G1 X100 Y200) to Numerical targets (X, Y, R, Z)</td>
     </tr>
     <tr>
-      <td>3. Correction</td>
-      <td>Aligns reference motion with estimated actual state</td>
-      <td>Trajectory + pose estimate → Body velocity <code class="language-plaintext highlighter-rouge">(Vx, Vy, ω)</code></td>
+      <td>Trajectory</td>
+      <td>Motion Control (<code class="language-plaintext highlighter-rouge">motion.cpp</code>)</td>
+      <td>Implements linear interpolation. Scales velocity and acceleration curves to guarantee straight paths.</td>
+      <td>Target position coordinates to Synchronized motor speed profiles</td>
     </tr>
     <tr>
-      <td>4. Mecanum kinematics</td>
-      <td>Maps body motion into actuator commands → <code class="language-plaintext highlighter-rouge">(Vx, Vy, ω)</code></td>
-      <td>Motor commands <code class="language-plaintext highlighter-rouge">(ω1..ω4)</code></td>
+      <td>Kinematics</td>
+      <td>Wheel Mapping (<code class="language-plaintext highlighter-rouge">motion.cpp</code>)</td>
+      <td>Handles vehicle geometry. Transforms cartesian vectors into individual physical wheel rotations.</td>
+      <td>Coordinated movement vectors to Step targets per motor (M1, M2, M3)</td>
+    </tr>
+    <tr>
+      <td>Hardware</td>
+      <td>Abstraction (<code class="language-plaintext highlighter-rouge">pins.h</code>, <code class="language-plaintext highlighter-rouge">config.h</code>)</td>
+      <td>Configures static pin parameters, microstepping outputs, and handles real-time driver pulse execution.</td>
+      <td>Motor step requirements to Electronic pulses and hardware movement</td>
     </tr>
   </tbody>
 </table>
 
+<p><img src="/docs/images/projects/plotbot/dependencies.jpg" style="width: 600px;" alt="Software Dependency Diagram" /></p>
+
+<h2 id="a-main-orchestration">A. Main Orchestration</h2>
+<p><code class="language-plaintext highlighter-rouge">PLOTBOT_V02.ino</code></p>
+
+<p>[Placeholder: Detailed breakdown of the Main Orchestration (.ino) file loop, sleep states, and power-saving logic goes here]</p>
+
+<h2 id="b-g-code-parsing--execution">B. G-code Parsing &amp; Execution</h2>
+<p><code class="language-plaintext highlighter-rouge">gcode.cpp</code></p>
+
+<p>[Placeholder: 3. G-code Parsing &amp; Execution Subsystem (gcode.cpp)]</p>
+
+<p>Detailed explanation of string tokenization, command isolation (G0, G1, G28), and parameter extraction.</p>
+
+<h2 id="c-motion-control">C. Motion Control</h2>
+<p><code class="language-plaintext highlighter-rouge">motion.cpp</code></p>
+
+<p>The core of PlotBot’s physical movement is handled within motion.cpp, which translates abstract target coordinates into precise, synchronized stepper motor pulses.</p>
+
+<h3 id="1-omni-wheel-kinematics">1. Omni-Wheel Kinematics</h3>
+<p>PlotBot uses a 3-wheel omnidirectional chassis. This requires mapping target Cartesian movements (dx, dy) and rotation (dr) into individual motor step targets.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">float</span> <span class="n">steps1</span> <span class="o">=</span> <span class="o">-</span><span class="n">dx</span> <span class="o">*</span> <span class="mf">0.866025f</span> <span class="o">*</span> <span class="n">STEPS_PER_MM_X</span> <span class="o">+</span> <span class="n">dy_corr</span> <span class="o">*</span> <span class="mf">0.5f</span> <span class="o">*</span> <span class="n">STEPS_PER_MM_Y</span> <span class="o">-</span> <span class="n">dr</span> <span class="o">*</span> <span class="n">STEPS_PER_DEG_R</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">steps2</span> <span class="o">=</span>  <span class="n">dx</span> <span class="o">*</span> <span class="mf">0.866025f</span> <span class="o">*</span> <span class="n">STEPS_PER_MM_X</span> <span class="o">+</span> <span class="n">dy_corr</span> <span class="o">*</span> <span class="mf">0.5f</span> <span class="o">*</span> <span class="n">STEPS_PER_MM_Y</span> <span class="o">+</span> <span class="n">dr</span> <span class="o">*</span> <span class="n">STEPS_PER_DEG_R</span><span class="p">;</span>
+<span class="kt">float</span> <span class="n">steps3</span> <span class="o">=</span>  <span class="n">dx</span> <span class="o">*</span> <span class="n">STEPS_PER_MM_X</span> <span class="o">*</span> <span class="n">M3_X_SCALE</span> <span class="o">+</span> <span class="n">dr</span> <span class="o">*</span> <span class="o">-</span><span class="n">STEPS_PER_DEG_R</span><span class="p">;</span>
+</code></pre></div></div>
+
 <ul>
-  <li>The Arduino code was split according to the layers and others functions</li>
-  <li>By adding header (<code class="language-plaintext highlighter-rouge">.h</code>) and source (<code class="language-plaintext highlighter-rouge">.cpp</code>) files, the <code class="language-plaintext highlighter-rouge">.ino</code> file focus on orchestration</li>
-  <li><code class="language-plaintext highlighter-rouge">pins.h</code> and <code class="language-plaintext highlighter-rouge">config.h</code> for hardware abstraction</li>
+  <li>The Y-Axis Component (sin 30 degrees = 0.5): M1 and M2 are angled relative to the forward direction; only 50 percent of their rotation contributes to forward/backward (Y) motion.</li>
+  <li>The X-Axis Component (cos 30 degrees = 0.866025): Because of their mounting angles, 86.6 percent of M1 and M2’s rotation translates into horizontal (X) translation.</li>
+  <li>The Passive Axis (M3): Because M3 is mounted perfectly sideways, it is mathematically isolated from Y-axis movements, rolling passively on its sub-rollers during forward/backward motion.</li>
 </ul>
 
-<p><img src="/docs/images/projects/plotbot/dependencies.jpg" style="width: 800px;" alt="" /></p>
+<table>
+  <thead>
+    <tr>
+      <th>Motor</th>
+      <th>+X Movement (Right)</th>
+      <th>+Y Movement (Forward)</th>
+      <th>+R Rotation (Clockwise)</th>
+      <th>Theoretical Formula</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>M1 (Front Left)</td>
+      <td>Counter-Clockwise</td>
+      <td>Clockwise</td>
+      <td>Counter-Clockwise</td>
+      <td>-0.866 * dx + 0.5 * dy - dr</td>
+    </tr>
+    <tr>
+      <td>M2 (Front Right)</td>
+      <td>Clockwise</td>
+      <td>Clockwise</td>
+      <td>Clockwise</td>
+      <td>+0.866 * dx + 0.5 * dy + dr</td>
+    </tr>
+    <tr>
+      <td>M3 (Back)</td>
+      <td>Clockwise</td>
+      <td>Static (0)</td>
+      <td>Counter-Clockwise</td>
+      <td>+1.0 * dx + 0 * dy - dr</td>
+    </tr>
+  </tbody>
+</table>
 
-<h3 id="interpolation">Interpolation</h3>
+<h3 id="2-linear-interpolation--coordinated-motion">2. Linear Interpolation &amp; Coordinated Motion</h3>
 
-<ul>
-  <li>Without interpolation (V0.1), a move like <code class="language-plaintext highlighter-rouge">[X100 Y200]</code> is executed as <code class="language-plaintext highlighter-rouge">[X100 Y100]</code> &gt; <code class="language-plaintext highlighter-rouge">[Y200]</code></li>
-  <li>With linear interpolation (<code class="language-plaintext highlighter-rouge">G1</code>), the X and Y motor speeds are continuously adjusted for linear path from <code class="language-plaintext highlighter-rouge">[0, 0]</code> to <code class="language-plaintext highlighter-rouge">[X100 Y200]</code></li>
-  <li>Arc interpolation (<code class="language-plaintext highlighter-rouge">G2/G3</code>), <code class="language-plaintext highlighter-rouge">I</code> and <code class="language-plaintext highlighter-rouge">J</code> represent center offset from the start point.</li>
-</ul>
+<p>Without proper interpolation, multi-axis moves execute unevenly, resulting in jagged, staggered paths.</p>
 
-<p><img src="/docs/images/projects/plotbot/interpolation.jpg" style="width: 800px;" alt="" /></p>
+<p>To achieve true straight-line linear interpolation (G1), motion.cpp dynamically scales the maximum speed and acceleration of each motor. This ensures all motors start and stop exactly at the same time, regardless of how many steps each individual motor needs to take.</p>
 
 <ol>
-  <li>Geometric interpolation (Position-based)
-    <ul>
-      <li>e.g., Move 0.01 mm each update</li>
-    </ul>
+  <li>
+    <p>Identify the dominant axis: Find the maximum step count required by any single motor.</p>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">float</span> <span class="n">maxSteps</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">steps1</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">steps2</span><span class="p">),</span> <span class="n">abs</span><span class="p">(</span><span class="n">steps3</span><span class="p">)));</span>
+</code></pre></div>    </div>
   </li>
-  <li>Time-based interpolation
-    <ul>
-      <li>e.g., Compute next position very 1 ms</li>
-    </ul>
+  <li>
+    <p>Calculate proportional scaling factors: Determine each motor’s travel distance relative to the dominant axis (scale value between 0 and 1).</p>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">float</span> <span class="n">scale1</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">steps1</span><span class="p">)</span> <span class="o">/</span> <span class="n">maxSteps</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Scale Speeds and Accelerations: Constrain the AccelStepper parameters dynamically before execution so that slower motors step proportionally to the fastest one.C++</p>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">stepperM1</span><span class="p">.</span><span class="n">setMaxSpeed</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">MAX_SPEED</span> <span class="o">*</span> <span class="n">scale1</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+ <span class="n">stepperM1</span><span class="p">.</span><span class="n">setAcceleration</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">ACCELERATION</span> <span class="o">*</span> <span class="n">scale1</span><span class="p">,</span> <span class="mf">1.0f</span><span class="p">));</span>
+</code></pre></div>    </div>
   </li>
 </ol>
 
-<p>Formula: <code class="language-plaintext highlighter-rouge">Position(Time) = Start + Time * (Total change)</code></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>P0 = (x0, y0)
-P1 = (x1, y1)
-
-P(s) = (1 − s)·P0 + s·P1
-P(s) = P0 + s·(P0 - P1)
-
-x(s) = x0 + s·(x1 − x0)
-y(s) = y0 + s·(y1 − y0)
-</code></pre></div></div>
+<p><img src="/docs/images/projects/plotbot/interpolation.jpg" style="width: 600px;" alt="" /></p>
 
 <p>Ref:</p>
 
@@ -137,10 +204,139 @@ y(s) = y0 + s·(y1 − y0)
   <li><a href="https://www.cnccookbook.com/g00-g01-cnc-g-code/">CNC Cookbook G00 and G01 G-Code Mastery</a></li>
 </ul>
 
-<h3 id="mecanum-kinematics">Mecanum kinematics</h3>
+<h3 id="3-empirical-drift-compensation">3. Empirical Drift Compensation</h3>
 
-<h2 id="application-programming">Application programming</h2>
+<p>Real-world physical systems rarely match idealized mathematics perfectly. Mechanical tolerances, sub-roller friction, and structural weight distribution require empirical adjustments to eliminate drift.</p>
 
+<ol>
+  <li>Motor 3 Scaling (M3_X_SCALE = 1.85f)
+    <ul>
+      <li>The Problem: When moving purely in the X direction, the combined drag/force of M1 and M2 does not naturally match the output of M3, causing the machine to rotate unintentionally.</li>
+      <li>The Fix: Scales M3’s contribution during horizontal travel to balance the physical force vector.C++</li>
+    </ul>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">float</span> <span class="n">steps3</span> <span class="o">=</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">STEPS_PER_MM_X</span> <span class="o">*</span> <span class="n">M3_X_SCALE</span> <span class="o">+</span> <span class="n">dr</span> <span class="o">*</span> <span class="o">-</span><span class="n">STEPS_PER_DEG_R</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Cross-Talk Compensation (X_Y_DRIFT_COMPENSATION = 0.02f)
+    <ul>
+      <li>The Problem: Pure horizontal (X) movements can trigger minor, unintended tracking errors along the Y-axis due to directional traction differences in omni-wheel sub-rollers.</li>
+      <li>The Fix: Dynamically introduces a minor Y-axis correction step proportional to the absolute distance traveled in X.C++</li>
+    </ul>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">float</span> <span class="n">abs_dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">dx</span> <span class="o">&gt;=</span> <span class="mf">0.0f</span><span class="p">)</span> <span class="o">?</span> <span class="n">dx</span> <span class="o">:</span> <span class="o">-</span><span class="n">dx</span><span class="p">;</span>
+ <span class="kt">float</span> <span class="n">dy_corr</span> <span class="o">=</span> <span class="n">dy</span> <span class="o">+</span> <span class="n">abs_dx</span> <span class="o">*</span> <span class="n">X_Y_DRIFT_COMPENSATION</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="d-telemetry--peripheral-control">D. Telemetry &amp; Peripheral Control</h2>
+<p><code class="language-plaintext highlighter-rouge">display.cpp</code> and <code class="language-plaintext highlighter-rouge">power_monitor.cpp</code></p>
+
+<p>[Placeholder: 4. Telemetry &amp; Peripheral Control (display.cpp and power_monitor.cpp)]</p>
+
+<p>Detailed breakdown of the SSD1306 OLED interface, system/battery voltage monitoring via integrated ADCs, and hardware safety routines.</p>
+
+<!---
+## Goals
+
+1. Organize the code into abstract layers
+1. Implement linear interpolation
+
+## Embedded programming
+
+### Layers
+
+| Layer | Role (abstract) | Input → Output |
+| --- | --- | --- | --- |
+| 1. G-code & Intent | Describes what motion is desired, independent of hardware | `G1 X100 Y200` → Target pose + path type |
+| 2. Interpolation | Converts geometric intent into a time-parameterized reference | Target pose → Trajectory `x(t), y(t), θ(t)` |
+| 3. Correction | Aligns reference motion with estimated actual state | Trajectory + pose estimate → Body velocity `(Vx, Vy, ω)` |
+| 4. Omni wheel kinematics | Maps body motion into actuator commands → `(Vx, Vy, ω)` | Motor commands `(ω1..ω4)` |
+
+- The Arduino code was split according to the layers and others functions
+- By adding header (`.h`) and source (`.cpp`) files, the `.ino` file focus on orchestration
+- `pins.h` and `config.h` for hardware abstraction
+
+<img src="/docs/images/projects/plotbot/dependencies.jpg" style="width: 800px;" alt="">
+
+
+
+### A. Omni wheel kinematics
+
+``` cpp
+float stepsM1 = -dx * 0.866025f * STEPS_PER_MM_X + dy * 0.5f * STEPS_PER_MM_Y - dr * STEPS_PER_DEG_R;
+float stepsM2 =  dx * 0.866025f * STEPS_PER_MM_X + dy * 0.5f * STEPS_PER_MM_Y + dr * STEPS_PER_DEG_R;
+```
+- `0.5` (`sin 30°`): Only `50 %` of their rotation contributes to moving forward or backward.
+- `0.866025` (`cos 30°`): Since M1 and M2 are angled, only `86.6 %` of their rotation contributes to moving left or right.
+
+``` cpp
+float stepsM3 =  dx * STEPS_PER_MM_X + dr * STEPS_PER_DEG_R;
+```
+- Because M3 is perfectly sideways, it cannot help or hinder `Y` movement at all mathematically.
+
+| Motor | When moving +X (Right) | When moving +Y (Forward) | When moving +R (Clockwise) | Theoretical Formula Component |
+| --- | --- | --- | --- | --- |
+| M1 (Front Left) | CCW (M1 and M2's Y components cancel each other) | Forward (CW) | Backward (CCW)| −0.866⋅dX+0.5⋅dY−dR |
+| M2 (Front Right) | Forward (CW)Pushes diagonally forward-right. | Forward (CW)Pushes diagonally forward-right.| Forward (CW)Rotates the chassis clockwise. | +0.866⋅dX+0.5⋅dY+dR |
+| M3 (Back) | Forward (CW)Pushes directly right. | Stopped (0)Rolls passively on its sub-rollers. | Forward (CW)Rotates the tail to the right (spinning nose right). | +1.0⋅dX+0⋅dY+dR |
+
+### B. Compensation
+
+These are additional compensations ​​to offset the actual drift from the theoretical value.
+
+1. M3 scale: `M3_X_SCALE = 1.85f`
+    - To balance the M1 + M2 motors and M3 when moving in the X direction
+    - Without this, the M3 motor drag the machine and causes rotational drifting
+
+    ``` cpp
+    float steps3 =  dx * STEPS_PER_MM_X * M3_X_SCALE + dr * STEPS_PER_DEG_R;
+    ```
+1. X/Y drift compensation: `X_Y_DRIFT_COMPENSATION = 0.02f`
+    - To cancel out the imbalance between clockwise and counterclockwise rotation
+    - Without this, the cancellation of the Y-direction components of the M1 and M2 motors becomes uneven, resulting in a slight drift in the Y-direction.
+
+    ``` cpp
+    float abs_dx = (dx >= 0.0f) ? dx : -dx;
+    float dy_corr = dy + abs_dx * X_Y_DRIFT_COMPENSATION;
+    ```
+
+
+### C. Interpolation
+
+- Without interpolation (V0.1), a move like `[X100 Y200]` is executed as `[X100 Y100]` > `[Y200]`
+- With linear interpolation (`G1`), the X and Y motor speeds are continuously adjusted for linear path from `[0, 0]` to `[X100 Y200]`
+- Arc interpolation (`G2/G3`), `I` and `J` represent center offset from the start point.
+
+<img src="/docs/images/projects/plotbot/interpolation.jpg" style="width: 800px;" alt="">
+
+1. Geometric interpolation (Position-based)
+    - e.g., Move 0.01 mm each update
+1. Time-based interpolation
+    - e.g., Compute next position very 1 ms
+
+Formula: `Position(Time) = Start + Time * (Total change)`
+
+```
+P0 = (x0, y0)
+P1 = (x1, y1)
+
+P(s) = (1 − s)·P0 + s·P1
+P(s) = P0 + s·(P0 - P1)
+
+x(s) = x0 + s·(x1 − x0)
+y(s) = y0 + s·(y1 − y0)
+```
+
+Ref: 
+
+- [RepRap G-code](https://reprap.org/wiki/G-code#G0_.26_G1:_Move)
+- [CNC Cookbook G00 and G01 G-Code Mastery](https://www.cnccookbook.com/g00-g01-cnc-g-code/)
+
+## Application programming
+
+--->
 
       </div>
     </main><footer class="site-footer">
