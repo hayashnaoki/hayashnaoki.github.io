@@ -34,9 +34,9 @@ void motionInit() {
 }
 
 void homeAxes() {
-  stepperM1.setSpeed(50);
-  stepperM2.setSpeed(50);
-  stepperM3.setSpeed(-100);
+  stepperM1.setSpeed(87);
+  stepperM2.setSpeed(87);
+  stepperM3.setSpeed(100);
 
   while (digitalRead(PIN_LIMIT_X)) {
     stepperM1.runSpeed();
@@ -44,8 +44,8 @@ void homeAxes() {
     stepperM3.runSpeed();
   }
 
-  stepperM1.setSpeed(-86.6025);
-  stepperM2.setSpeed(86.6025);
+  stepperM1.setSpeed(-100);
+  stepperM2.setSpeed(100);
   stepperM3.setSpeed(0);
 
   while (digitalRead(PIN_LIMIT_Y)) {
@@ -66,20 +66,45 @@ void moveTo(float x, float y, float r) {
   float dy = y - currentY;
   float dr = r - currentR;
 
-  const float SIN_30 = 0.5f;
-  const float COS_30 = 0.8660254f;
+  // Apply drift compensation to correct Y-axis drift during X-axis movement
+  float abs_dx = (dx >= 0.0f) ? dx : -dx;
+  float dy_corr = dy + abs_dx * X_Y_DRIFT_COMPENSATION;
 
-  float m1_steps = -SIN_30 * dx * STEPS_PER_MM_X +
-                   COS_30 * dy * STEPS_PER_MM_Y + dr * STEPS_PER_DEG_R;
-  float m2_steps = -SIN_30 * dx * STEPS_PER_MM_X -
-                   COS_30 * dy * STEPS_PER_MM_Y + dr * STEPS_PER_DEG_R;
-  float m3_steps = 1.0f * dx * STEPS_PER_MM_X + 0.0f * dy * STEPS_PER_MM_Y +
-                   dr * STEPS_PER_DEG_R;
+  // Calculate target step counts for each motor
+  float steps1 = -dx * 0.866025f * STEPS_PER_MM_X +
+                 dy_corr * 0.5f * STEPS_PER_MM_Y - dr * STEPS_PER_DEG_R;
+  float steps2 = -dx * 0.866025f * STEPS_PER_MM_X -
+                 dy_corr * 0.5f * STEPS_PER_MM_Y - dr * STEPS_PER_DEG_R;
+  float steps3 = -dx * STEPS_PER_MM_X * M3_X_SCALE + dr * STEPS_PER_DEG_R;
 
-  stepperM1.move(m1_steps);
-  stepperM2.move(m2_steps);
-  stepperM3.move(m3_steps);
+  // Find the maximum steps to be traveled by any single motor
+  float maxSteps = max(abs(steps1), max(abs(steps2), abs(steps3)));
 
+  // If no movement is required, return early
+  if (maxSteps < 0.1f)
+    return;
+
+  // Calculate proportional scaling factors
+  float scale1 = abs(steps1) / maxSteps;
+  float scale2 = abs(steps2) / maxSteps;
+  float scale3 = abs(steps3) / maxSteps;
+
+  // Coordinated speed and acceleration scaling for linear interpolation
+  stepperM1.setMaxSpeed(max(MAX_SPEED * scale1, 1.0f));
+  stepperM1.setAcceleration(max(ACCELERATION * scale1, 1.0f));
+
+  stepperM2.setMaxSpeed(max(MAX_SPEED * scale2, 1.0f));
+  stepperM2.setAcceleration(max(ACCELERATION * scale2, 1.0f));
+
+  stepperM3.setMaxSpeed(max(MAX_SPEED * scale3, 1.0f));
+  stepperM3.setAcceleration(max(ACCELERATION * scale3, 1.0f));
+
+  // Move motors to the calculated step positions
+  stepperM1.move(round(steps1));
+  stepperM2.move(round(steps2));
+  stepperM3.move(round(steps3));
+
+  // Execute coordinated motion
   while (stepperM1.isRunning() || stepperM2.isRunning() ||
          stepperM3.isRunning()) {
     stepperM1.run();

@@ -47,6 +47,7 @@
 <h2 id="goals">Goals</h2>
 <ol>
   <li>Modular Architecture: Organize firmware into abstract, decoupled layers.</li>
+  <li>Kinematics change: Replace Mecanum wheels with omni wheels.</li>
   <li>Coordinated Motion: Implement linear interpolation to ensure smooth, straight-line multi-axis movements.</li>
 </ol>
 
@@ -59,10 +60,10 @@
 <table>
   <thead>
     <tr>
-      <th>Layer</th>
-      <th>Component / File</th>
-      <th>Role</th>
-      <th>Input to Output</th>
+      <th><strong>Layer</strong></th>
+      <th><strong>Component / File</strong></th>
+      <th><strong>Role</strong></th>
+      <th><strong>Input to Output</strong></th>
     </tr>
   </thead>
   <tbody>
@@ -91,6 +92,18 @@
       <td>Coordinated movement vectors to Step targets per motor (M1, M2, M3)</td>
     </tr>
     <tr>
+      <td>Telemetry</td>
+      <td>Power Monitor (<code class="language-plaintext highlighter-rouge">power_monitor.cpp</code>)</td>
+      <td>Converts physical system metrics, reads voltage rails, and screens battery states for hardware safety.</td>
+      <td>Raw ADC quantization values to Validated real-world voltages</td>
+    </tr>
+    <tr>
+      <td>Peripherals</td>
+      <td>UI Display (<code class="language-plaintext highlighter-rouge">display.cpp</code>)</td>
+      <td>Manages the layout configuration of the SSD1306 OLED panel to display real-time diagnostics.</td>
+      <td>Numerical voltage metrics to High-level visual telemetry layout</td>
+    </tr>
+    <tr>
       <td>Hardware</td>
       <td>Abstraction (<code class="language-plaintext highlighter-rouge">pins.h</code>, <code class="language-plaintext highlighter-rouge">config.h</code>)</td>
       <td>Configures static pin parameters, microstepping outputs, and handles real-time driver pulse execution.</td>
@@ -104,14 +117,76 @@
 <h2 id="a-main-orchestration">A. Main Orchestration</h2>
 <p><code class="language-plaintext highlighter-rouge">PLOTBOT_V02.ino</code></p>
 
-<p>[Placeholder: Detailed breakdown of the Main Orchestration (.ino) file loop, sleep states, and power-saving logic goes here]</p>
+<p>The main <code class="language-plaintext highlighter-rouge">.ino</code> file serves as the system’s <strong>Orchestrator</strong>. It initializes hardware submodules, manages the top-level application state, and coordinates continuous data flow between serial inputs and the display peripherals.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Phase / Routine</strong></th>
+      <th><strong>Target Mechanism</strong></th>
+      <th><strong>Core Responsibility</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Initialization</strong> <code class="language-plaintext highlighter-rouge">setup()</code></td>
+      <td>Peripherals &amp; Submodules</td>
+      <td>Opens <strong>14101 baud</strong> serial pipeline, sets 12-bit ADC resolution, runs module setups (<code class="language-plaintext highlighter-rouge">motion</code>, <code class="language-plaintext highlighter-rouge">gcode</code>, <code class="language-plaintext highlighter-rouge">display</code>), and pulls <code class="language-plaintext highlighter-rouge">EN_PIN</code> low to engage stepper drivers.</td>
+    </tr>
+    <tr>
+      <td><strong>Telemetry Tracking</strong> <code class="language-plaintext highlighter-rouge">loop()</code></td>
+      <td>Diagnostics &amp; UI</td>
+      <td>Samples system and battery voltages (<code class="language-plaintext highlighter-rouge">readVSYS</code>, <code class="language-plaintext highlighter-rouge">readVBAT</code>) while blinking the status LED, updating the display via <code class="language-plaintext highlighter-rouge">displayVoltages()</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Command Processing</strong> <code class="language-plaintext highlighter-rouge">loop()</code></td>
+      <td>Serial I/O Routing</td>
+      <td>Monitors <code class="language-plaintext highlighter-rouge">Serial.available()</code>, locks <code class="language-plaintext highlighter-rouge">EN_PIN</code> low to keep drivers awake, buffers incoming characters, and hands clean packets to <code class="language-plaintext highlighter-rouge">parseAndExecute()</code> on delimiter discovery.</td>
+    </tr>
+    <tr>
+      <td><strong>Power Management</strong> <code class="language-plaintext highlighter-rouge">loop()</code></td>
+      <td>Thermal &amp; Battery Safety</td>
+      <td>Tracks idle duration against <code class="language-plaintext highlighter-rouge">lastCommandTime</code>. Pulls <code class="language-plaintext highlighter-rouge">EN_PIN</code> high if timeout is exceeded, cutting coil current to stop heat buildup and save battery.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="b-g-code-parsing--execution">B. G-code Parsing &amp; Execution</h2>
 <p><code class="language-plaintext highlighter-rouge">gcode.cpp</code></p>
 
-<p>[Placeholder: 3. G-code Parsing &amp; Execution Subsystem (gcode.cpp)]</p>
+<p>The <code class="language-plaintext highlighter-rouge">gcode.cpp</code> file acts as the <strong>Application Layer</strong>. Its primary responsibility is to translate abstract text commands (G-code strings) sent via serial communication into explicit physical movement coordinates and tool actions.</p>
 
-<p>Detailed explanation of string tokenization, command isolation (G0, G1, G28), and parameter extraction.</p>
+<table>
+  <thead>
+    <tr>
+      <th><strong>Operation Phase</strong></th>
+      <th><strong>Functional Target</strong></th>
+      <th><strong>Core Responsibility</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Standardization</strong></td>
+      <td>Text Normalization</td>
+      <td>Trims whitespace and forces characters to uppercase via <code class="language-plaintext highlighter-rouge">toUpperCase()</code> to eliminate syntax discrepancies before parsing.</td>
+    </tr>
+    <tr>
+      <td><strong>Routing</strong></td>
+      <td>Header Identification</td>
+      <td>Filters commands by prefix: channels <code class="language-plaintext highlighter-rouge">G28</code> headers directly to <code class="language-plaintext highlighter-rouge">homeAxes()</code> and validates <code class="language-plaintext highlighter-rouge">G1</code> headers for linear translation while dropping invalid formats.</td>
+    </tr>
+    <tr>
+      <td><strong>Extraction</strong></td>
+      <td>Parameter Filtering</td>
+      <td>Scans for axis flags (X, Y, R, Z). Isolates trailing substrings into numerical floats or integers to override coordinates, defaulting missing flags to current positions.</td>
+    </tr>
+    <tr>
+      <td><strong>Hand-off</strong></td>
+      <td>Kinematic Execution</td>
+      <td>Instantly writes tool height adjustments via <code class="language-plaintext highlighter-rouge">setServoZ()</code> if Z data is found, then commits coordinate parameters to <code class="language-plaintext highlighter-rouge">moveTo()</code> for synchronized interpolation.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="c-motion-control">C. Motion Control</h2>
 <p><code class="language-plaintext highlighter-rouge">motion.cpp</code></p>
@@ -148,21 +223,21 @@
       <td>Counter-Clockwise</td>
       <td>Clockwise</td>
       <td>Counter-Clockwise</td>
-      <td>-0.866 * dx + 0.5 * dy - dr</td>
+      <td><code class="language-plaintext highlighter-rouge">-0.866 * dx + 0.5 * dy - dr</code></td>
     </tr>
     <tr>
       <td>M2 (Front Right)</td>
       <td>Clockwise</td>
       <td>Clockwise</td>
       <td>Clockwise</td>
-      <td>+0.866 * dx + 0.5 * dy + dr</td>
+      <td><code class="language-plaintext highlighter-rouge">+0.866 * dx + 0.5 * dy + dr</code></td>
     </tr>
     <tr>
       <td>M3 (Back)</td>
       <td>Clockwise</td>
       <td>Static (0)</td>
       <td>Counter-Clockwise</td>
-      <td>+1.0 * dx + 0 * dy - dr</td>
+      <td><code class="language-plaintext highlighter-rouge">+1.0 * dx + 0 * dy - dr</code></td>
     </tr>
   </tbody>
 </table>
@@ -170,6 +245,8 @@
 <h3 id="2-linear-interpolation--coordinated-motion">2. Linear Interpolation &amp; Coordinated Motion</h3>
 
 <p>Without proper interpolation, multi-axis moves execute unevenly, resulting in jagged, staggered paths.</p>
+
+<p><img src="/docs/images/projects/plotbot/interpolation.jpg" style="width: 600px;" alt="" /></p>
 
 <p>To achieve true straight-line linear interpolation (G1), motion.cpp dynamically scales the maximum speed and acceleration of each motor. This ensures all motors start and stop exactly at the same time, regardless of how many steps each individual motor needs to take.</p>
 
@@ -195,8 +272,6 @@
   </li>
 </ol>
 
-<p><img src="/docs/images/projects/plotbot/interpolation.jpg" style="width: 600px;" alt="" /></p>
-
 <p>Ref:</p>
 
 <ul>
@@ -206,7 +281,7 @@
 
 <h3 id="3-empirical-drift-compensation">3. Empirical Drift Compensation</h3>
 
-<p>Real-world physical systems rarely match idealized mathematics perfectly. Mechanical tolerances, sub-roller friction, and structural weight distribution require empirical adjustments to eliminate drift.</p>
+<p>Empirical adjustments to eliminate drift based on test results.</p>
 
 <ol>
   <li>Motor 3 Scaling (M3_X_SCALE = 1.85f)
@@ -231,112 +306,98 @@
 </ol>
 
 <h2 id="d-telemetry--peripheral-control">D. Telemetry &amp; Peripheral Control</h2>
-<p><code class="language-plaintext highlighter-rouge">display.cpp</code> and <code class="language-plaintext highlighter-rouge">power_monitor.cpp</code></p>
+<p><code class="language-plaintext highlighter-rouge">power_monitor.cpp</code> and <code class="language-plaintext highlighter-rouge">display.cpp</code></p>
 
-<p>[Placeholder: 4. Telemetry &amp; Peripheral Control (display.cpp and power_monitor.cpp)]</p>
+<h3 id="power-monitor-power_monitorcpp">Power Monitor (<code class="language-plaintext highlighter-rouge">power_monitor.cpp</code>)</h3>
 
-<p>Detailed breakdown of the SSD1306 OLED interface, system/battery voltage monitoring via integrated ADCs, and hardware safety routines.</p>
+<table>
+  <thead>
+    <tr>
+      <th><strong>Diagnostic Routine</strong></th>
+      <th><strong>Hardware System</strong></th>
+      <th><strong>Submodule Responsibility</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Hardware Setup</strong> <code class="language-plaintext highlighter-rouge">powerInit()</code></td>
+      <td>ADC &amp; Signaling</td>
+      <td>Pins the integrated analog-to-digital converter to 12-bit depth and establishes passive high-impedance sensing profiles.</td>
+    </tr>
+    <tr>
+      <td><strong>System Rail Tracking</strong> <code class="language-plaintext highlighter-rouge">readVSYS()</code></td>
+      <td>Power Input Rails</td>
+      <td>Samples the internal computing voltage rail and applies scaling factors to reconstruct the true logic supply state.</td>
+    </tr>
+    <tr>
+      <td><strong>Battery Telemetry</strong> <code class="language-plaintext highlighter-rouge">readVBAT()</code></td>
+      <td>Energy Subsystem</td>
+      <td>Latches the indicator LED to tag the reading window, measures cell output via a physical resistor divider network, flags disconnected packs below a specific floor voltage, and logs details to serial.</td>
+    </tr>
+  </tbody>
+</table>
 
-<!---
-## Goals
+<h3 id="ui-display-displaycpp">UI Display (<code class="language-plaintext highlighter-rouge">display.cpp</code>)</h3>
 
-1. Organize the code into abstract layers
-1. Implement linear interpolation
+<p>Placeholder…</p>
 
-## Embedded programming
+<h2 id="e-hardware-abstraction-layer">E. Hardware Abstraction Layer</h2>
 
-### Layers
+<p>A Hardware Abstraction Layer is a software design pattern that separates core application logic from physical hardware definitions (<code class="language-plaintext highlighter-rouge">pins.h</code> and <code class="language-plaintext highlighter-rouge">config.h</code>).</p>
 
-| Layer | Role (abstract) | Input → Output |
-| --- | --- | --- | --- |
-| 1. G-code & Intent | Describes what motion is desired, independent of hardware | `G1 X100 Y200` → Target pose + path type |
-| 2. Interpolation | Converts geometric intent into a time-parameterized reference | Target pose → Trajectory `x(t), y(t), θ(t)` |
-| 3. Correction | Aligns reference motion with estimated actual state | Trajectory + pose estimate → Body velocity `(Vx, Vy, ω)` |
-| 4. Omni wheel kinematics | Maps body motion into actuator commands → `(Vx, Vy, ω)` | Motor commands `(ω1..ω4)` |
+<table>
+  <thead>
+    <tr>
+      <th><strong>Configuration Module</strong></th>
+      <th><strong>Peripheral Group</strong></th>
+      <th><strong>Functional Assignment</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Pin Map Registry</strong> <code class="language-plaintext highlighter-rouge">pins.h</code></td>
+      <td>Communication Buses</td>
+      <td>Allocates hardware silicon tracks for UART (serial host), I2C (modules), and SPI (OLED layout display panel).</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Actuator Controls</td>
+      <td>Binds specific step, direction, and master enable lines for 3-axis motion alongside the PWM tool servo line.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Sensory Feedback</td>
+      <td>Maps active-low digital limit switches and analog-to-digital converter (ADC) channels for voltage tracking.</td>
+    </tr>
+  </tbody>
+</table>
 
-- The Arduino code was split according to the layers and others functions
-- By adding header (`.h`) and source (`.cpp`) files, the `.ino` file focus on orchestration
-- `pins.h` and `config.h` for hardware abstraction
-
-<img src="/docs/images/projects/plotbot/dependencies.jpg" style="width: 800px;" alt="">
-
-
-
-### A. Omni wheel kinematics
-
-``` cpp
-float stepsM1 = -dx * 0.866025f * STEPS_PER_MM_X + dy * 0.5f * STEPS_PER_MM_Y - dr * STEPS_PER_DEG_R;
-float stepsM2 =  dx * 0.866025f * STEPS_PER_MM_X + dy * 0.5f * STEPS_PER_MM_Y + dr * STEPS_PER_DEG_R;
-```
-- `0.5` (`sin 30°`): Only `50 %` of their rotation contributes to moving forward or backward.
-- `0.866025` (`cos 30°`): Since M1 and M2 are angled, only `86.6 %` of their rotation contributes to moving left or right.
-
-``` cpp
-float stepsM3 =  dx * STEPS_PER_MM_X + dr * STEPS_PER_DEG_R;
-```
-- Because M3 is perfectly sideways, it cannot help or hinder `Y` movement at all mathematically.
-
-| Motor | When moving +X (Right) | When moving +Y (Forward) | When moving +R (Clockwise) | Theoretical Formula Component |
-| --- | --- | --- | --- | --- |
-| M1 (Front Left) | CCW (M1 and M2's Y components cancel each other) | Forward (CW) | Backward (CCW)| −0.866⋅dX+0.5⋅dY−dR |
-| M2 (Front Right) | Forward (CW)Pushes diagonally forward-right. | Forward (CW)Pushes diagonally forward-right.| Forward (CW)Rotates the chassis clockwise. | +0.866⋅dX+0.5⋅dY+dR |
-| M3 (Back) | Forward (CW)Pushes directly right. | Stopped (0)Rolls passively on its sub-rollers. | Forward (CW)Rotates the tail to the right (spinning nose right). | +1.0⋅dX+0⋅dY+dR |
-
-### B. Compensation
-
-These are additional compensations ​​to offset the actual drift from the theoretical value.
-
-1. M3 scale: `M3_X_SCALE = 1.85f`
-    - To balance the M1 + M2 motors and M3 when moving in the X direction
-    - Without this, the M3 motor drag the machine and causes rotational drifting
-
-    ``` cpp
-    float steps3 =  dx * STEPS_PER_MM_X * M3_X_SCALE + dr * STEPS_PER_DEG_R;
-    ```
-1. X/Y drift compensation: `X_Y_DRIFT_COMPENSATION = 0.02f`
-    - To cancel out the imbalance between clockwise and counterclockwise rotation
-    - Without this, the cancellation of the Y-direction components of the M1 and M2 motors becomes uneven, resulting in a slight drift in the Y-direction.
-
-    ``` cpp
-    float abs_dx = (dx >= 0.0f) ? dx : -dx;
-    float dy_corr = dy + abs_dx * X_Y_DRIFT_COMPENSATION;
-    ```
-
-
-### C. Interpolation
-
-- Without interpolation (V0.1), a move like `[X100 Y200]` is executed as `[X100 Y100]` > `[Y200]`
-- With linear interpolation (`G1`), the X and Y motor speeds are continuously adjusted for linear path from `[0, 0]` to `[X100 Y200]`
-- Arc interpolation (`G2/G3`), `I` and `J` represent center offset from the start point.
-
-<img src="/docs/images/projects/plotbot/interpolation.jpg" style="width: 800px;" alt="">
-
-1. Geometric interpolation (Position-based)
-    - e.g., Move 0.01 mm each update
-1. Time-based interpolation
-    - e.g., Compute next position very 1 ms
-
-Formula: `Position(Time) = Start + Time * (Total change)`
-
-```
-P0 = (x0, y0)
-P1 = (x1, y1)
-
-P(s) = (1 − s)·P0 + s·P1
-P(s) = P0 + s·(P0 - P1)
-
-x(s) = x0 + s·(x1 − x0)
-y(s) = y0 + s·(y1 − y0)
-```
-
-Ref: 
-
-- [RepRap G-code](https://reprap.org/wiki/G-code#G0_.26_G1:_Move)
-- [CNC Cookbook G00 and G01 G-Code Mastery](https://www.cnccookbook.com/g00-g01-cnc-g-code/)
-
-## Application programming
-
---->
+<table>
+  <thead>
+    <tr>
+      <th><strong>Configuration Module</strong></th>
+      <th><strong>Peripheral Group</strong></th>
+      <th><strong>Functional Assignment</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Calibration Parameter Registry</strong> <code class="language-plaintext highlighter-rouge">config.h</code></td>
+      <td>Kinematic Scales</td>
+      <td>Stores system constants defining structural step counts required per millimeter of travel and per degree of rotation.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Drift Calibration</td>
+      <td>Holds specific scalar multipliers and tracking offset coefficients to balance multi-axis physical alignment.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Operational Limits</td>
+      <td>Sets maximum velocity ceilings, acceleration rates, homing speeds, and driver timeout intervals.</td>
+    </tr>
+  </tbody>
+</table>
 
       </div>
     </main><footer class="site-footer">

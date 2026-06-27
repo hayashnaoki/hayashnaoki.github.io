@@ -1,14 +1,16 @@
 #pragma once
 
 // Motion calibration
-constexpr float STEPS_PER_MM_X  = 17.95f;
-constexpr float STEPS_PER_MM_Y  = 17.00f;
+constexpr float STEPS_PER_MM_X = 17.00f;
+constexpr float STEPS_PER_MM_Y = 17.00f;
 constexpr float STEPS_PER_DEG_R = 45.50f;
+constexpr float M3_X_SCALE = 1.85f; // To compensate -Y drift when moving in X
+constexpr float X_Y_DRIFT_COMPENSATION = 0.02f; // To compensate -Y drift when moving in X
 
 // Motion limits
-constexpr int MAX_SPEED     = 1500; //1500
-constexpr int ACCELERATION  = 1500; //2000
-constexpr int HOMING_SPEED  = 200;
+constexpr int MAX_SPEED = 1500;    // 1500
+constexpr int ACCELERATION = 1000; // 2000
+constexpr int HOMING_SPEED = 200;
 constexpr int BACK_OFF_STEPS = 500;
 
 // Servo
