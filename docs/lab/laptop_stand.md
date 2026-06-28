@@ -6,10 +6,10 @@ layout: default
 
 2026 \| 3D printing \| F3D
 
-A simple foldable laptop stand using eight M5 bolts and nuts.
+A simple foldable laptop stand.
 
 <iframe
-    src="https://gmail4741456.autodesk360.com/shares/public/SH28cd1QT2badd0ea72b76e74e3982b10256?mode=embed"
+    src="https://gmail4741456.autodesk360.com/shares/public/SH28cd1QT2badd0ea72baa77b45c91323e05?mode=embed"
     width="100%" 
     height="auto" 
     style="aspect-ratio:4/3;" 
@@ -18,6 +18,7 @@ A simple foldable laptop stand using eight M5 bolts and nuts.
     referrerpolicy="strict-origin-when-cross-origin" 
     title="F3D">
 </iframe>
+
 
 <!---
 
