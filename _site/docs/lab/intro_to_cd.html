@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>NAOKI HAYASHI</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="NAOKI HAYASHI" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/docs/lab/intro_to_cd.html" />
+<meta property="og:url" content="http://localhost:4000/docs/lab/intro_to_cd.html" />
+<meta property="og:site_name" content="NAOKI HAYASHI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="NAOKI HAYASHI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","headline":"NAOKI HAYASHI","url":"http://localhost:4000/docs/lab/intro_to_cd.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="NAOKI HAYASHI" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">NAOKI HAYASHI</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/docs/projects.html">PROJECTS</a><a class="page-link" href="/docs/lab.html">LAB</a><a class="page-link" href="/docs/about.html">ABOUT</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 id="intro-to-computational-design">Intro to Computational Design</h1>
+
+<p>2026 | Computational design | Rhino / Grasshopper / Python</p>
+
+<p>Caption_goes_here.</p>
+
+<p><img src="/docs/images/lab/IMAGE_GOES_HERE" alt="" /></p>
+
+<h2 id="1-コンピュテーショナルデザイン概要">#1 コンピュテーショナルデザイン概要</h2>
+
+<h3 id="1-目的">1. 目的</h3>
+<ul>
+  <li><strong>つかってみる:</strong> ハードルを下げる。</li>
+  <li><strong>プロセスを構築すること:</strong> モデリングするための「ルール（アルゴリズム）」をデザインする。</li>
+  <li><strong>手作業と自動化のバランス:</strong> 自動化による可能性と、自動化のためのルール構築の工数のバランスの見極め。</li>
+  <li><strong>AI連携への理解:</strong> MCP（モデルコンテクストプロトコル）などのAI活用への理解。</li>
+</ul>
+
+<h3 id="2-言葉の整理">2. 言葉の整理</h3>
+<p>様々な言葉があるが、文脈により定義は曖昧。</p>
+<ul>
+  <li><strong>CAD (Computer Aided Design)</strong>
+    <ul>
+      <li>コンピューターを使ったデザイン全般。</li>
+    </ul>
+  </li>
+  <li><strong>Computational Design（広義の総称）</strong>
+    <ul>
+      <li>計算能力をデザインプロセスに持ち込む手法全般。</li>
+    </ul>
+  </li>
+  <li><strong>Parametric Design（変数と関係性）</strong>
+    <ul>
+      <li>要素間に「ルール（寸法や位置の関係性）」を構築し、変数（パラメーター）を編集することにフォーカス。</li>
+    </ul>
+  </li>
+  <li><strong>Algorithmic Design / Procedural Design（論理と手順の制御）</strong>
+    <ul>
+      <li>「論理的・数理的な手順（プロセス）」の組み立てにフォーカス。</li>
+    </ul>
+  </li>
+  <li><strong>Generative Design（自律的な探索）</strong>
+    <ul>
+      <li>「ゴール（目標値・制約条件）」だけを設定し、AI/アルゴリズムに最適解を生成させる。</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <h3 id="parametric-architecture"><em>“Parametric Architecture”</em></h3>
+
+  <ul>
+    <li>「Grasshopper を使った複雑で有機的な建築」と言うイメージが一般的</li>
+    <li>「日照・風向・構造負荷などのパラメーターを含めた総合的なデザイン」と捉える人もいる</li>
+    <li>建築家パトリック・シューマッハ（ザハ・ハディド・アーキテクツ）は「パラメトリシズム」を21世紀の建築様式として提唱</li>
+  </ul>
+</blockquote>
+
+<h3 id="3-rhino上で使えるツール">3. Rhino上で使えるツール</h3>
+<p>同じ形状（例：10個の点を直線状に並べる）を作るアプローチの違い。</p>
+<ul>
+  <li><strong>手動操作（Manual）</strong>
+    <ul>
+      <li>マウス操作やコマンド入力（CLI）で1つずつ配置する。</li>
+      <li><strong>メリット:</strong> 直感的でプロセスを構築する必要がない。</li>
+      <li><strong>デメリット:</strong> 繰り返し作業や大量処理、大量のバリエーション作成が苦手（人間が）。</li>
+    </ul>
+  </li>
+  <li><strong>Grasshopper（Visual Programming）</strong>
+    <ul>
+      <li>コンポーネント（機能の箱）をワイヤーで繋いで形状を作る。</li>
+      <li><strong>メリット:</strong> データの流れが視覚的に分かりやすく、リアルタイムに形状を変更できる。</li>
+      <li><strong>デメリット:</strong> 処理が複雑になるとアルゴリズムが肥大化し、スパゲッティ状態になりやすい。AIとの相性があまり良くない。</li>
+    </ul>
+  </li>
+  <li><strong>スクリプト（Programming）</strong>
+    <ul>
+      <li>Pythonなどのテキストコードを記述して処理する。</li>
+      <li><strong>メリット:</strong> 複雑なループや大量のデータを高速かつ省スペースで記述できる。AIと最も相性が良い。</li>
+      <li><strong>デメリット:</strong> 構文の習得が必要。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h3 id="4-grasshopperの基本">4. Grasshopperの基本</h3>
+
+<h4 id="41-基本概念">4.1 基本概念</h4>
+<ul>
+  <li><strong>コンポーネント:</strong> 入力（左側）を受け取り、処理を行い、出力（右側）を返す単位。</li>
+  <li><strong>ワイヤー:</strong> コンポーネント間でデータを流す経路。</li>
+  <li><strong>パラメーター:</strong> 数値スライダー（Number Slider）などを使い、リアルタイムに変更可能な変数。</li>
+</ul>
+
+<h4 id="42-基本デモグリッド状の点配置と変形">4.2 基本デモ：グリッド状の点配置と変形</h4>
+<ol>
+  <li><strong>点の生成:</strong> Construct Point コンポーネントを配置。</li>
+  <li><strong>連続データの作成:</strong> Series コンポーネントを使い、X座標とY座標に連番を入力してグリッド状に点を配置。</li>
+  <li><strong>アトラクターの導入:</strong> 任意の点（アトラクター）を基準に各点との距離（Distance）を測定し、その数値を点のZ座標や半径にマッピングすることで、グラデーションのある立体的な変形を作る。</li>
+</ol>
+
+<hr />
+<h3 id="5-rhino-pythonの基礎">5. Rhino Pythonの基礎</h3>
+
+<h4 id="51-環境の起動と初期設定">5.1 環境の起動と初期設定</h4>
+<ol>
+  <li>メニューバーから <strong>[ツール] ──&gt; [スクリプト] ──&gt; [編集]</strong> を選択してエディタを起動。</li>
+  <li><strong>⚠️注意：</strong> 初回起動時は「Python 3ランタイムの初期化」が裏で走るため、数分ほどお待ちください。2回目以降の起動はスムーズになります。</li>
+</ol>
+
+<h4 id="52-pythonの最小限のルール">5.2 Pythonの最小限のルール</h4>
+<ul>
+  <li><strong>インデント（字下げ）が命:</strong> スペース4つのズレが即エラーになります。</li>
+  <li><strong>日本語コメントの禁止:</strong> # コメント に日本語を入れると動かないリスクがあるため、すべて英語で記述します。</li>
+</ul>
+
+<h4 id="53-ループのデモ0から9までの連番">5.3 ループのデモ（0から9までの連番）</h4>
+
+<ul>
+  <li>ライブラリ（コマンド集）を呼び出し。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">import</code> を先頭に書いて呼び出す（<code class="language-plaintext highlighter-rouge">import rhinoscriptsyntax as rs（略称）</code>）
+        <ul>
+          <li>実務で使う主要な3つ:
+            <ul>
+              <li><code class="language-plaintext highlighter-rouge">rhinoscriptsyntax</code>: 多くのRhinoのコマンドを使える。</li>
+              <li><code class="language-plaintext highlighter-rouge">Rhino</code>:</li>
+              <li><code class="language-plaintext highlighter-rouge">math</code>:</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">rs.コマンド名(変数)</code></li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>     <span class="c1"># Rhino操作ライブラリ（略称 rs）
+</span>
+<span class="c1"># 0から9まで10回繰り返すループ
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c1"># ループ変数をX座標に流用して、直線状に10個の点を配置
+</span>    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">2.0</span>
+    <span class="n">rs</span><span class="p">.</span><span class="nc">AddPoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h4 id="54-応用デモフラクタルツリー樹形構造の生成">5.4 応用デモ：フラクタルツリー（樹形構造）の生成</h4>
+<p>同じ処理を繰り返す「再帰関数」と、自然界の揺らぎを表現する「ランダム（乱数）」を組み合わせ、手作業では描けない複雑な構造を作ります。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">math</span>
+<span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>
+
+<span class="c1"># Default settings (If not predefined in Grasshopper inputs)
+</span><span class="k">if</span> <span class="sh">"</span><span class="s">scale</span><span class="sh">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nf">globals</span><span class="p">():</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.75</span>
+<span class="k">if</span> <span class="sh">"</span><span class="s">angle</span><span class="sh">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nf">globals</span><span class="p">():</span> <span class="n">angle</span> <span class="o">=</span> <span class="mf">25.0</span>
+<span class="k">if</span> <span class="sh">"</span><span class="s">gen</span><span class="sh">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nf">globals</span><span class="p">():</span> <span class="n">gen</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="k">if</span> <span class="sh">"</span><span class="s">seed</span><span class="sh">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nf">globals</span><span class="p">():</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span> <span class="c1"># Fix random shapes
+</span><span class="n">Lines</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="c1"># Base trunk vector
+</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+<span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">Grow</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">g</span> <span class="o">&gt;=</span> <span class="n">gen</span><span class="p">:</span> <span class="c1"># Stop condition
+</span>        <span class="k">return</span>
+        
+    <span class="n">v_scaled</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorScale</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">plane</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PlaneFromNormal</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v_scaled</span><span class="p">)</span>
+    <span class="n">circle</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">AddCircle</span><span class="p">(</span><span class="n">plane</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    
+    <span class="n">t</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">CurveClosestPoint</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">pt</span><span class="p">)</span>
+    <span class="n">closest_pt</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">EvaluateCurve</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">rot_axis</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorCreate</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">closest_pt</span><span class="p">)</span>
+    <span class="n">rs</span><span class="p">.</span><span class="nc">DeleteObject</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+    
+    <span class="c1"># Left branch with slight random variation
+</span>    <span class="n">v1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorRotate</span><span class="p">(</span><span class="n">v_scaled</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span> <span class="o">+</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">rot_axis</span><span class="p">)</span>
+    <span class="n">pt1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
+    
+    <span class="c1"># Right branch
+</span>    <span class="n">v2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorRotate</span><span class="p">(</span><span class="n">v_scaled</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">rot_axis</span><span class="p">)</span>
+    <span class="n">pt2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
+    
+    <span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">pt1</span><span class="p">))</span>
+    <span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">pt2</span><span class="p">))</span>
+    
+    <span class="c1"># Recursive loop
+</span>    <span class="nc">Grow</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nc">Grow</span><span class="p">(</span><span class="n">pt2</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Execute
+</span><span class="nc">Grow</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h3 id="6-手動操作grasshopperスクリプトのまとめ">6. 手動操作、Grasshopper、スクリプトのまとめ</h3>
+<ul>
+  <li><strong>手動操作:</strong> 手順は自由で先のことを考えないでよいが、自動化できない。</li>
+  <li><strong>Grasshopper:</strong> 複雑なプロセスを視覚的に構築し、設定した範囲のパラメータを調整できる。構築する手間とパラメーター調整の効果の見極めが必要。AIとの相性はあまり良くない（RavenなどAIプラグインもある）。</li>
+  <li><strong>スクリプト:</strong> 大量処理・自動化・コマンド構築に向く。AIと相性が良い。</li>
+</ul>
+
+<p><strong>工場の自動化のようなもの。手動操作は職人の手作り、Grasshopperは町工場、スクリプトは全自動の無人工場。</strong></p>
+
+<blockquote>
+  <h3 id="the-5-step-algorithm"><em>The 5-Step Algorithm</em></h3>
+  <ol>
+    <li>要件を疑え (Make your requirements less dumb): その要件自体が間違っている可能性があるため、誰が出したものであっても常に疑うこと。</li>
+    <li>プロセスを削除せよ (Delete the part or process): 自動化や最適化に取り組む前に、まずはそのプロセス自体が不要ではないかと考え、削除を試みること。</li>
+    <li>単純化・最適化せよ (Simplify or optimize): ステップ2で削除できなかった場合のみ、処理をシンプルにすること。</li>
+    <li>サイクルタイムを加速させよ (Accelerate cycle time): プロセスを高速化すること。
+　自動化せよ (Automate): 最後に、すべてのプロセスを自動化すること。</li>
+  </ol>
+</blockquote>
+
+<hr />
+<hr />
+<h2 id="2-実務での活用--ハンズオン">#2 実務での活用 ＋ ハンズオン</h2>
+
+<h3 id="1-マインドセット生成ai時代のバイブスコーディング">1. マインドセット：生成AI時代のバイブスコーディング」</h3>
+<ul>
+  <li><strong>コードは暗記しない:</strong> 細かい構文はAIに書かせれば良い。「どういう手順で、何がどう動いているか」の大まかな仕組み（構造）の理解に集中する。</li>
+  <li><strong>AI（プロンプト）の鉄則:</strong> 「Rhino8 / Python 3環境」「rhinoscriptsyntax 使用」と環境を必ず指定し、ハルシネーション（嘘の関数）を防ぐために「1行ごとに英語コメント（#）を入れて」と頼む。</li>
+  <li><strong>バグが出たら:</strong> 「動きません」ではなく、画面に出たエラー文を丸ごとコピペしてAIに投げる。</li>
+</ul>
+
+<h3 id="2-後半ハンズオン実務で活きるスクリプト活用例">2. 【後半ハンズオン】実務で活きるスクリプト活用例</h3>
+<p><em>(※今後、Grasshopperとスクリプトの具体的な活用事例を追加予定)</em></p>
+
+<h4 id="21-実務効率化creoレイヤー階層簡略化スクリプト">2.1 実務効率化：Creoレイヤー階層簡略化スクリプト</h4>
+<p>外部CAD（Creoなど）からインポートした深いレイヤー階層を自動整理し、大規模データでも固まらないように描画停止処理を追加した実務特化コード。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>
+
+<span class="k">def</span> <span class="nf">SimplifyLayers</span><span class="p">():</span>
+    <span class="c1"># 1. Get current layer as root location
+</span>    <span class="n">root_layer</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">CurrentLayer</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root_layer</span><span class="p">:</span>
+        <span class="k">return</span>
+        
+    <span class="c1"># 2. Stop viewport redraw to handle large assemblies quickly
+</span>    <span class="n">rs</span><span class="p">.</span><span class="nc">EnableRedraw</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    
+    <span class="c1"># 3. Get all sublayers under the root layer
+</span>    <span class="n">sub_layers</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">LayerChildren</span><span class="p">(</span><span class="n">root_layer</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sub_layers</span><span class="p">:</span>
+        <span class="n">rs</span><span class="p">.</span><span class="nc">EnableRedraw</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">return</span>
+        
+    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">sub_layers</span><span class="p">:</span>
+        <span class="n">objects</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">ObjectsByLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">objects</span><span class="p">:</span>
+            <span class="c1"># Move objects directly to the second-tier parent layer
+</span>            <span class="n">rs</span><span class="p">.</span><span class="nc">ObjectLayer</span><span class="p">(</span><span class="n">objects</span><span class="p">,</span> <span class="n">root_layer</span><span class="p">)</span>
+            
+        <span class="c1"># Delete empty sublayer safely
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">rs</span><span class="p">.</span><span class="nc">ObjectsByLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">):</span>
+            <span class="n">rs</span><span class="p">.</span><span class="nc">DeleteLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+            
+    <span class="c1"># 4. Resume redraw
+</span>    <span class="n">rs</span><span class="p">.</span><span class="nc">EnableRedraw</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="nc">SimplifyLayers</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<h3 id="3-作成したスクリプトをワンクリックのコマンドボタンにする方法">3. 作成したスクリプトをワンクリックのコマンド（ボタン）にする方法</h3>
+
+<p>保存したスクリプトを、エディタを開かずにRhinoのUIから直接実行できるように登録する。</p>
+<ol>
+  <li><strong>スクリプトの保存:</strong> コードを .py ファイルとして以下の標準フォルダに保存する。
+    <ul>
+      <li>C:\Users[ユーザー名]\AppData\Roaming\McNeel\Rhinoceros\8.0\scripts</li>
+    </ul>
+  </li>
+  <li><strong>パスのコピー:</strong> 保存した .py ファイルを右クリック ──&gt; <strong>「パスのコピー」</strong>。</li>
+  <li><strong>ボタンの新規作成:</strong> Rhinoのツールバーの空きスペースで右クリック ──&gt; <strong>「新規ツールバーボタン」</strong>。</li>
+  <li><strong>マクロ（コマンド）の設定:</strong> 新規ボタンを Shift ＋ 右クリックで開き、以下を入力。
+    <ul>
+      <li><strong>名前 / 画像:</strong> 任意。</li>
+      <li><strong>コマンド:</strong> _-RunPythonScript “コピーしたパス” を貼り付ける。</li>
+      <li><em>(例: _-RunPythonScript “C:\Users...\scripts\my_script.py”。前後の “ を忘れないこと。頭の _- がダイアログのポップアップを抑制し、即実行させます。)</em></li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <h3 id="rhinoスクリプト環境の全体像"><em>Rhinoスクリプト環境の全体像</em></h3>
+  <ol>
+    <li>スクリプトで使用するライブラリ（<code class="language-plaintext highlighter-rouge">import ~ as ...</code>）
+      <ul>
+        <li><strong>RhinoCommon:</strong> Rhinoを動かすための公式API (*)。C#だけでなくPythonからも直接操作可能。高機能だが記述量が多いため、できれば使いたくない。</li>
+      </ul>
+      <ul>
+        <li><strong>RhinoScriptSyntax:</strong> 記述量の多いRhinoCommonを、Pythonで簡単に扱えるようにした簡易コマンド集（ラッパー）。裏ではRhinoCommonが動いている。</li>
+      </ul>
+    </li>
+    <li>Rhinoで使用できるプログラミング言語
+      <ul>
+        <li><strong>VBScript:</strong> 旧方式のため使用する必要はない。互換性維持のため。<code class="language-plaintext highlighter-rouge">ツール → Rhino Script</code> で間違って使わないよう注意。</li>
+        <li><strong>Python:</strong> 使いやすいため主流。<code class="language-plaintext highlighter-rouge">(RhinoScriptSyntax) → RhinoCommon → Rhino本体</code></li>
+        <li><strong>C#:</strong> 開発者向け。<code class="language-plaintext highlighter-rouge">(RhinoScriptSyntax) → RhinoCommon → Rhino本体</code></li>
+      </ul>
+    </li>
+  </ol>
+
+  <p><strong>.NETプラグインSDK</strong>: Rhino/Grasshopperプラグインを開発しやすいよう整備されたソフトウェア開発キット。これらがRhino公式で整備されているため、各種Rhinoプラグインや、AI MCPの開発が活発。</p>
+</blockquote>
+
+      </div>
+    </main><footer class="site-footer">
+  <div class="wrapper">
+    <div class="footer-links">
+        <a href="https://github.com/hayashnaoki">GitHub</a>
+        <a href="https://www.instagram.com/hayashnaoki/">Instagram</a>
+        <a href="https://www.behance.net/hayashnaoki">Behance</a>
+        <a href="https://www.printables.com/@hayashnaoki">Printables</a>
+    </div>
+
+    <div class="footer-license">
+      Ⓒ Naoki Hayashi · CC BY-NC 4.0
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/copy-code.js"></script></body>
+
+</html>

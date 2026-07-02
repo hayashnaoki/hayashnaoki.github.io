@@ -33,6 +33,14 @@ title: LAB
   </a>
   --->
 
+  <a href="/docs/lab/intro_to_cd" class="grid-item">
+    <div class="image-wrapper">
+      <img src="/docs/images/404.jpg" alt="">
+    </div>
+    <div class="caption"><b>Intro to Computational Design</b></div>
+    <div class="caption">2026 | CD | Rh/Gh/Py</div>
+  </a>
+
   <a href="/docs/lab/laptop_stand" class="grid-item">
     <div class="image-wrapper">
       <img src="/docs/images/404.jpg" alt="">
@@ -41,6 +49,7 @@ title: LAB
     <div class="caption">2026 | 3DP | F3D</div>
   </a>
 
+  <!---
   <a href="/docs/lab/llc" class="grid-item">
     <div class="media-wrapper">
       <video src="/docs/images/lab/llc/mvp.mp4"
@@ -52,6 +61,7 @@ title: LAB
     <div class="caption"><b>Language learning app</b></div>
     <div class="caption">2026 | Web | LLM</div>
   </a>
+  --->
 
   <a href="/docs/lab/cellurar_automata/index" class="grid-item">
     <div class="media-wrapper">
