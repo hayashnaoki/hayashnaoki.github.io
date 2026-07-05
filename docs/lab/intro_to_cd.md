@@ -28,7 +28,16 @@ layout: default
 > 
 > - 一般的には「Grasshopperなどを活用した複雑で有機的な建築造形」として認知されています。
 > - 本質的には、日照、風向、構造負荷などの多角的な環境パラメーターを統合した最適化プロセスを指します。
-> - 建築家パトリック・シューマッハ（ザハ・ハディド・アーキテクツ）は、これを21世紀の建築様式「[Parametricism](https://www.dezeen.com/2026/05/06/parametricism-simple-guide/)」として提唱しています。
+> - 建築家パトリック・シューマッハ（ザハ・ハディド・アーキテクツ）は、これを21世紀の建築様式「Parametricism」として提唱しています。
+  - [A simple guide to parametricism](https://www.dezeen.com/2026/05/06/parametricism-simple-guide/)
+
+> **Generative Design**
+>
+>- 従来のパラメトリックデザインが「人間の定義したルールに基づく変形」であるのに対し、ジェネレーティブデザインは「条件を満たす未知の形状の創出」を目指します。
+> - 荷重、固定箇所、材料、製造方法（3Dプリントや5軸加工など）といった「制約条件とデザインゴール」を設計者が入力し、AIと数理アルゴリズムが何百もの最適解を自律的に探索・生成（Generate）するアプローチです。
+> - 製造分野では、Autodesk Fusion（旧Fusion 360）による構造の最適化や軽量化が代表例です。
+  - [Unlocking Innovative Solutions with Generative Design](https://www.autodesk.com/products/fusion-360/blog/unlocking-innovative-solutions-with-generative-design/)
+  - [ものづくりにおけるジェネレーティブ デザインの 8 つの価値を探る](https://www.autodesk.com/products/fusion-360/blog/ja/generative-design-manufacturing-values/)
 
 ### 1.3 Rhino上で使えるツール
 
@@ -49,21 +58,53 @@ Rhinoでは、複数の操作方法が存在します。
 
 ### 2.2 基本操作ルール
 
-- **Grasshopperの起動:** 
+1. **Grasshopperの起動:** 
   - **[ツール] ──> [Grasshopper]** を選択、またはコマンド欄に **`Grasshopper`** と入力
   - Grasshopperのファイル形式: `.gh`
   - 既存の `.gh` ファイルは **[File] ──> [Open]** で開く
-- **コンポーネントの呼び出し:**
+2. **コンポーネントの呼び出し:**
     - **タブから選択:** 画面上部のメニュータブ（Params, Math, Sets, Vector, Curve, Surfaceなど）から、機能に応じたアイコンを選択する。
-    - **ダブルクリック検索:** キャンバスの空白部分を左ダブルクリックし、キーワード（例: `Point`, `Line`）を入力してダイレクトに呼び出す（実務での推奨手法）。
-- **ワイヤーの接続と解除:**
+    - **ダブルクリック検索:** キャンバスの空白部分を左ダブルクリックし、キーワード（例: `ConstructPoint`, `Line`）を入力してダイレクトに呼び出す。`10.0` などの数値でNumber Slider（デフォルト: 0 ~ 100）、`//`でPanelを呼び出せる。
+3. **ワイヤーの接続と解除:**
     - **単一接続:** 出力端子から次の入力端子へドラッグ&ドロップして接続する。
     - **複数接続:** すでにワイヤーが接続されている入力端子に対し、`Shift` キーを押しながら新しいワイヤーを重ねることで、上書きせずにデータを追加できる。
     - **接続解除:** `Ctrl` キーを押しながら接続済みの端子に向かってドラッグすることで、配線を解除できる。
-- **コンポーネントのダブルクリック挙動:**
-    - 配置されたコンポーネント自体を左ダブルクリックすると、その特性に応じたエディタや設定画面が開く（例: Pythonコンポーネントであればスクリプトエディタ、Panelであればテキスト編集画面）。
-- **コンポーネントの削除:**
+
+    <div class="media-wrapper">
+      <video src="/docs/images/lab/intro_to_cd/basics.mp4"
+      autoplay
+      muted
+      loop
+      playsinline></video>
+    </div>
+
+
+4. **右クリックによる操作:**
+    - コンポーネントの中央右クリック:
+      - `Name`: コンポーネント自体の名称を変更する。
+      - `Enabled / Disabled`: 処理の有効/無効を切り替える（無効にすると下流の処理もストップする）。
+      - `Preview`: ビューポート上での形状表示/非表示（顔のアイコン）を切り替える。
+      - `Bake`: Grasshopper定義のRhinoモデル化（目玉焼アイコン）。
+    - 端子（パラメーター）の右クリック: 入出力端子（X, Y, Zなど）を個別に右クリックすることで、そのパラメーター名を変更できる。
+5. **一部コンポーネントのダブルクリック:** 一部のコンポーネントをダブルクリックするとエディタや設定画面が開く
+    - Panel（パネル）: テキストの編集画面
+    - Number Slider（数値スライダー）: スライダーの設定画面（小数点以下の桁数、最小値・最大値など）
+    - Python: スクリプトエディタ
+6. **コンポーネントの削除:**
     - 不要なコンポーネントは、対象を選択して `Delete` キーを押すことで削除できる。
+
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/intro_to_cd/loft.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
+
+7. **Grasshopper定義のRhinoモデル化: `Bake`**  
+  Grasshopperのキャンバス上で構築されているジオメトリは、Rhinoのビューポート上に見かけの形状を「プレビュー（赤色や緑色で表示）」しているだけです。そのため、Grasshopperを閉じると形状は消え、Rhino側で選択したり、そのまま他のCADへ書き出したりすることはできません。
+  - **`Bake`（ベイク）とは:** Grasshopperのデータを、Rhinoの「実データ」として空間に「**焼き付ける**（出力する）」操作です。コンポーネントを右クリックして Bake を実行すると、Rhinoの通常のオブジェクトとして確定されます。
+  - **トレードオフ:** BakeしたジオメトリはRhinoの通常のモデリングデータとなるため、Grasshopper側のパラメーターとは切り離され、連動しなくなります。 
 
 ### 2.3 データ構造
 
@@ -86,7 +127,7 @@ Grasshopperでは、データの流れを単なる1列ではなく、枝分か�
   ```
   --->
 
-- **ルール:** Grasshopperのコンポーネントで2つのデータを組み合わせる場合、「**同じお皿の、同じ番号のもの同士（ネタとシャリ）**」を順番に組み合わせ握ります。
+- **ルール:** Grasshopperのコンポーネントで2つのデータを組み合わせて処理する場合、「**同じお皿の、同じ番号のもの同士（ネタとシャリ）**」を順番に組み合わせ握ります。
 
   ![](/docs/images/lab/intro_to_cd/merge.jpg)
 
@@ -111,6 +152,20 @@ Grasshopperでは、データの流れを単なる1列ではなく、枝分か�
   - **Merge:** 別々の場所から流れてきた複数のデータを、お皿の番号に従って、1つの流れに合流させる。
 
   ![](/docs/images/lab/intro_to_cd/graft_flatten.jpg)
+
+- **実際のGhの例**
+  - **Listの例（上段）:** `Construct Point`のX座標にList (0, 10, ... 40) を入れ、5個のポイントを作成。
+  - **Data treeの例（下段）:** `Construct Point`のX座標に、`Graft`したList（一つずつ小皿に分けた状態）を入れ、Y座標には通常のListを入れることでグリッドを作成。X(0) に対しY(0, 1, ... 4)と処理され、 X(1) に対しY(0, ... 4)…と処理が続けられる。
+  ![](/docs/images/lab/intro_to_cd/data.jpg)
+
+> **Find Component:** コンポーネントを **`Ctrl + Alt`** を押しながらクリックすると、そのコンポーネントが上部タブのどこにあるかを赤い矢印で視覚的に教えてくれます。
+
+> **Grasshopper参考:**
+- [Grasshopper コンポーネントIndex (AppliCraft)](https://www.applicraft.com/ghcp_index/)
+- [Computational Design for (Industrial) Designers using Rhino Grasshopper (Delft University of Technology)](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/intro.html)
+
+> **AIを使った学習:**
+- Grasshopperはドキュメントが豊富でコミュニティも活発なため、多くの場合AIに質問することで適切な回答を得ることができます。また、Grasshopper定義を通常の`.gh`ではなく`.ghx`形式（XMLベースのプレーンテキスト）で保存すると、AIが解析できるようになります。
 
 ---
 ## 3. Script入門

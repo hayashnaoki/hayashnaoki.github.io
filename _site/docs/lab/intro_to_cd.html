@@ -66,7 +66,26 @@
   <ul>
     <li>一般的には「Grasshopperなどを活用した複雑で有機的な建築造形」として認知されています。</li>
     <li>本質的には、日照、風向、構造負荷などの多角的な環境パラメーターを統合した最適化プロセスを指します。</li>
-    <li>建築家パトリック・シューマッハ（ザハ・ハディド・アーキテクツ）は、これを21世紀の建築様式「<a href="https://www.dezeen.com/2026/05/06/parametricism-simple-guide/">Parametricism</a>」として提唱しています。</li>
+    <li>建築家パトリック・シューマッハ（ザハ・ハディド・アーキテクツ）は、これを21世紀の建築様式「Parametricism」として提唱しています。
+      <ul>
+        <li><a href="https://www.dezeen.com/2026/05/06/parametricism-simple-guide/">A simple guide to parametricism</a></li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>Generative Design</strong></p>
+
+  <ul>
+    <li>従来のパラメトリックデザインが「人間の定義したルールに基づく変形」であるのに対し、ジェネレーティブデザインは「条件を満たす未知の形状の創出」を目指します。</li>
+    <li>荷重、固定箇所、材料、製造方法（3Dプリントや5軸加工など）といった「制約条件とデザインゴール」を設計者が入力し、AIと数理アルゴリズムが何百もの最適解を自律的に探索・生成（Generate）するアプローチです。</li>
+    <li>製造分野では、Autodesk Fusion（旧Fusion 360）による構造の最適化や軽量化が代表例です。
+      <ul>
+        <li><a href="https://www.autodesk.com/products/fusion-360/blog/unlocking-innovative-solutions-with-generative-design/">Unlocking Innovative Solutions with Generative Design</a></li>
+        <li><a href="https://www.autodesk.com/products/fusion-360/blog/ja/generative-design-manufacturing-values/">ものづくりにおけるジェネレーティブ デザインの 8 つの価値を探る</a></li>
+      </ul>
+    </li>
   </ul>
 </blockquote>
 
@@ -93,7 +112,7 @@
 
 <h3 id="22-基本操作ルール">2.2 基本操作ルール</h3>
 
-<ul>
+<ol>
   <li><strong>Grasshopperの起動:</strong>
     <ul>
       <li><strong>[ツール] ──&gt; [Grasshopper]</strong> を選択、またはコマンド欄に <strong><code class="language-plaintext highlighter-rouge">Grasshopper</code></strong> と入力</li>
@@ -104,7 +123,7 @@
   <li><strong>コンポーネントの呼び出し:</strong>
     <ul>
       <li><strong>タブから選択:</strong> 画面上部のメニュータブ（Params, Math, Sets, Vector, Curve, Surfaceなど）から、機能に応じたアイコンを選択する。</li>
-      <li><strong>ダブルクリック検索:</strong> キャンバスの空白部分を左ダブルクリックし、キーワード（例: <code class="language-plaintext highlighter-rouge">Point</code>, <code class="language-plaintext highlighter-rouge">Line</code>）を入力してダイレクトに呼び出す（実務での推奨手法）。</li>
+      <li><strong>ダブルクリック検索:</strong> キャンバスの空白部分を左ダブルクリックし、キーワード（例: <code class="language-plaintext highlighter-rouge">ConstructPoint</code>, <code class="language-plaintext highlighter-rouge">Line</code>）を入力してダイレクトに呼び出す。<code class="language-plaintext highlighter-rouge">10.0</code> などの数値でNumber Slider（デフォルト: 0 ~ 100）、<code class="language-plaintext highlighter-rouge">//</code>でPanelを呼び出せる。</li>
     </ul>
   </li>
   <li><strong>ワイヤーの接続と解除:</strong>
@@ -113,18 +132,48 @@
       <li><strong>複数接続:</strong> すでにワイヤーが接続されている入力端子に対し、<code class="language-plaintext highlighter-rouge">Shift</code> キーを押しながら新しいワイヤーを重ねることで、上書きせずにデータを追加できる。</li>
       <li><strong>接続解除:</strong> <code class="language-plaintext highlighter-rouge">Ctrl</code> キーを押しながら接続済みの端子に向かってドラッグすることで、配線を解除できる。</li>
     </ul>
+
+    <div class="media-wrapper">
+   <video src="/docs/images/lab/intro_to_cd/basics.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+ </div>
   </li>
-  <li><strong>コンポーネントのダブルクリック挙動:</strong>
+  <li><strong>右クリックによる操作:</strong>
     <ul>
-      <li>配置されたコンポーネント自体を左ダブルクリックすると、その特性に応じたエディタや設定画面が開く（例: Pythonコンポーネントであればスクリプトエディタ、Panelであればテキスト編集画面）。</li>
+      <li>コンポーネントの中央右クリック:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">Name</code>: コンポーネント自体の名称を変更する。</li>
+          <li><code class="language-plaintext highlighter-rouge">Enabled / Disabled</code>: 処理の有効/無効を切り替える（無効にすると下流の処理もストップする）。</li>
+          <li><code class="language-plaintext highlighter-rouge">Preview</code>: ビューポート上での形状表示/非表示（顔のアイコン）を切り替える。</li>
+          <li><code class="language-plaintext highlighter-rouge">Bake</code>: Grasshopper定義のRhinoモデル化（目玉焼アイコン）。</li>
+        </ul>
+      </li>
+      <li>端子（パラメーター）の右クリック: 入出力端子（X, Y, Zなど）を個別に右クリックすることで、そのパラメーター名を変更できる。</li>
+    </ul>
+  </li>
+  <li><strong>一部コンポーネントのダブルクリック:</strong> 一部のコンポーネントをダブルクリックするとエディタや設定画面が開く
+    <ul>
+      <li>Panel（パネル）: テキストの編集画面</li>
+      <li>Number Slider（数値スライダー）: スライダーの設定画面（小数点以下の桁数、最小値・最大値など）</li>
+      <li>Python: スクリプトエディタ</li>
     </ul>
   </li>
   <li><strong>コンポーネントの削除:</strong>
     <ul>
       <li>不要なコンポーネントは、対象を選択して <code class="language-plaintext highlighter-rouge">Delete</code> キーを押すことで削除できる。</li>
     </ul>
+
+    <div class="media-wrapper">
+     <video src="/docs/images/lab/intro_to_cd/loft.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+ </div>
   </li>
-</ul>
+  <li><strong>Grasshopper定義のRhinoモデル化: <code class="language-plaintext highlighter-rouge">Bake</code></strong><br />
+  Grasshopperのキャンバス上で構築されているジオメトリは、Rhinoのビューポート上に見かけの形状を「プレビュー（赤色や緑色で表示）」しているだけです。そのため、Grasshopperを閉じると形状は消え、Rhino側で選択したり、そのまま他のCADへ書き出したりすることはできません。
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">Bake</code>（ベイク）とは:</strong> Grasshopperのデータを、Rhinoの「実データ」として空間に「<strong>焼き付ける</strong>（出力する）」操作です。コンポーネントを右クリックして Bake を実行すると、Rhinoの通常のオブジェクトとして確定されます。</li>
+      <li><strong>トレードオフ:</strong> BakeしたジオメトリはRhinoの通常のモデリングデータとなるため、Grasshopper側のパラメーターとは切り離され、連動しなくなります。</li>
+    </ul>
+  </li>
+</ol>
 
 <h3 id="23-データ構造">2.3 データ構造</h3>
 
@@ -151,7 +200,7 @@
 --->
   </li>
   <li>
-    <p><strong>ルール:</strong> Grasshopperのコンポーネントで2つのデータを組み合わせる場合、「<strong>同じお皿の、同じ番号のもの同士（ネタとシャリ）</strong>」を順番に組み合わせ握ります。</p>
+    <p><strong>ルール:</strong> Grasshopperのコンポーネントで2つのデータを組み合わせて処理する場合、「<strong>同じお皿の、同じ番号のもの同士（ネタとシャリ）</strong>」を順番に組み合わせ握ります。</p>
 
     <p><img src="/docs/images/lab/intro_to_cd/merge.jpg" alt="" /></p>
 
@@ -181,7 +230,33 @@
 
     <p><img src="/docs/images/lab/intro_to_cd/graft_flatten.jpg" alt="" /></p>
   </li>
+  <li><strong>実際のGhの例</strong>
+    <ul>
+      <li><strong>Listの例（上段）:</strong> <code class="language-plaintext highlighter-rouge">Construct Point</code>のX座標にList (0, 10, … 40) を入れ、5個のポイントを作成。</li>
+      <li><strong>Data treeの例（下段）:</strong> <code class="language-plaintext highlighter-rouge">Construct Point</code>のX座標に、<code class="language-plaintext highlighter-rouge">Graft</code>したList（一つずつ小皿に分けた状態）を入れ、Y座標には通常のListを入れることでグリッドを作成。X(0) に対しY(0, 1, … 4)と処理され、 X(1) に対しY(0, … 4)…と処理が続けられる。
+<img src="/docs/images/lab/intro_to_cd/data.jpg" alt="" /></li>
+    </ul>
+  </li>
 </ul>
+
+<blockquote>
+  <p><strong>Find Component:</strong> コンポーネントを <strong><code class="language-plaintext highlighter-rouge">Ctrl + Alt</code></strong> を押しながらクリックすると、そのコンポーネントが上部タブのどこにあるかを赤い矢印で視覚的に教えてくれます。</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Grasshopper参考:</strong></p>
+  <ul>
+    <li><a href="https://www.applicraft.com/ghcp_index/">Grasshopper コンポーネントIndex (AppliCraft)</a></li>
+    <li><a href="https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/intro.html">Computational Design for (Industrial) Designers using Rhino Grasshopper (Delft University of Technology)</a></li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>AIを使った学習:</strong></p>
+  <ul>
+    <li>Grasshopperはドキュメントが豊富でコミュニティも活発なため、多くの場合AIに質問することで適切な回答を得ることができます。また、Grasshopper定義を通常の<code class="language-plaintext highlighter-rouge">.gh</code>ではなく<code class="language-plaintext highlighter-rouge">.ghx</code>形式（XMLベースのプレーンテキスト）で保存すると、AIが解析できるようになります。</li>
+  </ul>
+</blockquote>
 
 <hr />
 <h2 id="3-script入門">3. Script入門</h2>
