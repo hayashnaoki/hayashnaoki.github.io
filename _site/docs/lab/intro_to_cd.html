@@ -38,153 +38,392 @@
 
 <p>2026 | Computational design | Rhino / Grasshopper / Python</p>
 
-<p>Caption_goes_here.</p>
+<h2 id="1-概要と整理">1. 概要と整理</h2>
 
-<p><img src="/docs/images/lab/IMAGE_GOES_HERE" alt="" /></p>
+<h3 id="11-目的">1.1 目的</h3>
 
-<h2 id="1-コンピュテーショナルデザイン概要">#1 コンピュテーショナルデザイン概要</h2>
-
-<h3 id="1-目的">1. 目的</h3>
 <ul>
-  <li><strong>つかってみる:</strong> ハードルを下げる。</li>
-  <li><strong>プロセスを構築すること:</strong> モデリングするための「ルール（アルゴリズム）」をデザインする。</li>
-  <li><strong>手作業と自動化のバランス:</strong> 自動化による可能性と、自動化のためのルール構築の工数のバランスの見極め。</li>
-  <li><strong>AI連携への理解:</strong> MCP（モデルコンテクストプロトコル）などのAI活用への理解。</li>
+  <li><strong>ハードルを下げる:</strong> つかってみる。</li>
+  <li><strong>手順の構築:</strong> モデリングする手順を設計する感覚を養う。</li>
+  <li><strong>AI連携への理解:</strong> MCP（Model Context Protocol）などのAI活用プロセスの基盤を理解する。</li>
 </ul>
 
-<h3 id="2-言葉の整理">2. 言葉の整理</h3>
-<p>様々な言葉があるが、文脈により定義は曖昧。</p>
+<h3 id="12-言葉の定義と整理">1.2 言葉の定義と整理</h3>
+
+<p>フォーカスするポイントの異なる様々な言葉があります。文脈によって異なる意味合いを持ち、互いに重なり合う曖昧な概念です。</p>
+
 <ul>
-  <li><strong>CAD (Computer Aided Design)</strong>
+  <li><strong>CAD (Computer Aided Design):</strong> コンピューターを用いた設計・デザイン手法全般。</li>
+  <li><strong>Computational Design:</strong> 計算能力や数理的アプローチをデザインプロセスに統合する手法の総称。</li>
+  <li><strong>Parametric Design:</strong> 要素間に寸法や位置などの明確な関係性（ルール）を構築し、変数（パラメーター）の操作によって形状を制御する手法。</li>
+  <li><strong>Algorithmic Design / Procedural Design:</strong> 論理的・数理的な一連の手順（プロセス）を組み立てることで、形状を制御・出力する手法。</li>
+  <li><strong>Generative Design:</strong> 構造強度、重量、製造要件などの制約条件（ゴール）のみを設定し、アルゴリズムやAIによって最適解を自律的に探索・生成させる手法。</li>
+</ul>
+
+<blockquote>
+  <p><strong>Parametric Architecture</strong></p>
+
+  <ul>
+    <li>一般的には「Grasshopperなどを活用した複雑で有機的な建築造形」として認知されています。</li>
+    <li>本質的には、日照、風向、構造負荷などの多角的な環境パラメーターを統合した最適化プロセスを指します。</li>
+    <li>建築家パトリック・シューマッハ（ザハ・ハディド・アーキテクツ）は、これを21世紀の建築様式「<a href="https://www.dezeen.com/2026/05/06/parametricism-simple-guide/">Parametricism</a>」として提唱しています。</li>
+  </ul>
+</blockquote>
+
+<h3 id="13-rhino上で使えるツール">1.3 Rhino上で使えるツール</h3>
+
+<p>Rhinoでは、複数の操作方法が存在します。</p>
+
+<ul>
+  <li><strong>手動操作 (Manual):</strong> マウスやコマンド入力によって1つずつ配置する方法です。直感的で手軽ですが、反復作業や多数のバリエーション作成には工数がかかります。</li>
+  <li><strong>Grasshopper (Visual Programming):</strong> コンポーネントをワイヤーで接続し、パラメーターの変化に応じて形状を更新する方法です。データの流れを視覚的に把握しやすく、設計ルールを再利用しやすい特徴があります。</li>
+  <li><strong>スクリプト (Script):</strong> Pythonなどのコードを用いて処理を記述する方法です。複雑なループ処理や大量データの自動化に向いており、AIとの親和性も高いです。</li>
+</ul>
+
+<hr />
+<h2 id="2-grasshopper入門">2. Grasshopper入門</h2>
+
+<h3 id="21-基本概念">2.1 基本概念</h3>
+
+<ul>
+  <li><strong>コンポーネント:</strong> Rhinoにおけるコマンド。入力（左側）を受け取り、内部処理を行い、出力（右側）を返す。</li>
+  <li><strong>ワイヤー:</strong> コンポーネント間でデータを伝達するための経路。</li>
+  <li><strong>パラメーター:</strong> 数値スライダー（Number Slider）など、リアルタイムに変更可能な変数。</li>
+</ul>
+
+<h3 id="22-基本操作ルール">2.2 基本操作ルール</h3>
+
+<ul>
+  <li><strong>Grasshopperの起動:</strong>
     <ul>
-      <li>コンピューターを使ったデザイン全般。</li>
+      <li><strong>[ツール] ──&gt; [Grasshopper]</strong> を選択、またはコマンド欄に <strong><code class="language-plaintext highlighter-rouge">Grasshopper</code></strong> と入力</li>
+      <li>Grasshopperのファイル形式: <code class="language-plaintext highlighter-rouge">.gh</code></li>
+      <li>既存の <code class="language-plaintext highlighter-rouge">.gh</code> ファイルは <strong>[File] ──&gt; [Open]</strong> で開く</li>
     </ul>
   </li>
-  <li><strong>Computational Design（広義の総称）</strong>
+  <li><strong>コンポーネントの呼び出し:</strong>
     <ul>
-      <li>計算能力をデザインプロセスに持ち込む手法全般。</li>
+      <li><strong>タブから選択:</strong> 画面上部のメニュータブ（Params, Math, Sets, Vector, Curve, Surfaceなど）から、機能に応じたアイコンを選択する。</li>
+      <li><strong>ダブルクリック検索:</strong> キャンバスの空白部分を左ダブルクリックし、キーワード（例: <code class="language-plaintext highlighter-rouge">Point</code>, <code class="language-plaintext highlighter-rouge">Line</code>）を入力してダイレクトに呼び出す（実務での推奨手法）。</li>
     </ul>
   </li>
-  <li><strong>Parametric Design（変数と関係性）</strong>
+  <li><strong>ワイヤーの接続と解除:</strong>
     <ul>
-      <li>要素間に「ルール（寸法や位置の関係性）」を構築し、変数（パラメーター）を編集することにフォーカス。</li>
+      <li><strong>単一接続:</strong> 出力端子から次の入力端子へドラッグ&amp;ドロップして接続する。</li>
+      <li><strong>複数接続:</strong> すでにワイヤーが接続されている入力端子に対し、<code class="language-plaintext highlighter-rouge">Shift</code> キーを押しながら新しいワイヤーを重ねることで、上書きせずにデータを追加できる。</li>
+      <li><strong>接続解除:</strong> <code class="language-plaintext highlighter-rouge">Ctrl</code> キーを押しながら接続済みの端子に向かってドラッグすることで、配線を解除できる。</li>
     </ul>
   </li>
-  <li><strong>Algorithmic Design / Procedural Design（論理と手順の制御）</strong>
+  <li><strong>コンポーネントのダブルクリック挙動:</strong>
     <ul>
-      <li>「論理的・数理的な手順（プロセス）」の組み立てにフォーカス。</li>
+      <li>配置されたコンポーネント自体を左ダブルクリックすると、その特性に応じたエディタや設定画面が開く（例: Pythonコンポーネントであればスクリプトエディタ、Panelであればテキスト編集画面）。</li>
     </ul>
   </li>
-  <li><strong>Generative Design（自律的な探索）</strong>
+  <li><strong>コンポーネントの削除:</strong>
     <ul>
-      <li>「ゴール（目標値・制約条件）」だけを設定し、AI/アルゴリズムに最適解を生成させる。</li>
+      <li>不要なコンポーネントは、対象を選択して <code class="language-plaintext highlighter-rouge">Delete</code> キーを押すことで削除できる。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="23-データ構造">2.3 データ構造</h3>
+
+<p>Grasshopperでは、データの流れを単なる1列ではなく、枝分かれした構造で扱います。これを「<strong>データツリー</strong>」と呼びます。データツリーは、<strong>寿司（データ）</strong>と<strong>お皿（データの階層）</strong>の関係性で考えるとわかりやすいです。</p>
+
+<ul>
+  <li><strong>データツリーとは:</strong> 寿司（点や数値などのデータ）を整理するための「お皿の集まり」です。
+    <ul>
+      <li><strong>List（リスト）:</strong> 1枚の長いお皿に、複数の寿司が順番に並んでいる状態です。</li>
+      <li><strong>Data Tree（データツリー）:</strong> テーブルの上に複数のお皿が並び、寿司が小分けされている状態です。</li>
+    </ul>
+
+    <p><img src="/docs/images/lab/intro_to_cd/data_tree.jpg" alt="" /></p>
+
+    <!---
+```
+【普通のリスト】
+  🍽️ お皿 ─── [ 🍣(0), 🍣(1), 🍣(2), 🍣(3) ] （1枚に全部載っている）
+
+【データツリー】
+  📁 皿{0} ── [ 🍣(0), 🍣(1) ]
+  📁 皿{1} ── [ 🍣(0), 🍣(1) ] （お皿が分かれている）
+```
+--->
+  </li>
+  <li>
+    <p><strong>ルール:</strong> Grasshopperのコンポーネントで2つのデータを組み合わせる場合、「<strong>同じお皿の、同じ番号のもの同士（ネタとシャリ）</strong>」を順番に組み合わせ握ります。</p>
+
+    <p><img src="/docs/images/lab/intro_to_cd/merge.jpg" alt="" /></p>
+
+    <!---
+```
+【ネタ】                        【シャリ】                            【完成】
+📁 皿{0} ── [ 🐟(0), 🦑(1) ]   📁 皿{0} ── [ 🍚(0), 🍚(1) ]  ──>  📁 皿{0} ── [ 🍣(0), 🍣(1) ]
+📁 皿{1} ── [ 🦐(0), 🐙(1) ]   📁 皿{1} ── [ 🍚(0), 🍚(1) ]  ──>  📁 皿{1} ── [ 🍣(0), 🍣(1) ]
+```
+--->
+  </li>
+  <li><strong>ありがちな失敗:</strong> 構造がずれると、意図しない結果になります。
+    <ul>
+      <li>1つの皿に大量のデータが集まり、1点に線が集中してしまう。</li>
+      <li>片方のデータ数が少ない場合、最後の要素が繰り返し使われてしまう（Grasshopperの仕様）。</li>
+      <li>お皿の階層がずれて、データが見つからず消えてしまう。</li>
+    </ul>
+  </li>
+  <li><strong>よく使う操作:</strong>
+    <ul>
+      <li><strong>Flatten:</strong> 複数のお皿にのった寿司を1つの長い皿にまとめる。</li>
+      <li><strong>Graft:</strong> 1つのお皿に入っていた寿司を、一つずつ別々のお皿に分ける。</li>
+      <li><strong>Simplify:</strong> 余分に重なっているお皿を単純化する（例: お皿が2枚重なっているものを、1枚にする）。</li>
+      <li><strong>List Item:</strong> お皿の上に並んでいる寿司の中から、指定した順番（インデックス）のものをつまんで取り出す。</li>
+      <li><strong>Merge:</strong> 別々の場所から流れてきた複数のデータを、お皿の番号に従って、1つの流れに合流させる。</li>
+    </ul>
+
+    <p><img src="/docs/images/lab/intro_to_cd/graft_flatten.jpg" alt="" /></p>
+  </li>
+</ul>
+
+<hr />
+<h2 id="3-script入門">3. Script入門</h2>
+
+<h3 id="31-環境の起動と初期設定">3.1 環境の起動と初期設定</h3>
+
+<p>ScriptはRhino上でもGrasshopper上でも使えます。Rhinoでは主に自動化処理、Grasshopperではパラメーターに応じた編集や、コンポーネントの補助に使用します。</p>
+
+<ol>
+  <li><strong>Rhino上で使う</strong>
+    <ol>
+      <li>Rhinoのメニューバーから <strong>[ツール] ──&gt; [スクリプト] ──&gt; [編集]</strong> を選択して、スクリプトエディタを起動する。</li>
+      <li>エディタにコードを入力する、既存のスクリプトを開く、またはコピーしたコードを貼り付ける。</li>
+      <li>実行すると、Rhino上の点・線・曲線などを直接生成・編集できる。</li>
+      <li>生成したスクリプトは <code class="language-plaintext highlighter-rouge">.py</code> ファイルとして保存しておくと、後で再利用しやすい。</li>
+    </ol>
+  </li>
+  <li><strong>Grasshopper上で使う</strong>
+    <ol>
+      <li>Grasshopperを起動し、キャンバス上に <code class="language-plaintext highlighter-rouge">Python</code> コンポーネントを配置する。</li>
+      <li>コンポーネントをダブルクリックして、Pythonエディタを開く。</li>
+      <li>コンポーネントの入力端子からデータを受け取り、処理結果を出力する。</li>
+      <li>スクリプト内の変数名は、コンポーネントの入力・出力名と合わせる。</li>
+    </ol>
+  </li>
+</ol>
+
+<h3 id="32-主要ライブラリ">3.2 主要ライブラリ</h3>
+
+<p>PythonからRhinoの機能を使用するために、コードの最上部で各種ライブラリを呼び出します。ライブラリとは、あらかじめ用意された機能の集まりで、例えば「点を作る」「線を引く」「距離を測る」といった操作を簡単に実行できるようにしたものです。</p>
+
+<ul>
+  <li><strong>Rhino用のライブラリ:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">rhinoscriptsyntax</code>: Rhinoの主要なコマンドを簡潔に記述できる簡易コマンド集（ラッパー）。多くの場合、これだけで十分です。</li>
+      <li><code class="language-plaintext highlighter-rouge">Rhino</code>: より高度な制御を可能にするコアAPI（RhinoCommon）。</li>
+    </ul>
+  </li>
+  <li><strong>その他の一般的なライブラリ:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">math</code>: Python標準ライブラリの一つで、数値計算に使われます。</li>
+      <li><code class="language-plaintext highlighter-rouge">random</code>: 乱数を扱うためのPython標準ライブラリです。</li>
+      <li><code class="language-plaintext highlighter-rouge">os</code>: ファイルやフォルダの操作に使われる、一般的なPython標準ライブラリです。</li>
+    </ul>
+  </li>
+  <li><strong>呼び出し例（<code class="language-plaintext highlighter-rouge">rhinoscriptsyntax</code>を使用する場合）</strong>
+    <ul>
+      <li>スクリプトの冒頭に、<code class="language-plaintext highlighter-rouge">import rhinoscriptsyntax as rs</code> と書く</li>
+      <li>以後は <code class="language-plaintext highlighter-rouge">rs</code> という短い名前で使える（例: <code class="language-plaintext highlighter-rouge">rs.AddPoint(x, 0, 0)</code>）</li>
+      <li><strong>Rhinoの公式ドキュメント（<a href="https://developer.rhino3d.com/api/RhinoScriptSyntax/">RhinoScriptSyntax</a>）</strong>で利用できるコマンド（<code class="language-plaintext highlighter-rouge">rs.AddPoint()</code>）や関数（<code class="language-plaintext highlighter-rouge">()</code>の中身）を確認できます。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="33-基本構文">3.3 基本構文</h3>
+
+<ul>
+  <li><strong>Pythonの基本規則</strong>
+    <ul>
+      <li><strong>インデント（字下げ）:</strong> Pythonでは、コードのブロック構造をインデント（半角スペース4つ、またはTabキー1回）で定義します。インデントのズレや全角スペースの混入は構文エラーとなります。</li>
+      <li>
+        <p><strong>コメントの記述:</strong> コードの処理内容とは別に、各ステップの意図や補足を説明するコメントを追加できます。Pythonでは<code class="language-plaintext highlighter-rouge">#</code>の後にコメントを記入します（例: <code class="language-plaintext highlighter-rouge"># Create points in a straight line</code>）</p>
+
+        <ul>
+          <li><strong>注意:</strong> Rhino Pythonでは、コメントには全角日本語を入れると文字コードのエラーになる場合があるため、半角英語（<code class="language-plaintext highlighter-rouge"># English code comment</code>）で記述するようにします。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>forループ</strong></p>
+
+    <p>Pythonでは、<code class="language-plaintext highlighter-rouge">for</code> 文を使うと同じ処理を繰り返し実行できます。たとえば <code class="language-plaintext highlighter-rouge">for i in range(10):</code> と書くと、<code class="language-plaintext highlighter-rouge">i</code> に0から9までの値を順番に代入し、10回処理を実行します。</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>     <span class="c1"># Rhino script library (alias rs)
+</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">2.0</span>
+    <span class="n">rs</span><span class="p">.</span><span class="nc">AddPoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>同じ作業を繰り返す場合に、スクリプトのループが特に大きな強みになります。手動操作やGrasshopperでは1つずつ扱う必要がある処理でも、スクリプトではループを使って一括で処理できます。
+        <ul>
+          <li><strong>注意点:</strong> ループ内部の処理によっては実行時間が膨大になるため、<code class="language-plaintext highlighter-rouge">range</code>は小さな値から始めるようにします。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>if文</strong></p>
+
+    <p><code class="language-plaintext highlighter-rouge">if</code> 文を使うと、条件が成り立つときだけ処理を実行できます。たとえば「値がある程度大きいときだけ点を作る」といった分岐を記述できます。</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>
+
+<span class="n">value</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">rs</span><span class="p">.</span><span class="nc">AddPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>条件分岐を使うと、同じコードでも入力や状況に応じて動作を変えられます。</li>
     </ul>
   </li>
 </ul>
 
 <blockquote>
-  <h3 id="parametric-architecture"><em>“Parametric Architecture”</em></h3>
+  <p><strong>補足: Rhinoスクリプト環境の全体像とアーキテクチャ</strong></p>
 
   <ul>
-    <li>「Grasshopper を使った複雑で有機的な建築」と言うイメージが一般的</li>
-    <li>「日照・風向・構造負荷などのパラメーターを含めた総合的なデザイン」と捉える人もいる</li>
-    <li>建築家パトリック・シューマッハ（ザハ・ハディド・アーキテクツ）は「パラメトリシズム」を21世紀の建築様式として提唱</li>
+    <li><strong>ライブラリ</strong>
+      <ul>
+        <li><strong><a href="https://developer.rhino3d.com/guides/rhinopython/python-rhinoscriptsyntax-introduction/">RhinoScriptSyntax</a>:</strong> Rhinoのよく使う操作を、Pythonから簡単に呼び出せるようにした命令集（<strong><em>ラッパー</em></strong>）です。初心者にとって最も扱いやすく、まずはこれを覚えると理解しやすいです。</li>
+        <li><strong><a href="https://developer.rhino3d.com/guides/rhinocommon/">RhinoCommon</a>:</strong> Rhinoのより本格的な機能を直接扱うための<strong><em>公式API</em></strong> / クロスプラットフォーム対応 <strong><em>.NET プラグイン SDK（ソフトウェア開発キット）</em></strong>です。やや難しく、主に開発者向けのレベルです。</li>
+      </ul>
+    </li>
+    <li><strong>用語</strong>
+      <ul>
+        <li><strong>API:</strong> ソフトウェア同士がやり取りするための「窓口」のようなものです。Rhinoの機能を外部から呼び出すときに使います。</li>
+        <li><strong>ライブラリ:</strong> すでに用意された機能の集まりです。Pythonでは <code class="language-plaintext highlighter-rouge">import</code> して使います。</li>
+        <li><strong>ラッパー:</strong> 低レベルな機能を、より簡単に使えるように包んだものです。RhinoScriptSyntaxは、RhinoCommonを使いやすくしたラッパーの一例です。</li>
+        <li><code class="language-plaintext highlighter-rouge">.NETプラグインSDK:</code> プログラミング言語とは別に、RhinoやGrasshopperの機能を拡張するための開発基盤です。PythonやC#を使う際の土台として理解すると分かりやすいです。</li>
+      </ul>
+    </li>
+    <li><strong>利用可能な言語と動作フロー</strong>
+      <ul>
+        <li><code class="language-plaintext highlighter-rouge">Python</code>: 記述の容易さとAIとの親和性から現在の主流環境です。Rhino 8以降では Python 3 を使うことが前提です。</li>
+        <li><code class="language-plaintext highlighter-rouge">C#</code>: 開発者向けの言語で、より高度な制御やプラグイン開発に向いています。</li>
+        <li><code class="language-plaintext highlighter-rouge">VBScript</code>: 旧世代の環境で、現在は新規利用は非推奨です。</li>
+      </ul>
+    </li>
   </ul>
 </blockquote>
 
-<h3 id="3-rhino上で使えるツール">3. Rhino上で使えるツール</h3>
-<p>同じ形状（例：10個の点を直線状に並べる）を作るアプローチの違い。</p>
-<ul>
-  <li><strong>手動操作（Manual）</strong>
-    <ul>
-      <li>マウス操作やコマンド入力（CLI）で1つずつ配置する。</li>
-      <li><strong>メリット:</strong> 直感的でプロセスを構築する必要がない。</li>
-      <li><strong>デメリット:</strong> 繰り返し作業や大量処理、大量のバリエーション作成が苦手（人間が）。</li>
-    </ul>
-  </li>
-  <li><strong>Grasshopper（Visual Programming）</strong>
-    <ul>
-      <li>コンポーネント（機能の箱）をワイヤーで繋いで形状を作る。</li>
-      <li><strong>メリット:</strong> データの流れが視覚的に分かりやすく、リアルタイムに形状を変更できる。</li>
-      <li><strong>デメリット:</strong> 処理が複雑になるとアルゴリズムが肥大化し、スパゲッティ状態になりやすい。AIとの相性があまり良くない。</li>
-    </ul>
-  </li>
-  <li><strong>スクリプト（Programming）</strong>
-    <ul>
-      <li>Pythonなどのテキストコードを記述して処理する。</li>
-      <li><strong>メリット:</strong> 複雑なループや大量のデータを高速かつ省スペースで記述できる。AIと最も相性が良い。</li>
-      <li><strong>デメリット:</strong> 構文の習得が必要。</li>
-    </ul>
-  </li>
-</ul>
+<hr />
+<h2 id="4-比較まとめ手動ghスクリプト">4. 比較まとめ（手動・Gh・スクリプト）</h2>
+
+<p>Rhinoにおける各アプローチの特性、メリット、およびリスクの比較です。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>手法</strong></th>
+      <th><strong>概要</strong></th>
+      <th><strong>メリット</strong></th>
+      <th><strong>デメリット・リスク</strong></th>
+      <th><strong>AIとの親和性</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>手動操作 (Manual)</strong></td>
+      <td>マウスやCLI（コマンド入力）による個別配置。</td>
+      <td>直感的。事前のロジック構築が不要で、単発の作業において最速。</td>
+      <td>反復作業や大量データ処理、バリエーション変更に膨大な手作業の工数がかかる。</td>
+      <td>非常に低い。</td>
+    </tr>
+    <tr>
+      <td><strong>Grasshopper (Gh)</strong></td>
+      <td>コンポーネントを視覚的に接続するビジュアルプログラミング。</td>
+      <td>データの流れを視覚的に把握でき、パラメータ変更による形状変化をリアルタイムに検証可能。</td>
+      <td>処理が複雑化するとアルゴリズムが肥大化し、「スパゲッティコード」としてブラックボックス化しやすい。</td>
+      <td>低い（グラフ構造の生成はLLMが苦手とする領域）。</td>
+    </tr>
+    <tr>
+      <td><strong>スクリプト (Script)</strong></td>
+      <td>PythonやC#などのテキストコードによる論理記述。</td>
+      <td>複雑なループ処理や大量のデータを、極めて省スペースかつ高速に実行できる。</td>
+      <td>固有のプログラミング構文を習得する必要がある。</td>
+      <td><strong>極めて高い</strong>（LLMが最も得意とするコードテキスト生成と合致）。</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>工場の自動化への比喩</strong></p>
+
+  <p>各手法の役割は工場のフェーズに類似しています。手動操作は「職人による手作り」、Grasshopperは可変性の高い「町工場の生産ライン」、スクリプトは高速大量生産を行う「全自動の無人工場」です。タスクの規模と特性に応じた使い分けが求められます。</p>
+
+</blockquote>
+
+<blockquote>
+  <p><strong>The 5-Step Algorithm（Elon Musk氏による自動化の基本原則）</strong></p>
+
+  <p>効率化を行う際は、以下の手順で自動化は最後に行い、「自動化する必要がないことを自動化する」状況を防ぎます。</p>
+
+  <ol>
+    <li><strong>要件を疑え (Make your requirements less dumb):</strong> その仕様や前提自体が不必要ではないか検証する。</li>
+    <li><strong>プロセスを削除せよ (Delete the part or process):</strong> 不要な工程そのものを破棄する。</li>
+    <li><strong>単純化・最適化せよ (Simplify or optimize):</strong> 削除できない工程を可能な限りシンプルにする。</li>
+    <li><strong>サイクルタイムを加速させよ (Accelerate cycle time):</strong> 処理全体の速度を上げる。</li>
+    <li><strong>自動化せよ (Automate):</strong> 上記のステップをすべて経た後に、最終手段として自動化を実行する。</li>
+  </ol>
+</blockquote>
 
 <hr />
-<h3 id="4-grasshopperの基本">4. Grasshopperの基本</h3>
+<h2 id="5-grasshopper応用">5. Grasshopper応用</h2>
 
-<h4 id="41-基本概念">4.1 基本概念</h4>
-<ul>
-  <li><strong>コンポーネント:</strong> 入力（左側）を受け取り、処理を行い、出力（右側）を返す単位。</li>
-  <li><strong>ワイヤー:</strong> コンポーネント間でデータを流す経路。</li>
-  <li><strong>パラメーター:</strong> 数値スライダー（Number Slider）などを使い、リアルタイムに変更可能な変数。</li>
-</ul>
+<h3 id="51-グリッド配置とアトラクター変形">5.1 グリッド配置とアトラクター変形</h3>
 
-<h4 id="42-基本デモグリッド状の点配置と変形">4.2 基本デモ：グリッド状の点配置と変形</h4>
+<p>Grasshopperを用いた数理的形状制御の代表的なプロセスです。</p>
+
 <ol>
-  <li><strong>点の生成:</strong> Construct Point コンポーネントを配置。</li>
-  <li><strong>連続データの作成:</strong> Series コンポーネントを使い、X座標とY座標に連番を入力してグリッド状に点を配置。</li>
-  <li><strong>アトラクターの導入:</strong> 任意の点（アトラクター）を基準に各点との距離（Distance）を測定し、その数値を点のZ座標や半径にマッピングすることで、グラデーションのある立体的な変形を作る。</li>
+  <li><strong>ベースグリッドの生成:</strong> <code class="language-plaintext highlighter-rouge">Series</code> コンポーネントを用いて等差数列（連番データ）を作成し、<code class="language-plaintext highlighter-rouge">Construct Point</code> の X座標および Y座標に入力することで、規則的な点群を配置します。</li>
+  <li><strong>距離の測定:</strong> Rhino空間上に定義した任意の基準点（アトラクター）と、グリッド上の各点との間の距離を <code class="language-plaintext highlighter-rouge">Distance</code> コンポーネントで一括算出します。</li>
+  <li><strong>形状へのマッピング:</strong> 算出された距離の数値を各点の Z座標、あるいは各点に配置した幾何形状のスケール値にマッピングします。これにより、基準点の位置に応じてリアルタイムに変形する立体グラデーションが構築されます。</li>
 </ol>
+
+<blockquote>
+  <p><strong>拡張プラグイン集: <a href="https://www.food4rhino.com/en">Food4Rhino</a></strong></p>
+
+  <p>Grasshopperには、様々な機能を拡張するプラグインがあり、Food4Rhino で多くのツールを探すことができます。用途に応じて既存のプラグインを導入すれば、解析、生成、インタラクション、製造支援など、幅広いワークフローに対応できます。</p>
+</blockquote>
 
 <hr />
-<h3 id="5-rhino-pythonの基礎">5. Rhino Pythonの基礎</h3>
+<h2 id="6-スクリプト応用バイブコーディング">6. スクリプト応用・バイブコーディング</h2>
 
-<h4 id="51-環境の起動と初期設定">5.1 環境の起動と初期設定</h4>
-<ol>
-  <li>メニューバーから <strong>[ツール] ──&gt; [スクリプト] ──&gt; [編集]</strong> を選択してエディタを起動。</li>
-  <li><strong>⚠️注意：</strong> 初回起動時は「Python 3ランタイムの初期化」が裏で走るため、数分ほどお待ちください。2回目以降の起動はスムーズになります。</li>
-</ol>
-
-<h4 id="52-pythonの最小限のルール">5.2 Pythonの最小限のルール</h4>
-<ul>
-  <li><strong>インデント（字下げ）が命:</strong> スペース4つのズレが即エラーになります。</li>
-  <li><strong>日本語コメントの禁止:</strong> # コメント に日本語を入れると動かないリスクがあるため、すべて英語で記述します。</li>
-</ul>
-
-<h4 id="53-ループのデモ0から9までの連番">5.3 ループのデモ（0から9までの連番）</h4>
+<h3 id="61-バイブコーディング">6.1 バイブコーディング</h3>
 
 <ul>
-  <li>ライブラリ（コマンド集）を呼び出し。
+  <li><strong>コードの暗記からの脱却:</strong> 細かい構文の記述は生成AIに任せ、人間は「どのような手順でデータを取得し、どう処理してCADに返すか」というアルゴリズムの構造設計に注力します。</li>
+  <li><strong>プロンプトのコツ:</strong> ハルシネーション（存在しない関数の捏造など）を防止するため、AIへの指示文には以下を指定します。
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">import</code> を先頭に書いて呼び出す（<code class="language-plaintext highlighter-rouge">import rhinoscriptsyntax as rs（略称）</code>）
-        <ul>
-          <li>実務で使う主要な3つ:
-            <ul>
-              <li><code class="language-plaintext highlighter-rouge">rhinoscriptsyntax</code>: 多くのRhinoのコマンドを使える。</li>
-              <li><code class="language-plaintext highlighter-rouge">Rhino</code>:</li>
-              <li><code class="language-plaintext highlighter-rouge">math</code>:</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><code class="language-plaintext highlighter-rouge">rs.コマンド名(変数)</code></li>
+      <li>使用環境の明示（例: 「Rhino 8 / Python 3環境」）</li>
+      <li>使用ライブラリの制限（例: 「<code class="language-plaintext highlighter-rouge">rhinoscriptsyntax</code> を使用」）</li>
+      <li>コード内のコメント指示（例: 「デバッグおよびエラー防止のため、1行ごとに半角英語でコメントを入れてください」）</li>
     </ul>
   </li>
+  <li><strong>デバッグの手順:</strong> スクリプトが正常に動作しない場合は、エディタや出力ウィンドウに表示されたエラーメッセージをそのままAIに共有し、修正案を取得します。</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>     <span class="c1"># Rhino操作ライブラリ（略称 rs）
-</span>
-<span class="c1"># 0から9まで10回繰り返すループ
-</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="c1"># ループ変数をX座標に流用して、直線状に10個の点を配置
-</span>    <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="mf">2.0</span>
-    <span class="n">rs</span><span class="p">.</span><span class="nc">AddPoint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<h3 id="62-フラクタルツリー再帰関数と乱数の生成例">6.2 フラクタルツリー（再帰関数と乱数）の生成例</h3>
 
-</code></pre></div></div>
+<p>再帰アルゴリズム（関数が自身を繰り返し呼び出す処理）と乱数を組み合わせ、Rhino上でもGrasshopper上でもPythonを使って複雑な樹形構造を自動生成する例です。</p>
 
-<h4 id="54-応用デモフラクタルツリー樹形構造の生成">5.4 応用デモ：フラクタルツリー（樹形構造）の生成</h4>
-<p>同じ処理を繰り返す「再帰関数」と、自然界の揺らぎを表現する「ランダム（乱数）」を組み合わせ、手作業では描けない複雑な構造を作ります。</p>
+<ul>
+  <li><strong>Rhino上での使い方:</strong> スクリプトエディタから実行し、3D空間に直接ツリーを生成します。</li>
+  <li><strong>Grasshopper上での使い方:</strong> Pythonコンポーネントに貼り付けて、パラメーターを変えながら形状を試せます。</li>
+</ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">math</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">math</span>
 <span class="kn">import</span> <span class="n">random</span>
 <span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>
 
@@ -206,149 +445,165 @@
 <span class="k">def</span> <span class="nf">Grow</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">g</span> <span class="o">&gt;=</span> <span class="n">gen</span><span class="p">:</span> <span class="c1"># Stop condition
 </span>        <span class="k">return</span>
-        
+
     <span class="n">v_scaled</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorScale</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
     <span class="n">plane</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PlaneFromNormal</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v_scaled</span><span class="p">)</span>
     <span class="n">circle</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">AddCircle</span><span class="p">(</span><span class="n">plane</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-    
+
     <span class="n">t</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">CurveClosestPoint</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">pt</span><span class="p">)</span>
     <span class="n">closest_pt</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">EvaluateCurve</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
     <span class="n">rot_axis</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorCreate</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">closest_pt</span><span class="p">)</span>
     <span class="n">rs</span><span class="p">.</span><span class="nc">DeleteObject</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
-    
+
     <span class="c1"># Left branch with slight random variation
 </span>    <span class="n">v1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorRotate</span><span class="p">(</span><span class="n">v_scaled</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span> <span class="o">+</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">rot_axis</span><span class="p">)</span>
     <span class="n">pt1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
-    
+
     <span class="c1"># Right branch
 </span>    <span class="n">v2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorRotate</span><span class="p">(</span><span class="n">v_scaled</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">rot_axis</span><span class="p">)</span>
     <span class="n">pt2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
-    
+
     <span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">pt1</span><span class="p">))</span>
     <span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">pt2</span><span class="p">))</span>
-    
+
     <span class="c1"># Recursive loop
 </span>    <span class="nc">Grow</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="nc">Grow</span><span class="p">(</span><span class="n">pt2</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Execute
 </span><span class="nc">Grow</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
 </code></pre></div></div>
 
-<h3 id="6-手動操作grasshopperスクリプトのまとめ">6. 手動操作、Grasshopper、スクリプトのまとめ</h3>
-<ul>
-  <li><strong>手動操作:</strong> 手順は自由で先のことを考えないでよいが、自動化できない。</li>
-  <li><strong>Grasshopper:</strong> 複雑なプロセスを視覚的に構築し、設定した範囲のパラメータを調整できる。構築する手間とパラメーター調整の効果の見極めが必要。AIとの相性はあまり良くない（RavenなどAIプラグインもある）。</li>
-  <li><strong>スクリプト:</strong> 大量処理・自動化・コマンド構築に向く。AIと相性が良い。</li>
-</ul>
+<h3 id="63-実務効率化creoレイヤー階層簡略化スクリプト">6.3 実務効率化：Creoレイヤー階層簡略化スクリプト</h3>
 
-<p><strong>工場の自動化のようなもの。手動操作は職人の手作り、Grasshopperは町工場、スクリプトは全自動の無人工場。</strong></p>
+<p>外部CADからインポートした深いレイヤー階層をワンクリックでクリーンアップする実務特化型のコードです。大規模データ処理時にRhinoがフリーズするのを防ぐため、描画停止・再開処理を組み込んでいます。</p>
 
-<blockquote>
-  <h3 id="the-5-step-algorithm"><em>The 5-Step Algorithm</em></h3>
-  <ol>
-    <li>要件を疑え (Make your requirements less dumb): その要件自体が間違っている可能性があるため、誰が出したものであっても常に疑うこと。</li>
-    <li>プロセスを削除せよ (Delete the part or process): 自動化や最適化に取り組む前に、まずはそのプロセス自体が不要ではないかと考え、削除を試みること。</li>
-    <li>単純化・最適化せよ (Simplify or optimize): ステップ2で削除できなかった場合のみ、処理をシンプルにすること。</li>
-    <li>サイクルタイムを加速させよ (Accelerate cycle time): プロセスを高速化すること。
-　自動化せよ (Automate): 最後に、すべてのプロセスを自動化すること。</li>
-  </ol>
-</blockquote>
-
-<hr />
-<hr />
-<h2 id="2-実務での活用--ハンズオン">#2 実務での活用 ＋ ハンズオン</h2>
-
-<h3 id="1-マインドセット生成ai時代のバイブスコーディング">1. マインドセット：生成AI時代のバイブスコーディング」</h3>
-<ul>
-  <li><strong>コードは暗記しない:</strong> 細かい構文はAIに書かせれば良い。「どういう手順で、何がどう動いているか」の大まかな仕組み（構造）の理解に集中する。</li>
-  <li><strong>AI（プロンプト）の鉄則:</strong> 「Rhino8 / Python 3環境」「rhinoscriptsyntax 使用」と環境を必ず指定し、ハルシネーション（嘘の関数）を防ぐために「1行ごとに英語コメント（#）を入れて」と頼む。</li>
-  <li><strong>バグが出たら:</strong> 「動きません」ではなく、画面に出たエラー文を丸ごとコピペしてAIに投げる。</li>
-</ul>
-
-<h3 id="2-後半ハンズオン実務で活きるスクリプト活用例">2. 【後半ハンズオン】実務で活きるスクリプト活用例</h3>
-<p><em>(※今後、Grasshopperとスクリプトの具体的な活用事例を追加予定)</em></p>
-
-<h4 id="21-実務効率化creoレイヤー階層簡略化スクリプト">2.1 実務効率化：Creoレイヤー階層簡略化スクリプト</h4>
-<p>外部CAD（Creoなど）からインポートした深いレイヤー階層を自動整理し、大規模データでも固まらないように描画停止処理を追加した実務特化コード。</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>
 
 <span class="k">def</span> <span class="nf">SimplifyLayers</span><span class="p">():</span>
     <span class="c1"># 1. Get current layer as root location
 </span>    <span class="n">root_layer</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">CurrentLayer</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">root_layer</span><span class="p">:</span>
         <span class="k">return</span>
-        
+
     <span class="c1"># 2. Stop viewport redraw to handle large assemblies quickly
 </span>    <span class="n">rs</span><span class="p">.</span><span class="nc">EnableRedraw</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
-    
+
     <span class="c1"># 3. Get all sublayers under the root layer
 </span>    <span class="n">sub_layers</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">LayerChildren</span><span class="p">(</span><span class="n">root_layer</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">sub_layers</span><span class="p">:</span>
         <span class="n">rs</span><span class="p">.</span><span class="nc">EnableRedraw</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
         <span class="k">return</span>
-        
+
     <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">sub_layers</span><span class="p">:</span>
         <span class="n">objects</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">ObjectsByLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">objects</span><span class="p">:</span>
             <span class="c1"># Move objects directly to the second-tier parent layer
 </span>            <span class="n">rs</span><span class="p">.</span><span class="nc">ObjectLayer</span><span class="p">(</span><span class="n">objects</span><span class="p">,</span> <span class="n">root_layer</span><span class="p">)</span>
-            
+
         <span class="c1"># Delete empty sublayer safely
 </span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">rs</span><span class="p">.</span><span class="nc">ObjectsByLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">):</span>
             <span class="n">rs</span><span class="p">.</span><span class="nc">DeleteLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
-            
+
     <span class="c1"># 4. Resume redraw
 </span>    <span class="n">rs</span><span class="p">.</span><span class="nc">EnableRedraw</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="nc">SimplifyLayers</span><span class="p">()</span>
-
 </code></pre></div></div>
 
-<h3 id="3-作成したスクリプトをワンクリックのコマンドボタンにする方法">3. 作成したスクリプトをワンクリックのコマンド（ボタン）にする方法</h3>
+<h3 id="64-スクリプトのコマンドボタン化手順">6.4 スクリプトのコマンドボタン化手順</h3>
 
-<p>保存したスクリプトを、エディタを開かずにRhinoのUIから直接実行できるように登録する。</p>
+<p>作成したスクリプトを、エディタを経由せずにRhinoのUIから直接実行するための登録手順です。</p>
+
 <ol>
-  <li><strong>スクリプトの保存:</strong> コードを .py ファイルとして以下の標準フォルダに保存する。
-    <ul>
-      <li>C:\Users[ユーザー名]\AppData\Roaming\McNeel\Rhinoceros\8.0\scripts</li>
-    </ul>
-  </li>
-  <li><strong>パスのコピー:</strong> 保存した .py ファイルを右クリック ──&gt; <strong>「パスのコピー」</strong>。</li>
-  <li><strong>ボタンの新規作成:</strong> Rhinoのツールバーの空きスペースで右クリック ──&gt; <strong>「新規ツールバーボタン」</strong>。</li>
-  <li><strong>マクロ（コマンド）の設定:</strong> 新規ボタンを Shift ＋ 右クリックで開き、以下を入力。
-    <ul>
-      <li><strong>名前 / 画像:</strong> 任意。</li>
-      <li><strong>コマンド:</strong> _-RunPythonScript “コピーしたパス” を貼り付ける。</li>
-      <li><em>(例: _-RunPythonScript “C:\Users...\scripts\my_script.py”。前後の “ を忘れないこと。頭の _- がダイアログのポップアップを抑制し、即実行させます。)</em></li>
-    </ul>
-  </li>
+  <li><strong>スクリプトファイルの保存:</strong><br />
+作成したコードを <code class="language-plaintext highlighter-rouge">.py</code> 拡張子で以下のフォルダへ保存します。<br />
+<code class="language-plaintext highlighter-rouge">C:\Users\[ユーザー名]\AppData\Roaming\McNeel\Rhinoceros\8.0\scripts</code></li>
+  <li><strong>絶対パスの取得:</strong><br />
+保存した <code class="language-plaintext highlighter-rouge">.py</code> ファイルを右クリックし、<strong>「パスのコピー」</strong> を選択してフルパスを取得します。</li>
+  <li><strong>UIボタンの追加:</strong><br />
+Rhinoツールバー上の空白部分で右クリックし、<strong>「新規ツールバーボタン」</strong> を選択して空のボタンを作成します。</li>
+  <li><strong>実行マクロの設定:</strong>
+コマンド欄に以下のマクロを記述します。
+<code class="language-plaintext highlighter-rouge">_-RunPythonScript "コピーした絶対パス"</code><br />
+（例: <code class="language-plaintext highlighter-rouge">_-RunPythonScript "C:\Users\...\scripts\my_script.py"</code>）</li>
 </ol>
 
 <blockquote>
-  <h3 id="rhinoスクリプト環境の全体像"><em>Rhinoスクリプト環境の全体像</em></h3>
-  <ol>
-    <li>スクリプトで使用するライブラリ（<code class="language-plaintext highlighter-rouge">import ~ as ...</code>）
-      <ul>
-        <li><strong>RhinoCommon:</strong> Rhinoを動かすための公式API (*)。C#だけでなくPythonからも直接操作可能。高機能だが記述量が多いため、できれば使いたくない。</li>
-      </ul>
-      <ul>
-        <li><strong>RhinoScriptSyntax:</strong> 記述量の多いRhinoCommonを、Pythonで簡単に扱えるようにした簡易コマンド集（ラッパー）。裏ではRhinoCommonが動いている。</li>
-      </ul>
-    </li>
-    <li>Rhinoで使用できるプログラミング言語
-      <ul>
-        <li><strong>VBScript:</strong> 旧方式のため使用する必要はない。互換性維持のため。<code class="language-plaintext highlighter-rouge">ツール → Rhino Script</code> で間違って使わないよう注意。</li>
-        <li><strong>Python:</strong> 使いやすいため主流。<code class="language-plaintext highlighter-rouge">(RhinoScriptSyntax) → RhinoCommon → Rhino本体</code></li>
-        <li><strong>C#:</strong> 開発者向け。<code class="language-plaintext highlighter-rouge">(RhinoScriptSyntax) → RhinoCommon → Rhino本体</code></li>
-      </ul>
-    </li>
-  </ol>
+  <p><strong>マクロ記述の補足</strong></p>
 
-  <p><strong>.NETプラグインSDK</strong>: Rhino/Grasshopperプラグインを開発しやすいよう整備されたソフトウェア開発キット。これらがRhino公式で整備されているため、各種Rhinoプラグインや、AI MCPの開発が活発。</p>
+  <p>パス前後のダブルクォーテーション <code class="language-plaintext highlighter-rouge">"</code> は、フォルダ名にスペースが含まれる際のエラーを防ぐために必須です。頭の <code class="language-plaintext highlighter-rouge">_-</code>（アンダーバーとハイフン）は、実行時のファイル選択ダイアログのポップアップを抑制し、クリックと同時にバックグラウンドで処理を即時実行させるための標準的な構文ルールです。</p>
+
 </blockquote>
+
+<hr />
+<h2 id="7-mcp動向">7. MCP動向</h2>
+
+<h3 id="71-概要">7.1 概要</h3>
+
+<p>生成AIを活用したデザインは、従来の「AIがアイデアを生成していても、最終的には人間がCADで手動操作して実行する」スタイルから、<strong>MCP（Model Context Protocol）</strong> を介して「AIエージェントがCAD環境のAPIを直接たたき、形状の作成・検証・修正までを自律的に行う」ワークフローへとシフトしています。</p>
+
+<p>MCPとは、LLM（大規模言語モデル）と、外部のアプリケーションやデータソースとの間を安全かつ標準化された作法で接続するユニバーサル・アダプター（オープン規格）です。これに対応することで、AIはCAD環境内のコンテキストを読み取り、自律的に適切な操作ツールを選択して実行できるようになります。</p>
+
+<h3 id="72-主要cadbimツールにおける最新動向">7.2 主要CAD/BIMツールにおける最新動向</h3>
+
+<ul>
+  <li><strong>Autodesk Fusion MCP:</strong> AutodeskはAnthropicと協働し<a href="https://aps.autodesk.com/blog/bringing-fusion-claude-creative-work">Fusion MCP</a>を導入しました。ユーザーの自然言語による「ブラケットの肉厚の変更」や「ボルト穴の移動」といった指示に対し、AIがFusionのAPIを直接実行してモデリング変更やデータ書き出しまでを自動完結させます。</li>
+  <li><strong>Rhino MCP:</strong> コンピュテーショナルデザイン領域においても、コミュニティ主導のMCPプラグインが急速に浸透しているのに加え、McNeel公式のGitHubでもプラットフォームの構築が勧められています。
+    <ul>
+      <li><strong><a href="https://mcneel.github.io/RhinoMCP/">Rhino MCP Platform</a>:</strong> McNeelはGitHub上にて公式プロジェクト <code class="language-plaintext highlighter-rouge">mcneel/RhinoMCP</code>（パッケージマネージャー名：<code class="language-plaintext highlighter-rouge">RhinoMcpPlatform</code>）を公開し、急ピッチでコア開発を進めています。</li>
+      <li><strong><a href="https://www.raven.build/en">Raven</a>:</strong> Grasshopperのアルゴリズム（グラフ構造）自体をAIに自律的に構築・配線・パラメータ調整させる。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="73-rhino-mcp-のシステム構成通信フロー">7.3 Rhino MCP のシステム構成・通信フロー</h3>
+
+<p>AIクライアントからRhinoが操作される内部処理は、以下の3レイヤーの構造で成立しています。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ AIクライアント ] (Claude Desktop / Cursor など)
+       │
+       │ （標準規格: stdio / JSON-RPC 通信）
+       ▼
+[ MCPサーバー ] (Python / FastMCP などのローカルミドルウェア)
+       │
+       │ （ローカル通信: TCP Loopback / Socket / 127.0.0.1:1999）
+       ▼
+[ Rhinoプラグイン ] (C# RhinoCommon / Python 常駐リスナー)
+       │
+       ▼ 【Rhino / Grasshopper 内部での動的コード実行・ジオメトリ操作】
+</code></pre></div></div>
+
+<ol>
+  <li><strong>AIクライアント:</strong> ユーザーの指示を受け取り、MCPサーバーから開示されている「利用可能なツール仕様（JSON Schema）」に基づいて、最適なコマンドとパラメータを内包した要求を発行します。</li>
+  <li><strong>MCPサーバー:</strong> AIとCAD実機の中間に常駐する軽量なローカルプログラムです。AIからの操作要求（JSONデータ）を、CAD側が解釈可能な通信プロトコルに翻訳して中継します。</li>
+  <li><strong>Rhinoプラグイン:</strong> Rhinoの内部でコマンド（<code class="language-plaintext highlighter-rouge">mcpstart</code> など）を実行することで起動するソケットサーバーです。中継された命令を受け取り、Rhinoのメインスレッド上でネイティブコマンドやPython/C#のコードをその場で動的実行（エボリューション）し、3D空間への形状反映と、その実行結果のエラーフィードバックを行います。</li>
+</ol>
+
+<h3 id="74-インプリケーションと今後の課題">7.4 インプリケーションと今後の課題</h3>
+
+<ul>
+  <li><strong>インプリケーション:</strong>
+    <ul>
+      <li>CAD操作習得のラーニングカーブがなだらかになる、または習得が必要なくなる。</li>
+      <li>デザイナーの仕事は手を動かしてモデリングすることから、モデリングはMCPに任せ、より上位レイヤーの指示にシフトする。</li>
+      <li>これまでCAD操作でボトルネックだった「最終的なモデリング」がAIによる実行対象として扱われることで、設計プロセスのループが高速になり、検討時間の短縮や検討の幅を広げることに繋がる可能性がある。</li>
+    </ul>
+  </li>
+  <li><strong>現時点の課題:</strong>
+    <ul>
+      <li>3Dデザインは、自然言語や画像に比べて学習データの量と品質がまだ十分ではない可能性がある。</li>
+      <li>構造・製造可能性・美観の相互作用のバランスを理解するためには、それぞれの要素を数値化し、設計上の重みづけを行うことが必要になる可能性がある。</li>
+      <li>そのため、AIが3D設計を安定して実務レベルで扱えるようになるには、もう少し時間がかかる可能性がある。</li>
+    </ul>
+  </li>
+  <li><strong>安全性の担保:</strong>
+    <ul>
+      <li>AIに処理を任せることで設計ロジックがブラックボックス化する恐れがある。</li>
+      <li>自律的なAI実行による予期しない不具合のリスクがある。実務運用においては、セキュリティ境界線の定義が議論されている。</li>
+    </ul>
+  </li>
+</ul>
 
       </div>
     </main><footer class="site-footer">
