@@ -123,7 +123,7 @@
   <li><strong>コンポーネントの呼び出し:</strong>
     <ul>
       <li><strong>タブから選択:</strong> 画面上部のメニュータブ（Params, Math, Sets, Vector, Curve, Surfaceなど）から、機能に応じたアイコンを選択する。</li>
-      <li><strong>ダブルクリック検索:</strong> キャンバスの空白部分を左ダブルクリックし、キーワード（例: <code class="language-plaintext highlighter-rouge">ConstructPoint</code>, <code class="language-plaintext highlighter-rouge">Line</code>）を入力してダイレクトに呼び出す。<code class="language-plaintext highlighter-rouge">10.0</code> などの数値でNumber Slider（デフォルト: 0 ~ 100）、<code class="language-plaintext highlighter-rouge">//</code>でPanelを呼び出せる。</li>
+      <li><strong>ダブルクリック検索:</strong> キャンバスの空白部分を左ダブルクリックし、キーワード（例: <code class="language-plaintext highlighter-rouge">ConstructPoint</code>, <code class="language-plaintext highlighter-rouge">Line</code>）を入力してダイレクトに呼び出す。特殊な例として、<code class="language-plaintext highlighter-rouge">10.0</code> などの数値でNumber Slider、<code class="language-plaintext highlighter-rouge">//</code>でPanelを呼び出すことができる。</li>
     </ul>
   </li>
   <li><strong>ワイヤーの接続と解除:</strong>
@@ -397,40 +397,32 @@
 
 <p>Rhinoにおける各アプローチの特性、メリット、およびリスクの比較です。</p>
 
-<table>
-  <thead>
-    <tr>
-      <th><strong>手法</strong></th>
-      <th><strong>概要</strong></th>
-      <th><strong>メリット</strong></th>
-      <th><strong>デメリット・リスク</strong></th>
-      <th><strong>AIとの親和性</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>手動操作 (Manual)</strong></td>
-      <td>マウスやCLI（コマンド入力）による個別配置。</td>
-      <td>直感的。事前のロジック構築が不要で、単発の作業において最速。</td>
-      <td>反復作業や大量データ処理、バリエーション変更に膨大な手作業の工数がかかる。</td>
-      <td>非常に低い。</td>
-    </tr>
-    <tr>
-      <td><strong>Grasshopper (Gh)</strong></td>
-      <td>コンポーネントを視覚的に接続するビジュアルプログラミング。</td>
-      <td>データの流れを視覚的に把握でき、パラメータ変更による形状変化をリアルタイムに検証可能。</td>
-      <td>処理が複雑化するとアルゴリズムが肥大化し、「スパゲッティコード」としてブラックボックス化しやすい。</td>
-      <td>低い（グラフ構造の生成はLLMが苦手とする領域）。</td>
-    </tr>
-    <tr>
-      <td><strong>スクリプト (Script)</strong></td>
-      <td>PythonやC#などのテキストコードによる論理記述。</td>
-      <td>複雑なループ処理や大量のデータを、極めて省スペースかつ高速に実行できる。</td>
-      <td>固有のプログラミング構文を習得する必要がある。</td>
-      <td><strong>極めて高い</strong>（LLMが最も得意とするコードテキスト生成と合致）。</td>
-    </tr>
-  </tbody>
-</table>
+<ul>
+  <li><strong>手動操作 (Manual)</strong>
+    <ul>
+      <li><strong>概要:</strong> マウスやCLI（コマンド入力）による個別配置。</li>
+      <li><strong>メリット:</strong> 直感的。事前のロジック構築が不要で、単発の作業において最速。</li>
+      <li><strong>デメリット・リスク:</strong> 反復作業や大量データ処理、バリエーション変更に膨大な手作業の工数がかかる。</li>
+      <li><strong>AIとの親和性:</strong> 非常に低い。</li>
+    </ul>
+  </li>
+  <li><strong>Grasshopper (Gh)</strong>
+    <ul>
+      <li><strong>概要:</strong> コンポーネントを視覚的に接続するビジュアルプログラミング。</li>
+      <li><strong>メリット:</strong> データの流れを視覚的に把握でき、パラメータ変更による形状変化をリアルタイムに検証可能。</li>
+      <li><strong>デメリット・リスク:</strong> 処理が複雑化するとアルゴリズムが肥大化し、「スパゲッティコード」としてブラックボックス化しやすい。</li>
+      <li><strong>AIとの親和性:</strong> 低い（グラフ構造の生成はLLMが苦手とする領域）。</li>
+    </ul>
+  </li>
+  <li><strong>スクリプト (Script)</strong>
+    <ul>
+      <li><strong>概要:</strong> PythonやC#などのテキストコードによる論理記述。</li>
+      <li><strong>メリット:</strong> 複雑なループ処理や大量のデータを、極めて省スペースかつ高速に実行できる。</li>
+      <li><strong>デメリット・リスク:</strong> 固有のプログラミング構文を習得する必要がある。</li>
+      <li><strong>AIとの親和性:</strong> <strong>極めて高い</strong>（LLMが最も得意とするコードテキスト生成と合致）。</li>
+    </ul>
+  </li>
+</ul>
 
 <blockquote>
   <p><strong>工場の自動化への比喩</strong></p>
@@ -491,61 +483,118 @@
 
 <h3 id="62-フラクタルツリー再帰関数と乱数の生成例">6.2 フラクタルツリー（再帰関数と乱数）の生成例</h3>
 
-<p>再帰アルゴリズム（関数が自身を繰り返し呼び出す処理）と乱数を組み合わせ、Rhino上でもGrasshopper上でもPythonを使って複雑な樹形構造を自動生成する例です。</p>
+<p>再帰アルゴリズム（関数が自身を繰り返し呼び出す処理）と乱数を組み合わせ、Grasshopper上でPythonを使って複雑な樹形構造を自動生成する例です。</p>
 
+<p><strong>Grasshopper上での使い方:</strong></p>
 <ul>
-  <li><strong>Rhino上での使い方:</strong> スクリプトエディタから実行し、3D空間に直接ツリーを生成します。</li>
-  <li><strong>Grasshopper上での使い方:</strong> Pythonコンポーネントに貼り付けて、パラメーターを変えながら形状を試せます。</li>
+  <li>
+    <p>Pythonコンポーネントを置き、<strong>変数名</strong>と<strong>データ型</strong>をコードと合わせる（右クリック）。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>区分</th>
+          <th>変数名</th>
+          <th>データ型</th>
+          <th>役割・説明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Input</strong>（左側）</td>
+          <td><code class="language-plaintext highlighter-rouge">gen</code></td>
+          <td>Integer (整数)</td>
+          <td>成長をストップさせる最大の世代数（<strong>指数関数的に処理が重くなるため、0 ~ 10程度にする</strong>）。</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td><code class="language-plaintext highlighter-rouge">angle</code></td>
+          <td>Float (実数)</td>
+          <td>枝が分岐する際の見開き角度。</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td><code class="language-plaintext highlighter-rouge">scale</code></td>
+          <td>Float (実数)</td>
+          <td>次の世代の枝がどれくらい短くなるかを表す縮小比率（例: <code class="language-plaintext highlighter-rouge">0.8</code>）。</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td><code class="language-plaintext highlighter-rouge">seed</code></td>
+          <td>Integer (整数)</td>
+          <td>ランダムな枝のブレ（揺らぎ）を一意に決定するためのシード値。</td>
+        </tr>
+        <tr>
+          <td><strong>Output</strong>（右側）</td>
+          <td><code class="language-plaintext highlighter-rouge">Lines</code></td>
+          <td>幾何データ (Line)</td>
+          <td>生成されたすべての枝（ラインデータ）のリスト。Grasshopper側へ最終的な形状を出力する変数。</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Pythonコンポーネントを開き、スクリプトを貼り付ける。</li>
+  <li>Inputに<code class="language-plaintext highlighter-rouge">Number Slider</code>、アウトプットに<code class="language-plaintext highlighter-rouge">Line</code>を接続しパラメーター調整。</li>
 </ul>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">math</span>
+<p><strong>仕組み:</strong></p>
+<ol>
+  <li><strong>ベクトルの加算と作図</strong>：原点から真上にベクトルを伸ばして基準となる最初の「幹」を描く。</li>
+  <li><strong>幾何学計算とランダムな回転</strong>：幹の先端から、外側へ扇状に広がる回転軸を計算し、左右に少しランダムなブレを加えた「2本の枝」を作る。</li>
+  <li><strong>条件付きの再帰処理</strong>：新しくできた枝の先端を次の基準点として同じ分岐処理を繰り返すが、指定した世代数に達したら無限ループを防ぐために処理を終了する。</li>
+</ol>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>
 <span class="kn">import</span> <span class="n">random</span>
-<span class="kn">import</span> <span class="n">rhinoscriptsyntax</span> <span class="k">as</span> <span class="n">rs</span>
 
-<span class="c1"># Default settings (If not predefined in Grasshopper inputs)
-</span><span class="k">if</span> <span class="sh">"</span><span class="s">scale</span><span class="sh">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nf">globals</span><span class="p">():</span> <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.75</span>
-<span class="k">if</span> <span class="sh">"</span><span class="s">angle</span><span class="sh">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nf">globals</span><span class="p">():</span> <span class="n">angle</span> <span class="o">=</span> <span class="mf">25.0</span>
-<span class="k">if</span> <span class="sh">"</span><span class="s">gen</span><span class="sh">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nf">globals</span><span class="p">():</span> <span class="n">gen</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="k">if</span> <span class="sh">"</span><span class="s">seed</span><span class="sh">"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nf">globals</span><span class="p">():</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
-
-<span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span> <span class="c1"># Fix random shapes
-</span><span class="n">Lines</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="c1"># Base trunk vector
+<span class="c1"># --- 1. Initial Setup ---
+</span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Base point of the tree
+</span><span class="n">V</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Initial growth direction (straight up)
 </span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
-<span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span>
-
-<span class="k">def</span> <span class="nf">Grow</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">g</span> <span class="o">&gt;=</span> <span class="n">gen</span><span class="p">:</span> <span class="c1"># Stop condition
-</span>        <span class="k">return</span>
-
-    <span class="n">v_scaled</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorScale</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-    <span class="n">plane</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PlaneFromNormal</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v_scaled</span><span class="p">)</span>
+<span class="n">Lines</span> <span class="o">=</span> <span class="p">[]</span>     <span class="c1"># List to store all created branch lines
+</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>          <span class="c1"># End point of the first main trunk
+</span><span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span> <span class="c1"># Draw the first main trunk
+</span>
+<span class="c1"># --- 2. Define the Branch Growth Function ---
+</span><span class="k">def</span> <span class="nf">Grow</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="c1"># Stop growing if the current generation reaches the limit
+</span>    <span class="k">if</span> <span class="n">g</span> <span class="o">&gt;=</span> <span class="n">gen</span><span class="p">:</span>
+        <span class="k">return</span>
+        
+    <span class="c1"># Make the next branch shorter
+</span>    <span class="n">v</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorScale</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    
+    <span class="c1"># Calculate the rotation axis to spread branches outward
+</span>    <span class="n">plane</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PlaneFromNormal</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
     <span class="n">circle</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">AddCircle</span><span class="p">(</span><span class="n">plane</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-
-    <span class="n">t</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">CurveClosestPoint</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">pt</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">CurveClosestPoint</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
     <span class="n">closest_pt</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">EvaluateCurve</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
     <span class="n">rot_axis</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorCreate</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">closest_pt</span><span class="p">)</span>
-    <span class="n">rs</span><span class="p">.</span><span class="nc">DeleteObject</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
 
-    <span class="c1"># Left branch with slight random variation
-</span>    <span class="n">v1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorRotate</span><span class="p">(</span><span class="n">v_scaled</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span> <span class="o">+</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">rot_axis</span><span class="p">)</span>
-    <span class="n">pt1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
+    <span class="c1"># Calculate direction for the left branch (with small random variation)
+</span>    <span class="n">V1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorRotate</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span> <span class="o">+</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">rot_axis</span><span class="p">)</span>
+    <span class="n">pt1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">V1</span><span class="p">)</span>
+    
+    <span class="c1"># Calculate direction for the right branch (with small random variation)
+</span>    <span class="n">V2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorRotate</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">rot_axis</span><span class="p">)</span>
+    <span class="n">pt2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">V2</span><span class="p">)</span>
 
-    <span class="c1"># Right branch
-</span>    <span class="n">v2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">VectorRotate</span><span class="p">(</span><span class="n">v_scaled</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">rot_axis</span><span class="p">)</span>
-    <span class="n">pt2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">PointAdd</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
+    <span class="c1"># Create new lines for the branches
+</span>    <span class="n">L1</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">pt1</span><span class="p">)</span>
+    <span class="n">L2</span> <span class="o">=</span> <span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">pt2</span><span class="p">)</span>
 
-    <span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">pt1</span><span class="p">))</span>
-    <span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="nc">AddLine</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">pt2</span><span class="p">))</span>
+    <span class="c1"># Add the new lines to the list
+</span>    <span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">L1</span><span class="p">)</span>
+    <span class="n">Lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">L2</span><span class="p">)</span>
 
-    <span class="c1"># Recursive loop
-</span>    <span class="nc">Grow</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="nc">Grow</span><span class="p">(</span><span class="n">pt2</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># [Recursion] Repeat the growth from the new branch tips (generation + 1)
+</span>    <span class="nc">Grow</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">V1</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nc">Grow</span><span class="p">(</span><span class="n">pt2</span><span class="p">,</span> <span class="n">V2</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">g</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Execute
+<span class="c1"># --- 3. Run the Process ---
+</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="c1"># Start growing from the trunk tip (B), starting at generation 0
 </span><span class="nc">Grow</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </code></pre></div></div>
 

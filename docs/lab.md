@@ -4,7 +4,8 @@ title: LAB
 ---
 
 # LAB
-### [> Things to do](https://scrapbox.io/hayashnaoki/Things_to_do)
+
+<!-- ### [> Things to do](https://scrapbox.io/hayashnaoki/Things_to_do) --->
 
 <!-- Don't include .md in the links! -->
 
@@ -32,6 +33,18 @@ title: LAB
     <div class="caption">2099 | ZZ | SW</div>
   </a>
   --->
+
+  <a href="/docs/lab/micro-oled-eyes" class="grid-item">
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/micro-oled-eyes/test_01.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
+    <div class="caption"><b>Micro OLED Eyes</b></div>
+    <div class="caption">2026 | DFAB | CPP</div>
+  </a>
 
   <a href="/docs/lab/intro_to_cd" class="grid-item">
     <div class="image-wrapper">

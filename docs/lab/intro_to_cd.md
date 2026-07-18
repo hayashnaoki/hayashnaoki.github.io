@@ -64,7 +64,7 @@ Rhinoでは、複数の操作方法が存在します。
   - 既存の `.gh` ファイルは **[File] ──> [Open]** で開く
 2. **コンポーネントの呼び出し:**
     - **タブから選択:** 画面上部のメニュータブ（Params, Math, Sets, Vector, Curve, Surfaceなど）から、機能に応じたアイコンを選択する。
-    - **ダブルクリック検索:** キャンバスの空白部分を左ダブルクリックし、キーワード（例: `ConstructPoint`, `Line`）を入力してダイレクトに呼び出す。`10.0` などの数値でNumber Slider（デフォルト: 0 ~ 100）、`//`でPanelを呼び出せる。
+    - **ダブルクリック検索:** キャンバスの空白部分を左ダブルクリックし、キーワード（例: `ConstructPoint`, `Line`）を入力してダイレクトに呼び出す。特殊な例として、`10.0` などの数値でNumber Slider、`//`でPanelを呼び出すことができる。
 3. **ワイヤーの接続と解除:**
     - **単一接続:** 出力端子から次の入力端子へドラッグ&ドロップして接続する。
     - **複数接続:** すでにワイヤーが接続されている入力端子に対し、`Shift` キーを押しながら新しいワイヤーを重ねることで、上書きせずにデータを追加できる。
@@ -77,8 +77,7 @@ Rhinoでは、複数の操作方法が存在します。
       loop
       playsinline></video>
     </div>
-
-
+    
 4. **右クリックによる操作:**
     - コンポーネントの中央右クリック:
       - `Name`: コンポーネント自体の名称を変更する。
@@ -258,11 +257,23 @@ PythonからRhinoの機能を使用するために、コードの最上部で各
 
 Rhinoにおける各アプローチの特性、メリット、およびリスクの比較です。
 
-| **手法** | **概要** | **メリット** | **デメリット・リスク** | **AIとの親和性** |
-| --- | --- | --- | --- | --- |
-| **手動操作 (Manual)** | マウスやCLI（コマンド入力）による個別配置。 | 直感的。事前のロジック構築が不要で、単発の作業において最速。 | 反復作業や大量データ処理、バリエーション変更に膨大な手作業の工数がかかる。 | 非常に低い。 |
-| **Grasshopper (Gh)** | コンポーネントを視覚的に接続するビジュアルプログラミング。 | データの流れを視覚的に把握でき、パラメータ変更による形状変化をリアルタイムに検証可能。 | 処理が複雑化するとアルゴリズムが肥大化し、「スパゲッティコード」としてブラックボックス化しやすい。 | 低い（グラフ構造の生成はLLMが苦手とする領域）。 |
-| **スクリプト (Script)** | PythonやC#などのテキストコードによる論理記述。 | 複雑なループ処理や大量のデータを、極めて省スペースかつ高速に実行できる。 | 固有のプログラミング構文を習得する必要がある。 | **極めて高い**（LLMが最も得意とするコードテキスト生成と合致）。 |
+- **手動操作 (Manual)**
+  - **概要:** マウスやCLI（コマンド入力）による個別配置。
+  - **メリット:** 直感的。事前のロジック構築が不要で、単発の作業において最速。
+  - **デメリット・リスク:** 反復作業や大量データ処理、バリエーション変更に膨大な手作業の工数がかかる。
+  - **AIとの親和性:** 非常に低い。
+
+- **Grasshopper (Gh)**
+  - **概要:** コンポーネントを視覚的に接続するビジュアルプログラミング。
+  - **メリット:** データの流れを視覚的に把握でき、パラメータ変更による形状変化をリアルタイムに検証可能。
+  - **デメリット・リスク:** 処理が複雑化するとアルゴリズムが肥大化し、「スパゲッティコード」としてブラックボックス化しやすい。
+  - **AIとの親和性:** 低い（グラフ構造の生成はLLMが苦手とする領域）。
+
+- **スクリプト (Script)**
+  - **概要:** PythonやC#などのテキストコードによる論理記述。
+  - **メリット:** 複雑なループ処理や大量のデータを、極めて省スペースかつ高速に実行できる。
+  - **デメリット・リスク:** 固有のプログラミング構文を習得する必要がある。
+  - **AIとの親和性:** **極めて高い**（LLMが最も得意とするコードテキスト生成と合致）。
 
 > **工場の自動化への比喩**
 > 
@@ -310,60 +321,79 @@ Grasshopperを用いた数理的形状制御の代表的なプロセスです。
 
 ### 6.2 フラクタルツリー（再帰関数と乱数）の生成例
 
-再帰アルゴリズム（関数が自身を繰り返し呼び出す処理）と乱数を組み合わせ、Rhino上でもGrasshopper上でもPythonを使って複雑な樹形構造を自動生成する例です。
+再帰アルゴリズム（関数が自身を繰り返し呼び出す処理）と乱数を組み合わせ、Grasshopper上でPythonを使って複雑な樹形構造を自動生成する例です。
 
-- **Rhino上での使い方:** スクリプトエディタから実行し、3D空間に直接ツリーを生成します。
-- **Grasshopper上での使い方:** Pythonコンポーネントに貼り付けて、パラメーターを変えながら形状を試せます。
+**Grasshopper上での使い方:** 
+- Pythonコンポーネントを置き、**変数名**と**データ型**をコードと合わせる（右クリック）。
+
+  | 区分 | 変数名 | データ型 | 役割・説明 |
+  | --- | --- | --- | --- |
+  | **Input**（左側） | `gen` | Integer (整数) | 成長をストップさせる最大の世代数（**指数関数的に処理が重くなるため、0 ~ 10程度にする**）。 |
+  |  | `angle` | Float (実数) | 枝が分岐する際の見開き角度。 |
+  |  | `scale` | Float (実数) | 次の世代の枝がどれくらい短くなるかを表す縮小比率（例: `0.8`）。 |
+  |  | `seed` | Integer (整数) | ランダムな枝のブレ（揺らぎ）を一意に決定するためのシード値。 |
+  | **Output**（右側） | `Lines` | 幾何データ (Line) | 生成されたすべての枝（ラインデータ）のリスト。Grasshopper側へ最終的な形状を出力する変数。 |
+
+- Pythonコンポーネントを開き、スクリプトを貼り付ける。
+- Inputに`Number Slider`、アウトプットに`Line`を接続しパラメーター調整。
+
+**仕組み:**
+1. **ベクトルの加算と作図**：原点から真上にベクトルを伸ばして基準となる最初の「幹」を描く。
+2. **幾何学計算とランダムな回転**：幹の先端から、外側へ扇状に広がる回転軸を計算し、左右に少しランダムなブレを加えた「2本の枝」を作る。
+3. **条件付きの再帰処理**：新しくできた枝の先端を次の基準点として同じ分岐処理を繰り返すが、指定した世代数に達したら無限ループを防ぐために処理を終了する。
 
 ```py
-import math
-import random
 import rhinoscriptsyntax as rs
+import random
 
-# Default settings (If not predefined in Grasshopper inputs)
-if "scale" not in globals(): scale = 0.75
-if "angle" not in globals(): angle = 25.0
-if "gen" not in globals(): gen = 6
-if "seed" not in globals(): seed = 42
+# --- 1. Initial Setup ---
+A = [0, 0, 0]  # Base point of the tree
+V = [0, 0, 1]  # Initial growth direction (straight up)
 
-random.seed(seed) # Fix random shapes
-Lines = []
+Lines = []     # List to store all created branch lines
 
-A = [0, 0, 0]
-V = [0, 0, 5] # Base trunk vector
+B = rs.PointAdd(A, V)          # End point of the first main trunk
+Lines.append(rs.AddLine(A, B)) # Draw the first main trunk
 
-B = rs.PointAdd(A, V)
-Lines.append(rs.AddLine(A, B))
-
+# --- 2. Define the Branch Growth Function ---
 def Grow(pt, v, s, a, g):
-    if g >= gen: # Stop condition
+    # Stop growing if the current generation reaches the limit
+    if g >= gen:
         return
-
-    v_scaled = rs.VectorScale(v, s)
-    plane = rs.PlaneFromNormal(pt, v_scaled)
+        
+    # Make the next branch shorter
+    v = rs.VectorScale(v, s)
+    
+    # Calculate the rotation axis to spread branches outward
+    plane = rs.PlaneFromNormal(pt, v)
     circle = rs.AddCircle(plane, 0.1)
-
-    t = rs.CurveClosestPoint(circle, pt)
+    t = rs.CurveClosestPoint(circle, A)
     closest_pt = rs.EvaluateCurve(circle, t)
     rot_axis = rs.VectorCreate(pt, closest_pt)
-    rs.DeleteObject(circle)
 
-    # Left branch with slight random variation
-    v1 = rs.VectorRotate(v_scaled, -a + random.uniform(-3, 3), rot_axis)
-    pt1 = rs.PointAdd(pt, v1)
+    # Calculate direction for the left branch (with small random variation)
+    V1 = rs.VectorRotate(v, -a + random.uniform(-3, 3), rot_axis)
+    pt1 = rs.PointAdd(pt, V1)
+    
+    # Calculate direction for the right branch (with small random variation)
+    V2 = rs.VectorRotate(v, a + random.uniform(-3, 3), rot_axis)
+    pt2 = rs.PointAdd(pt, V2)
 
-    # Right branch
-    v2 = rs.VectorRotate(v_scaled, a + random.uniform(-3, 3), rot_axis)
-    pt2 = rs.PointAdd(pt, v2)
+    # Create new lines for the branches
+    L1 = rs.AddLine(pt, pt1)
+    L2 = rs.AddLine(pt, pt2)
 
-    Lines.append(rs.AddLine(pt, pt1))
-    Lines.append(rs.AddLine(pt, pt2))
+    # Add the new lines to the list
+    Lines.append(L1)
+    Lines.append(L2)
 
-    # Recursive loop
-    Grow(pt1, v1, s, a, g + 1)
-    Grow(pt2, v2, s, a, g + 1)
+    # [Recursion] Repeat the growth from the new branch tips (generation + 1)
+    Grow(pt1, V1, s, a, g + 1)
+    Grow(pt2, V2, s, a, g + 1)
 
-# Execute
+# --- 3. Run the Process ---
+random.seed(seed)
+# Start growing from the trunk tip (B), starting at generation 0
 Grow(B, V, scale, angle, 0)
 ```
 
