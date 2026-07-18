@@ -36,7 +36,7 @@ title: LAB
 
   <a href="/docs/lab/micro-oled-eyes" class="grid-item">
     <div class="media-wrapper">
-        <video src="/docs/images/lab/micro-oled-eyes/test_01.mp4"
+        <video src="/docs/images/lab/micro-oled-eyes/oled-eye.mp4"
         autoplay
         muted
         loop

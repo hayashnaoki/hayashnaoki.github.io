@@ -8,10 +8,12 @@ layout: default
 
 A dual-display hardware project using a Seeed Studio XIAO RP2040 and two SH1106 OLED screens to animate synchronized eye tracking movements.
 
+I wanted to try this out as a test to experiment with Antigravity IDE with PlatformIO and to learn proper version control using GitHub.
+
 [GitHub](https://github.com/hayashnaoki/micro-oled-eyes/tree/main)
 
 <div class="media-wrapper">
-    <video src="/docs/images/lab/micro-oled-eyes/test_01.mp4"
+    <video src="/docs/images/lab/micro-oled-eyes/oled-eye.mp4"
     autoplay
     muted
     loop
