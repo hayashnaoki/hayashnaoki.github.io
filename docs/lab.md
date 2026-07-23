@@ -43,7 +43,7 @@ title: LAB
         playsinline></video>
     </div>
     <div class="caption"><b>Micro OLED Eyes</b></div>
-    <div class="caption">2026 | DFAB | CPP</div>
+    <div class="caption">2026 | DFAB | Cpp</div>
   </a>
 
   <a href="/docs/lab/intro_to_cd" class="grid-item">

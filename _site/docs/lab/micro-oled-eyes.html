@@ -36,20 +36,36 @@
       <div class="wrapper">
         <h1 id="micro-oled-eyes">Micro OLED Eyes</h1>
 
-<p>2026 | DFAB | CPP</p>
+<p>2026 | DFAB | Cpp</p>
 
-<p>A dual-display hardware project using a Seeed Studio XIAO RP2040 and two SH1106 OLED screens to animate synchronized eye tracking movements.</p>
-
-<p><a href="https://github.com/hayashnaoki/micro-oled-eyes/tree/main">GitHub</a></p>
+<p>A small hardware exploration using a Seeed Studio XIAO RP2040 and two SH1106 OLED displays to drive synchronized eye-tracking animations.</p>
 
 <div class="media-wrapper">
     <video src="/docs/images/lab/micro-oled-eyes/oled-eye.mp4" autoplay="" muted="" loop="" playsinline=""></video>
 </div>
 
-<p>I wanted to try this out to test Antigravity IDE in combination with PlatformIO and to learn proper version control using GitHub.
-The transition from Arduino IDE to Antigravity/PlatformIO was very smooth, and Antigravity comes with automated configuration features for managing libraries and boards.</p>
+<h2 id="animation--micro-interactions">Animation &amp; Micro-Interactions</h2>
+
+<ul>
+  <li>Easing Functions: Applying smooth easing curves to eyelid motion drastically improved the natural cadence of blinks.</li>
+  <li>Micro-Saccades &amp; Idle Drift: Adding a gentle, slow vertical drift to the baseline eye positioning avoids a frozen state and gives a subtle sense of breathing.</li>
+  <li>Slight Convergence (Cross-Eyed Offset): Angling the focal axes slightly inward creates a realistic depth of field and immediate personality.</li>
+</ul>
+
+<h2 id="testing-antigravity-ide--platformio">Testing Antigravity IDE &amp; PlatformIO</h2>
+
+<p>The primary goal of this project was to test <strong>Antigravity IDE</strong> alongside <strong>PlatformIO</strong> and establish a cleaner Git/GitHub workflow, moving away from the standard Arduino IDE.</p>
+
+<ul>
+  <li><strong>Hardware:</strong> Seeed Studio XIAO RP2040, 2x SH1106 OLED screens</li>
+  <li><strong>Software:</strong> C++, PlatformIO, Antigravity IDE, GitHub</li>
+</ul>
 
 <p><img src="/docs/images/lab/micro-oled-eyes/antigravity.jpg" alt="" /></p>
+
+<p><strong>Code &amp; Details:</strong> <a href="https://github.com/hayashnaoki/micro-oled-eyes">GitHub Repository</a></p>
+
+<p><a href="https://github.com/hayashnaoki/micro-oled-eyes">GitHub</a></p>
 
       </div>
     </main><footer class="site-footer">
