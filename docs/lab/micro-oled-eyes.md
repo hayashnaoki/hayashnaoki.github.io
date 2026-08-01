@@ -4,7 +4,7 @@ layout: default
 
 # Micro OLED Eyes
 
-2026 \| DFAB \| Cpp
+2026 \| DFAB \| C++
 
 A small hardware exploration using a Seeed Studio XIAO RP2040 and two SH1106 OLED displays to drive synchronized eye-tracking animations.
 
@@ -28,7 +28,7 @@ A small hardware exploration using a Seeed Studio XIAO RP2040 and two SH1106 OLE
 
 ### Testing Antigravity IDE & PlatformIO
 
-The primary goal of this project was to test **[Antigravity IDE](https://antigravity.google/product/antigravity-ide)** alongside **[PlatformIO](https://platformio.org/)** and establish a cleaner Git/GitHub workflow, shifting from the standard Arduino IDE.
+The primary goal of this project was to test [Antigravity IDE](https://antigravity.google/product/antigravity-ide) alongside [PlatformIO](https://platformio.org/) and establish a cleaner Git/GitHub workflow, shifting from the standard Arduino IDE.
 
 1. **Key Concept Differences**  
     Unlike the Arduino IDE, which manages libraries and boards globally, PlatformIO handles them on a per-project basis.

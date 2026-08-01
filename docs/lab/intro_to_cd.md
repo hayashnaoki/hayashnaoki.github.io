@@ -6,6 +6,327 @@ layout: default
 
 2026 \| Computational design \| Rhino / Grasshopper / Python
 
+## 0. 準備
+
+### 0.1 Rhinoceros
+
+- ライセンス価格（買い切り）
+    - 商用版（フルライセンス）: ¥187,000
+    - 教育版（学生・教員向け）: ¥39,600（機能制限なし）
+    - アップグレード商用版: ¥110,000
+- 90日間無料評価版
+    - 公式サイト：[rhino3d.com](https://www.rhino3d.com/)
+    - 90日間の無料トライアル（Grasshopperを含め商用版と同じフル機能）
+    - 試用期間（90日）終了後もビューアー（モデルの閲覧・各種検証）として利用可能（保存不可）
+
+  ![](https://static.food4rhino.com/cdn/farfuture/kVBvPnsEt2xDkLdUvD_PYXboGrtv_4ONmW_AJ1d4TWA/mtime:1680618717/sites/default/files/public/f4r/images/rh2.png)
+
+  ([Source](https://www.food4rhino.com/en))
+
+### 0.2 Autodesk Fusion
+
+- 個人用無償ライセンス（Personal Use）
+    - [Autodesk Fusion](https://www.autodesk.com/jp/products/fusion-360/overview#top)：「個人用 Autodesk Fusion」からアクセス（少し目立たないように書いてある）
+    - 条件: 非商用目的（趣味・DIY・個人の学習等）かつ年間収益1,000米ドル未満の場合、無償で継続利用可能。
+    - 主な制限: 同時編集可能ドキュメント数（10個まで）の制限、一部の高度なCAM・解析機能や商用出力の制限あり。
+
+---
+## 1. 概要
+
+### 1.1 ゴール
+
+- モデリングアプローチの比較
+- オープン開発基盤/AI連携
+- Python 3 とマイコン・CAD連携のトライアル
+
+### 1.2 概念整理
+
+フォーカスするポイントの異なる様々な言葉があります。⚠️使う人や文脈によって意味が変わります。
+
+| 用語 | 定義 |
+| --- | --- |
+| **CAD (Computer Aided Design)** | コンピューターを用いた設計・デザイン手法全般。 |
+| **Computational Design** | 計算能力や数理的アプローチをデザインプロセスに統合する手法の総称。 |
+| **Algorithmic Design** | 論理的・数理的手順（プロセス）を組み立てることに着目。 |
+| **Procedural Design** | 大体同じ。 |
+| **Parametric Design** | （アルゴリズムを組んだ上で）パラメーター操作で形状を制御することに着目。 |
+| **Generative Design** | 制約条件とゴール（荷重、重量、製造要件等）を設定し、アルゴリズムやAIに最適解を自律探索・生成させる手法。 |
+
+> **Parametric Architecture**
+> 
+> - 一般的には… 単なる「Grasshopper等を用いた複雑・有機的な建築造形」
+> - 「日照、風向、構造負荷等の多角的環境パラメーターを統合した最適化プロセス」と主張する人もいる
+> - ザハ・ハディド・アーキテクツのパトリック・シューマッハ氏が21世紀の建築様式「Parametricism」として提唱（参考：[A simple guide to parametricism](https://www.dezeen.com/2026/05/06/parametricism-simple-guide/)）
+
+> **Generative Design**
+> 
+> - 従来手法との違い: パラメトリック（人間が定義したルール内の変形）に対し、ジェネレーティブ（条件を満たす未知の形状の自律創出）。
+> - アプローチ: 設計者が制約（荷重・固定点・製法）を入力し、AI・アルゴリズムが数百の最適解を生成。
+> - 製造分野では、Autodesk Fusionによる構造の最適化や軽量化が代表例。
+  - [Unlocking Innovative Solutions with Generative Design](https://www.autodesk.com/products/fusion-360/blog/unlocking-innovative-solutions-with-generative-design/)
+  - [ものづくりにおけるジェネレーティブ デザインの 8 つの価値を探る](https://www.autodesk.com/products/fusion-360/blog/ja/generative-design-manufacturing-values/)
+
+### 1.3 モデリングアプローチ（Rhinoの例）
+
+- **手動操作**: 直感的な単発操作。反復作業や多バリエーション検討には非効率。Rhinoではコマンド名を打ち込むCLI (Command Line Input)もある。
+- **Visual Programming (Grasshopper)**: ノード接続によるデータフロー構築。ルール再利用とリアルタイム形状検証が得意。
+- **Script**: Python/C#等のテキストコード記述。複雑なループ処理やデータ処理、AI連携に最適。
+
+---
+## 2. Grasshopperの構造と概念
+
+### 2.1 コア概念
+
+- **コンポーネント:** 関数/処理ノード。左側（Input）からデータを受け取り、右側（Output）から出力する。
+- **ワイヤー:** コンポーネント間のデータ伝達パス。
+- **パラメーター:** 入力変数（数値スライダー、ジオメトリ参照など）。
+
+### 2.2 主要操作の要点
+
+1. **起動・ファイル:** コマンド `Grasshopper` / 拡張子 `.gh`
+2. **コンポーネントの呼び出し:** メニュータブ選択、またはキャンバスダブルクリックによるキーワード検索（例：`Sphere` で球体生成、`10.0` でスライダー生成、`//` でパネル生成等）。
+3. **ノード操作:**
+    - 通常ドラッグで接続
+    - `Shift` + ドラッグで複数接続（上書き防止）
+    - `Ctrl` + ドラッグで接続解除
+4. **コンポーネントの制御（右クリック）:**
+    - `Enabled / Disabled`: 処理の有効化/無効化
+    - `Preview`: ビューポートでの描画ON/OFF
+    - `Bake`: ジオメトリのRhinoオブジェクト化
+5. **Bake（ベイク）:**
+    - Gh上で操作中のジオメトリは「一時的なプレビュー表示」に過ぎない。
+    - `Bake`を実行することで、通常のCAD要素として空間に「焼き付け」される。
+    - **注意点:** Bake後の要素はGh側のパラメーター変更と連動しなくなる。
+6. **端子（入力・出力）の動的制御（ズーム操作）:**
+    - **端子の増減（`Merge`, `Entwine`, `Python` 等）:**
+        - コンポーネントに一定以上近づく（ズームインする）と、端子付近に「**`+`** / 」アイコンが表示される。
+        - 「`+`」をクリックで接続ポイントを追加、「」で削除が可能。
+    - **端子の設定・カスタマイズ（端子を右クリック）:**
+        - データ構造の直接変更（*Flatten*, *Graft*, *Simplify* 等のデータプリセット適用）。
+        - 端子名（変数名）の変更や、入力データ型の指定（Type Hinting）。
+
+### 2.3 データ構造（データツリー）
+
+他プログラミング言語の「多次元配列」「ネストされたリスト」に相当するGh独自の概念です。初めは分かりにくいですが、使っているとなんとなくわかってきます。
+
+- **List (リスト):** 単一の配列 `[A, B, C, D]`
+- **Data Tree (データツリー):** パス（階層アドレス）を持つネスト構造 `Path{0}: [A, B]`, `Path{1}: [C, D]`
+- **マッチング原則:** 原則として「同じパス（階層）・同じインデックス」の要素同士がペアで処理される。
+- **主要なデータ構造操作ノード:**
+    - `Flatten`: すべての階層を解体し、単一のリスト（1次元配列）に平坦化する。
+    - `Graft`: 各要素に固有の新しい枝（1階層深いパス）を割り当て、個別処理を可能にする。
+    - `Simplify`: データ処理に関与しない無駄な親階層パスを削除・整理する。
+    - `List Item`: 配列内の指定インデックス要素を取得する。
+    - `Merge`: 複数のデータストリームをルールに沿って統合する。
+
+> **Find Component:** コンポーネントを `Ctrl + Alt` を押しながらクリックすると、そのコンポーネントが上部タブのどこにあるかを赤い矢印で視覚的に教えてくれる。
+
+> **Grasshopper参考:**
+- **Rhino 学習リソース**: [Rhino \| Learn](https://www.rhino3d.com/learn/?query=kind:%20all&modal=null)
+- **Ghコンポーネントの検索**: [AppliCraft \| Grasshopper コンポーネントIndex](https://www.applicraft.com/ghcp_index/)
+- **Delft University of Technology**: [Computational Design for (Industrial) Designers using Rhino Grasshopper](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/intro.html)
+- **YouTubeチュートリアル**: [Gediminas Kirdeikis \| Grasshopper for Beginners - Full Course](https://youtu.be/b0elmzjWlE8?si=eA_W1YUuaxSRDSnT)
+
+> **AIを使った学習:**
+- Grasshopperはドキュメントが豊富でコミュニティも活発なため、多くの場合AIに質問することで適切な回答を得ることができます。
+- Grasshopper定義を通常の`.gh`ではなく`.ghx`形式（XMLベースのプレーンテキスト）で保存すると、AIが解析できるようになります。
+
+---
+## 3. Rhino Script
+
+### 3.1 環境の起動と実行手順
+
+Rhino上ではバッチ処理・自動化、Grasshopper上ではノード機能の補完・パラメトリックなデータ処理としてスクリプトを利用します。
+
+- **Rhino上で実行する（ワンショット自動化）**
+    1. メニューバー **[ツール] ──> [スクリプト] ──> [編集]** でスクリプトエディタ（Rhino 8では ScriptEditor）を起動。
+    2. コード記述・実行により、Rhino空間のオブジェクトを直接生成・編集。
+    3. `.py` ファイルとして保存し、単体コマンドやツールボタンに割り当てて再利用可能。
+- **Grasshopper上で実行する（動的・パラメトリック処理）**
+    1. キャンバス上に `Script` (Python 3) コンポーネントを配置。
+    2. コンポーネントの入力端子（x, y等）からデータを受け取り、処理結果を出力端子（a等）へ渡す。
+    3. キャンバス上のパラメーター変更に応じてスクリプトがリアルタイムに再計算される。
+
+### 3.2 主要ライブラリ
+
+Rhino機能の操作、および外部データ処理を行うための主要ライブラリです。
+
+- **Rhino操作用ライブラリ:**
+    - `rhinoscriptsyntax`
+      - Rhinoコマンド相当の操作を簡易記述できる高レベル・ラッパー関数群。
+      - [RhinoScriptSyntax](https://developer.rhino3d.com/api/RhinoScriptSyntax/)
+    - `Rhino.Geometry` (`RhinoCommon`)
+      - Rhinoのジオメトリを直接扱う下層コアAPI。高度な幾何計算やパフォーマンスを重視する処理で使用。
+      - [RhinoCommon API](https://developer.rhino3d.com/api/rhinocommon/)
+    - `ghpythonlib.components`
+      - Grasshopperの既存ノード機能をPythonコード内から直接呼び出して実行。
+      - [Node in Code from Python.](https://developer.rhino3d.com/guides/rhinopython/ghpython-call-components/)
+- **標準・外部ライブラリ (Rhino 8 / Python 3):**
+    - 標準ライブラリ: `math`（幾何・数値計算）、`random`（乱数生成）、`json` / `os`（データ・ファイル操作）。
+    - 外部CPythonライブラリ: NumPy, SciPy, Pandas, PyTorch 等のデータ科学・機械学習ライブラリを `# env: numpy` などの指定で直接読み込み可能。
+
+> **バイブコーディング:**
+  - 試行環境（例: `Rhino 8 / Python 3`）とライブラリ（`rhinoscriptsyntax`）を指定
+  - エラー発生時はエラーメッセージを返しデバッグ
+
+### 3.3 Rhinoスクリプト環境の構造とアーキテクチャ
+
+**ライブラリの階層関係と役割**
+
+| レイヤー | コンポーネント | 役割・技術スタック |
+| --- | --- | --- |
+| **最上層 (ユーザー記述)** | **スクリプト** | **Python 3 / C#**: ユーザーやAIが記述するコード領域。 |
+| **高レベル処理** | **rhinoscriptsyntax** | **Pythonラッパー**: RhinoCommonを初心者向けに簡易化した関数群。 |
+| **共通API層** | **RhinoCommon** | **.NET Core API**: Rhinoの全機能にアクセスする公式クロスプラットフォームAPI。 |
+| **最下層 (コアエンジン)** | **Rhino Kernel** | **C++ ネイティブエンジン**: 幾何演算・描画を高速処理するRhino本体。 |
+
+**動作言語と環境**
+
+| 言語 | 特徴・用途 | Rhinoでの位置付け |
+| --- | --- | --- |
+| **Python 3 (CPython)** | AI/LLMとの親和性が極めて高く、外部ライブラリ統合が容易。 | **現在の推奨標準環境** (Rhino 8〜) |
+| **Python 2 (IronPython)** | 旧Rhino 7までの標準（.NET上で動作するPython実装）。 | 互換性維持目的の旧環境 |
+| **C#** | 高度なプラグイン・カスタムコンポーネント開発用。 | 開発者向けネイティブ環境 |
+| **VBScript** | 旧世代のRhinoScript。 | **非推奨** |
+
+### 3.4 スクリプトデモ例：フラクタルツリー（再帰処理）
+
+再帰関数と乱数を用いた幾何生成デモです。同一ロジックを Grasshopper（動的パラメーター制御）と Rhino単体（直書きワンショット実行）の両方で検証できます。
+
+1. **Grasshopper上での実行手順**
+- キャンバスに `Python 3 Script` コンポーネントを配置。
+- 端子設定（右クリック）
+- コンポーネント内にコードを貼り付け、Inputにスライダーを繋いでライブ操作。
+
+    | | 名前 | 型 | 設定 |
+    | --- | --- | --- | --- |
+    | Input | `gen` | Integer | 世代数制限 |
+    | | `angle` | Float | 分岐角 |
+    | | `scale` | Float | 縮小比 |
+    | Output | `Lines` | Line | アウトプット |
+
+2. **Rhino単体上での実行手順**
+  - `メニュー → ツール → スクリプト → 編集` でエディタを開き、コードを貼り付けて直接実行。
+
+3. **Pythonコード（Rh/Gh共通）**
+
+```py
+import rhinoscriptsyntax as rs
+import random
+
+# 入力変数の初期化 (Rhino単体実行用)
+gen = globals().get('gen', 6)
+angle = globals().get('angle', 25.0)
+scale = globals().get('scale', 0.8)
+seed = globals().get('seed', 42)
+
+random.seed(seed)
+Lines = []
+
+# 幹の生成
+A, V = [0, 0, 0], [0, 0, 1]
+B = rs.PointAdd(A, V)
+Lines.append(rs.AddLine(A, B))
+
+# 再帰分岐関数
+def Grow(pt, v, s, a, g):
+    if g >= gen: return
+    v = rs.VectorScale(v, s)
+    plane = rs.PlaneFromNormal(pt, v)
+    circle = rs.AddCircle(plane, 0.1)
+    t = rs.CurveClosestPoint(circle, A)
+    rot_axis = rs.VectorCreate(pt, rs.EvaluateCurve(circle, t))
+
+    for sign in [-1, 1]:
+        V_next = rs.VectorRotate(v, sign * a + random.uniform(-3, 3), rot_axis)
+        pt_next = rs.PointAdd(pt, V_next)
+        Lines.append(rs.AddLine(pt, pt_next))
+        Grow(pt_next, V_next, s, a, g + 1)
+
+Grow(B, V, scale, angle, 0)
+```
+
+### 3.5 スクリプトのコマンドボタン化
+
+作成した `.py` スクリプトをRhinoのコマンドにできます。
+
+1. 保存: コードを `.py` 形式でローカル（任意フォルダ）に保存し、ファイルの絶対パスをコピー。
+2. ボタン作成: ツールバーの空白領域で右クリック → `新規ボタン` を選択。
+3. マクロ設定: コマンド欄に `! _-RunPythonScript "ファイルの絶対パス"` と入力して保存。
+    - (注: `_-` はダイアログをスキップして即時実行させるための記述)
+
+---
+## 4. モデリングアプローチ比較
+
+| 項目 | 手動操作 | Grasshopper | スクリプト |
+| --- | --- | --- | --- |
+| **概要** | CLI・マウスによる個別操作 | ノード接続（ビジュアル言語） | テキストコード（Python/C#） |
+| **強み** | 直感的、事前のロジック設計不要 | 構造視認性が高い、リアルタイム検証 | バッジ処理、ループ/条件分岐 |
+| **弱み・リスク** | 大量処理・仕様変更時の工数大 | 複雑化による**スパゲッティコード**化 | 構文・APIの習得コスト |
+| **AI(LLM)親和性** | 極めて低い | 低い（グラフ構造生成の難しさ） | **極めて高い**（コード生成領域） |
+
+> **効率化の思考フレーム: [The 5-Step Algorithm (Elon Musk)](https://youtu.be/tdf3luOCNks?si=3qhKdoTCu-iDgWp9)**
+> 
+> Ghやスクリプトで自動化する前に… 「自動化する必要がないことを自動化していないか？」
+> 
+> 1. **要件を疑え:** 前提仕様そのものの不必要性を検証する。
+> 2. **プロセスを削除せよ:** 不要な工程を破棄する。
+> 3. **単純化・最適化せよ:** 残った工程をシンプルにする。
+> 4. **サイクルタイムを加速させよ:** 処理速度を向上させる。
+> 5. **自動化せよ:** 上記を経た上で最終手段として自動化を導入する。
+
+---
+## 5. MCP（Model Context Protocol）と最新動向
+
+### 5.1 概要とトレンド変化
+
+- **従来:** 「AIがアイデア/コードを出力 → 人間がCAD上で手動実行・検証」。
+- **現在 (MCP環境):** 「AIエージェントがMCP経由でCADのAPIを直接叩き、生成・検証・修正まで自律実行」。
+- **MCPの役割:** LLMと外部ツール（CAD等）を標準化されたプロトコルで接続するローカルミドルウェア。
+
+### 5.2 主要ツールの最新動向
+
+| ソフト | MCPツール | 主な特徴・機能 | リンク |
+| --- | --- | --- |
+| Rhino | Rhino MCP (McNeel公式) | GitHubにて公式プラットフォーム開発が進行中。レイヤー操作やスクリプト動的実行ツールを展開。 | [Rhino MCP Platform](https://mcneel.github.io/RhinoMCP/) |
+| Rhino | 3rd party | サードパーティ開発者によるMCPサーバープラグイン。プラグインコミュニティ[Food4Rhino](https://www.food4rhino.com/en)やGitHubなどで公開。 | 例：[rhinomcp (by ccc159)](https://www.food4rhino.com/en/app/rhinomcp) |
+| Grasshopper | Raven | Grasshopperのグラフ構造（ノード配置・配線）自体をAIに自動生成・最適化させるプラグイン。 | [Raven](https://www.raven.build/en) |
+| Autodesk Fusion | Fusion MCP | Anthropicとの共同開発。自然言語指示（パラメーター変更、フィーチャー操作等）でAPIを実行しモデリングを完了。アドイン開発のペアプログラミング用途でも活用。 | [Fusion MCP](https://aps.autodesk.com/blog/bringing-fusion-claude-creative-work) |
+| Blender | Blender MCP | Python APIとの親和性の高さを活かし、オブジェクト配置、マテリアル・ライティング設定まで会話型で自動化するアドオンがコミュニティ主導で急増。 | [MCP Server](https://www.blender.org/lab/mcp-server/) |
+
+### 5.3 Rhino MCP のシステム構成・通信フロー
+
+| レイヤー | 主要コンポーネント | 役割と通信プロトコル |
+| --- | --- | --- |
+| **クライアント層** | **AIクライアント** *(Claude / Cursor / Gemini 等)* | ユーザーの自然言語指示を受け取り、ツール呼び出し（Tool Call）を生成するUI/エディタ環境。 |
+| **中継・変換層** | **MCPサーバー** *(Python / FastMCP 等のローカルミドルウェア)* | 標準規格（**stdio / JSON-RPC**）を解釈し、AIからの要求をCAD専用の命令形式に変換・中継する橋渡し役。 |
+| **エンドポイント層** | **Rhinoプラグイン** *(C# RhinoCommon / Python 常駐リスナー)* | ローカル通信（**TCP Loopback / Socket / 127.0.0.1:10501**）でメッセージを受信し、Rhino側で常駐待機する受信用ソケット。 |
+| **実行層** | **Rhino / Grasshopper Kernel** | 受信した命令に基づき、Rhino/Grasshopper内部でスクリプトの動的実行やジオメトリの直接生成・操作を実行。 |
+
+1. **AIクライアント:** ツール仕様（JSON Schema）に基づき、プロンプトを解釈して実行命令を発行。
+2. **MCPサーバー:** AIのJSON要求とCAD側の通信プロトコルを相互翻訳・中継。
+3. **Rhinoプラグイン:** 受信した命令をRhinoのメインスレッド上で動的実行し、結果（成功/エラー/状態）を返答。
+
+### 5.4 課題とインプリケーション
+
+- **技術的課題・制限:**
+    - 3D空間認識能力の不足: LLMの3Dトポロジーや厳密な空間座標、美観理解は発展途上。
+    - コンテクストの壁: 大規模アセンブリではすぐにデータ量がトークン上限を超えるため、「選択中のオブジェクトのみ取得」「バウンディングボックスや軽量なメタデータのみ送信」などの対策が必要。
+    - パフォーマンス: 大規模処理時にAIが愚直なAPI呼び出しを行うため、遅延計算（「スクリプトを一括生成してバッチ実行させる」「Redraw（画面再描画）を抑制する」）などの指示が必要。
+- **安全性の懸念・新たな技術負債:**
+    - ブラックボックスノード化: AIによるGh定義生成や、Gh内スクリプトを多用すると、Gh本来の「視覚的データフロー」が失われ、人間によるデバッグが不可能になるリスク。
+    - 意図しない形状破壊: 自律実行によるスケッチ拘束の不具合や、製造不可能な自己交差形状の生成リスク。
+- **インプリケーション:**
+    - 設計者の役割は「操作」から「制約条件の定義」および「AIが提示するバリエーションのディレクション」へ移行。
+    - 解析（CAE）等と組み合わせた自律型最適化ループ構築。
+      - 生成 (Generation): MCP経由でLLMがRhino/GH上に形状を生成。
+      - 解析 (Evaluation): 構造解析（FEA）や環境シミュレーションツールをMCPで呼び出して評価。
+      - 自動修正 (Refinement): 「応力集中が発生している箇所」のエラーログをLLMが読み取り、自律的にフィレット半径や肉厚パラメータを調整して再実行。
+
+
+
+<!---
+
 ## 1. 概要と整理
 
 ### 1.1 目的
@@ -126,7 +447,6 @@ Grasshopperでは、データの流れを単なる1列ではなく、枝分か�
 
   ![](/docs/images/lab/intro_to_cd/data_tree.jpg)
 
-  <!---
   ```
   【普通のリスト】
     🍽️ お皿 ─── [ 🍣(0), 🍣(1), 🍣(2), 🍣(3) ] （1枚に全部載っている）
@@ -135,19 +455,16 @@ Grasshopperでは、データの流れを単なる1列ではなく、枝分か�
     📁 皿{0} ── [ 🍣(0), 🍣(1) ]
     📁 皿{1} ── [ 🍣(0), 🍣(1) ] （お皿が分かれている）
   ```
-  --->
 
 - **ルール:** Grasshopperのコンポーネントで2つのデータを組み合わせて処理する場合、「**同じお皿の、同じ番号のもの同士（ネタとシャリ）**」を順番に組み合わせ握ります。
 
   ![](/docs/images/lab/intro_to_cd/merge.jpg)
 
-  <!---
   ```
   【ネタ】                        【シャリ】                            【完成】
   📁 皿{0} ── [ 🐟(0), 🦑(1) ]   📁 皿{0} ── [ 🍚(0), 🍚(1) ]  ──>  📁 皿{0} ── [ 🍣(0), 🍣(1) ]
   📁 皿{1} ── [ 🦐(0), 🐙(1) ]   📁 皿{1} ── [ 🍚(0), 🍚(1) ]  ──>  📁 皿{1} ── [ 🍣(0), 🍣(1) ]
   ```
-  --->
 
 - **ありがちな失敗:** 構造がずれると、意図しない結果になります。
   - 1つの皿に大量のデータが集まり、1点に線が集中してしまう。
@@ -522,3 +839,5 @@ AIクライアントからRhinoが操作される内部処理は、以下の3レ
 - CAD操作習得のラーニングカーブがなだらかになり、これまで最大のボトルネックだった「大量のコンポーネント暗記」や「複雑なAPIリファレンスの検索」をショートカットできるようになる。
 - デザイナーの仕事は手を動かしてモデリングすることから、モデリングはMCPに任せ、より上位レイヤーの「制約条件の定義」や「バリエーションのディレクション」にシフトする。
 - 設計プロセスのループが高速になり、CAE（強度解析）ツール等と連携した「AIが形状生成 → 解析 → 自動修正」という自律的な最適化ループの構築が現実味を帯びている。
+
+--->
