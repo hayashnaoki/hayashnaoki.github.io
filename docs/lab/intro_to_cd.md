@@ -19,10 +19,6 @@ layout: default
     - 90日間の無料トライアル（Grasshopperを含め商用版と同じフル機能）
     - 試用期間（90日）終了後もビューアー（モデルの閲覧・各種検証）として利用可能（保存不可）
 
-  ![](https://static.food4rhino.com/cdn/farfuture/kVBvPnsEt2xDkLdUvD_PYXboGrtv_4ONmW_AJ1d4TWA/mtime:1680618717/sites/default/files/public/f4r/images/rh2.png)
-
-  ([Source](https://www.food4rhino.com/en))
-
 ### 0.2 Autodesk Fusion
 
 - 個人用無償ライセンス（Personal Use）
@@ -30,14 +26,18 @@ layout: default
     - 条件: 非商用目的（趣味・DIY・個人の学習等）かつ年間収益1,000米ドル未満の場合、無償で継続利用可能。
     - 主な制限: 同時編集可能ドキュメント数（10個まで）の制限、一部の高度なCAM・解析機能や商用出力の制限あり。
 
+![](https://static.food4rhino.com/cdn/farfuture/kVBvPnsEt2xDkLdUvD_PYXboGrtv_4ONmW_AJ1d4TWA/mtime:1680618717/sites/default/files/public/f4r/images/rh2.png)
+
+([Source](https://www.food4rhino.com/en))
+
 ---
 ## 1. 概要
 
 ### 1.1 ゴール
 
 - モデリングアプローチの比較
-- オープン開発基盤/AI連携
-- Python 3 とマイコン・CAD連携のトライアル
+- MCP
+- Python 3 と外部通信
 
 ### 1.2 概念整理
 
@@ -68,7 +68,7 @@ layout: default
 
 ### 1.3 モデリングアプローチ（Rhinoの例）
 
-- **手動操作**: 直感的な単発操作。反復作業や多バリエーション検討には非効率。Rhinoではコマンド名を打ち込むCLI (Command Line Input)もある。
+- **手動操作**: 直感的な単発操作。反復作業や多バリエーション検討には非効率。
 - **Visual Programming (Grasshopper)**: ノード接続によるデータフロー構築。ルール再利用とリアルタイム形状検証が得意。
 - **Script**: Python/C#等のテキストコード記述。複雑なループ処理やデータ処理、AI連携に最適。
 
@@ -94,7 +94,7 @@ layout: default
     - `Preview`: ビューポートでの描画ON/OFF
     - `Bake`: ジオメトリのRhinoオブジェクト化
 5. **Bake（ベイク）:**
-    - Gh上で操作中のジオメトリは「一時的なプレビュー表示」に過ぎない。
+    - Gh上で操作中のジオメトリは「一時的なプレビュー表示」。
     - `Bake`を実行することで、通常のCAD要素として空間に「焼き付け」される。
     - **注意点:** Bake後の要素はGh側のパラメーター変更と連動しなくなる。
 6. **端子（入力・出力）の動的制御（ズーム操作）:**
@@ -119,51 +119,59 @@ layout: default
     - `List Item`: 配列内の指定インデックス要素を取得する。
     - `Merge`: 複数のデータストリームをルールに沿って統合する。
 
-> **Find Component:** コンポーネントを `Ctrl + Alt` を押しながらクリックすると、そのコンポーネントが上部タブのどこにあるかを赤い矢印で視覚的に教えてくれる。
+![](/docs/images/lab/intro_to_cd/data.jpg)
 
-> **Grasshopper参考:**
-- **Rhino 学習リソース**: [Rhino \| Learn](https://www.rhino3d.com/learn/?query=kind:%20all&modal=null)
-- **Ghコンポーネントの検索**: [AppliCraft \| Grasshopper コンポーネントIndex](https://www.applicraft.com/ghcp_index/)
-- **Delft University of Technology**: [Computational Design for (Industrial) Designers using Rhino Grasshopper](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/intro.html)
-- **YouTubeチュートリアル**: [Gediminas Kirdeikis \| Grasshopper for Beginners - Full Course](https://youtu.be/b0elmzjWlE8?si=eA_W1YUuaxSRDSnT)
+### 3.3 Grasshopperの学習
+基本的な操作を学習したら、作りたいものを作りながら学習していくのが効果的。
+
+**Grasshopperリソース:**
+- [Grasshopper Docs](https://grasshopperdocs.com/)
+- [AppliCraft \| Grasshopper Component Index](https://www.applicraft.com/ghcp_index/)
+
+**チュートリアル:**
+- [Delft University of Technology \| Computational Design for (Industrial) Designers using Rhino Grasshopper](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/intro.html)
+- [Gediminas Kirdeikis \| Grasshopper for Beginners - Full Course](https://youtu.be/b0elmzjWlE8?si=eA_W1YUuaxSRDSnT)
+- [Junichiro Horikawa \| Grasshopper Tutorials](https://youtube.com/playlist?list=PLzRzqTjuGIDiOSybLxZ4DiSaRYdVdDnMJ&si=pMAyUFsnnJt1V_ey)
+
+**参考書籍:**
+- [Parametric Design with Grasshopper　建築／プロダクトのための、Grasshopper クックブック［改訂第3 版］](https://www.amazon.co.jp/Parametric-Design-Grasshopper-%E5%BB%BA%E7%AF%89%EF%BC%8F%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%80%81Grasshopper-%E3%82%AF%E3%83%83%E3%82%AF%E3%83%96%E3%83%83%E3%82%AF%EF%BC%BB%E6%94%B9%E8%A8%82%E7%AC%AC3-%E7%89%88%EF%BC%BD/dp/4802513100/ref=pd_sbs_d_sccl_2_2/356-2649193-2817230?pd_rd_w=I2eGk&content-id=amzn1.sym.d9975236-2c6f-40f8-8a79-8a86a96a4ad2&pf_rd_p=d9975236-2c6f-40f8-8a79-8a86a96a4ad2&pf_rd_r=9B38VB0Z87XQSGP95B24&pd_rd_wg=jWTUn&pd_rd_r=6f7c4bae-2f1c-492d-a521-2969d7f44932&pd_rd_i=4802513100&psc=1)
+- [AAD Algorithms-Aided Design](https://www.amazon.co.jp/dp/8895315308/?coliid=ITET16RDOCZ7H&colid=2D3ZXUJ8C374K&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it)
+- [Advanced 3D Printing with Grasshopper®: Clay and FDM](https://www.amazon.co.jp/dp/B086Y7CLLC?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1)
 
 > **AIを使った学習:**
 - Grasshopperはドキュメントが豊富でコミュニティも活発なため、多くの場合AIに質問することで適切な回答を得ることができます。
 - Grasshopper定義を通常の`.gh`ではなく`.ghx`形式（XMLベースのプレーンテキスト）で保存すると、AIが解析できるようになります。
+
+> **Find Component:** コンポーネントを `Ctrl + Alt` を押しながらクリックすると、そのコンポーネントが上部タブのどこにあるかを赤い矢印で視覚的に教えてくれる。
 
 ---
 ## 3. Rhino Script
 
 ### 3.1 環境の起動と実行手順
 
-Rhino上ではバッチ処理・自動化、Grasshopper上ではノード機能の補完・パラメトリックなデータ処理としてスクリプトを利用します。
+Rhino、Grasshopperどちらからもスクリプトを利用することができます。Rhino上ではバッチ処理・自動化、Grasshopper上ではノード機能の補完・パラメトリックなデータ処理としてスクリプトを利用します。
 
 - **Rhino上で実行する（ワンショット自動化）**
-    1. メニューバー **[ツール] ──> [スクリプト] ──> [編集]** でスクリプトエディタ（Rhino 8では ScriptEditor）を起動。
-    2. コード記述・実行により、Rhino空間のオブジェクトを直接生成・編集。
-    3. `.py` ファイルとして保存し、単体コマンドやツールボタンに割り当てて再利用可能。
+    - `メニュー → ツール → スクリプト → 編集` でスクリプトエディタ（Rhino 8では Script）を起動。
+    - コード記述・実行により、Rhino空間のオブジェクトを直接生成・編集。
+    - `.py` ファイルとして保存し、単体コマンドやツールボタンに割り当てて再利用可能。
 - **Grasshopper上で実行する（動的・パラメトリック処理）**
-    1. キャンバス上に `Script` (Python 3) コンポーネントを配置。
-    2. コンポーネントの入力端子（x, y等）からデータを受け取り、処理結果を出力端子（a等）へ渡す。
-    3. キャンバス上のパラメーター変更に応じてスクリプトがリアルタイムに再計算される。
+    - キャンバス上に `Python 3 Script` コンポーネントを配置。
+    - コンポーネントの入力端子（x, y等）からデータを受け取り、処理結果を出力端子（a等）へ渡す。
+    - キャンバス上のパラメーター変更に応じてスクリプトがリアルタイムに再計算される。
+    - **入力・出力端子の名前と型（`int, Line, Brep`など）は、スクリプト内の変数に合わせる必要があります。**
 
 ### 3.2 主要ライブラリ
 
 Rhino機能の操作、および外部データ処理を行うための主要ライブラリです。
 
-- **Rhino操作用ライブラリ:**
-    - `rhinoscriptsyntax`
-      - Rhinoコマンド相当の操作を簡易記述できる高レベル・ラッパー関数群。
-      - [RhinoScriptSyntax](https://developer.rhino3d.com/api/RhinoScriptSyntax/)
-    - `Rhino.Geometry` (`RhinoCommon`)
-      - Rhinoのジオメトリを直接扱う下層コアAPI。高度な幾何計算やパフォーマンスを重視する処理で使用。
-      - [RhinoCommon API](https://developer.rhino3d.com/api/rhinocommon/)
-    - `ghpythonlib.components`
-      - Grasshopperの既存ノード機能をPythonコード内から直接呼び出して実行。
-      - [Node in Code from Python.](https://developer.rhino3d.com/guides/rhinopython/ghpython-call-components/)
-- **標準・外部ライブラリ (Rhino 8 / Python 3):**
-    - 標準ライブラリ: `math`（幾何・数値計算）、`random`（乱数生成）、`json` / `os`（データ・ファイル操作）。
-    - 外部CPythonライブラリ: NumPy, SciPy, Pandas, PyTorch 等のデータ科学・機械学習ライブラリを `# env: numpy` などの指定で直接読み込み可能。
+| カテゴリ | ライブラリ | 概要・用途 | リンク |
+| --- | --- | --- | --- |
+| **Rhino操作** | `rhinoscriptsyntax` | Rhinoコマンドに相当する操作を直感的に記述できる高レベル・ラッパー関数群。 | [RhinoScriptSyntax](https://developer.rhino3d.com/api/RhinoScriptSyntax/) |
+|  | `Rhino.Geometry` (`RhinoCommon`) | ジオメトリを直接扱う下層コアAPI。高度な幾何計算や高速処理向け。 | [RhinoCommon API](https://developer.rhino3d.com/api/rhinocommon/) |
+|  | `ghpythonlib.components` | Grasshopperの既存ノード機能をPythonコード内から直接呼び出して実行。 | [Node in Code from Python.](https://developer.rhino3d.com/guides/rhinopython/ghpython-call-components/) |
+| **その他** (Rhino 8 / Python 3) | 標準ライブラリ | `math`（数値計算）、`random`（乱数生成）、`json` / `os`（ファイル処理）など。 | |
+|  | 外部CPythonライブラリ | NumPy, SciPy, Pandas, PyTorch等。`# env: numpy` 等の記述で読み込み可能。 | |
 
 > **バイブコーディング:**
   - 試行環境（例: `Rhino 8 / Python 3`）とライブラリ（`rhinoscriptsyntax`）を指定
@@ -195,10 +203,10 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 
 1. **Grasshopper上での実行手順**
 - キャンバスに `Python 3 Script` コンポーネントを配置。
-- 端子設定（右クリック）
+- 端子設定（右クリックし、名前と型を変更）
 - コンポーネント内にコードを貼り付け、Inputにスライダーを繋いでライブ操作。
 
-    | | 名前 | 型 | 設定 |
+    | | 名前 | 型 | 目的 |
     | --- | --- | --- | --- |
     | Input | `gen` | Integer | 世代数制限 |
     | | `angle` | Float | 分岐角 |
@@ -260,7 +268,7 @@ Grow(B, V, scale, angle, 0)
 
 | 項目 | 手動操作 | Grasshopper | スクリプト |
 | --- | --- | --- | --- |
-| **概要** | CLI・マウスによる個別操作 | ノード接続（ビジュアル言語） | テキストコード（Python/C#） |
+| **操作** | CLI・マウスによるGUI操作 | ノード接続（ビジュアルプログラミング） | テキストコード（Python/C#） |
 | **強み** | 直感的、事前のロジック設計不要 | 構造視認性が高い、リアルタイム検証 | バッジ処理、ループ/条件分岐 |
 | **弱み・リスク** | 大量処理・仕様変更時の工数大 | 複雑化による**スパゲッティコード**化 | 構文・APIの習得コスト |
 | **AI(LLM)親和性** | 極めて低い | 低い（グラフ構造生成の難しさ） | **極めて高い**（コード生成領域） |
@@ -276,7 +284,7 @@ Grow(B, V, scale, angle, 0)
 > 5. **自動化せよ:** 上記を経た上で最終手段として自動化を導入する。
 
 ---
-## 5. MCP（Model Context Protocol）と最新動向
+## 5. MCP（Model Context Protocol）
 
 ### 5.1 概要とトレンド変化
 
