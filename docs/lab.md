@@ -34,6 +34,18 @@ title: LAB
   </a>
   --->
 
+  <a href="/docs/lab/intro_to_cd" class="grid-item">
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/intro_to_cd/imu_sonic_serial.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
+    <div class="caption"><b>Intro to Computational Design</b></div>
+    <div class="caption">2026 | CD | Rh/Gh/Py/Cpp</div>
+  </a>
+
   <a href="/docs/lab/micro-oled-eyes" class="grid-item">
     <div class="media-wrapper">
         <video src="/docs/images/lab/micro-oled-eyes/oled-eye.mp4"
@@ -44,14 +56,6 @@ title: LAB
     </div>
     <div class="caption"><b>Micro OLED Eyes</b></div>
     <div class="caption">2026 | DFAB | Cpp</div>
-  </a>
-
-  <a href="/docs/lab/intro_to_cd" class="grid-item">
-    <div class="image-wrapper">
-      <img src="/docs/images/404.jpg" alt="">
-    </div>
-    <div class="caption"><b>Intro to Computational Design</b></div>
-    <div class="caption">2026 | CD | Rh/Gh/Py</div>
   </a>
 
   <a href="/docs/lab/laptop_stand" class="grid-item">

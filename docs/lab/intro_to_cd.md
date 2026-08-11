@@ -4,7 +4,7 @@ layout: default
 
 # Intro to Computational Design
 
-2026 \| Computational design \| Rhino / Grasshopper / Python
+2026 \| Computational design \| Rhino / Grasshopper / Python / Cpp
 
 ## 1. 概要
 
@@ -62,12 +62,14 @@ layout: default
 
 [<img src="https://static.food4rhino.com/cdn/farfuture/kVBvPnsEt2xDkLdUvD_PYXboGrtv_4ONmW_AJ1d4TWA/mtime:1680618717/sites/default/files/public/f4r/images/rh2.png" style="width: 600px;" alt="">](https://www.food4rhino.com/en)
 
+<!---
 ### 1.5 Autodesk Fusion
 
 - 個人用無償ライセンス（Personal Use）
     - [Autodesk Fusion](https://www.autodesk.com/jp/products/fusion-360/overview#top)：「個人用 Autodesk Fusion」からアクセス（少し目立たないように書いてある）
     - 条件: 非商用目的（趣味・DIY・個人の学習等）かつ年間収益1,000米ドル未満の場合、無償で継続利用可能。
     - 主な制限: 同時編集可能ドキュメント数（10個まで）などの制限がある。
+--->
 
 ---
 ## 2. Grasshopperの構造と概念
@@ -140,6 +142,10 @@ layout: default
 - Grasshopper定義を通常の`.gh`ではなく`.ghx`形式（XMLベースのプレーンテキスト）で保存すると、AIが解析できるようになります。
 
 > **Find Component:** コンポーネントを `Ctrl + Alt` を押しながらクリックすると、そのコンポーネントが上部タブのどこにあるかを赤い矢印で視覚的に教えてくれる。
+
+> **拡張プラグイン集: [Food4Rhino](https://www.food4rhino.com/en)**
+> 
+> Grasshopperには、様々な機能を拡張するプラグインがあり、Food4Rhino で多くのツールを探すことができます。用途に応じて既存のプラグインを導入すれば、解析、生成、インタラクション、製造支援など、幅広いワークフローに対応できます。
 
 ---
 ## 3. Rhino Script
@@ -215,41 +221,41 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 
 3. **Pythonコード（Rh/Gh共通）**
 
-```py
-import rhinoscriptsyntax as rs
-import random
+    ```py
+    import rhinoscriptsyntax as rs
+    import random
 
-# 入力変数の初期化 (Rhino単体実行用)
-gen = globals().get('gen', 6)
-angle = globals().get('angle', 25.0)
-scale = globals().get('scale', 0.8)
-seed = globals().get('seed', 42)
+    # 入力変数の初期化 (Rhino単体実行用)
+    gen = globals().get('gen', 6)
+    angle = globals().get('angle', 25.0)
+    scale = globals().get('scale', 0.8)
+    seed = globals().get('seed', 42)
 
-random.seed(seed)
-Lines = []
+    random.seed(seed)
+    Lines = []
 
-# 幹の生成
-A, V = [0, 0, 0], [0, 0, 1]
-B = rs.PointAdd(A, V)
-Lines.append(rs.AddLine(A, B))
+    # 幹の生成
+    A, V = [0, 0, 0], [0, 0, 1]
+    B = rs.PointAdd(A, V)
+    Lines.append(rs.AddLine(A, B))
 
-# 再帰分岐関数
-def Grow(pt, v, s, a, g):
-    if g >= gen: return
-    v = rs.VectorScale(v, s)
-    plane = rs.PlaneFromNormal(pt, v)
-    circle = rs.AddCircle(plane, 0.1)
-    t = rs.CurveClosestPoint(circle, A)
-    rot_axis = rs.VectorCreate(pt, rs.EvaluateCurve(circle, t))
+    # 再帰分岐関数
+    def Grow(pt, v, s, a, g):
+        if g >= gen: return
+        v = rs.VectorScale(v, s)
+        plane = rs.PlaneFromNormal(pt, v)
+        circle = rs.AddCircle(plane, 0.1)
+        t = rs.CurveClosestPoint(circle, A)
+        rot_axis = rs.VectorCreate(pt, rs.EvaluateCurve(circle, t))
 
-    for sign in [-1, 1]:
-        V_next = rs.VectorRotate(v, sign * a + random.uniform(-3, 3), rot_axis)
-        pt_next = rs.PointAdd(pt, V_next)
-        Lines.append(rs.AddLine(pt, pt_next))
-        Grow(pt_next, V_next, s, a, g + 1)
+        for sign in [-1, 1]:
+            V_next = rs.VectorRotate(v, sign * a + random.uniform(-3, 3), rot_axis)
+            pt_next = rs.PointAdd(pt, V_next)
+            Lines.append(rs.AddLine(pt, pt_next))
+            Grow(pt_next, V_next, s, a, g + 1)
 
-Grow(B, V, scale, angle, 0)
-```
+    Grow(B, V, scale, angle, 0)
+    ```
 
 ### 3.5 スクリプトのコマンドボタン化
 
@@ -288,6 +294,8 @@ Grow(B, V, scale, angle, 0)
 1. **概要**
 
     センサーからのデータをGrasshopperに入力し、3Dジオメトリーをリアルタイムに変形させるインタラクティブな造形システムです。
+
+    [GitHub Repository](https://github.com/hayashnaoki/rhino-physical-interface)
 
     - IMUの傾きに合わせたメッシュのフロー変形
     - 超音波センサーによる距離連動パラメータ: 
@@ -377,10 +385,6 @@ Grow(B, V, scale, angle, 0)
         - `Trigger`コンポーネントを接続することで一定周期（例: 100ms）で定期的にコンポーネントを再計算させ、ジオメトリを更新し続けます。
     
     ![](/docs/images/lab/intro_to_cd/imu_sonic_serial.jpg)
-
-1. **ファイル**
-
-    [GitHub Repository]()
 
 ---
 ## 6. MCP（Model Context Protocol）
