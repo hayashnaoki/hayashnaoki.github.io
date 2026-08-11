@@ -6,38 +6,15 @@ layout: default
 
 2026 \| Computational design \| Rhino / Grasshopper / Python
 
-## 0. 準備
-
-### 0.1 Rhinoceros
-
-- ライセンス価格（買い切り）
-    - 商用版（フルライセンス）: ¥187,000
-    - 教育版（学生・教員向け）: ¥39,600（機能制限なし）
-    - アップグレード商用版: ¥110,000
-- 90日間無料評価版
-    - 公式サイト：[rhino3d.com](https://www.rhino3d.com/)
-    - 90日間の無料トライアル（Grasshopperを含め商用版と同じフル機能）
-    - 試用期間（90日）終了後もビューアー（モデルの閲覧・各種検証）として利用可能（保存不可）
-
-### 0.2 Autodesk Fusion
-
-- 個人用無償ライセンス（Personal Use）
-    - [Autodesk Fusion](https://www.autodesk.com/jp/products/fusion-360/overview#top)：「個人用 Autodesk Fusion」からアクセス（少し目立たないように書いてある）
-    - 条件: 非商用目的（趣味・DIY・個人の学習等）かつ年間収益1,000米ドル未満の場合、無償で継続利用可能。
-    - 主な制限: 同時編集可能ドキュメント数（10個まで）の制限、一部の高度なCAM・解析機能や商用出力の制限あり。
-
-![](https://static.food4rhino.com/cdn/farfuture/kVBvPnsEt2xDkLdUvD_PYXboGrtv_4ONmW_AJ1d4TWA/mtime:1680618717/sites/default/files/public/f4r/images/rh2.png)
-
-([Source](https://www.food4rhino.com/en))
-
----
 ## 1. 概要
 
 ### 1.1 ゴール
 
+主にRhino / Grasshopper / Pythonを使った、「Computational Design」入門です。
+
 - モデリングアプローチの比較
-- MCP
 - Python 3 と外部通信
+- MCP
 
 ### 1.2 概念整理
 
@@ -66,11 +43,31 @@ layout: default
   - [Unlocking Innovative Solutions with Generative Design](https://www.autodesk.com/products/fusion-360/blog/unlocking-innovative-solutions-with-generative-design/)
   - [ものづくりにおけるジェネレーティブ デザインの 8 つの価値を探る](https://www.autodesk.com/products/fusion-360/blog/ja/generative-design-manufacturing-values/)
 
-### 1.3 モデリングアプローチ（Rhinoの例）
+### 1.3 モデリングアプローチ
 
 - **手動操作**: 直感的な単発操作。反復作業や多バリエーション検討には非効率。
-- **Visual Programming (Grasshopper)**: ノード接続によるデータフロー構築。ルール再利用とリアルタイム形状検証が得意。
+- **Visual Programming**: ノード接続によるデータフロー構築。ルール再利用とリアルタイム形状検証が得意。
 - **Script**: Python/C#等のテキストコード記述。複雑なループ処理やデータ処理、AI連携に最適。
+
+### 1.4 Rhinoceros
+
+- ライセンス価格（買い切り）
+    - 商用版（フルライセンス）: ¥187,000
+    - 教育版（学生・教員向け）: ¥39,600（機能制限なし）
+    - アップグレード商用版: ¥110,000
+- 90日間無料評価版
+    - 公式サイト：[rhino3d.com](https://www.rhino3d.com/)
+    - 90日間の無料トライアル（Grasshopperを含め商用版と同じフル機能）
+    - 試用期間（90日）終了後もビューアー（モデルの閲覧・各種検証）として利用可能（保存不可）
+
+[<img src="https://static.food4rhino.com/cdn/farfuture/kVBvPnsEt2xDkLdUvD_PYXboGrtv_4ONmW_AJ1d4TWA/mtime:1680618717/sites/default/files/public/f4r/images/rh2.png" style="width: 600px;" alt="">](https://www.food4rhino.com/en)
+
+### 1.5 Autodesk Fusion
+
+- 個人用無償ライセンス（Personal Use）
+    - [Autodesk Fusion](https://www.autodesk.com/jp/products/fusion-360/overview#top)：「個人用 Autodesk Fusion」からアクセス（少し目立たないように書いてある）
+    - 条件: 非商用目的（趣味・DIY・個人の学習等）かつ年間収益1,000米ドル未満の場合、無償で継続利用可能。
+    - 主な制限: 同時編集可能ドキュメント数（10個まで）などの制限がある。
 
 ---
 ## 2. Grasshopperの構造と概念
@@ -121,7 +118,7 @@ layout: default
 
 ![](/docs/images/lab/intro_to_cd/data.jpg)
 
-### 3.3 Grasshopperの学習
+### 2.4 Grasshopperの学習
 基本的な操作を学習したら、作りたいものを作りながら学習していくのが効果的。
 
 **Grasshopperリソース:**
@@ -134,9 +131,9 @@ layout: default
 - [Junichiro Horikawa \| Grasshopper Tutorials](https://youtube.com/playlist?list=PLzRzqTjuGIDiOSybLxZ4DiSaRYdVdDnMJ&si=pMAyUFsnnJt1V_ey)
 
 **参考書籍:**
-- [Parametric Design with Grasshopper　建築／プロダクトのための、Grasshopper クックブック［改訂第3 版］](https://www.amazon.co.jp/Parametric-Design-Grasshopper-%E5%BB%BA%E7%AF%89%EF%BC%8F%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%80%81Grasshopper-%E3%82%AF%E3%83%83%E3%82%AF%E3%83%96%E3%83%83%E3%82%AF%EF%BC%BB%E6%94%B9%E8%A8%82%E7%AC%AC3-%E7%89%88%EF%BC%BD/dp/4802513100/ref=pd_sbs_d_sccl_2_2/356-2649193-2817230?pd_rd_w=I2eGk&content-id=amzn1.sym.d9975236-2c6f-40f8-8a79-8a86a96a4ad2&pf_rd_p=d9975236-2c6f-40f8-8a79-8a86a96a4ad2&pf_rd_r=9B38VB0Z87XQSGP95B24&pd_rd_wg=jWTUn&pd_rd_r=6f7c4bae-2f1c-492d-a521-2969d7f44932&pd_rd_i=4802513100&psc=1)
-- [AAD Algorithms-Aided Design](https://www.amazon.co.jp/dp/8895315308/?coliid=ITET16RDOCZ7H&colid=2D3ZXUJ8C374K&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it)
-- [Advanced 3D Printing with Grasshopper®: Clay and FDM](https://www.amazon.co.jp/dp/B086Y7CLLC?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1)
+- [Parametric Design with Grasshopper［改訂第3 版］](https://bnn.co.jp/products/9784802513104)
+- [AAD Algorithms-Aided Design](https://teaching.arturotedeschi.com/?page_id=6691)
+- [Advanced 3D Printing with Grasshopper®: Clay and FDM](https://www.food4rhino.com/en/resource/advanced-3d-printing-grasshopper-clay-and-fdm)
 
 > **AIを使った学習:**
 - Grasshopperはドキュメントが豊富でコミュニティも活発なため、多くの場合AIに質問することで適切な回答を得ることができます。
@@ -173,10 +170,6 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 | **その他** (Rhino 8 / Python 3) | 標準ライブラリ | `math`（数値計算）、`random`（乱数生成）、`json` / `os`（ファイル処理）など。 | |
 |  | 外部CPythonライブラリ | NumPy, SciPy, Pandas, PyTorch等。`# env: numpy` 等の記述で読み込み可能。 | |
 
-> **バイブコーディング:**
-  - 試行環境（例: `Rhino 8 / Python 3`）とライブラリ（`rhinoscriptsyntax`）を指定
-  - エラー発生時はエラーメッセージを返しデバッグ
-
 ### 3.3 Rhinoスクリプト環境の構造とアーキテクチャ
 
 **ライブラリの階層関係と役割**
@@ -196,6 +189,10 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 | **Python 2 (IronPython)** | 旧Rhino 7までの標準（.NET上で動作するPython実装）。 | 互換性維持目的の旧環境 |
 | **C#** | 高度なプラグイン・カスタムコンポーネント開発用。 | 開発者向けネイティブ環境 |
 | **VBScript** | 旧世代のRhinoScript。 | **非推奨** |
+
+> **バイブコーディング:**
+  - 試行環境（例: `Rhino 8 / Python 3`）とライブラリ（`rhinoscriptsyntax`）を指定
+  - エラー発生時はエラーメッセージを返しデバッグ
 
 ### 3.4 スクリプトデモ例：フラクタルツリー（再帰処理）
 
@@ -284,15 +281,117 @@ Grow(B, V, scale, angle, 0)
 > 5. **自動化せよ:** 上記を経た上で最終手段として自動化を導入する。
 
 ---
-## 5. MCP（Model Context Protocol）
+## 5. Rhino外部通信
 
-### 5.1 概要とトレンド変化
+### 5.1 インプット：IMU・超音波センサーを使ったメッシュ変形システム
+
+1. **概要**
+
+    センサーからのデータをGrasshopperに入力し、3Dジオメトリーをリアルタイムに変形させるインタラクティブな造形システムです。
+
+    - IMUの傾きに合わせたメッシュのフロー変形
+    - 超音波センサーによる距離連動パラメータ: 
+        - 距離が近い場合: 振幅が大きく、波長が短い（細かい波）
+        - 距離が遠い場合: 振幅が小さく、波長が長い（ゆったりした波）
+
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/intro_to_cd/imu_sonic_serial.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
+
+    **システム**
+    ```
+    [ 物理世界 / センサー ]
+    │ MPU-6050 (IMU)    : 運動 / 姿勢変化
+    │ HC-SR04 (超音波)   : 手の距離 (分圧：Echo → [1kΩ] → D3 ← [2kΩ] GND)
+    ▼
+    [ 信号処理・マイコン (XIAO RP2040) ]
+    │  - センサ読み取り ＆ 重力補正フィルター
+    │  - CSVテキスト成形 ("lin_ax,lin_ay,lin_az,gx,gy,gz,dist\n")
+    ▼
+    ════════════════════════════════════════════
+        USB Serial 通信 ( Baudrate: 115200 )
+    ════════════════════════════════════════════
+    ▼
+    [ 視覚化・CAD (Rhino 8 / Grasshopper) ]
+    └─ [ GH Python Component ]
+            - pyserial でリアルタイムデータ受信
+            - 距離データ ──> メッシュ表面の2軸波紋生成
+            - 運動データ ──> 全体のひねり・伸縮（Transform）変形
+    ```
+
+1. **ハードウェア**
+
+    - 使用部材
+        - マイコン: XIAO RP2040
+        - IMU: MPU-6050 (6軸: 加速度3軸 + ジャイロ3軸)
+        - 超音波距離センサー: HC-SR04
+        - 分圧抵抗: 1 kΩ, 2 kΩ (各1本)
+    
+    - ピンアサイン
+        
+        HC-SR04のEcho信号（5Vロジック）をXIAOの耐圧（3.3V）に合わせるため、1kΩ / 2kΩの抵抗による分圧回路を使用（**`Echo → [1kΩ] → D3 ← [2kΩ] GND`**）。
+
+        | モジュール | ピン名 | XIAO 接続ピン | 補足 |
+        | --- | --- | --- | --- |
+        | **HC-SR04** | VCC | 5V | 5V電源供給必須 |
+        |  | Trig | D2 | GPIO（トリガーパルス出力） |
+        |  | Echo | D3 | **分圧回路を経由** |
+        |  | GND | GND | |
+        | **MPU-6050** | VCC | 3V3 | |
+        |  | SDA | D4 | I2C |
+        |  | SCL | D5 | I2C |
+        |  | GND | GND | |
+
+1. **ファームウェア**
+
+    センサーデータの取得と初期処理を担います。
+
+    - 環境: PlatformIO (C++)
+    - 処理内容:
+        - MPU-6050から加速度・角速度を取得。
+        - HC-SR04から距離データ（cm）を計測。
+        - 重力影響カットのため、加速度データへハイパスフィルター（HPF）を適用。
+        - シリアル出力: 115200 bps（CSV形式：`lin_ax,lin_ay,lin_az,gx,gy,gz,dist\n`）
+
+1. **Grasshopper概要**
+
+    XIAO RP2040に接続した6軸IMU（MPU-6050）からのセンシングデータを、ファームウェア経由でシリアル通信、Rhino GrasshopperのPython（`pyserial`）でリアルタイム受信、3Dジオメトリーを編集。
+
+    | 処理工程 | スクリプト / コンポーネント | 処理概要・詳細 |
+    | --- | --- | --- |
+    | データ受信 | `imu_sonic_serial.py` | `pyserial` でUSBシリアル経由でデータを受信・パース。 `Trigger` コンポーネント（100ms周期）によりGHキャンバスを自動更新。パラメータ（ポート `/dev/cu.usbmodem14101`, ボーレート `115200`）は書き換え可能。 |
+    | ベース形状 ＆ Flow変形 | - | 回転体（Revolve）生成後、`QuadRemesh` でメッシュ化。IMUの `gravity_vec`（重力ベクトル）を用い、傾き方向へFlow変形。 |
+    | 波紋テクスチャ生成 | `mesh_wavy_deform.py` | 直交する2軸のSine波（Ocean Wave）を法線方向へ付与。 `distance` 連動: **近い**＝振幅が大きい ＋ 波長が短い（細かな波）、**遠い**＝振幅が小さい ＋ 波長が長い（緩やかな波）。 |
+    | 最終出力 | - | `SubD from Mesh` で滑らかなSubDサーフェスとして出力。 |
+
+    **Ghポイント**
+
+    - 外部ライブラリの自動ロード（インラインディレクティブ）
+        - Rhino 8のPython 3環境では、スクリプト冒頭に `# r: <package_name>`（例: `# r: pyserial` や `# r: numpy`）を記述することで必要な外部ライブラリが自動的にロードされます（`pip install`などは不要）。
+    - Grasshopper側における再計算トリガー`Trigger`の役割
+        - Grasshopperでは通常「パラメータの変化時のみ」再計算されます。
+        - `Trigger`コンポーネントを接続することで一定周期（例: 100ms）で定期的にコンポーネントを再計算させ、ジオメトリを更新し続けます。
+    
+    ![](/docs/images/lab/intro_to_cd/imu_sonic_serial.jpg)
+
+1. **ファイル**
+
+    [GitHub Repository]()
+
+---
+## 6. MCP（Model Context Protocol）
+
+### 6.1 概要とトレンド変化
 
 - **従来:** 「AIがアイデア/コードを出力 → 人間がCAD上で手動実行・検証」。
 - **現在 (MCP環境):** 「AIエージェントがMCP経由でCADのAPIを直接叩き、生成・検証・修正まで自律実行」。
 - **MCPの役割:** LLMと外部ツール（CAD等）を標準化されたプロトコルで接続するローカルミドルウェア。
 
-### 5.2 主要ツールの最新動向
+### 6.2 主要ツールの最新動向
 
 | ソフト | MCPツール | 主な特徴・機能 | リンク |
 | --- | --- | --- |
@@ -302,7 +401,7 @@ Grow(B, V, scale, angle, 0)
 | Autodesk Fusion | Fusion MCP | Anthropicとの共同開発。自然言語指示（パラメーター変更、フィーチャー操作等）でAPIを実行しモデリングを完了。アドイン開発のペアプログラミング用途でも活用。 | [Fusion MCP](https://aps.autodesk.com/blog/bringing-fusion-claude-creative-work) |
 | Blender | Blender MCP | Python APIとの親和性の高さを活かし、オブジェクト配置、マテリアル・ライティング設定まで会話型で自動化するアドオンがコミュニティ主導で急増。 | [MCP Server](https://www.blender.org/lab/mcp-server/) |
 
-### 5.3 Rhino MCP のシステム構成・通信フロー
+### 6.3 Rhino MCP のシステム構成・通信フロー
 
 | レイヤー | 主要コンポーネント | 役割と通信プロトコル |
 | --- | --- | --- |
@@ -315,7 +414,7 @@ Grow(B, V, scale, angle, 0)
 2. **MCPサーバー:** AIのJSON要求とCAD側の通信プロトコルを相互翻訳・中継。
 3. **Rhinoプラグイン:** 受信した命令をRhinoのメインスレッド上で動的実行し、結果（成功/エラー/状態）を返答。
 
-### 5.4 課題とインプリケーション
+### 6.4 CAD MCPの課題とインプリケーション
 
 - **技術的課題・制限:**
     - 3D空間認識能力の不足: LLMの3Dトポロジーや厳密な空間座標、美観理解は発展途上。
