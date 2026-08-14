@@ -16,7 +16,7 @@ Ref.
 - [Book: Advanced 3D printing with Grasshopper](https://www.food4rhino.com/en/resource/advanced-3d-printing-grasshopper-clay-and-fdm)
 - [Rhino User Webinar: Advanced 3D printing with Grasshopper](https://youtu.be/OE_daHEf1MM?si=CwHDtrxsyAjLUD3N)
 
-Grasshopper file: [crvToG-code.gh](/docs/files/lab/yokai_pen_plotting/crvToG-code.gh)
+**Gh file:** [crvToG-code.gh](/docs/files/lab/yokai_pen_plotting/crvToG-code.gh)
 
 ![](/docs/images/lab/yokai_pen_plotting/gh.jpg)
 

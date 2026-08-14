@@ -57,7 +57,7 @@ title: LAB
     <div class="caption"><b>Micro OLED Eyes</b></div>
     <div class="caption">2026 | DFAB | Cpp</div>
   </a>
-
+  <!---
   <a href="/docs/lab/laptop_stand" class="grid-item">
     <div class="image-wrapper">
       <img src="/docs/images/404.jpg" alt="">
@@ -65,6 +65,7 @@ title: LAB
     <div class="caption"><b>Laptop Stand</b></div>
     <div class="caption">2026 | 3DP | F3D</div>
   </a>
+  --->
 
   <!---
   <a href="/docs/lab/llc" class="grid-item">
@@ -80,7 +81,7 @@ title: LAB
   </a>
   --->
 
-  <a href="/docs/lab/cellurar_automata/index" class="grid-item">
+  <a href="/docs/lab/cellular_automata" class="grid-item">
     <div class="media-wrapper">
       <video src="/docs/images/lab/cellular_automata/cubes.mp4"
         autoplay

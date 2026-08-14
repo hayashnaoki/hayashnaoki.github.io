@@ -8,6 +8,8 @@ layout: default
 
 This is an experiment using topology optimization with Grasshopper tOpos. Based on the optimization results, I designed a desk clamp with a hook, 3D printable without support, taking into account durability for FDM 3D printing.
 
+**3D files:** [Printables](https://www.printables.com/model/761881-desk-clamp-with-hook-topology-optimized)
+
 ![](/docs/images/lab/desk_clamp/clamp.jpg)
 
 <div class="media-wrapper">
@@ -17,5 +19,3 @@ This is an experiment using topology optimization with Grasshopper tOpos. Based 
     loop
     playsinline></video>
 </div>
-
-[Printables](https://www.printables.com/model/761881-desk-clamp-with-hook-topology-optimized)

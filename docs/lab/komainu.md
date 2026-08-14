@@ -8,6 +8,8 @@ layout: default
 
 In 2022, I used a photogrammetry app on my iPhone to 3D scan the *komainu* statues at [Nagakura Shrine](https://maps.app.goo.gl/fXKvBEJC34z9uXiM9) in Mie. Later, I used Grasshopper Python to manipulate the data and experiment with mesh deformations.
 
+**3D files:** [Printables](https://www.printables.com/model/1600678-komainu-statue-3d-scanned)
+
 <div class="media-wrapper">
     <video src="/docs/images/lab/komainu/komainu_1.mp4"
     autoplay
@@ -85,5 +87,3 @@ new_mesh = generate_sine_wave(input_mesh, sine_wave_width, sine_wave_height, wav
 ```
 
 [IG post](https://www.instagram.com/p/C8967sHSloF/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==)
-
-[Printables](https://www.printables.com/model/1600678-komainu-statue-3d-scanned)

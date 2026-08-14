@@ -135,7 +135,6 @@ layout: default
 **参考書籍:**
 - [Parametric Design with Grasshopper［改訂第3 版］](https://bnn.co.jp/products/9784802513104)
 - [AAD Algorithms-Aided Design](https://teaching.arturotedeschi.com/?page_id=6691)
-- [Advanced 3D Printing with Grasshopper®: Clay and FDM](https://www.food4rhino.com/en/resource/advanced-3d-printing-grasshopper-clay-and-fdm)
 
 > **AIを使った学習:**
 - Grasshopperはドキュメントが豊富でコミュニティも活発なため、多くの場合AIに質問することで適切な回答を得ることができます。
@@ -385,6 +384,23 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
         - `Trigger`コンポーネントを接続することで一定周期（例: 100ms）で定期的にコンポーネントを再計算させ、ジオメトリを更新し続けます。
     
     ![](/docs/images/lab/intro_to_cd/imu_sonic_serial.jpg)
+
+### 5.2 アウトプット：G-code生成 & 送信 (Slicer & Sender)
+
+1. **概要**
+
+    一般的なモデリングから3Dプリントまでのワークフローに対し、Grasshopperで直接G-codeを生成することで、パスや吐き出し量のカスタマイズなどが可能になります。さらに、シリアル通信で直接外部のデバイスに接続し制御することも可能です。
+
+    - **参考:**
+        - [Advanced 3D Printing with Grasshopper®: Clay and FDM](https://www.food4rhino.com/en/resource/advanced-3d-printing-grasshopper-clay-and-fdm)
+        - [TU Delft \| Generating 3D printing files (G-code) with Grasshopper](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/2_Knowledge_base/Digital_fabrication/3D_Printing/%21index.html)
+        - [RepRap \| G-code](https://reprap.org/wiki/G-code)
+
+1. **スライサー**
+
+1. **G-codeセンダー**
+
+
 
 ---
 ## 6. MCP（Model Context Protocol）
