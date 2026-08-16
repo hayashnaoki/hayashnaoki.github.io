@@ -15,7 +15,7 @@ title: PROJECTS
     <div class="caption"><b>PLOT BOT</b></div>
     <div class="caption">2025-ongoing | DFAB | Prototype</div>
   </a>
-
+  <!---
   <a href="/docs/projects/pet_filament_maker" class="grid-item">
     <div class="image-wrapper">
         <img src="/docs/images/projects/pet_filament_maker/disassembled.jpg" alt="">
@@ -23,6 +23,7 @@ title: PROJECTS
     <div class="caption"><b>PET Filament Maker</b></div>
     <div class="caption">2026-ongoing | DFAB | Mod</div>
   </a>
+  --->
 
   <a href="/docs/projects/yokai_shogi" class="grid-item">
     <div class="image-wrapper">

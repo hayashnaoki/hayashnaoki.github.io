@@ -6,11 +6,13 @@ layout: default
 
 2026 \| Computational design \| Rhino / Grasshopper / Python / Cpp
 
+An introduction to computational design using Rhino, Grasshopper, and Python. Covers three core modeling approaches in Rhino, external communication with Python 3, and Model Context Protocol (MCP).
+
+---
+
 ## 1. 概要
 
 ### 1.1 ゴール
-
-主にRhino / Grasshopper / Pythonを使った、「Computational Design」入門です。
 
 - モデリングアプローチの比較
 - Python 3 と外部通信
@@ -45,7 +47,7 @@ layout: default
 
 ### 1.3 モデリングアプローチ
 
-- **手動操作**: 直感的な単発操作。反復作業や多バリエーション検討には非効率。
+- **手動操作**: 直感的な単発操作。反復作業やバリエーション検討には非効率。
 - **Visual Programming**: ノード接続によるデータフロー構築。ルール再利用とリアルタイム形状検証が得意。
 - **Script**: Python/C#等のテキストコード記述。複雑なループ処理やデータ処理、AI連携に最適。
 
@@ -108,6 +110,8 @@ layout: default
 
 他プログラミング言語の「多次元配列」「ネストされたリスト」に相当するGh独自の概念です。初めは分かりにくいですが、使っているとなんとなくわかってきます。
 
+**参考:** [Lesson 3 - Data structures](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/1_Lessons/3_Lesson_3_-_Data_structures/%21index.html#data-trees)
+
 - **List (リスト):** 単一の配列 `[A, B, C, D]`
 - **Data Tree (データツリー):** パス（階層アドレス）を持つネスト構造 `Path{0}: [A, B]`, `Path{1}: [C, D]`
 - **マッチング原則:** 原則として「同じパス（階層）・同じインデックス」の要素同士がペアで処理される。
@@ -121,7 +125,7 @@ layout: default
 ![](/docs/images/lab/intro_to_cd/data.jpg)
 
 ### 2.4 Grasshopperの学習
-基本的な操作を学習したら、作りたいものを作りながら学習していくのが効果的。
+基本的な操作を学習したら、作りたいものを作りながら学習していくのが効果的🌱
 
 **Grasshopperリソース:**
 - [Grasshopper Docs](https://grasshopperdocs.com/)
@@ -196,7 +200,7 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 | **VBScript** | 旧世代のRhinoScript。 | **非推奨** |
 
 > **バイブコーディング:**
-  - 試行環境（例: `Rhino 8 / Python 3`）とライブラリ（`rhinoscriptsyntax`）を指定
+  - ハルシネーション（存在しない関数の捏造など）を防止するため、試行環境（例: `Rhino 8 / Python 3`）とライブラリ（`rhinoscriptsyntax`）を指定
   - エラー発生時はエラーメッセージを返しデバッグ
 
 ### 3.4 スクリプトデモ例：フラクタルツリー（再帰処理）
@@ -286,9 +290,9 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 > 5. **自動化せよ:** 上記を経た上で最終手段として自動化を導入する。
 
 ---
-## 5. Rhino外部通信
+## 5. 応用例
 
-### 5.1 インプット：IMU・超音波センサーを使ったメッシュ変形システム
+### 5.1 Rhino外部通信: IMU・超音波センサーを使ったメッシュ変形システム
 
 1. **概要**
 
@@ -378,29 +382,82 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
     **Ghポイント**
 
     - 外部ライブラリの自動ロード（インラインディレクティブ）
-        - Rhino 8のPython 3環境では、スクリプト冒頭に `# r: <package_name>`（例: `# r: pyserial` や `# r: numpy`）を記述することで必要な外部ライブラリが自動的にロードされます（`pip install`などは不要）。
+        - Rhino 8のPython 3環境では、スクリプト冒頭に `# r: <package_name>`（例: `# r: pyserial`）を記述することで必要な外部ライブラリが自動的にロードされます（`pip install`などは不要）。
     - Grasshopper側における再計算トリガー`Trigger`の役割
         - Grasshopperでは通常「パラメータの変化時のみ」再計算されます。
         - `Trigger`コンポーネントを接続することで一定周期（例: 100ms）で定期的にコンポーネントを再計算させ、ジオメトリを更新し続けます。
     
     ![](/docs/images/lab/intro_to_cd/imu_sonic_serial.jpg)
 
-### 5.2 アウトプット：G-code生成 & 送信 (Slicer & Sender)
+---
+
+### 5.2 G-code生成 & 送信 (Slicer & Sender)
 
 1. **概要**
 
-    一般的なモデリングから3Dプリントまでのワークフローに対し、Grasshopperで直接G-codeを生成することで、パスや吐き出し量のカスタマイズなどが可能になります。さらに、シリアル通信で直接外部のデバイスに接続し制御することも可能です。
+    スライサーソフトを使わず、Grasshopperで直接G-codeを生成するワークフローにより、非平面パスや吐き出し量の調整など、様々なカスタマイズなどが可能になります。
 
-    - **参考:**
-        - [Advanced 3D Printing with Grasshopper®: Clay and FDM](https://www.food4rhino.com/en/resource/advanced-3d-printing-grasshopper-clay-and-fdm)
-        - [TU Delft \| Generating 3D printing files (G-code) with Grasshopper](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/2_Knowledge_base/Digital_fabrication/3D_Printing/%21index.html)
-        - [RepRap \| G-code](https://reprap.org/wiki/G-code)
+    - **G-code 例:** `G1 F2400 X110 Y90 Z0.2 E0.20455`
+
+    | `G0` / `G1` | `F` | `X Y Z` | `E` | `; Comment` |
+    | 移動を初期化（非押出移動にはG0、押出移動にはG1） | フィードレート（移動速度）（mm/min） | 座標（mm） | 押出量（mm） | セミコロン以降のテキストは無視（コメントや説明用） |
 
 1. **スライサー**
 
-1. **G-codeセンダー**
+    **Gh定義（非平面パスの例）:**
+    - `Geometry → Curve → Point → XYZ Coordinate`へ変換
+    - Geometry上に波状のCurveを作成
+    - Curveを分解しPointを作成、XYZ座標に変換
+    - 移動距離に対応した押し出し量（`E`）の計算（`吐出し面積 / フィラメント断面積 * 移動距離`）
+    - G-code としてフォーマット、スタートプロトコル・エンドプロトコルを連結（`Concatenate`）
 
+    ![](/docs/images/lab/intro_to_cd/gh_slicer.jpg)
 
+    > **BambuLab 補足**
+    - マイクロSDカード
+        - 取り外し: `設定 → SDカード → 取り外し`
+        - `.gcode`をマイクロSDカードのルートディレクトリに入れる
+        - 印刷: ファイル → 2つ表示されるうち、右側を選択 → 開始（左側は隠しファイル`._~~~.gcode`）
+    - Bambu Studio `.3mf`ファイル
+        - 拡張子は `.gcode` （あるいは `.gcode.3mf`）だが中身は、G-codeやサムネイル画像、設定ファイルをまるごと圧縮した「Zipアーカイブ」 
+        - 拡張子を `.zip` に変えると解凍できる
+
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/intro_to_cd/gcode.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
+
+    ![](/docs/images/lab/intro_to_cd/gcode_test.jpg)
+
+    > **Start / End Protocol**
+    >
+    > 印刷開始前の準備動作、印刷完了後の安全停止動作のコマンド。プリンターにより異なるので、スライサーソフトで生成されるG-codeを流用・解析する必要があります。
+    >
+    | G-code 例 | 分類 | 本来の概要・役割 |
+    | --- | --- | --- |
+    | `G1` | 移動制御 | 指定した速度（F値）で直線移動（E軸指定時は樹脂押し出しを伴う） |
+    | `G28` | 原点復帰 | 設定された全軸（X, Y, Z）のホームポジションへの移動・原点確定 |
+    | `G90` | 座標指定 | **絶対座標指定モード**への切り替え（原点を基準とする移動） |
+    | `G91` | 座標指定 | **相対座標指定モード**への切り替え（現在地を基準とする移動） |
+    | `G92` | 座標設定 | 現在位置の座標値（E軸など）を指定した値へ再設定・リセット |
+    | `M106` | ファン制御 | パーツ冷却ファンの出力設定・作動 |
+    | `M140 / M104` | 加熱制御 | ベッド / ノズルの目標温度を設定（**非ブロッキング／到達を待たずに次行へ**） |
+    | `M190 / M109` | 加熱制御 | ベッド / ノズルの目標温度設定と**到達待機（ブロッキング／指定温度まで停止） |
+    | `M420` | ベッド補正 | 自動ベッドレベル補正データの読み込み・有効化 |
+    | `M84` | モーター制御 | ステッピングモーターの給電（励磁）をオフにする |
+
+1. **G-codeセンダー（WIP）**
+
+    さらに、ローカルネットワーク（Wi-Fi）接続したBambuLabプリンターを、GhからMQTTサーバーを介してG-codeを送付できないか検討中…
+
+**参考:**
+- [Advanced 3D Printing with Grasshopper®: Clay and FDM](https://www.food4rhino.com/en/resource/advanced-3d-printing-grasshopper-clay-and-fdm)
+- [TU Delft \| Generating 3D printing files (G-code) with Grasshopper](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/2_Knowledge_base/Digital_fabrication/3D_Printing/%21index.html)
+- [RepRap \| G-code](https://reprap.org/wiki/G-code)
+- [自作GcodeをBambulabの3Dプリンターで出力する方法](https://note.com/triplebottomline/n/n19992343d3af)
 
 ---
 ## 6. MCP（Model Context Protocol）
@@ -517,14 +574,6 @@ Rhinoでは、複数の操作方法が存在します。
     - **単一接続:** 出力端子から次の入力端子へドラッグ&ドロップして接続する。
     - **複数接続:** すでにワイヤーが接続されている入力端子に対し、`Shift` キーを押しながら新しいワイヤーを重ねることで、上書きせずにデータを追加できる。
     - **接続解除:** `Ctrl` キーを押しながら接続済みの端子に向かってドラッグすることで、配線を解除できる。
-
-    <div class="media-wrapper">
-      <video src="/docs/images/lab/intro_to_cd/basics.mp4"
-      autoplay
-      muted
-      loop
-      playsinline></video>
-    </div>
     
 4. **右クリックによる操作:**
     - コンポーネントの中央右クリック:
@@ -553,17 +602,6 @@ Rhinoでは、複数の操作方法が存在します。
   - **`Bake`（ベイク）とは:** Grasshopperのデータを、Rhinoの「実データ」として空間に「**焼き付ける**（出力する）」操作です。コンポーネントを右クリックして Bake を実行すると、Rhinoの通常のオブジェクトとして確定されます。
   - **トレードオフ:** BakeしたジオメトリはRhinoの通常のモデリングデータとなるため、Grasshopper側のパラメーターとは切り離され、連動しなくなります。 
 
-<iframe 
-  src="https://www.youtube.com/embed/b0elmzjWlE8?start=257&end=1210"
-  width="100%" 
-  height="auto" 
-  style="aspect-ratio:16/9;" 
-  frameborder="0" 
-  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-  referrerpolicy="strict-origin-when-cross-origin" 
-  title="TITLE_GOES_HERE">
-</iframe>
-
 ### 2.3 データ構造
 
 Grasshopperでは、データの流れを単なる1列ではなく、枝分かれした構造で扱います。これを「**データツリー**」と呼びます。データツリーは、**寿司（データ）**と**お皿（データの階層）**の関係性で考えるとわかりやすいです。
@@ -585,8 +623,6 @@ Grasshopperでは、データの流れを単なる1列ではなく、枝分か�
 
 - **ルール:** Grasshopperのコンポーネントで2つのデータを組み合わせて処理する場合、「**同じお皿の、同じ番号のもの同士（ネタとシャリ）**」を順番に組み合わせ握ります。
 
-  ![](/docs/images/lab/intro_to_cd/merge.jpg)
-
   ```
   【ネタ】                        【シャリ】                            【完成】
   📁 皿{0} ── [ 🐟(0), 🦑(1) ]   📁 皿{0} ── [ 🍚(0), 🍚(1) ]  ──>  📁 皿{0} ── [ 🍣(0), 🍣(1) ]
@@ -604,8 +640,6 @@ Grasshopperでは、データの流れを単なる1列ではなく、枝分か�
   - **Simplify:** 余分に重なっているお皿を単純化する（例: お皿が2枚重なっているものを、1枚にする）。
   - **List Item:** お皿の上に並んでいる寿司の中から、指定した順番（インデックス）のものをつまんで取り出す。
   - **Merge:** 別々の場所から流れてきた複数のデータを、お皿の番号に従って、1つの流れに合流させる。
-
-  ![](/docs/images/lab/intro_to_cd/graft_flatten.jpg)
 
 - **実際のGhの例**
   - **Listの例（上段）:** `Construct Point`のX座標にList (0, 10, ... 40) を入れ、5個のポイントを作成。
@@ -966,5 +1000,4 @@ AIクライアントからRhinoが操作される内部処理は、以下の3レ
 - CAD操作習得のラーニングカーブがなだらかになり、これまで最大のボトルネックだった「大量のコンポーネント暗記」や「複雑なAPIリファレンスの検索」をショートカットできるようになる。
 - デザイナーの仕事は手を動かしてモデリングすることから、モデリングはMCPに任せ、より上位レイヤーの「制約条件の定義」や「バリエーションのディレクション」にシフトする。
 - 設計プロセスのループが高速になり、CAE（強度解析）ツール等と連携した「AIが形状生成 → 解析 → 自動修正」という自律的な最適化ループの構築が現実味を帯びている。
-
 --->
