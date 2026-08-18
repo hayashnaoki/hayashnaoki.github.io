@@ -18,7 +18,7 @@ An introduction to computational design using Rhino, Grasshopper, and Python. Co
 - Python 3 と外部通信
 - MCP
 
-### 1.2 概念整理
+### 1.2 用語
 
 フォーカスするポイントの異なる様々な言葉があります。⚠️使う人や文脈によって意味が変わります。
 
@@ -74,15 +74,15 @@ An introduction to computational design using Rhino, Grasshopper, and Python. Co
 --->
 
 ---
-## 2. Grasshopperの構造と概念
+## 2. Grasshopper
 
-### 2.1 コア概念
+### 2.1 コンセプト
 
 - **コンポーネント:** 関数/処理ノード。左側（Input）からデータを受け取り、右側（Output）から出力する。
 - **ワイヤー:** コンポーネント間のデータ伝達パス。
 - **パラメーター:** 入力変数（数値スライダー、ジオメトリ参照など）。
 
-### 2.2 主要操作の要点
+### 2.2 主要操作
 
 1. **起動・ファイル:** コマンド `Grasshopper` / 拡張子 `.gh`
 2. **コンポーネントの呼び出し:** メニュータブ選択、またはキャンバスダブルクリックによるキーワード検索（例：`Sphere` で球体生成、`10.0` でスライダー生成、`//` でパネル生成等）。
@@ -108,7 +108,7 @@ An introduction to computational design using Rhino, Grasshopper, and Python. Co
 
 ### 2.3 データ構造（データツリー）
 
-他プログラミング言語の「多次元配列」「ネストされたリスト」に相当するGh独自の概念です。初めは分かりにくいですが、使っているとなんとなくわかってきます。
+他プログラミング言語の「多次元配列」「ネストされたリスト」に相当するGh独自の概念です。使っているとなんとなくわかってきます。
 
 **参考:** [Lesson 3 - Data structures](https://interactivetextbooks.tudelft.nl/rhino-grasshopper/Grasshopper_Rhino_course/1_Lessons/3_Lesson_3_-_Data_structures/%21index.html#data-trees)
 
@@ -125,7 +125,7 @@ An introduction to computational design using Rhino, Grasshopper, and Python. Co
 ![](/docs/images/lab/intro_to_cd/data.jpg)
 
 ### 2.4 Grasshopperの学習
-基本的な操作を学習したら、作りたいものを作りながら学習していくのが効果的🌱
+基本的な操作を学習したら、作りたいものを作りながら学習していくのが効果的。
 
 **Grasshopperリソース:**
 - [Grasshopper Docs](https://grasshopperdocs.com/)
@@ -153,59 +153,70 @@ An introduction to computational design using Rhino, Grasshopper, and Python. Co
 ---
 ## 3. Rhino Script
 
-### 3.1 環境の起動と実行手順
+### 3.1 実行手順・ライブラリ
 
-Rhino、Grasshopperどちらからもスクリプトを利用することができます。Rhino上ではバッチ処理・自動化、Grasshopper上ではノード機能の補完・パラメトリックなデータ処理としてスクリプトを利用します。
+1. **環境の起動と実行手順**
 
-- **Rhino上で実行する（ワンショット自動化）**
-    - `メニュー → ツール → スクリプト → 編集` でスクリプトエディタ（Rhino 8では Script）を起動。
-    - コード記述・実行により、Rhino空間のオブジェクトを直接生成・編集。
-    - `.py` ファイルとして保存し、単体コマンドやツールボタンに割り当てて再利用可能。
-- **Grasshopper上で実行する（動的・パラメトリック処理）**
-    - キャンバス上に `Python 3 Script` コンポーネントを配置。
-    - コンポーネントの入力端子（x, y等）からデータを受け取り、処理結果を出力端子（a等）へ渡す。
-    - キャンバス上のパラメーター変更に応じてスクリプトがリアルタイムに再計算される。
-    - **入力・出力端子の名前と型（`int, Line, Brep`など）は、スクリプト内の変数に合わせる必要があります。**
+    Rhino、Grasshopperどちらからもスクリプトを利用することができます。Rhino上ではバッチ処理・自動化、Grasshopper上ではノード機能の補完・パラメトリックなデータ処理としてスクリプトを利用します。
 
-### 3.2 主要ライブラリ
+    - **Rhino上で実行する（ワンショット自動化）**
+        - `メニュー → ツール → スクリプト → 編集` でスクリプトエディタ（Rhino 8では Script）を起動。
+        - コード記述・実行により、Rhino空間のオブジェクトを直接生成・編集。
+        - `.py` ファイルとして保存し、単体コマンドやツールボタンに割り当てて再利用可能。
+    - **Grasshopper上で実行する（動的・パラメトリック処理）**
+        - キャンバス上に `Python 3 Script` コンポーネントを配置。
+        - コンポーネントの入力端子（x, y等）からデータを受け取り、処理結果を出力端子（a等）へ渡す。
+        - キャンバス上のパラメーター変更に応じてスクリプトがリアルタイムに再計算される。
+        - **入力・出力端子の名前と型（`int, Line, Brep`など）は、スクリプト内の変数に合わせる必要があります。**
 
-Rhino機能の操作、および外部データ処理を行うための主要ライブラリです。
+1. **主要ライブラリ**
 
-| カテゴリ | ライブラリ | 概要・用途 | リンク |
-| --- | --- | --- | --- |
-| **Rhino操作** | `rhinoscriptsyntax` | Rhinoコマンドに相当する操作を直感的に記述できる高レベル・ラッパー関数群。 | [RhinoScriptSyntax](https://developer.rhino3d.com/api/RhinoScriptSyntax/) |
-|  | `Rhino.Geometry` (`RhinoCommon`) | ジオメトリを直接扱う下層コアAPI。高度な幾何計算や高速処理向け。 | [RhinoCommon API](https://developer.rhino3d.com/api/rhinocommon/) |
-|  | `ghpythonlib.components` | Grasshopperの既存ノード機能をPythonコード内から直接呼び出して実行。 | [Node in Code from Python.](https://developer.rhino3d.com/guides/rhinopython/ghpython-call-components/) |
-| **その他** (Rhino 8 / Python 3) | 標準ライブラリ | `math`（数値計算）、`random`（乱数生成）、`json` / `os`（ファイル処理）など。 | |
-|  | 外部CPythonライブラリ | NumPy, SciPy, Pandas, PyTorch等。`# env: numpy` 等の記述で読み込み可能。 | |
+    Rhino機能の操作、および外部データ処理を行うための主要ライブラリ。
 
-### 3.3 Rhinoスクリプト環境の構造とアーキテクチャ
+    | カテゴリ | ライブラリ | 概要・用途 | リンク |
+    | --- | --- | --- | --- |
+    | **Rhino操作** | `rhinoscriptsyntax` | Rhinoコマンドに相当する操作を直感的に記述できる高レベル・ラッパー関数群。 | [RhinoScriptSyntax](https://developer.rhino3d.com/api/RhinoScriptSyntax/) |
+    |  | `Rhino.Geometry` (`RhinoCommon`) | ジオメトリを直接扱う下層コアAPI。高度な幾何計算や高速処理向け。 | [RhinoCommon API](https://developer.rhino3d.com/api/rhinocommon/) |
+    |  | `ghpythonlib.components` | Grasshopperの既存ノード機能をPythonコード内から直接呼び出して実行。 | [Node in Code from Python.](https://developer.rhino3d.com/guides/rhinopython/ghpython-call-components/) |
+    | **その他** (Rhino 8 / Python 3) | 標準ライブラリ | `math`（数値計算）、`random`（乱数生成）、`json` / `os`（ファイル処理）など。 | |
+    |  | 外部CPythonライブラリ | NumPy, SciPy, Pandas, PyTorch等。`# env: numpy` 等の記述で読み込み可能。 | |
 
-**ライブラリの階層関係と役割**
+### 3.2 Rhinoスクリプトのアーキテクチャ
 
-| レイヤー | コンポーネント | 役割・技術スタック |
-| --- | --- | --- |
-| **最上層 (ユーザー記述)** | **スクリプト** | **Python 3 / C#**: ユーザーやAIが記述するコード領域。 |
-| **高レベル処理** | **rhinoscriptsyntax** | **Pythonラッパー**: RhinoCommonを初心者向けに簡易化した関数群。 |
-| **共通API層** | **RhinoCommon** | **.NET Core API**: Rhinoの全機能にアクセスする公式クロスプラットフォームAPI。 |
-| **最下層 (コアエンジン)** | **Rhino Kernel** | **C++ ネイティブエンジン**: 幾何演算・描画を高速処理するRhino本体。 |
+1. **ライブラリの階層**
 
-**動作言語と環境**
+    | レイヤー | コンポーネント | 役割・技術スタック |
+    | --- | --- | --- |
+    | **最上層 (ユーザー記述)** | **スクリプト** | **Python 3 / C#**: ユーザーやAIが記述するコード領域。 |
+    | **高レベル処理** | **rhinoscriptsyntax** | **Pythonラッパー**: RhinoCommonを初心者向けに簡易化した関数群。 |
+    | **共通API層** | **RhinoCommon** | **.NET Core API**: Rhinoの全機能にアクセスする公式クロスプラットフォームAPI。 |
+    | **最下層 (コアエンジン)** | **Rhino Kernel** | **C++ ネイティブエンジン**: 幾何演算・描画を高速処理するRhino本体。 |
 
-| 言語 | 特徴・用途 | Rhinoでの位置付け |
-| --- | --- | --- |
-| **Python 3 (CPython)** | AI/LLMとの親和性が極めて高く、外部ライブラリ統合が容易。 | **現在の推奨標準環境** (Rhino 8〜) |
-| **Python 2 (IronPython)** | 旧Rhino 7までの標準（.NET上で動作するPython実装）。 | 互換性維持目的の旧環境 |
-| **C#** | 高度なプラグイン・カスタムコンポーネント開発用。 | 開発者向けネイティブ環境 |
-| **VBScript** | 旧世代のRhinoScript。 | **非推奨** |
+1. **動作言語**
 
-> **バイブコーディング:**
-  - ハルシネーション（存在しない関数の捏造など）を防止するため、試行環境（例: `Rhino 8 / Python 3`）とライブラリ（`rhinoscriptsyntax`）を指定
-  - エラー発生時はエラーメッセージを返しデバッグ
+    | 言語 | 特徴・用途 | Rhinoでの位置付け |
+    | --- | --- | --- |
+    | **Python 3 (CPython)** | AI/LLMとの親和性が極めて高く、外部ライブラリ統合が容易。 | **現在の推奨標準環境** (Rhino 8〜) |
+    | **Python 2 (IronPython)** | 旧Rhino 7までの標準（.NET上で動作するPython実装）。 | 互換性維持目的の旧環境 |
+    | **C#** | 高度なプラグイン・カスタムコンポーネント開発用。 | 開発者向けネイティブ環境 |
+    | **VBScript** | 旧世代のRhinoScript。 | **非推奨** |
 
-### 3.4 スクリプトデモ例：フラクタルツリー（再帰処理）
+    > **バイブコーディング:**
+    - ハルシネーション（存在しない関数の捏造など）を防止するため、試行環境（例: `Rhino 8 / Python 3`）とライブラリ（`rhinoscriptsyntax`）を指定
+    - エラー発生時はエラーメッセージを返しデバッグ
 
-再帰関数と乱数を用いた幾何生成デモです。同一ロジックを Grasshopper（動的パラメーター制御）と Rhino単体（直書きワンショット実行）の両方で検証できます。
+### 3.3 スクリプトデモ例：フラクタルツリー（再帰処理）
+
+1. **概要**
+    再帰関数と乱数を用いた幾何生成デモです。Grasshopper（動的パラメーター制御）と Rhino単体（直書きワンショット実行）の両方で検証できます。
+
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/cd_lab/fractal.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
 
 1. **Grasshopper上での実行手順**
 - キャンバスに `Python 3 Script` コンポーネントを配置。
@@ -219,10 +230,10 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
     | | `scale` | Float | 縮小比 |
     | Output | `Lines` | Line | アウトプット |
 
-2. **Rhino単体上での実行手順**
+1. **Rhino上での実行手順**
   - `メニュー → ツール → スクリプト → 編集` でエディタを開き、コードを貼り付けて直接実行。
 
-3. **Pythonコード（Rh/Gh共通）**
+1. **Pythonコード（Rh/Gh共通）**
 
     ```py
     import rhinoscriptsyntax as rs
@@ -260,7 +271,7 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
     Grow(B, V, scale, angle, 0)
     ```
 
-### 3.5 スクリプトのコマンドボタン化
+### 3.4 スクリプトのコマンドボタン化
 
 作成した `.py` スクリプトをRhinoのコマンドにできます。
 
@@ -298,12 +309,12 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 
     センサーからのデータをGrasshopperに入力し、3Dジオメトリーをリアルタイムに変形させるインタラクティブな造形システムです。
 
-    [GitHub Repository](https://github.com/hayashnaoki/rhino-physical-interface)
-
     - IMUの傾きに合わせたメッシュのフロー変形
     - 超音波センサーによる距離連動パラメータ: 
-        - 距離が近い場合: 振幅が大きく、波長が短い（細かい波）
-        - 距離が遠い場合: 振幅が小さく、波長が長い（ゆったりした波）
+        - 距離が近い場合: 細かい波
+        - 距離が遠い場合: ゆったりした波
+
+    **ファイル:** [GitHub Repository](https://github.com/hayashnaoki/rhino-physical-interface/tree/main/io_tests)
 
     <div class="media-wrapper">
         <video src="/docs/images/lab/intro_to_cd/imu_sonic_serial.mp4"
@@ -366,7 +377,7 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
         - MPU-6050から加速度・角速度を取得。
         - HC-SR04から距離データ（cm）を計測。
         - 重力影響カットのため、加速度データへハイパスフィルター（HPF）を適用。
-        - シリアル出力: 115200 bps（CSV形式：`lin_ax,lin_ay,lin_az,gx,gy,gz,dist\n`）
+        - シリアル出力: 115200 bps（CSV形式：`lin_ax,lin_ay, lin_az, gx, gy, gz, dist\n`）
 
 1. **Grasshopper概要**
 
@@ -395,12 +406,18 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 
 1. **概要**
 
-    スライサーソフトを使わず、Grasshopperで直接G-codeを生成するワークフローにより、非平面パスや吐き出し量の調整など、様々なカスタマイズなどが可能になります。
+    スライサーソフトを使わず、Grasshopperで直接G-codeを生成するワークフローにより、非平面パスや吐き出し量の調整など、様々なカスタマイズが可能になります。
 
-    - **G-code 例:** `G1 F2400 X110 Y90 Z0.2 E0.20455`
+    **ファイル:** [GitHub Repository](https://github.com/hayashnaoki/rhino-physical-interface/tree/main/gcode_tests)
 
-    | `G0` / `G1` | `F` | `X Y Z` | `E` | `; Comment` |
-    | 移動を初期化（非押出移動にはG0、押出移動にはG1） | フィードレート（移動速度）（mm/min） | 座標（mm） | 押出量（mm） | セミコロン以降のテキストは無視（コメントや説明用） |
+
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/intro_to_cd/gcode.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
 
 1. **スライサー**
 
@@ -413,22 +430,24 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
 
     ![](/docs/images/lab/intro_to_cd/gh_slicer.jpg)
 
-    > **BambuLab 補足**
+    **G-code 例:** `G1 F1200 X110 Y90 Z0.2 E0.2`
+
+    | `G0` / `G1` | `F` | `X Y Z` | `E` | `; Comment` |
+    | 移動を初期化（非押出移動にはG0、押出移動にはG1） | フィードレート（移動速度）（mm/min） | 座標（mm） | 移動単位ごとの押出量（mm） | セミコロン以降のテキストは無視（コメントや説明用） |
+
+    **BambuLab SDカード補足:**
     - マイクロSDカード
         - 取り外し: `設定 → SDカード → 取り外し`
         - `.gcode`をマイクロSDカードのルートディレクトリに入れる
         - 印刷: ファイル → 2つ表示されるうち、右側を選択 → 開始（左側は隠しファイル`._~~~.gcode`）
     - Bambu Studio `.3mf`ファイル
-        - 拡張子は `.gcode` （あるいは `.gcode.3mf`）だが中身は、G-codeやサムネイル画像、設定ファイルをまるごと圧縮した「Zipアーカイブ」 
+        - 拡張子は `.3mf` （あるいは `.gcode.3mf`）だが中身は、G-codeやサムネイル画像、設定ファイルを圧縮した「Zipアーカイブ」 
         - 拡張子を `.zip` に変えると解凍できる
 
-    <div class="media-wrapper">
-        <video src="/docs/images/lab/intro_to_cd/gcode.mp4"
-        autoplay
-        muted
-        loop
-        playsinline></video>
-    </div>
+    **サンプルG-codeの仕様:**
+    - 対象機種：Bambu Lab A1 mini
+    - ノズル径：0.8 mm
+    - フィラメント：1.75 mm PETG
 
     ![](/docs/images/lab/intro_to_cd/gcode_test.jpg)
 
@@ -436,16 +455,16 @@ Rhino機能の操作、および外部データ処理を行うための主要ラ
     >
     > 印刷開始前の準備動作、印刷完了後の安全停止動作のコマンド。プリンターにより異なるので、スライサーソフトで生成されるG-codeを流用・解析する必要があります。
     >
-    | G-code 例 | 分類 | 本来の概要・役割 |
+    | コマンド例 | 分類 | 指示 |
     | --- | --- | --- |
     | `G1` | 移動制御 | 指定した速度（F値）で直線移動（E軸指定時は樹脂押し出しを伴う） |
     | `G28` | 原点復帰 | 設定された全軸（X, Y, Z）のホームポジションへの移動・原点確定 |
-    | `G90` | 座標指定 | **絶対座標指定モード**への切り替え（原点を基準とする移動） |
-    | `G91` | 座標指定 | **相対座標指定モード**への切り替え（現在地を基準とする移動） |
+    | `G90` | 座標指定 | 絶対座標指定モードへの切り替え（原点を基準とする移動） |
+    | `G91` | 座標指定 | 相対座標指定モードへの切り替え（現在地を基準とする移動） |
     | `G92` | 座標設定 | 現在位置の座標値（E軸など）を指定した値へ再設定・リセット |
     | `M106` | ファン制御 | パーツ冷却ファンの出力設定・作動 |
-    | `M140 / M104` | 加熱制御 | ベッド / ノズルの目標温度を設定（**非ブロッキング／到達を待たずに次行へ**） |
-    | `M190 / M109` | 加熱制御 | ベッド / ノズルの目標温度設定と**到達待機（ブロッキング／指定温度まで停止） |
+    | `M140 / M104` | 加熱制御 | ベッド / ノズルの目標温度を設定（非ブロッキング／到達を待たずに次行へ） |
+    | `M190 / M109` | 加熱制御 | ベッド / ノズルの目標温度設定と到達待機（ブロッキング／指定温度まで停止） |
     | `M420` | ベッド補正 | 自動ベッドレベル補正データの読み込み・有効化 |
     | `M84` | モーター制御 | ステッピングモーターの給電（励磁）をオフにする |
 
