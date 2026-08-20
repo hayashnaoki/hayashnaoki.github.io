@@ -307,7 +307,7 @@ An introduction to computational design using Rhino, Grasshopper, and Python. Co
 
 1. **概要**
 
-    センサーからのデータをGrasshopperに入力し、3Dジオメトリーをリアルタイムに変形させるインタラクティブな造形システムです。
+    マイコンとGrasshopperを接続し、センサーデータで3Dジオメトリーをリアルタイムに変形させるインタラクティブな造形システムです。
 
     - IMUの傾きに合わせたメッシュのフロー変形
     - 超音波センサーによる距離連動パラメータ: 
@@ -381,13 +381,13 @@ An introduction to computational design using Rhino, Grasshopper, and Python. Co
 
 1. **Grasshopper概要**
 
-    XIAO RP2040に接続した6軸IMU（MPU-6050）からのセンシングデータを、ファームウェア経由でシリアル通信、Rhino GrasshopperのPython（`pyserial`）でリアルタイム受信、3Dジオメトリーを編集。
+    XIAO RP2040に接続したセンサーデータを、ファームウェア経由でシリアル通信、Rhino GrasshopperのPython（`pyserial`）でリアルタイム受信、3Dジオメトリーを編集。
 
     | 処理工程 | スクリプト / コンポーネント | 処理概要・詳細 |
     | --- | --- | --- |
     | データ受信 | `imu_sonic_serial.py` | `pyserial` でUSBシリアル経由でデータを受信・パース。 `Trigger` コンポーネント（100ms周期）によりGHキャンバスを自動更新。パラメータ（ポート `/dev/cu.usbmodem14101`, ボーレート `115200`）は書き換え可能。 |
     | ベース形状 ＆ Flow変形 | - | 回転体（Revolve）生成後、`QuadRemesh` でメッシュ化。IMUの `gravity_vec`（重力ベクトル）を用い、傾き方向へFlow変形。 |
-    | 波紋テクスチャ生成 | `mesh_wavy_deform.py` | 直交する2軸のSine波（Ocean Wave）を法線方向へ付与。 `distance` 連動: **近い**＝振幅が大きい ＋ 波長が短い（細かな波）、**遠い**＝振幅が小さい ＋ 波長が長い（緩やかな波）。 |
+    | 波紋テクスチャ生成 | `mesh_wavy_deform.py` | 直交する2軸のSine波を法線方向へ付与。 `distance` 連動: **近い**＝振幅が大きい ＋ 波長が短い（、**遠い**＝振幅が小さい ＋ 波長が長い。 |
     | 最終出力 | - | `SubD from Mesh` で滑らかなSubDサーフェスとして出力。 |
 
     **Ghポイント**
@@ -481,52 +481,126 @@ An introduction to computational design using Rhino, Grasshopper, and Python. Co
 ---
 ## 6. MCP（Model Context Protocol）
 
-### 6.1 概要とトレンド変化
+### 6.1 概要・主要ツールの最新動向
 
-- **従来:** 「AIがアイデア/コードを出力 → 人間がCAD上で手動実行・検証」。
-- **現在 (MCP環境):** 「AIエージェントがMCP経由でCADのAPIを直接叩き、生成・検証・修正まで自律実行」。
-- **MCPの役割:** LLMと外部ツール（CAD等）を標準化されたプロトコルで接続するローカルミドルウェア。
+- **概要:**
+    - **従来:** 「AIがアイデア/コードを出力 → 人間がCAD上で手動実行・検証」。
+    - **現在 (MCP環境):** 「AIエージェントがMCP経由でCADのAPIを直接叩き、生成・検証・修正まで自律実行」。
+    - **MCPの役割:** LLMと外部ツール（CAD等）を標準化されたプロトコルで接続するローカルミドルウェア。
 
-### 6.2 主要ツールの最新動向
+- **主要ツール動向:**
 
-| ソフト | MCPツール | 主な特徴・機能 | リンク |
-| --- | --- | --- |
-| Rhino | Rhino MCP (McNeel公式) | GitHubにて公式プラットフォーム開発が進行中。レイヤー操作やスクリプト動的実行ツールを展開。 | [Rhino MCP Platform](https://mcneel.github.io/RhinoMCP/) |
-| Rhino | 3rd party | サードパーティ開発者によるMCPサーバープラグイン。プラグインコミュニティ[Food4Rhino](https://www.food4rhino.com/en)やGitHubなどで公開。 | 例：[rhinomcp (by ccc159)](https://www.food4rhino.com/en/app/rhinomcp) |
-| Grasshopper | Raven | Grasshopperのグラフ構造（ノード配置・配線）自体をAIに自動生成・最適化させるプラグイン。 | [Raven](https://www.raven.build/en) |
-| Autodesk Fusion | Fusion MCP | Anthropicとの共同開発。自然言語指示（パラメーター変更、フィーチャー操作等）でAPIを実行しモデリングを完了。アドイン開発のペアプログラミング用途でも活用。 | [Fusion MCP](https://aps.autodesk.com/blog/bringing-fusion-claude-creative-work) |
-| Blender | Blender MCP | Python APIとの親和性の高さを活かし、オブジェクト配置、マテリアル・ライティング設定まで会話型で自動化するアドオンがコミュニティ主導で急増。 | [MCP Server](https://www.blender.org/lab/mcp-server/) |
+    | ソフト | MCPツール | 主な特徴・機能 | リンク |
+    | --- | --- | --- |
+    | Rhino | Rhino MCP (McNeel公式) | GitHubで公式プラットフォーム開発が進行中。画像の3Dモデル化、Gh定義の作成、レイヤー操作。 | [Rhino MCP Platform](https://mcneel.github.io/RhinoMCP/) |
+    | Rhino | 3rd party | サードパーティ開発者によるMCPサーバープラグイン。プラグインコミュニティ[Food4Rhino](https://www.food4rhino.com/en)やGitHubなどで公開。 | 例：[rhinomcp (by ccc159)](https://www.food4rhino.com/en/app/rhinomcp) |
+    | Grasshopper | Raven | Grasshopperのグラフ構造（ノード配置・配線）自体をAIに自動生成・最適化させるプラグイン。 | [Raven](https://www.raven.build/en) |
+    | Autodesk Fusion | Fusion MCP | Anthropicとの共同開発。自然言語指示（パラメーター変更、フィーチャー操作等）でAPIを実行しモデリングを完了。アドイン開発のペアプログラミング用途でも活用。 | [Fusion MCP](https://aps.autodesk.com/blog/bringing-fusion-claude-creative-work) |
+    | Blender | Blender MCP | Python APIとの親和性の高さを活かし、オブジェクト配置、マテリアル・ライティング設定まで会話型で自動化するアドオンがコミュニティ主導で急増。 | [MCP Server](https://www.blender.org/lab/mcp-server/) |
 
-### 6.3 Rhino MCP のシステム構成・通信フロー
+### 6.2 MCP のシステム構成・通信フロー（Rhinoの例）
 
-| レイヤー | 主要コンポーネント | 役割と通信プロトコル |
-| --- | --- | --- |
-| **クライアント層** | **AIクライアント** *(Claude / Cursor / Gemini 等)* | ユーザーの自然言語指示を受け取り、ツール呼び出し（Tool Call）を生成するUI/エディタ環境。 |
-| **中継・変換層** | **MCPサーバー** *(Python / FastMCP 等のローカルミドルウェア)* | 標準規格（**stdio / JSON-RPC**）を解釈し、AIからの要求をCAD専用の命令形式に変換・中継する橋渡し役。 |
-| **エンドポイント層** | **Rhinoプラグイン** *(C# RhinoCommon / Python 常駐リスナー)* | ローカル通信（**TCP Loopback / Socket / 127.0.0.1:10501**）でメッセージを受信し、Rhino側で常駐待機する受信用ソケット。 |
-| **実行層** | **Rhino / Grasshopper Kernel** | 受信した命令に基づき、Rhino/Grasshopper内部でスクリプトの動的実行やジオメトリの直接生成・操作を実行。 |
+- **AIクライアント:** ツール仕様（JSON Schema）に基づき、プロンプトを解釈して実行命令を発行。
+- **MCPサーバー:** AIのJSON要求とCAD側の通信プロトコルを相互翻訳・中継。
+- **Rhinoプラグイン:** 受信した命令をRhinoのメインスレッド上で動的実行し、結果（成功/エラー/状態）を返答。
 
-1. **AIクライアント:** ツール仕様（JSON Schema）に基づき、プロンプトを解釈して実行命令を発行。
-2. **MCPサーバー:** AIのJSON要求とCAD側の通信プロトコルを相互翻訳・中継。
-3. **Rhinoプラグイン:** 受信した命令をRhinoのメインスレッド上で動的実行し、結果（成功/エラー/状態）を返答。
+    | レイヤー | 主要コンポーネント | 役割と通信プロトコル |
+    | --- | --- | --- |
+    | **クライアント層** | **AIクライアント** *(Claude / Copilot / Codex 等)* | ユーザーの自然言語指示を受け取り、ツール呼び出し（Tool Call）を生成するUI/エディタ環境。 |
+    | **中継・変換層** | **MCPサーバー** *(Python / FastMCP 等のローカルミドルウェア)* | 標準規格（**stdio / JSON-RPC**）を解釈し、AIからの要求をCAD専用の命令形式に変換・中継する橋渡し役。 |
+    | **エンドポイント層** | **Rhinoプラグイン** *(C# RhinoCommon / Python 常駐リスナー)* | ローカル通信（**TCP Loopback / Socket / 127.0.0.1:10501**）でメッセージを受信し、Rhino側で常駐待機する受信用ソケット。 |
+    | **実行層** | **Rhino / Grasshopper Kernel** | 受信した命令に基づき、Rhino/Grasshopper内部でスクリプトの動的実行やジオメトリの直接生成・操作を実行。 |
 
-### 6.4 CAD MCPの課題とインプリケーション
+### 6.3 Fusion MCP デモ
 
-- **技術的課題・制限:**
-    - 3D空間認識能力の不足: LLMの3Dトポロジーや厳密な空間座標、美観理解は発展途上。
-    - コンテクストの壁: 大規模アセンブリではすぐにデータ量がトークン上限を超えるため、「選択中のオブジェクトのみ取得」「バウンディングボックスや軽量なメタデータのみ送信」などの対策が必要。
-    - パフォーマンス: 大規模処理時にAIが愚直なAPI呼び出しを行うため、遅延計算（「スクリプトを一括生成してバッチ実行させる」「Redraw（画面再描画）を抑制する」）などの指示が必要。
-- **安全性の懸念・新たな技術負債:**
-    - ブラックボックスノード化: AIによるGh定義生成や、Gh内スクリプトを多用すると、Gh本来の「視覚的データフロー」が失われ、人間によるデバッグが不可能になるリスク。
-    - 意図しない形状破壊: 自律実行によるスケッチ拘束の不具合や、製造不可能な自己交差形状の生成リスク。
-- **インプリケーション:**
-    - 設計者の役割は「操作」から「制約条件の定義」および「AIが提示するバリエーションのディレクション」へ移行。
-    - 解析（CAE）等と組み合わせた自律型最適化ループ構築。
-      - 生成 (Generation): MCP経由でLLMがRhino/GH上に形状を生成。
-      - 解析 (Evaluation): 構造解析（FEA）や環境シミュレーションツールをMCPで呼び出して評価。
-      - 自動修正 (Refinement): 「応力集中が発生している箇所」のエラーログをLLMが読み取り、自律的にフィレット半径や肉厚パラメータを調整して再実行。
+**設定方法**
+1. **Fusion 360側の設定:** 
+    - `Preferences → General → API`
+    - `Fusion MCP Server`にチェック
 
+    ![](/docs/images/lab/intro_to_cd/fusion_mcp.jpg)
 
+1. **Claude Desktop側の設定:**
+    - チャット欄の「＋」メニューから「Connectors」を開き、「Fusion」を検索し追加
+    - 権限設定と認証: `Configure`を開いてすべての`Tool permissions`を`Always allow`にする
+
+    <div class="image-grid">
+    <a class="grid-item">
+        <div class="image-wrapper">
+        <img src="/docs/images/lab/intro_to_cd/claude_connector.jpg" alt="">
+        </div>
+    </a>
+
+    <a class="grid-item">
+        <div class="image-wrapper">
+        <img src="/docs/images/lab/intro_to_cd/claude_permissions.jpg" alt="">
+        </div>
+    </a>
+    </div>
+
+1. **参考**
+    - [ClaudeがAutodesk Fusionを直接動かす時代が来た — 公式連携を4つの実例で確かめた](https://note.com/tokyomakers/n/n35aae26aa835)
+    - [Bringing Fusion onto Claude for Creative Work](https://aps.autodesk.com/blog/bringing-fusion-claude-creative-work)
+    - [Claude for Creative Work](https://www.anthropic.com/news/claude-for-creative-work)
+
+**デモ結果**
+
+Claude Fusion MCPを使用した、回転寿司アセンブリモデルの作成デモ。
+
+1. **初めのプロンプト:** MCP経由で1操作（スケッチ描画・押し出し等）ごとにAPI呼び出しと画面レンダリング（確認）を繰り返したため、シャリ1個の作成でトークン・API使用上限に到達。
+
+    ```
+    以下のモデリングをしたいので、まず計画を立ててください。
+    他に必要な情報があれば教えてください。
+    スケーラブルなローポリ回転寿司屋
+    - ネタパート、シャリパート
+    - 寿司アセンブリ
+    - 皿アセンブリ（2つ以上の寿司アッセン）
+    - ベルトコンベアパート、アセンブリ
+    - 寿司職人
+    - 寿司屋アセンブリ（ベルトコンベア、寿司、職人）
+    要件
+    - これらの寿司ネタ、寿司の数はパラメトリックでスケーラブル
+    - Fusionのパート・アセンブリを使い、パート、子アセンブリを更新できること
+    - それぞれのモデルはローポリで最低限のジオメトリー
+    - パートの色は現物に近づけること
+    ```
+
+1. **改善版（一括処理指示）:** 「一括実行により画面描画の確認を減らす」「スクリプトによる処理」プロンプトへ変更。寿司・皿・コンベア・職人のアセンブリ構築に成功。ただし配置数がパラメトリックに編集できなくなる弊害もあった。
+
+    ```
+    パラメーター作成からモデリングまで一括で実行してください。スクリプト内で全処理（パラメータ作成、コンポーネント作成、アセンブリ配置）を一度に完了させる構成にしてください。
+    モデルの形状はシンプルなボックス形状メインで良いです。色の割り当ても省略して良いです。
+    ```
+    
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/intro_to_cd/kaiten_zushi.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
+    *(履歴のリプレイ)*
+
+    <div class="media-wrapper">
+        <video src="/docs/images/lab/intro_to_cd/sushi_syokunin.mp4"
+        autoplay
+        muted
+        loop
+        playsinline></video>
+    </div>
+    *ローポリ寿司職人の生成（4x）*
+
+**デモまとめ**
+
+現時点では多くの場合、「自分がやった方が早い」が、Fusionのモデリング履歴が残り後で調整できるため、アセンブリ構造の作成など、ベース作成などの活用方法はありそう。また、Web検索ができるため、一般的な部品の寸法モデル作成ができる（例：Nema17を配置して、など）。
+
+| | 内容・要点 |
+| --- | --- |
+| **結果・課題点** | ・GUI描画や視点切り替え処理によるAPIトークンの大量消費<br>・初期寸法（スケール）未指定によるパーツ間の干渉と手戻り<br>・API経由でのカメラズーム・全体の視覚確認動作の不安定さ |
+| **結果・有用な点** | ・マスターパーツ方式による正確な階層・アセンブリ構造構築<br>・コンベア接線配置や空間クリアランスの自動座標計算<br>・パラメータ変更に全パーツが自動追従する拡張性 |
+| **プロンプト改善点** | ・初期条件の厳密化（寸法・スケール感をあらかじめ絶対値で指定）<br>・描画抑制（「途中の描画・視点変更は不要」と指示しトークン節約）<br>・フェーズ分離（ツール実行前に構造計画・コード確認を挟む） |
+| **有効な使い道** | ・Pythonスクリプト一括出力によるローカル実行用コード生成<br>・数式処理（極座標配置・規則的凹凸）やパラメータ連動アセンブリのテンプレート構築 |
 
 <!---
 
